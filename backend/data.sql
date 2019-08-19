@@ -1,3 +1,4 @@
+-- oops we committed to master doh
 -- Elevate company project database schema and seed data
 
 -- Everyone is a user. Each user can have one default (users_roles.role_id = 5) or multiple roles.
