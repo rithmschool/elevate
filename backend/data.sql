@@ -69,8 +69,6 @@ INSERT INTO
 roles (user_id)
 VALUES (1);
 
-
-
 -- Elevate company project database schema and seed data
 
 -- Everyone is a user. Each user can have one default (users_roles.role_id = 5) or multiple roles.
