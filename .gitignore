@@ -1,5 +1,7 @@
 .ds_store
 node_modules
+package-lock.json
+
 ### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
@@ -19,3 +21,4 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
