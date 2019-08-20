@@ -8,15 +8,15 @@ class Charge {
   /** Find all charges */
 
   static async findAll() {
-    let result = `SELECT 
-                  id, 
-                  user_id, 
-                  amount, 
-                  description, 
-                  due_date, 
-                  payment,
-                  paid 
-                 FROM charges`;
+    const result = await db.query(`SELECT 
+                                  id, 
+                                  user_id, 
+                                  amount, 
+                                  description, 
+                                  due_date, 
+                                  payment_date,
+                                  paid 
+                                FROM charges`);
 
     return result.rows;
   }

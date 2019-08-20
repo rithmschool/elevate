@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS "elevate";
-CREATE DATABASE "elevate";
-\c "elevate"
+-- DROP DATABASE IF EXISTS "elevate";
+-- CREATE DATABASE "elevate";
+-- \c "elevate"
 
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
