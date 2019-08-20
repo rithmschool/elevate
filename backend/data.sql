@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS "elevate";
+CREATE DATABASE "elevate";
+\c "elevate"
+
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   salary FLOAT,
@@ -45,11 +49,11 @@ INSERT INTO users (id, email, password, is_admin, first_name, last_name, current
   (5, 'joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', 5, '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
 
 INSERT INTO charges (id, user_id, amount, description, due_date, payment_date, paid) VALUES 
-  (1, 1, 500.00, 'Percentage of negotiation salary.', '9/1/2019', null, false),
-  (2, 3, 1000.99, 'Percentage of negotiation salary.', '9/1/2019', '2019-08-20', true),
-  (3, 3, 500.00, 'Percentage of negotiation salary.' '9/1/2019', null, false),
-  (4, 4, 750.00, 'Percentage of negotiation salary.', '9/1/2019', null, false),
-  (5, 5, 1000.00, 'Percentage of negotiation salary.', '9/1/2019', null, false);
+  (1, 1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false),
+  (2, 3, 1000.99, 'Percentage of negotiation salary.', '2019-09-01', '2019-08-20', true),
+  (3, 3, 500.00, 'Percentage of negotiation salary.', '2019-08-23', null, false),
+  (4, 4, 750.00, 'Percentage of negotiation salary.', '2019-11-13', null, false),
+  (5, 5, 1000.00, 'Percentage of negotiation salary.', '2019-08-28', null, false);
 
 
 /* upcoming */ 
