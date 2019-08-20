@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="Home-background"
+>
+  <img
+    alt=""
+    className="Home-stretch"
+    src="1.jpg"
+  />
+  <h1
+    className="Home-h1"
+  >
+     Are You paid what you deserve?
+  </h1>
+</div>
+`;
