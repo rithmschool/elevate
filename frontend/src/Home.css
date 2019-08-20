@@ -1,0 +1,23 @@
+.Home-background {
+  background-image: url("/frontend/src/img/1.jpg");
+  background-size: cover;
+  background-color: #cccccc;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+
+ }
+
+ .Home-background {
+  width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.Home-stretch {
+  width:100%;
+  height:100%;
+}
