@@ -1,4 +1,5 @@
 /**FIX  ME: CONFIG DB */
+
 const bcrypt = require("bcrypt");
 
 /**NOTE: recommended work factor is 15. minimum is 12. it can be lowered if it too slow */
