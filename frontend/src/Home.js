@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import './Home.css'
+import './Home.css';
+import img1 from './img/1.jpg';
+
 class Home extends Component {
 
+
   render(){
-    let img1 = 'https://www.affordablebackgroundchecks.com/blog/wp-content/uploads/2018/03/Job-Interview.jpg'
     
     return( 
       <div className="Home-background">
         <img src={img1} className="Home-stretch" alt="" />
+        <h1 className="Home-h1"> Are You paid what you deserve?</h1>
+
       </div>
     );
   }

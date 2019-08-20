@@ -7,6 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink} from 'reactstrap';
+  import {Link} from 'react-router-dom'
+
 
 export default class Navigation extends React.Component {
   constructor(props) {
@@ -32,10 +34,10 @@ export default class Navigation extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/profile">Profile</NavLink>
+              <NavLink to="/">Get Started</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/logout" onClick={this.props.logout}>Logout</NavLink>
+              <NavLink to="/logout" onClick={this.props.logout}>Logout</NavLink>
             </NavItem>
           </Nav>
             </Collapse>
@@ -48,23 +50,32 @@ export default class Navigation extends React.Component {
   loggedOutNavbar(){
     return(
       <div>
-          <Navbar color="transparent" light expand="md">
+        
+          <Navbar color="transparent" light expand="md" >
             <NavbarBrand href="/">Elevate</NavbarBrand>
+
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/link1">Link1</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/link2">Link2</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/link3">Link3</NavLink>
-            </NavItem>
-          </Nav>
+                <NavItem >
+                  <NavLink to="/link1" >Get Started</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/link2">How it Works</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/link3">About</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/link3">Help</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/link3">Sign in</NavLink>
+                </NavItem>
+                </Nav>
             </Collapse>
           </Navbar>
+         
         </div>
     );
   }
