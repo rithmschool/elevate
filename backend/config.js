@@ -1,5 +1,4 @@
-/** Shared config for application; can be req'd many places. */
-
+/** Shared config for application; can be required in many places. */
 
 require("dotenv").config();
 

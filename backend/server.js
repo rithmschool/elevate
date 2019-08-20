@@ -1,7 +1,6 @@
 /** Start server for elevate. */
 
-
-const app = require('./app');
+const app = require("./app");
 const { PORT } = require("./config");
 
 

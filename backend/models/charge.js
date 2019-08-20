@@ -1,7 +1,7 @@
 const db = require("../db");
 const sqlForPartialUpdate = require("../helpers/partialUpdate");
 
-/** Related functions for companies. */
+/** Related functions for charges. */
 
 class Charge {
 
@@ -21,7 +21,7 @@ class Charge {
     return result.rows;
   }
   
-  /** Create a jchargeob (from data), update db, return new charge data. */
+  /** Create a charge (from data), update db, return new charge data. */
 
   static async create(data) {
     const { user_id, amount, description, due_date, payment_date} = data;
@@ -56,7 +56,7 @@ class Charge {
     const charge = result.rows[0];
 
     if (!charge) {
-      let notFound = new Error(`There exists no charge '${id}`);
+      let notFound = new Error(`There exists no charge ${id}`);
       notFound.status = 404;
       throw notFound;
     }
@@ -64,7 +64,7 @@ class Charge {
     return charge;
   }
 
-  /** Delete given charge from database; returns undefined. */
+  /** Delete given charge from database; returns id of deleted charge. */
 
   static async remove(id) {
     const result = await db.query(
@@ -74,10 +74,12 @@ class Charge {
         [id]);
 
     if (result.rows.length === 0) {
-      let notFound = new Error(`There exists no charge '${id}`);
+      let notFound = new Error(`There exists no charge ${id}`);
       notFound.status = 404;
       throw notFound;
     }
+
+    return result.rows[0];
   }
 }
 
