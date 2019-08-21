@@ -56,7 +56,7 @@ class Salary {
       throw notFound;
     }
 
-    return charge;
+    return salary;
   }
 
   /** Delete given salary from database; returns id of deleted salary. */
