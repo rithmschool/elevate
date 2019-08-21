@@ -2,8 +2,8 @@ const db = require("../db");
 
 const bcrypt = require("bcrypt");
 
-/**NOTE: recommended work factor is 15. minimum is 12. it can be lowered if it too slow */
-const BCRYPT_WORK_FACTOR = 15;
+/**FIXME: work factor is 10 for development purpose. actual recommendation is 15 minimum is 12 */
+const BCRYPT_WORK_FACTOR = 10;
 
 
 /** Related functions for users. */
@@ -62,7 +62,7 @@ class User {
         if (duplicateCheck.rows[0]) {
             const err = new Error(
                 `There already exists a user with email '${data.email}`);
-            err.status = 409;
+            err.status = 401;
             throw err;
         }
 
