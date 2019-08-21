@@ -6,6 +6,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Routes
+const salariesRoutes = require('./routes/salaries');
+
+app.use('/salaries', salariesRoutes);
 
 
 /** 404 handler */
