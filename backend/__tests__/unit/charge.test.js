@@ -71,6 +71,15 @@ describe("Charge model test setup and teardown", function () {
           due_date: expect.any(Date),
           payment_date: null,
           paid: false
+        },
+        {
+          id: expect.any(Number),
+          user_id: expect.any(Number),
+          amount: 500,
+          description: 'Percentage of negotiation salary.',
+          due_date: expect.any(Date),
+          payment_date: null,
+          paid: false
         }
       ]);
     });
@@ -89,10 +98,10 @@ describe("Charge model test setup and teardown", function () {
 
     test("update a charge", async function () {
       const updatedCharge = { amount: 200.00, description: 'Subscription charge.', due_date: '2019-10-15', payment_date: null}
-      const response = await Charge.update(1, updatedCharge);
+      const response = await Charge.update(999999, updatedCharge);
 
       expect(response).toEqual({ 
-        id: 1,
+        id: 999999,
         user_id: 1,
         amount: 200,
         description: 'Subscription charge.',
@@ -111,16 +120,16 @@ describe("Charge model test setup and teardown", function () {
     });
 
     test("delete a charge", async function () {
-      const response = await Charge.remove(1);
+      const response = await Charge.remove(999999);
 
-      expect(response).toEqual({ id: 1 });
+      expect(response).toEqual({ id: 999999 });
     });
 
     test("throws error if trying to delete a charge that does not exist", async function () {
       try {
-        await await Charge.remove(6);
+        await await Charge.remove(777777);
       } catch (err) {
-        expect(err.message).toEqual('There exists no charge 6');
+        expect(err.message).toEqual('There exists no charge 777777');
       }
     });
   });
