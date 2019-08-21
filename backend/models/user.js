@@ -34,9 +34,7 @@ class User {
 
         const user = result.rows[0];
 
-        const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-        console.log("hashed", hashedPassword )
-
+        
         if (user) {
             // compare hashed password to a new hash from password
             const isValid = await bcrypt.compare(data.password, user.password);
