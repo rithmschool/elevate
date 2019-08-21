@@ -1,7 +1,7 @@
 /** Middleware to handle routes authentication */
 
 const jwt = require("jsonwebtoken");
-const SECRET = require("../config ");
+const { SECRET } = require("../config");
 
 /**FIX ME: is email ok to be identifer for particular user???? */
 
@@ -14,8 +14,12 @@ const SECRET = require("../config ");
 
  function authRequired(req, res, next) {
      try{
-         const reqToken = req.body_token || req.query._token;
+        
+         const reqToken = req.body._token || req.query._token;
+         
+        
          let token = jwt.verify(reqToken, SECRET);
+         
          req.user_id = token.user_id;
          return next();
      }
@@ -36,7 +40,7 @@ const SECRET = require("../config ");
 
  function adminRequired(req, res, next) {
      try{
-         const reqToken = req.body_token || req.query._token;
+         const reqToken = req.body._token || req.query._token;
          let token = jwt.verify(reqToken, SECRET);
          req.user_id = token.user_id;
 
@@ -67,11 +71,15 @@ function ensureCorrectUser(req, res, next){
         const tokenStr = req.body._token || req.query._token;
         let token = jwt.verify(tokenStr, SECRET);
         req.user_id = token.user_id;
+        // console.log("token user", token.user_id )
+        // console.log("req param id", req.params.id)
+        // console.log("check", token.user_id == req.params.id)
+        if(token.user_id === Number(req.params.id)){
 
-        if(token.user_id === req.params.id){
             return next()
         }
         // throw an error, so we catch it in our catch,below
+        throw new Error()
     }
     catch(err){
         const unauthorized = new Error("You are not authorized");

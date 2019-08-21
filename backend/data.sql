@@ -42,8 +42,8 @@ INSERT INTO salaries (id, salary, bonus, equity) VALUES
 
 
 INSERT INTO users (id, email, password, is_admin, first_name, last_name, current_company, salary, hire_date, needs, goals) VALUES
-  (1, 'testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', 1, '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
-  (2, 'admin@gmail.com', 'admin123', true, 'Admin', 'User', '', 2, '2019-06-23', '', ''),
+  (1, 'testuser@gmail.com', '$2b$15$ExKP/7DNP7QFfuB/qtYcq.hGLtdoACyZ3eo1gsqDS.a4aOB9fxd1q', false, 'Test', 'User', 'Google', 1, '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
+  (2, 'admin@gmail.com', '$2b$15$h41Q75sz0ltHjCHZyP1.Hu8ATrj55t2kFExvEdeYireFgGDYsUiye', true, 'Admin', 'User', '', 2, '2019-06-23', '', ''),
   (3, 'nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', 3, '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
   (4, 'elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', 4, '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
   (5, 'joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', 5, '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
