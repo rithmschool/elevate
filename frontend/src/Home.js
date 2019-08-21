@@ -7,12 +7,18 @@ class Home extends React.Component {
   render(){
     
     return( 
-      <div >
+      // <div >
+      //   <h1 className="Home-h1"> Are You paid what you deserve?</h1>
+      //   <img src={img1}  alt="image1" />
+      // </div>
+      <div className="Home-container">
+        <img src={img1} className="Home-image1" alt="image1" />
         <h1 className="Home-h1"> Are You paid what you deserve?</h1>
-        <img src={img1} className="Home-stretch" alt="image1" />
       </div>
     );
   }
 }
 
 export default Home;
+
+// width="1794" height="1068"

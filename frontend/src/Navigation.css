@@ -13,7 +13,7 @@
   font-weight: bold;
   font-size: 14px;
   /* text-transform: uppercase; */
-  text-decoration: none !important;
+  /* text-decoration: none !important; */
   color: #394557;
   padding: 20px 0px;
   margin: 0px 30px;
@@ -53,4 +53,6 @@
   color: #394557;
   opacity: 1;
 }
+
+
 
