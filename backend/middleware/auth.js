@@ -75,7 +75,7 @@ function ensureCorrectUser(req, res, next){
     }
     catch(err){
         const unauthorized = new Error("You are not authorized");
-        unauthorized.status = 401cd 
+        unauthorized.status = 401
 
         return next(unauthorized)
     }
