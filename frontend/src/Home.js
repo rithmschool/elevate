@@ -4,13 +4,8 @@ import img1 from './img/001.jpg';
 
 class Home extends React.Component {
 
-  render(){
-    
+  render(){  
     return( 
-      // <div >
-      //   <h1 className="Home-h1"> Are You paid what you deserve?</h1>
-      //   <img src={img1}  alt="image1" />
-      // </div>
       <div className="Home-container">
         <img src={img1} className="Home-image1" alt="image1" />
         <h1 className="Home-h1"> Are You paid what you deserve?</h1>
@@ -20,5 +15,3 @@ class Home extends React.Component {
 }
 
 export default Home;
-
-// width="1794" height="1068"
