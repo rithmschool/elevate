@@ -9,7 +9,7 @@ class Home extends Component {
     
     return( 
       <div className="Home-background">
-        <img src={img1} className="Home-stretch" alt="" />
+        <img src={img1} className="Home-stretch" alt="image1" />
         <h1 className="Home-h1"> Are You paid what you deserve?</h1>
 
       </div>

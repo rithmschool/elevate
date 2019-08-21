@@ -1,15 +1,7 @@
 import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink} from 'reactstrap';
-  import {Link} from 'react-router-dom';
-  import './Navigation.css'
-
+import {Link} from 'react-router-dom';
+import './Navigation.css'
+import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
 
 export default class Navigation extends React.Component {
   constructor(props) {
@@ -25,64 +17,71 @@ export default class Navigation extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+/** Navbar appears when user is logged in */
 
   loggedInNavbar(){
     return(
-      <div>
-          <Navbar color="transparent" light expand="md">
-            <NavbarBrand href="/">Elevate</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink to="/">Get Started</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/logout" onClick={this.props.logout}>Logout</NavLink>
-            </NavItem>
-          </Nav>
-            </Collapse>
-          </Navbar>
-          
-        </div>
+      <Navbar color="light" light expand="md">
+        <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li className="nav-item ">
+              <Link to="/link1" className="Nav-link Nav-link-ltr">Our Mission</Link>
+            </li>
+            <li className="nav-item">
+            <Link to="/link2" className="ml-5 Nav-link Nav-link-ltr ">How it Works</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/link3" className="ml-5 Nav-text Nav-link Nav-link-ltr">Explore</Link>
+            </li>
+            </ul>
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr">Help</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/link3" className="fas fa-user Nav-icon"></Link>
+            </li>
+          </ul>   
+        </Collapse>
+      </Navbar>
     );
+                        
   }
-
+/** Navbar appears when user is logged out */
   loggedOutNavbar(){
     return(
-      <div>
-        
-          <Navbar  light expand="md"  >
-            <NavbarBrand href="/">LOGO</NavbarBrand>
-
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar >
-                <NavItem className="Navigation">
-                  <Link to="/link1" >Get Started</Link>
-                </NavItem >
-                <NavItem className="Navigation"> 
-                  <Link to="/link2">How it Works</Link>
-                </NavItem>
-                <NavItem className="Navigation">
-                  <Link to="/link3">About</Link>
-                </NavItem>
-                <NavItem className="Navigation">
-                  <Link to="/link3">Help</Link>
-                </NavItem>
-                <NavItem className="Navigation">
-                  <Link to="/link3">Sign in</Link>
-                </NavItem>
-                </Nav>
-            </Collapse>
-          </Navbar>
-         <hr></hr>
-        </div>
+      <Navbar color="light" light expand="md">
+        <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li className="nav-item ">
+              <Link to="/link1" className="Nav-link Nav-link-ltr">Get Started</Link>
+            </li>
+            <li className="nav-item">
+            <Link to="/link2" className="ml-5 Nav-link Nav-link-ltr ">How it Works</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/link3" className="ml-5 Nav-text Nav-link Nav-link-ltr">About</Link>
+            </li>
+            </ul>
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr">Help</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr"> Sign In</Link>
+            </li>
+          </ul>   
+        </Collapse>
+      </Navbar>
     );
   }
   render() {
     return (
-      this.props.currentUser ? this.loggedInNavbar(): this.loggedOutNavbar()
+      this.loggedInNavbar()
     )
   }
 }

@@ -5,7 +5,7 @@ exports[`matches snapshot 1`] = `
   className="Home-background"
 >
   <img
-    alt=""
+    alt="image1"
     className="Home-stretch"
     src="1.jpg"
   />

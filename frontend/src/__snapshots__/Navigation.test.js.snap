@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Navbar
+  color="light"
+  expand="md"
+  light={true}
+  tag="nav"
+>
+  <Link
+    className="navbar-brand Nav-text"
+    to="/"
+  >
+    Super Agent
+  </Link>
+  <NavbarToggler
+    onClick={[Function]}
+    tag="button"
+    type="button"
+  />
+  <Collapse
+    appear={false}
+    enter={true}
+    exit={true}
+    in={false}
+    isOpen={false}
+    mountOnEnter={false}
+    navbar={true}
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    tag="div"
+    timeout={350}
+    unmountOnExit={false}
+  >
+    <ul
+      className="navbar-nav mr-auto mt-2 mt-lg-0 "
+    >
+      <li
+        className="nav-item "
+      >
+        <Link
+          className="Nav-link Nav-link-ltr"
+          to="/link1"
+        >
+          Our Mission
+        </Link>
+      </li>
+      <li
+        className="nav-item"
+      >
+        <Link
+          className="ml-5 Nav-link Nav-link-ltr "
+          to="/link2"
+        >
+          How it Works
+        </Link>
+      </li>
+      <li
+        className="nav-item"
+      >
+        <Link
+          className="ml-5 Nav-text Nav-link Nav-link-ltr"
+          to="/link3"
+        >
+          Explore
+        </Link>
+      </li>
+    </ul>
+    <ul
+      className="nav justify-content-end"
+    >
+      <li
+        className="nav-item"
+      >
+        <Link
+          className="mr-5 Nav-link Nav-link-ltr"
+          to="/link3"
+        >
+          Help
+        </Link>
+      </li>
+      <li
+        className="nav-item"
+      >
+        <Link
+          className="fas fa-user Nav-icon"
+          to="/link3"
+        />
+      </li>
+    </ul>
+  </Collapse>
+</Navbar>
+`;

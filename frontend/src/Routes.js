@@ -17,9 +17,9 @@ export default class Routes extends Component {
 					() => <Home />}/>/>
 
 				<Route exact path="/login"
-										render={<LoginForm />} />
+										render={props => <LoginForm {...props} />} />
 				<Route exact path="/profile"
-										render={ <Profile/>}/>
+										render={ props => <Profile {...props} />}/>
 
 				<Redirect to="/" />
 			</Switch>
