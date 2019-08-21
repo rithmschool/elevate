@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
 import './App.css'
 
-class App extends Component {
+class App extends React.Component {
 
   render(){
     return(

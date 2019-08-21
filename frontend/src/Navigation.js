@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,22 +25,22 @@ export default class Navigation extends React.Component {
         <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0 ">
+          <ul className="navbar-nav mr-auto ">
             <li className="nav-item ">
               <Link to="/link1" className="Nav-link Nav-link-ltr">Our Mission</Link>
             </li>
-            <li className="nav-item">
-            <Link to="/link2" className="ml-5 Nav-link Nav-link-ltr ">How it Works</Link>
+            <li className="nav-item active">
+            <Link to="/link2" className="Nav-link Nav-link-ltr ">How it Works</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/link3" className="ml-5 Nav-text Nav-link Nav-link-ltr">Explore</Link>
+            <li className="nav-item active">
+              <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">Explore</Link>
             </li>
             </ul>
-          <ul className="nav justify-content-end">
-            <li className="nav-item">
-              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr">Help</Link>
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item active">
               <Link to="/link3" className="fas fa-user Nav-icon"></Link>
             </li>
           </ul>   
@@ -55,24 +55,24 @@ export default class Navigation extends React.Component {
       <Navbar color="light" light expand="md">
         <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0 ">
-            <li className="nav-item ">
+          <Collapse isOpen={this.state.isOpen} navbar className="collapse.navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active ">
               <Link to="/link1" className="Nav-link Nav-link-ltr">Get Started</Link>
             </li>
-            <li className="nav-item">
-            <Link to="/link2" className="ml-5 Nav-link Nav-link-ltr ">How it Works</Link>
+            <li className="nav-item active">
+            <Link to="/link2" className="Nav-link Nav-link-ltr ">How it Works</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/link3" className="ml-5 Nav-text Nav-link Nav-link-ltr">About</Link>
+            <li className="nav-item active">
+              <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">About</Link>
             </li>
             </ul>
-          <ul className="nav justify-content-end">
-            <li className="nav-item">
-              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr">Help</Link>
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/link3" className="mr-5 Nav-link Nav-link-ltr"> Sign In</Link>
+            <li className="nav-item active">
+              <Link to="/link3" className="Nav-link Nav-link-ltr"> Sign In</Link>
             </li>
           </ul>   
         </Collapse>
@@ -85,3 +85,5 @@ export default class Navigation extends React.Component {
     )
   }
 }
+
+export default Navigation;

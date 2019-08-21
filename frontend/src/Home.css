@@ -1,14 +1,13 @@
 
 .Home-stretch {
   height: 100%; 
-  width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .Home-h1{
-  font-size:3vw;
+  font-size:5vw;
   text-align: center;
   position: absolute;
   top: 50%;
@@ -16,4 +15,9 @@
   transform: translate(-50%, -50%);
   color: white;
 
+}
+@media only screen and (min-width: 900) {
+  .Home-stretch{
+    width: 100%; 
+  }
 }

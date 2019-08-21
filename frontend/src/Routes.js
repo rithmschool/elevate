@@ -16,9 +16,8 @@ class Routes extends React.Component {
 				<Redirect to="/" />
 			</Switch>
 		)
+	}
 }
 
-}
-
-export default  Routes;
+export default Routes;
 
