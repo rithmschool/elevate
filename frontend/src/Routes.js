@@ -14,9 +14,4 @@ class Routes extends React.Component {
 	}
 }
 
-<<<<<<< HEAD
-export default Routes;
-
-=======
 export default  Routes;
->>>>>>> d87bd30473142177c837d7485b25b5982fa4374f

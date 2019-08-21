@@ -81,7 +81,7 @@ class Navigation extends React.Component {
   }
   render() {
     return (
-      this.loggedInNavbar()
+      this.loggedOutNavbar()
     )
   }
 }
