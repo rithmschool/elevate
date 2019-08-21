@@ -3,11 +3,11 @@
 const jwt = require("jsonwebtoken");
 const { SECRET } = require("../config");
 
-/**FIX ME: is email ok to be identifer for particular user???? */
 
 /** Middleware to authenticate a valid token
+ * req.body ---- { _token }
  * 
- *  Add email onto req for view functions. 
+ *  Add id onto req for view functions. 
  * 
  * If not, raises Unauthorized
  */
@@ -32,8 +32,9 @@ const { SECRET } = require("../config");
  }
 
  /** Middleware to authenticate admin token
+ * req.body ---- { _token }
  * 
- *  Add email onto req for view functions. 
+ *  Add id onto req for view functions. 
  * 
  * If not, raises Unauthorized
  */
@@ -59,9 +60,10 @@ const { SECRET } = require("../config");
  }
 
  /** Middleware to use when they must provide a valid token & be user matching
- *  email provided as route param.
+ *  id provided as route params.
+ * req.body ---- { _token }
  *
- * Add email onto req as a convenience for view functions.
+ * Add id onto req as a convenience for view functions.
  *
  * If not, raises Unauthorized.
  *
@@ -71,9 +73,7 @@ function ensureCorrectUser(req, res, next){
         const tokenStr = req.body._token || req.query._token;
         let token = jwt.verify(tokenStr, SECRET);
         req.user_id = token.user_id;
-        // console.log("token user", token.user_id )
-        // console.log("req param id", req.params.id)
-        // console.log("check", token.user_id == req.params.id)
+        // changing params.id to integer to make correct comparison 
         if(token.user_id === Number(req.params.id)){
 
             return next()

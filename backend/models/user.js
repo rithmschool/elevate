@@ -2,8 +2,8 @@ const db = require("../db");
 
 const bcrypt = require("bcrypt");
 
-/**NOTE: recommended work factor is 15. minimum is 12. it can be lowered if it too slow */
-const BCRYPT_WORK_FACTOR = 15;
+/**FIXME: work factor is 10 for development purpose. actual recommendation is 15 minimum is 12 */
+const BCRYPT_WORK_FACTOR = 10;
 
 
 /** Related functions for users. */
@@ -14,7 +14,7 @@ class User {
 
     static async authenticate(data) {
         // try to find the user first
-        // console.log("data is ", data)
+       
         const result = await db.query(
             `SELECT id, 
                 email,
@@ -36,7 +36,7 @@ class User {
 
         
         if (user) {
-            // compare hashed password to a new hash from password
+            // compare hashed password to a new hash from password from user input
             const isValid = await bcrypt.compare(data.password, user.password);
             if (isValid) {
                 return user;
@@ -62,7 +62,7 @@ class User {
         if (duplicateCheck.rows[0]) {
             const err = new Error(
                 `There already exists a user with email '${data.email}`);
-            err.status = 409;
+            err.status = 401;
             throw err;
         }
 
