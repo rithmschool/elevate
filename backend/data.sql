@@ -40,7 +40,7 @@ INSERT INTO salaries (id, salary, bonus, equity) VALUES
   (4, 200000.00, 5000.00, .33),
   (5, 200000.00, 5000.00, .10);
 
-
+-- changed password for first two users to hashed passwords
 INSERT INTO users (id, email, password, is_admin, first_name, last_name, current_company, salary, hire_date, needs, goals) VALUES
   (1, 'testuser@gmail.com', '$2b$15$ExKP/7DNP7QFfuB/qtYcq.hGLtdoACyZ3eo1gsqDS.a4aOB9fxd1q', false, 'Test', 'User', 'Google', 1, '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
   (2, 'admin@gmail.com', '$2b$15$h41Q75sz0ltHjCHZyP1.Hu8ATrj55t2kFExvEdeYireFgGDYsUiye', true, 'Admin', 'User', '', 2, '2019-06-23', '', ''),

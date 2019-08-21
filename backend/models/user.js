@@ -14,7 +14,7 @@ class User {
 
     static async authenticate(data) {
         // try to find the user first
-        // console.log("data is ", data)
+       
         const result = await db.query(
             `SELECT id, 
                 email,
@@ -36,7 +36,7 @@ class User {
 
         
         if (user) {
-            // compare hashed password to a new hash from password
+            // compare hashed password to a new hash from password from user input
             const isValid = await bcrypt.compare(data.password, user.password);
             if (isValid) {
                 return user;
