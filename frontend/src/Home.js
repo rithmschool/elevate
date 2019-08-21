@@ -4,7 +4,6 @@ import img1 from './img/001.jpg';
 
 class Home extends React.Component {
 
-
   render(){
     
     return( 
