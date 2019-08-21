@@ -15,7 +15,17 @@
 .Home-image1 {
   width: 100%;
   height: auto;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  object-fit: cover;
+  
 }
+/* 
+@media only screen and (max-width: 767px) {
+  .Home-image1 {
+    max-width: 140vw;
+    height: auto;
+    width: auto;
+  }
+	} */
