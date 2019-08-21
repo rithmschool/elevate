@@ -60,3 +60,42 @@ INSERT INTO charges (id, user_id, amount, description, due_date, payment_date, p
 /* CREATE TABLE messages (); */
 /* CREATE TABLE appointments (); */
 /* CREATE TABLE templates (); */
+
+
+
+-- Create test database with tables
+
+DROP DATABASE IF EXISTS "elevate-test";
+CREATE DATABASE "elevate-test";
+\c "elevate-test"
+
+CREATE TABLE salaries (
+  id serial PRIMARY KEY,
+  salary FLOAT,
+  bonus FLOAT,
+  equity FLOAT
+);
+
+CREATE TABLE users (
+  id serial PRIMARY KEY,
+  email TEXT NOT NULL,
+  password TEXT NOT NULL,
+  is_admin BOOLEAN DEFAULT FALSE,
+  first_name TEXT,
+  last_name TEXT,
+  current_company TEXT,
+  salary INTEGER REFERENCES salaries (id) ON DELETE CASCADE,
+  hire_date DATE,
+  needs TEXT,
+  goals TEXT
+);
+
+CREATE TABLE charges (
+  id serial PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users,
+  amount FLOAT NOT NULL,
+  description TEXT,
+  due_date DATE,
+  payment_date DATE,
+  paid BOOLEAN DEFAULT FALSE
+);
