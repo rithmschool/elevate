@@ -2,12 +2,7 @@ import React from 'react';
 import {  Route, Switch, Redirect } from "react-router-dom";
 import Home from './Home';
 
-
-
-
-
 class Routes extends React.Component {
-
 
 	render(){
 		return(
@@ -16,9 +11,7 @@ class Routes extends React.Component {
 				<Redirect to="/" />
 			</Switch>
 		)
-}
-
+	}
 }
 
 export default  Routes;
-
