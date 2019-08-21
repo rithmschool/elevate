@@ -9,14 +9,14 @@ class Charge {
 
   static async findAll() {
     const result = await db.query(`SELECT 
-                                  id, 
-                                  user_id, 
-                                  amount, 
-                                  description, 
-                                  due_date, 
-                                  payment_date,
-                                  paid 
-                                FROM charges`);
+                                      id, 
+                                      user_id, 
+                                      amount, 
+                                      description, 
+                                      due_date, 
+                                      payment_date,
+                                      paid 
+                                   FROM charges`);
 
     return result.rows;
   }
@@ -28,9 +28,9 @@ class Charge {
 
     const result = await db.query(
         `INSERT INTO charges (user_id, amount, description, due_date, payment_date) 
-             VALUES ($1, $2, $3, $4, $5) 
-             RETURNING user_id, amount, description, due_date, payment_date`,
-        [user_id, amount, description, due_date, payment_date]
+         VALUES ($1, $2, $3, $4, $5) 
+         RETURNING user_id, amount, description, due_date, payment_date`,
+         [user_id, amount, description, due_date, payment_date]
     );
 
     return result.rows[0];
@@ -69,9 +69,9 @@ class Charge {
   static async remove(id) {
     const result = await db.query(
         `DELETE FROM charges 
-            WHERE id = $1 
-            RETURNING id`,
-        [id]);
+         WHERE id = $1 
+         RETURNING id`,
+         [id]);
 
     if (result.rows.length === 0) {
       let notFound = new Error(`There exists no charge ${id}`);
