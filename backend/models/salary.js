@@ -22,14 +22,12 @@ class Salary {
 
   static async create(data) {
     const { salary, bonus, equity } = data;
-
     const result = await db.query(
-      `INSERT INTO (salary, bonus, equity) 
+      `INSERT INTO salaries (salary, bonus, equity) 
              VALUES ($1, $2, $3) 
              RETURNING id, salary, bonus, equity`,
-      [salary, bonus, equity]
+            [salary, bonus, equity]
     );
-
     return result.rows[0];
   }
 

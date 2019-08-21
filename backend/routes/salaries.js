@@ -20,9 +20,7 @@ router.get('/', async function (req, res, next) {
 
 router.post('/', async function (req, res, next) {
   try {
-    console.log("req.body", req.body)
     const salary = await Salary.create(req.body);
-    console.log("salary", salary)
     return res.status(201).json({ salary }); 
   } catch (err) {
     return next(err);
@@ -31,7 +29,7 @@ router.post('/', async function (req, res, next) {
 
 // /** PATCH /[handle] {companyData} => {company: updatedCompany}  */
 
-// router.patch('/:handle', adminRequired, async function (req, res, next) {
+// router.patch('/:', async function (req, res, next) {
 //   try {
 //     if ('handle' in req.body) {
 //       throw new ExpressError('You are not allowed to change the handle.', 400);
