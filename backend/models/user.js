@@ -1,4 +1,4 @@
-/**FIX  ME: CONFIG DB */
+const db = require("../db");
 
 const bcrypt = require("bcrypt");
 
@@ -14,6 +14,7 @@ class User {
 
     static async authenticate(data) {
         // try to find the user first
+        // console.log("data is ", data)
         const result = await db.query(
             `SELECT id, 
                 email,
@@ -33,6 +34,7 @@ class User {
 
         const user = result.rows[0];
 
+        
         if (user) {
             // compare hashed password to a new hash from password
             const isValid = await bcrypt.compare(data.password, user.password);
@@ -65,7 +67,7 @@ class User {
         }
 
         const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-
+        
         const result = await db.query(
             `INSERT INTO users 
             (email, password) 
@@ -75,7 +77,6 @@ class User {
                 data.email,
                 hashedPassword
             ]);
-
         return result.rows[0];
     }
 
