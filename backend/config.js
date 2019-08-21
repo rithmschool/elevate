@@ -31,15 +31,15 @@ const SEED_DB_SQL = `
     (4, 'elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', 4, '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
     (5, 'joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', 5, '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
     
-    INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid) VALUES 
+  INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid) VALUES 
     (1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false),
-    (3, 1000.99, 'Percentage of negotiation salary.', '2019-09-01', '2019-08-20', true),
+    (2, 1000.99, 'Percentage of negotiation salary.', '2019-09-01', '2019-08-20', true),
     (3, 500.00, 'Percentage of negotiation salary.', '2019-08-23', null, false),
     (4, 750.00, 'Percentage of negotiation salary.', '2019-11-13', null, false),
     (5, 1000.00, 'Percentage of negotiation salary.', '2019-08-28', null, false);
     
-    INSERT INTO charges (id, user_id, amount, description, due_date, payment_date, paid) VALUES
-    (999999, 1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false);`
+  INSERT INTO charges (id, user_id, amount, description, due_date, payment_date, paid) VALUES
+  (999999, 1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false);`
 
 module.exports = {
   SECRET,
