@@ -22,7 +22,7 @@ router.get('/', authRequired, async function (req, res, next) {
 
 router.get('/', authRequired, async function (req, res, next) {
   try {
-    const user = await User.findOne(req.body.user_id);
+    const user = await User.findOne(req.body.id);
     return res.json({ user });
   } catch (err) {
     return next(err);
@@ -45,7 +45,7 @@ router.post('/', async function (req, res, next) {
 
 router.patch('/', ensureCorrectUser, async function (req, res, next) {
   try {
-    const user = await User.update(req.body.user_id, req.body);
+    const user = await User.update(req.body.id, req.body);
     return res.json({ user });
   } catch (err) {
     return next(err);
@@ -56,7 +56,7 @@ router.patch('/', ensureCorrectUser, async function (req, res, next) {
 
 router.delete('/', ensureCorrectUser, async function (req, res, next) {
   try {
-    await User.remove(req.body.user_id);
+    await User.remove(req.body.id);
     return res.json({ message: 'User deleted' });
   } catch (err) {
     return next(err);

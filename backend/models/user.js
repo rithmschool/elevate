@@ -1,8 +1,9 @@
 const db = require("../db");
-
 const bcrypt = require("bcrypt");
+const partialUpdate = require("../helpers/partialUpdate");
 
-/**FIXME: work factor is 10 for development purpose. actual recommendation is 15 minimum is 12 */
+
+/**FIXME: work factor is 10 for development purpose. actual recommendation is 15, minimum is 12 */
 const BCRYPT_WORK_FACTOR = 10;
 
 
@@ -33,18 +34,14 @@ class User {
 
     const user = result.rows[0];
 
-
-
     if (user) {
       // compare hashed password to a new hash from password from user input
       const isValid = await bcrypt.compare(data.password, user.password);
 
       if (isValid) {
-
         return user;
       }
     }
-
     const invalidPass = new Error("Invalid Credentials");
     invalidPass.status = 401;
     throw invalidPass;
@@ -78,7 +75,93 @@ class User {
       [data.email, hashedPassword]);
     return result.rows[0];
   }
+
+  /** Find all users. */
+
+  static async findAll() {
+    const result = await db.query(
+      `SELECT email, is_admin, first_name, last_name, current_company, hire_date, needs, goals
+        FROM users
+        ORDER BY last_name`
+    );
+
+    return result.rows;
+  }
+
+  /** Given a user id, return data about user. */
+
+  static async findOne(id) {
+    const user = await db.query(
+      `SELECT email, is_admin, first_name, last_name, current_company, hire_date, needs, goals 
+        FROM users 
+        WHERE id = $1`,
+      [id]
+    );
+    const user = user.rows[0];
+
+    if (!user) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+    return user;
+  }
+
+  /** Update user data with `data`.
+   *
+   * This is a "partial update" --- it's fine if data doesn't contain
+   * all the fields; this only changes provided ones.
+   *
+   * Return data for changed user.
+   *
+   */
+
+  static async update(id, data) {
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    }
+
+    let { query, values } = partialUpdate("users", data, "id", id);
+
+    const result = await db.query(query, values);
+    const user = result.rows[0];
+
+    if (!user) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+
+    delete user.password;
+    delete user.is_admin;
+
+    return result.rows[0];
+  }
+
+  /** Delete given user from database; returns undefined. */
+
+  static async remove(id) {
+    let result = await db.query(
+      `DELETE FROM users 
+        WHERE id = $1
+        RETURNING first_name, last_name`,
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+  }
 }
 
+
+// CREATE TABLE users(
+//   id serial PRIMARY KEY,
+//   email TEXT NOT NULL,
+//   password TEXT NOT NULL,
+//   is_admin BOOLEAN DEFAULT FALSE,
+//   first_name TEXT,
+//   last_name TEXT,
+//   current_company TEXT,
+//   hire_date DATE,
+//   needs TEXT,
+//   goals TEXT
+// );
 
 module.exports = User;
