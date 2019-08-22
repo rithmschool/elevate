@@ -20,7 +20,6 @@ exports[`matches snapshot 1`] = `
   />
   <Collapse
     appear={false}
-    className="collapse.navbar-collapse"
     enter={true}
     exit={true}
     in={false}
@@ -38,16 +37,16 @@ exports[`matches snapshot 1`] = `
     unmountOnExit={false}
   >
     <ul
-      className="navbar-nav mr-auto"
+      className="navbar-nav mr-auto "
     >
       <li
-        className="nav-item active "
+        className="nav-item "
       >
         <Link
           className="Nav-link Nav-link-ltr"
           to="/link1"
         >
-          Get Started
+          Our Mission
         </Link>
       </li>
       <li
@@ -67,7 +66,7 @@ exports[`matches snapshot 1`] = `
           className="Nav-text Nav-link Nav-link-ltr"
           to="/link3"
         >
-          About
+          Explore
         </Link>
       </li>
     </ul>
@@ -88,11 +87,9 @@ exports[`matches snapshot 1`] = `
         className="nav-item active"
       >
         <Link
-          className="Nav-link Nav-link-ltr"
+          className="fas fa-user Nav-icon"
           to="/link3"
-        >
-           Sign In
-        </Link>
+        />
       </li>
     </ul>
   </Collapse>
