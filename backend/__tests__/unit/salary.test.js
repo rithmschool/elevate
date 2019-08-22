@@ -3,7 +3,6 @@ process.env.NODE_ENV = "test";
 // app imports
 const db = require("../../db");
 const Salary = require("../../models/salary");
-// const { SEED_DB_SQL } = require("../../config");
 
 const SEED_SALARY_TABLE = `INSERT INTO salaries (salary, bonus, equity) VALUES
   (150000.00, 25000.00, .001),
