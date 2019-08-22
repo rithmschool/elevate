@@ -1,15 +1,19 @@
-.admin-panel{
+.admin-main{
   display: grid;
   grid-template-areas: "content side";
   grid-template-columns: 70% 30%;
   height: 100vh;
-  grid-area: content;
-  border: 1px solid black;
+  
 }
+.admin-panel{
+  grid-area: content;
 
+  margin: 0 30px;
+}
 .admin-navbar {
   grid-area: side;
   border: 1px solid blue;
+
 }
 
 @media (max-width: 875px) {
@@ -17,7 +21,7 @@
 }
 
 @media only screen and (min-width:480px) and (max-width: 640px)  {
-  .admin-panel{
+  .admin-main{
     grid-template-columns: 100%;
   }
 
@@ -25,3 +29,4 @@
     display: none;
   }
 }
+

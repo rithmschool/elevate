@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 
 class AdminNavBar extends Component {
-  
-
     handleClick = (evt) => {
       evt.preventDefault();
       this.props.changeView(evt.target.id);
@@ -12,7 +10,7 @@ class AdminNavBar extends Component {
     render(){
 
     return (
-      <div class="adminNavBar">
+      <div className="adminNavBar">
         <div id="users" onClick={this.handleClick}>Users</div>
         <div id="invoices" onClick={this.handleClick}>Invoices</div>
         <div id="templates" onClick={this.handleClick}>Templates</div>
