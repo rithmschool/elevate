@@ -1,26 +1,29 @@
-.admin-main{
+h1 {
+  text-align: center;
+}
+
+.admin-main {
   display: grid;
   grid-template-areas: "content side";
   grid-template-columns: 70% 30%;
   height: 100vh;
-  
 }
-.admin-panel{
+
+.admin-panel {
   grid-area: content;
 
-  margin: 0 30px;
+  /* remove later */
+  border: 1px dashed black; 
 }
+
 .admin-navbar {
   grid-area: side;
+
+  /* remove later */
   border: 1px solid blue;
-
 }
 
-@media (max-width: 875px) {
-
-}
-
-@media only screen and (min-width:480px) and (max-width: 640px)  {
+@media only screen and (max-width: 640px)  {
   .admin-main{
     grid-template-columns: 100%;
   }
@@ -29,4 +32,3 @@
     display: none;
   }
 }
-
