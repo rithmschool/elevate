@@ -7,16 +7,17 @@ describe("routes for login", function () {
   beforeEach(async function () {
     await db.query("DELETE FROM users");
     await User.register({ "email": "testlogin@test.com", "password": "secret123" })
-    console.log("before each for login")
+    
   })
 
   afterEach(async function () {
     await db.query("DELETE FROM users");
-    console.log("after each for login")
+   
   });
 
   describe("POST /login", function () {
     test("It should have property of token", async function () {
+      
       const response = await request(app)
         .post("/login")
         .send({ "email": "testlogin@test.com", "password": "secret123" })
@@ -24,24 +25,29 @@ describe("routes for login", function () {
     })
   })
 
-  // describe("POST /login", function () {
-  // console.log("I am running")
-  //   test("It should give an error of invalid credential when email is not valid", async function () {
-  //     const response = await request(app)
-  //       .post("/login")
-  //       .send({ "email": "test@test.com", "password": "secret123" })
-  //     expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
-  //   })
-  // })
+  describe("POST /login", function () {
+  
+    test("It should give an error of invalid credential when email is not valid", async function () {
+      
+      const response = await request(app)
 
-//   describe("POST /login", function () {
-//     test("It should give an error of invalid credential when password is not valid", async function () {
-//       const response = await request(app)
-//         .post("/login")
-//         .send({ "email": "testlogin@test.com", "password": "secret12345" })
-//       expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
-//     })
-//   })
+     
+        .post("/login")
+        .send({ "email": "test@test.com", "password": "secret123" })
+      expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
+    })
+  })
+
+  describe("POST /login", function () {
+    test("It should give an error of invalid credential when password is not valid", async function () {
+     
+      const response = await request(app)
+
+        .post("/login")
+        .send({ "email": "testlogin@test.com", "password": "secret12345" })
+      expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
+    })
+  })
 })
 
 afterAll(async function () {
