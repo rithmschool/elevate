@@ -33,11 +33,14 @@ class User {
         );
 
         const user = result.rows[0];
-        
+        // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
+
       
        
         if (user) {
             // compare hashed password to a new hash from password from user input
+            // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
+        
             const isValid = await bcrypt.compare(data.password, user.password);
          
             if (isValid) {
