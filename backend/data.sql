@@ -17,15 +17,17 @@ CREATE TABLE users (
 
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id),
+  user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   salary FLOAT,
   bonus FLOAT,
-  equity FLOAT
+  equity FLOAT,
+  created_at TIMESTAMP DEFAULT current_timestamp,  
+  last_modified TIMESTAMP DEFAULT current_timestamp
 );
 
 CREATE TABLE charges (
   id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id),
+  user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   amount FLOAT NOT NULL,
   description TEXT,
   due_date DATE,
