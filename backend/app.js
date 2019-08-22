@@ -1,12 +1,14 @@
 /** Express app for elevate. */
 const express = require("express");
 const app = express();
+/**import auth route */
+const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Routes
-
+app.use('/', authRoutes)
 
 /** 404 handler */
 
@@ -16,6 +18,8 @@ app.use(function(req, res, next) {
   // pass the error to the next piece of middleware
   return next(err);
 });
+
+;
 
 /** general error handler */
 
