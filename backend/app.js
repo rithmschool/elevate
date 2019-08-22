@@ -1,29 +1,30 @@
 /** Express app for elevate. */
 const express = require("express");
 const app = express();
-/**import auth route */
+
+/** import routes */
 const authRoutes = require('./routes/auth');
+const usersRoutes = require('./routes/users');
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/', authRoutes)
+/** routes */
+app.use('/', authRoutes);
+app.use('/users', usersRoutes);
 
 /** 404 handler */
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error("Not Found", 404);
 
   // pass the error to the next piece of middleware
   return next(err);
 });
 
-;
-
 /** general error handler */
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   console.error(err.stack);
 

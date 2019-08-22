@@ -3,7 +3,7 @@
 const express = require('express');
 const { ensureCorrectUser, authRequired, adminRequired } = require('../middleware/auth');
 const User = require('../models/User');
-const createToken = require('./createToken');
+const createToken = require('../createToken');
 
 const router = express.Router();
 
