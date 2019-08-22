@@ -84,7 +84,6 @@ class User {
         FROM users
         ORDER BY last_name`
     );
-
     return result.rows;
   }
 

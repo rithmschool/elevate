@@ -9,7 +9,7 @@ const router = express.Router();
 
 /** GET / => {users: [user, ...]} */
 
-router.get('/', authRequired, async function (req, res, next) {
+router.get('/', async function (req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({ users });
@@ -20,9 +20,9 @@ router.get('/', authRequired, async function (req, res, next) {
 
 /** GET / a specific user => {user: user} */
 
-router.get('/', authRequired, async function (req, res, next) {
+router.get('/:id', authRequired, async function (req, res, next) {
   try {
-    const user = await User.findOne(req.body.id);
+    const user = await User.findOne(req.params.id);
     return res.json({ user });
   } catch (err) {
     return next(err);
@@ -43,9 +43,9 @@ router.post('/', async function (req, res, next) {
 
 /** PATCH / a specific user {userData} => {user: updatedUser} */
 
-router.patch('/', ensureCorrectUser, async function (req, res, next) {
+router.patch('/:id', ensureCorrectUser, async function (req, res, next) {
   try {
-    const user = await User.update(req.body.id, req.body);
+    const user = await User.update(req.params.id, req.body);
     return res.json({ user });
   } catch (err) {
     return next(err);
@@ -54,9 +54,9 @@ router.patch('/', ensureCorrectUser, async function (req, res, next) {
 
 /** DELETE /  =>  {message: "User deleted"}  */
 
-router.delete('/', ensureCorrectUser, async function (req, res, next) {
+router.delete('/:id', ensureCorrectUser, async function (req, res, next) {
   try {
-    await User.remove(req.body.id);
+    await User.remove(req.params.id);
     return res.json({ message: 'User deleted' });
   } catch (err) {
     return next(err);

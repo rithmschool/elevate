@@ -71,7 +71,6 @@ function ensureCorrectUser(req, res, next) {
     req.user_id = token.user_id;
     // changing params.id to integer to make correct comparison 
     if (token.user_id === Number(req.params.id)) {
-
       return next()
     }
     // throw an error, so we catch it in our catch,below
