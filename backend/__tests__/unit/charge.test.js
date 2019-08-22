@@ -3,14 +3,16 @@ process.env.NODE_ENV = "test";
 // app imports
 const db = require("../../db");
 const Charge = require("../../models/charge");
-const { SEED_DB_SQL } = require("../../config");
+const { SEED_USER_SQL, SEED_SALARY_SQL, SEED_CHARGES_SQL } = require("../../config");
 
 describe("Charge model test setup and teardown", function () {
   beforeEach(async () => {
     await db.query(`DELETE FROM charges;`);
     await db.query(`DELETE FROM users;`);
     await db.query(`DELETE FROM salaries;`);
-    await db.query(SEED_DB_SQL);
+    await db.query(SEED_USER_SQL);
+    await db.query(SEED_SALARY_SQL);
+    await db.query(SEED_CHARGES_SQL);
   });
 
   afterEach(async () => {
@@ -38,7 +40,7 @@ describe("Charge model test setup and teardown", function () {
         },
         {
           id: expect.any(Number),
-          user_id: 3,
+          user_id: 2,
           amount: 1000.99,
           description: 'Percentage of negotiation salary.',
           due_date: expect.any(Date),
@@ -72,15 +74,6 @@ describe("Charge model test setup and teardown", function () {
           payment_date: null,
           paid: false
         },
-        {
-          id: expect.any(Number),
-          user_id: expect.any(Number),
-          amount: 500,
-          description: 'Percentage of negotiation salary.',
-          due_date: expect.any(Date),
-          payment_date: null,
-          paid: false
-        }
       ]);
     });
 

@@ -58,6 +58,26 @@ class Salary {
 
     return salary;
   }
+//FIXME: refactor update method and/or sqlForPartialUpdate after data model fix
+  static async updateWithUserId(userId, data) {
+    let { query, values } = sqlForPartialUpdate(
+      "salaries",
+      data,
+      "user_id",
+      userId
+    );
+
+    const result = await db.query(query, values);
+    const salary = result.rows[0];
+
+    if (!salary) {
+      let notFound = new Error(`There exists no salary ${id}`);
+      notFound.status = 404;
+      throw notFound;
+    }
+
+    return salary;
+  }
 
   /** Delete given salary from database; returns id of deleted salary. */
 

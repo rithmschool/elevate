@@ -31,7 +31,9 @@ router.post('/', async function (req, res, next) {
 
 router.patch('/', async function (req, res, next) {
   try {
-    const id = req.body.id;
+    //write logic to look up salary id from user_id fed in from request
+    const id = 
+
     const salary = await Salary.update(id, req.body);
     return res.json({ salary });
   } catch (err) {

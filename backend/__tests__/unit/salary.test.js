@@ -3,25 +3,22 @@ process.env.NODE_ENV = "test";
 // app imports
 const db = require("../../db");
 const Salary = require("../../models/salary");
-
-const SEED_SALARY_TABLE = `INSERT INTO salaries (salary, bonus, equity) VALUES
-  (150000.00, 25000.00, .001),
-  (100000.00, 5000.00, .005),
-  (90000.00, 2000.00, .0035),
-  (200000.00, 5000.00, .33),
-  (200000.00, 5000.00, .10);
-  
-  INSERT INTO salaries (id, salary, bonus, equity) VALUES
-    (666666, 65000.00, 100.00, .001);`
+const { SEED_USER_SQL, SEED_SALARY_SQL, SEED_CHARGES_SQL } = require("../../config");
 
 
 describe("Test Salary model", function () {
   beforeEach(async () => {
+    await db.query(`DELETE FROM charges;`);
+    await db.query(`DELETE FROM users;`);
     await db.query(`DELETE FROM salaries;`);
-    await db.query(SEED_SALARY_TABLE);
+    await db.query(SEED_USER_SQL);
+    await db.query(SEED_SALARY_SQL);
+    await db.query(SEED_CHARGES_SQL);
   });
 
   afterEach(async () => {
+    await db.query(`DELETE FROM charges;`);
+    await db.query(`DELETE FROM users;`);
     await db.query(`DELETE FROM salaries;`);
   });
 
@@ -34,74 +31,101 @@ describe("Test Salary model", function () {
     const response = await Salary.findAll();
     expect(response).toEqual([{
         id: expect.any(Number),
+        user_id: 1,
         salary: 150000.00,
         bonus: 25000.00,
         equity: .001,
       },
       {
         id: expect.any(Number),
+        user_id: 2,
         salary: 100000.00,
         bonus: 5000.00,
         equity: .005,
       },
       {
         id: expect.any(Number),
+        user_id: 3,
         salary: 90000.00,
         bonus: 2000.00,
         equity: .0035,
       },
       {
         id: expect.any(Number),
+        user_id: 4,
         salary: 200000.00,
         bonus: 5000.00,
         equity: .33,
       },
       {
         id: expect.any(Number),
+        user_id: 5,
         salary: 200000.00,
         bonus: 5000.00,
         equity: .10,
       },
-      {
-        id: expect.any(Number),
-        salary: 65000.00,
-        bonus: 100.00,
-        equity: .001,
-      }
     ]);
   });
 
-  test("create a new salary", async function () {
+  //FIXME: need user model to complete this test per comments below
+  xtest("create a new salary", async function () {
+    const newUser = {
+      email: "john@doe.com",
+      password: "yeehaw",
+      is_admin: false,
+      first_name: "john",
+      last_name: "doe",
+      current_company: "john deer",
+      hire_date: "2016-05-01",
+      needs: "a new truck",
+      goals: "get a raise for new truck down payment"
+    };
+    //need user model to create new user
+    //then need to query test db for user_id
+    //insert user_id into newSalary and then create new salary
+    const userResponse = await 
+
     const newSalary = { 
+      user_id: ,
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 
-    }
+    };
+
     const response = await Salary.create(newSalary);
     expect(response).toEqual({ 
       id: expect.any(Number),
+      user_id: ,
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 });
   });
 
-  test("update a salary", async function () {
+  //FIXME: follow same pattern for create salary above to look up salary id from user_id
+  xtest("update a salary", async function () {
     const updatedSalary = { 
+      id: 5,
+      user_id: 5,
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 }
-    const response = await Salary.update(666666, updatedSalary);
+    
+    const response = await Salary.update(updatedSalary);
     expect(response).toEqual({ 
-      id: 666666, 
+      id: expect.any(Number),
+      user_id: 5, 
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 
     });
   });
 
+  //FIXME: 
   test("throws error if trying to update a salary that does not exist", async function () {
     try {
       const updatedSalary = { 
+        
+        user_id:
         salary: 105000.00, 
         bonus: 2000.00, 
         equity: 0.005 }
