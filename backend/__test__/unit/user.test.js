@@ -5,10 +5,12 @@ const db = require("../../db");
 describe("model user", function () {
 	beforeEach(async function () {
 			await db.query("DELETE FROM users");
+			console.log("before each user")
 
 	});
 	afterEach(async function () {
 			await db.query("DELETE FROM users");
+			console.log("after each for user")
 
 	});
 
@@ -17,7 +19,6 @@ describe("model user", function () {
 			test("should return  id and is_admin after successful register", async function () {
 
 					let user = await User.register({ "email": "test@test.com", "password": "secret" })
-
 					expect(typeof user.id).toBe('number');
 					expect(user.is_admin).toEqual(false);
 			});
