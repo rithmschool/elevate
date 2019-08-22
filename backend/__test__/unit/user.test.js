@@ -53,7 +53,8 @@ describe("model user", function () {
 					let inputPassword = "password123"
 					let inputEmail = "testuser@gmail.com"
 					const hashedPassword = await bcrypt.hash(inputPassword, 10)
-			
+					
+					// updating plain password to hashed password
 					await db.query(`UPDATE users SET password= $1 WHERE email= $2;`, [hashedPassword, inputEmail]);
 
 					let user = await User.authenticate({ "email": inputEmail, "password": inputPassword })
