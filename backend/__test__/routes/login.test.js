@@ -23,6 +23,24 @@ describe("routes for login", function () {
       expect(response.body).toHaveProperty("token")
     })
   })
+
+  describe("POST /login", function () {
+    test("It should give an error of invalid credential when email is not valid", async function () {
+      const response = await request(app)
+        .post("/login")
+        .send({ "email": "test@test.com", "password": "secret123" })
+      expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
+    })
+  })
+
+  describe("POST /login", function () {
+    test("It should give an error of invalid credential when password is not valid", async function () {
+      const response = await request(app)
+        .post("/login")
+        .send({ "email": "testlogin@test.com", "password": "secret12345" })
+      expect(response.body).toEqual({"message": "Invalid Credentials", "status": 401})
+    })
+  })
 })
 
 afterAll(async function () {
