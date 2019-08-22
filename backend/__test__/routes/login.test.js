@@ -4,23 +4,23 @@ const request = require("supertest");
 const app = require("../../app");
 const db = require("../../db");
 
-const { SEED_DB_SQL } = require("../../config")
+const { SEED_USER_SQL } = require("../../config")
 const bcrypt = require("bcrypt");
 
 
 describe("routes for login", function () {
   beforeEach(async function () {
-    await db.query(`DELETE FROM charges;`);
+  
 		await db.query(`DELETE FROM users;`);
-		await db.query(`DELETE FROM salaries;`);
-		await db.query(SEED_DB_SQL)
+	
+		await db.query(SEED_USER_SQL)
     
   })
 
   afterEach(async function () {
-    await db.query(`DELETE FROM charges;`);
+    
 		await db.query(`DELETE FROM users;`);
-		await db.query(`DELETE FROM salaries;`);
+	
    
   });
 

@@ -1,23 +1,23 @@
 process.env.NODE_ENV = "test";
 
 const User = require("../../models/user")
-const { SEED_DB_SQL } = require("../../config")
+const { SEED_USER_SQL } = require("../../config")
 const bcrypt = require("bcrypt");
 
 const db = require("../../db");
 
 describe("model user", function () {
 	beforeEach(async function () {
-		await db.query(`DELETE FROM charges;`);
+	
 		await db.query(`DELETE FROM users;`);
-		await db.query(`DELETE FROM salaries;`);
-		await db.query(SEED_DB_SQL)
+	
+		await db.query(SEED_USER_SQL)
 			
 	});
 	afterEach(async function () {
-		await db.query(`DELETE FROM charges;`);
+	
 		await db.query(`DELETE FROM users;`);
-		await db.query(`DELETE FROM salaries;`);
+		
 		
 
 	});
