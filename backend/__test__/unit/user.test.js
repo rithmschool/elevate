@@ -1,16 +1,24 @@
+process.env.NODE_ENV = "test";
+
 const User = require("../../models/user")
+const { SEED_DB_SQL } = require("../../config")
+const bcrypt = require("bcrypt");
 
 const db = require("../../db");
 
 describe("model user", function () {
 	beforeEach(async function () {
-			await db.query("DELETE FROM users");
-			console.log("before each user")
-
+		await db.query(`DELETE FROM charges;`);
+		await db.query(`DELETE FROM users;`);
+		await db.query(`DELETE FROM salaries;`);
+		await db.query(SEED_DB_SQL)
+			
 	});
 	afterEach(async function () {
-			await db.query("DELETE FROM users");
-			console.log("after each for user")
+		await db.query(`DELETE FROM charges;`);
+		await db.query(`DELETE FROM users;`);
+		await db.query(`DELETE FROM salaries;`);
+		
 
 	});
 
@@ -24,11 +32,11 @@ describe("model user", function () {
 			});
 
 			test("should return error message when registering duplicate email address", async function () {
-					await User.register({ "email": "test@test.com", "password": "secret" })
+					
 					try {
-							await User.register({ "email": "test@test.com", "password": "secret" })
+							await User.register({ "email": "testuser@gmail.com", "password": "secret" })
 					} catch (err) {
-							expect(err.message).toEqual("There already exists a user with email 'test@test.com");
+							expect(err.message).toEqual("There already exists a user with email 'testuser@gmail.com");
 							expect(err.status).toBe(401)
 					}
 
@@ -41,11 +49,17 @@ describe("model user", function () {
 
 
 			test("should return user object if correct password and email", async function () {
-					await User.register({ "email": "test@test.com", "password": "secret" })
-					let user = await User.authenticate({ "email": "test@test.com", "password": "secret" })
+			
+					let inputPassword = "password123"
+					let inputEmail = "testuser@gmail.com"
+					const hashedPassword = await bcrypt.hash(inputPassword, 10)
+			
+					await db.query(`UPDATE users SET password= $1 WHERE email= $2;`, [hashedPassword, inputEmail]);
+
+					let user = await User.authenticate({ "email": inputEmail, "password": inputPassword })
 
 					expect(typeof user.id).toBe('number');
-					expect(user.email).toBe("test@test.com");
+					expect(user.email).toBe(inputEmail);
 					expect(user.is_admin).toBe(false);
 
 			});

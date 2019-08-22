@@ -33,9 +33,7 @@ class User {
         );
 
         const user = result.rows[0];
-        // console.log({user})
-        // console.log({result})
-
+       
        
         if (user) {
             // compare hashed password to a new hash from password from user input
