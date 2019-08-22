@@ -23,7 +23,6 @@ class User {
                 first_name, 
                 last_name, 
                 current_company,
-                salary, 
                 hire_date,
                 needs,
                 goals     
