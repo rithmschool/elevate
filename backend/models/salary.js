@@ -9,7 +9,8 @@ class Salary {
 
   static async findAll() {
     const result = await db.query(`SELECT 
-                                  id, 
+                                  id,
+                                  user_id,
                                   salary,
                                   bonus,
                                   equity 

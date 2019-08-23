@@ -27,7 +27,7 @@ describe("Test Salary model", function () {
   });
 
 
-  xtest("get all salaries", async function () {
+  test("get all salaries", async function () {
     const response = await Salary.findAll();
     expect(response).toEqual([{
         id: expect.any(Number),
