@@ -74,14 +74,7 @@ async function afterAllHook() {
 	}
 }
 
-// FIXME: needed to add test to avoid error. consult with ellie or nate
-describe("MAKING IT WORK", function () {
-    test("dummy test", function () {
-  
-      expect("hello").toBe("hello");
-    //   expect(user.is_admin).toEqual(false);
-    });
-})
+
 
 module.exports = {
 	afterAllHook,

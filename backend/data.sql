@@ -35,7 +35,7 @@ CREATE TABLE charges (
   paid BOOLEAN DEFAULT FALSE
 );
 
--- FIXED:  deleted handcode ID because I running into issue with primary key constrain
+-- FIXED:  deleted handcode ID because issue with primary key constrain when create new user
 INSERT INTO users ( email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals) VALUES
   ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
   ( 'admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', ''),

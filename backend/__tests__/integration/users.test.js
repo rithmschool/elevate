@@ -92,7 +92,7 @@ describe('GET /users', function () {
 });
 
 
-
+// TODO:
 // describe('PATCH /users/:username', async () => {
 //   test("Updates a single a user's first_name with a selective update", async function () {
 //     const response = await request(app)
