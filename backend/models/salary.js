@@ -62,7 +62,6 @@ class Salary {
 
     try {
       let latestSalary = await this.findLatestSalaryByUserId(userId);
-      console.log(latestSalary)
       let updatedSalary = { ...latestSalary, ...data }
       return this.create(updatedSalary);
     } catch(err) {

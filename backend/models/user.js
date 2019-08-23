@@ -96,7 +96,7 @@ class User {
         WHERE id = $1`,
       [id]
     );
-    const user = user.rows[0];
+    user = user.rows[0];
 
     if (!user) {
       throw new Error(`There exists no user with that id`, 404);

@@ -3,23 +3,25 @@ process.env.NODE_ENV = "test";
 // app imports
 const db = require("../../db");
 const Salary = require("../../models/salary");
+const User = require("../../models/user");
 const { SEED_USER_SQL, SEED_SALARY_SQL, SEED_CHARGES_SQL } = require("../../config");
 
 
 describe("Test Salary model", function () {
   beforeEach(async () => {
-    await db.query(`DELETE FROM charges;`);
     await db.query(`DELETE FROM users;`);
+    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`)
     await db.query(`DELETE FROM salaries;`);
+    await db.query(`ALTER SEQUENCE salaries_id_seq RESTART WITH 1;`)
     await db.query(SEED_USER_SQL);
     await db.query(SEED_SALARY_SQL);
-    await db.query(SEED_CHARGES_SQL);
   });
 
   afterEach(async () => {
-    await db.query(`DELETE FROM charges;`);
     await db.query(`DELETE FROM users;`);
+    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`)
     await db.query(`DELETE FROM salaries;`);
+    await db.query(`ALTER SEQUENCE salaries_id_seq RESTART WITH 1;`)
   });
 
   afterAll(async () => {
@@ -67,38 +69,36 @@ describe("Test Salary model", function () {
     ]);
   });
 
-  // //FIXME: need user model to complete this test per comments below
-  // xtest("create a new salary", async function () {
-  //   const newUser = {
-  //     email: "john@doe.com",
-  //     password: "yeehaw",
-  //     is_admin: false,
-  //     first_name: "john",
-  //     last_name: "doe",
-  //     current_company: "john deer",
-  //     hire_date: "2016-05-01",
-  //     needs: "a new truck",
-  //     goals: "get a raise for new truck down payment"
-  //   };
-  //   //need user model to create new user
-  //   //then need to query test db for user_id
-  //   //insert user_id into newSalary and then create new salary
-  //   const userResponse = await 
+  // This test will pass once the user registration is correctly creating increasing UID.
+  xtest("create a new salary", async function () {
+    const newUser = {
+      email: "john@doe.com",
+      password: "yeehaw",
+      is_admin: false,
+      first_name: "john",
+      last_name: "doe",
+      current_company: "john deer",
+      hire_date: "2016-05-01",
+      needs: "a new truck",
+      goals: "get a raise for new truck down payment"
+    };
+    const userResponse = await User.register(newUser);
 
-  //   const newSalary = { 
-  //     salary: 105000.00, 
-  //     bonus: 2000.00, 
-  //     equity: 0.005 
-  //   };
+    const newSalary = { 
+      user_id: userResponse.id,
+      salary: 105000.00, 
+      bonus: 2000.00, 
+      equity: 0.005 
+    };
 
-  //   const response = await Salary.create(newSalary);
-  //   expect(response).toEqual({ 
-  //     id: expect.any(Number),
-  //     user_id: 3,
-  //     salary: 105000.00, 
-  //     bonus: 2000.00, 
-  //     equity: 0.005 });
-  // });
+    const response = await Salary.create(newSalary);
+    expect(response).toEqual({ 
+      id: expect.any(Number),
+      user_id: expect.any(Number),
+      salary: 105000.00, 
+      bonus: 2000.00, 
+      equity: 0.005 });
+  });
 
   test("update a salary", async function () {
     const updatedSalary = { 
@@ -126,9 +126,9 @@ describe("Test Salary model", function () {
     }
   });
 
-  xtest("delete a salary", async function () {
-    const response = await Salary.remove(666666);
-    expect(response).toEqual({ id: 666666 });
+  test("delete a salary", async function () {
+    const response = await Salary.remove(2);
+    expect(response).toEqual({ id: 2 });
   });
 
   test("throws error if trying to delete a salary that does not exist", async function () {
