@@ -21,23 +21,26 @@ class Salary {
   /** Find latest salary */
 
   static async findLatestSalaryByUserId(id) {
-    const result = await db.query(`SELECT 
-                                  user_id,
-                                  salary,
-                                  bonus,
-                                  equity
-                                FROM salaries
-                                WHERE user_id=$1
-                                ORDER BY last_modified
-                                LIMIT 1`, [id]);
+      const result = await db.query(`SELECT 
+                                    user_id,
+                                    salary,
+                                    bonus,
+                                    equity
+                                  FROM salaries
+                                  WHERE user_id=$1
+                                  ORDER BY last_modified
+                                  LIMIT 1`, [id]);
 
-    return result.rows[0];
+      return result.rows[0];
   }
 
   /** Create a salary (from data), update db, return new salary data. */
 
   static async create(data) {
     const { user_id, salary, bonus, equity } = data;
+    if (user_id === undefined) {
+      return new Error("UserId is undefined");
+    }
     const result = await db.query(
       `INSERT INTO salaries (user_id, salary, bonus, equity) 
              VALUES ($1, $2, $3, $4) 
@@ -56,15 +59,14 @@ class Salary {
    */
   static async updateWithUserId(userId, data) {
 
-    let latestSalary = await this.findLatestSalaryByUserId(userId);
-    let updatedSalary = { ...latestSalary, ...data}
-
-    console.log(updatedSalary)
-
-    let newSalary = await this.create(updatedSalary);
-    console.log(newSalary);
-    return newSalary;
-
+    try {
+      let latestSalary = await this.findLatestSalaryByUserId(userId);
+      console.log(latestSalary)
+      let updatedSalary = { ...latestSalary, ...data }
+      return this.create(updatedSalary);
+    } catch(err) {
+      return new Error(`There exists no salary for user ${userId}`);
+    }
   }
 
   /** Delete given salary from database; returns id of deleted salary. */

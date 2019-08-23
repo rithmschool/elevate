@@ -100,7 +100,6 @@ describe("Test Salary model", function () {
   //     equity: 0.005 });
   // });
 
-  //FIXME: follow same pattern for create salary above to look up salary id from user_id
   test("update a salary", async function () {
     const updatedSalary = { 
       salary: 105000.00, 
@@ -116,15 +115,14 @@ describe("Test Salary model", function () {
     });
   });
 
-  //FIXME: 
-  xtest("throws error if trying to update a salary that does not exist", async function () {
+  test("throws error if trying to update a salary that does not exist", async function () {
     try {
       const updatedSalary = { 
         salary: 105000.00, 
         equity: 0.005 }
-      await Salary.updateWithUserId(3, updatedSalary)
+      await Salary.updateWithUserId(10, updatedSalary)
     } catch (err) {
-      expect(err.message).toEqual('There exists no salary 999999');
+      expect(err.message).toEqual('There exists no salary for user 10');
     }
   });
 
@@ -133,7 +131,7 @@ describe("Test Salary model", function () {
     expect(response).toEqual({ id: 666666 });
   });
 
-  xtest("throws error if trying to delete a salary that does not exist", async function () {
+  test("throws error if trying to delete a salary that does not exist", async function () {
     try {
       await Salary.remove(6);
     } catch (err) {
