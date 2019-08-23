@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /** routes */
-app.use('/', authRoutes);
+// TODO: Mock Middleware Authentication for testing
+// app.use('/', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
 

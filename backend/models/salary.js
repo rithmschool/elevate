@@ -18,65 +18,53 @@ class Salary {
     return result.rows;
   }
 
-  /** Create a charge (from data), update db, return new charge data. */
+  /** Find latest salary */
+
+  static async findLatestSalaryByUserId(id) {
+    const result = await db.query(`SELECT 
+                                  user_id,
+                                  salary,
+                                  bonus,
+                                  equity
+                                FROM salaries
+                                WHERE user_id=$1
+                                ORDER BY last_modified
+                                LIMIT 1`, [id]);
+
+    return result.rows[0];
+  }
+
+  /** Create a salary (from data), update db, return new salary data. */
 
   static async create(data) {
-    const { salary, bonus, equity } = data;
+    const { user_id, salary, bonus, equity } = data;
     const result = await db.query(
-      `INSERT INTO salaries (salary, bonus, equity) 
-             VALUES ($1, $2, $3) 
-             RETURNING id, salary, bonus, equity`,
-            [salary, bonus, equity]
+      `INSERT INTO salaries (user_id, salary, bonus, equity) 
+             VALUES ($1, $2, $3, $4) 
+             RETURNING id, user_id, salary, bonus, equity`,
+            [user_id, salary, bonus, equity]
     );
     return result.rows[0];
   }
 
-  /** Update salary data with `data`.
-   *
-   * This is a "partial update" --- it's fine if data doesn't contain
-   * all the fields; this only changes provided ones.
-   *
-   * Return data for changed salary.
+  /**
+   * This method updates the salary by finding the latest salary of the user,
+   * updating the relevant fields with the new data and then creating a new record.
+   * Hence each salary update will create a new salary entry in the DB.
+   * @param int userId 
+   * @param object data 
    */
-
-  static async update(id, data) {
-    let { query, values } = sqlForPartialUpdate(
-      "salaries",
-      data,
-      "id",
-      id
-    );
-
-    const result = await db.query(query, values);
-    const salary = result.rows[0];
-
-    if (!salary) {
-      let notFound = new Error(`There exists no salary ${id}`);
-      notFound.status = 404;
-      throw notFound;
-    }
-
-    return salary;
-  }
-//FIXME: refactor update method and/or sqlForPartialUpdate after data model fix
   static async updateWithUserId(userId, data) {
-    let { query, values } = sqlForPartialUpdate(
-      "salaries",
-      data,
-      "user_id",
-      userId
-    );
 
-    const result = await db.query(query, values);
-    const salary = result.rows[0];
+    let latestSalary = await this.findLatestSalaryByUserId(userId);
+    let updatedSalary = { ...latestSalary, ...data}
 
-    if (!salary) {
-      let notFound = new Error(`There exists no salary ${id}`);
-      notFound.status = 404;
-      throw notFound;
-    }
+    console.log(updatedSalary)
 
-    return salary;
+    let newSalary = await this.create(updatedSalary);
+    console.log(newSalary);
+    return newSalary;
+
   }
 
   /** Delete given salary from database; returns id of deleted salary. */
