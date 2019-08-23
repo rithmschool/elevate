@@ -46,7 +46,7 @@ async function beforeEachHook(TEST_DATA) {
 			
 
 		TEST_DATA.userToken = response.body.token;
-		TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).id;
+		TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).user_id;
 
 		
 	} catch (error) {

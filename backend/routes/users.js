@@ -20,9 +20,11 @@ router.get('/', authRequired, async function (req, res, next) {
 
 /** GET / a specific user => {user: user} */
 
-router.get('/:id', authRequired, async function (req, res, next) {
+router.get('/:id', authRequired, ensureCorrectUser, async function (req, res, next) {
+ 
   try {
     const user = await User.findOne(req.params.id);
+    console.log("user is", user)
     return res.json({ user });
   } catch (err) {
     return next(err);

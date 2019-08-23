@@ -65,29 +65,33 @@ describe('GET /users', function () {
     const response = await request(app)
       .get('/users')
       .send({ _token: `${TEST_DATA.userToken}` });
+      
     expect(response.body.users).toHaveLength(6);
     expect(response.body.users[0]).toHaveProperty('email');
     expect(response.body.users[0]).not.toHaveProperty('password');
   });
+
+  
 });
 
-// describe('GET /users/:username', async function () {
-//   test('Gets a single a user', async function () {
-//     const response = await request(app)
-//       .get(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     expect(response.body.user).toHaveProperty('username');
-//     expect(response.body.user).not.toHaveProperty('password');
-//     expect(response.body.user.username).toBe('test');
-//   });
+describe('GET /users', function () {
+  test('Gets a list of 1 user', async function () {
+    const response = await request(app)
+    .get(`/users/${TEST_DATA.currentId}`)
+    .send({ _token: `${TEST_DATA.userToken}` });
+    expect(response.body.user).toHaveProperty('email');
+    expect(response.body.user).not.toHaveProperty('password');
+  });
 
-//   test('Responds with a 404 if it cannot find the user in question', async function () {
-//     const response = await request(app)
-//       .get(`/users/yaaasss`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(404);
-//   });
-// });
+   test('Responds with a 401 if it cannot find the user in question', async function () {
+      const response = await request(app)
+        .get(`/users/baduser`)
+        .send({ _token: `${TEST_DATA.userToken}` });
+      expect(response.statusCode).toBe(401);
+    });
+});
+
+
 
 // describe('PATCH /users/:username', async () => {
 //   test("Updates a single a user's first_name with a selective update", async function () {
