@@ -11,7 +11,7 @@ let DB_URI;
 if (process.env.NODE_ENV === "test") {
   DB_URI = "elevate-test";
 } else {
-  DB_URI  = process.env.DATABASE_URL || 'elevate';
+  DB_URI = process.env.DATABASE_URL || 'elevate';
 }
 
 console.log("Using database", DB_URI);
@@ -39,7 +39,7 @@ const SEED_CHARGES_SQL = `
     (3, 500.00, 'Percentage of negotiation salary.', '2019-08-23', null, false),
     (4, 750.00, 'Percentage of negotiation salary.', '2019-11-13', null, false),
     (5, 1000.00, 'Percentage of negotiation salary.', '2019-08-28', null, false);`
-    
+
 module.exports = {
   SECRET,
   PORT,

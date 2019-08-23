@@ -2,18 +2,22 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-// Routes
+/** import routes */
+const authRoutes = require('./routes/auth');
+const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
 
-app.use('/salaries', salariesRoutes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+/** routes */
+app.use('/', authRoutes);
+app.use('/users', usersRoutes);
+app.use('/salaries', salariesRoutes);
 
 /** 404 handler */
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error("Not Found", 404);
 
   // pass the error to the next piece of middleware
@@ -22,7 +26,7 @@ app.use(function(req, res, next) {
 
 /** general error handler */
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   console.error(err.stack);
 
