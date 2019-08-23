@@ -1,24 +1,33 @@
+// RUN TEST WITH jest ---detectOpenHandles make test pass for now
 process.env.NODE_ENV = "test";
+
 
 const User = require("../../models/user")
 const { SEED_USER_SQL } = require("../../config")
+
+const { afterAllHook,
+	          afterEachHook,
+	          beforeEachHook,
+	          TEST_DATA,
+	          inputPassword,
+	          inputEmail } = require("../config")
 const bcrypt = require("bcrypt");
 
 const db = require("../../db");
 
 describe("model user", function () {
   beforeEach(async function () {
-    await db.query(`DELETE FROM users;`);
-    await db.query(SEED_USER_SQL)
+    await beforeEachHook(TEST_DATA);
+    await db.query(SEED_USER_SQL);
   });
 
   afterEach(async function () {
-    await db.query(`DELETE FROM users;`);
+    await afterEachHook()
   });
 
   describe("Test User Class register", function () {
     test("should return  id and is_admin after successful register", async function () {
-      let user = await User.register({ "email": "test@test.com", "password": "secret" })
+      let user = await User.register({ "email": "newuser@gmail.com", "password": "secret" })
       expect(typeof user.id).toBe('number');
       expect(user.is_admin).toEqual(false);
     });
@@ -35,13 +44,7 @@ describe("model user", function () {
 
   describe("Test User Class authenticate", function () {
     test("should return user object if correct password and email", async function () {
-      let inputPassword = "password123"
-      let inputEmail = "testuser@gmail.com"
-      const hashedPassword = await bcrypt.hash(inputPassword, 10)
-
-      // updating plain password to hashed password
-      await db.query(`UPDATE users SET password= $1 WHERE email= $2;`, [hashedPassword, inputEmail]);
-
+     
       let user = await User.authenticate({ "email": inputEmail, "password": inputPassword })
 
       expect(typeof user.id).toBe('number');
@@ -50,9 +53,9 @@ describe("model user", function () {
     });
 
     test("should return error message if password is wrong", async function () {
-      await User.register({ "email": "test@test.com", "password": "secret" })
+    
       try {
-        await User.authenticate({ "email": "test@test.com", "password": "secret1" })
+        await User.authenticate({ "email": inputEmail, "password": "badPassword" })
       } catch (err) {
         expect(err.message).toEqual("Invalid Credentials");
         expect(err.status).toBe(401)
@@ -60,9 +63,9 @@ describe("model user", function () {
     });
 
     test("should return error message if email is wrong", async function () {
-      await User.register({ "email": "test@test.com", "password": "secret" })
+     
       try {
-        await User.authenticate({ "email": "test1@test.com", "password": "secret" })
+        await User.authenticate({ "email": "bad@test.com", "password": inputPassword })
       } catch (err) {
         expect(err.message).toEqual("Invalid Credentials");
         expect(err.status).toBe(401)
@@ -71,6 +74,6 @@ describe("model user", function () {
   });
 
   afterAll(async function () {
-    await db.end();
+    await afterAllHook();
   });
 })

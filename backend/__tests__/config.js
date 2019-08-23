@@ -4,8 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 // app imports
-const app = require("../../app");
-const db = require("../../db");
+const app = require("../app");
+const db = require("../db");
 
 
 
@@ -15,19 +15,21 @@ const inputPassword = "test"
 const inputEmail = "test@gmail.com"
 
 
+
 /**
  * Hooks to insert a user, company, and job, and to authenticate
  *  the user and the company for respective tokens that are stored
  *  in the input `testData` parameter.
  * @param {Object} TEST_DATA - build the TEST_DATA object
  */
+
 async function beforeEachHook(TEST_DATA) {
 	// create and login a user, get a token, store the user ID and token
 	try {
 
 		// bcrypt set lower for testing purpose
 		const hashedPassword = await bcrypt.hash(inputPassword, 5)
-		
+	
 		// create new user with hashed password
 		await db.query(
 			`INSERT INTO users 
@@ -39,9 +41,10 @@ async function beforeEachHook(TEST_DATA) {
 		const response = await request(app)
 			.post("/login")
 			.send({
-				email: inputPassword,
+				email: inputEmail,
 				password: inputPassword,
 			});
+			console.log("response is", response.body.token)
 
 		TEST_DATA.userToken = response.body.token;
 		TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).id;
@@ -71,6 +74,15 @@ async function afterAllHook() {
 		console.error(err);
 	}
 }
+
+// FIXME: needed to add test to avoid error. consult with ellie or nate
+describe("MAKING IT WORK", function () {
+    test("dummy test", function () {
+  
+      expect("hello").toBe("hello");
+    //   expect(user.is_admin).toEqual(false);
+    });
+})
 
 module.exports = {
 	afterAllHook,
