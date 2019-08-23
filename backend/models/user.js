@@ -51,6 +51,7 @@ class User {
   /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
     // check if email is taken or not
+   
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
@@ -66,7 +67,6 @@ class User {
     }
 
     const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-
     const result = await db.query(
       `INSERT INTO users 
             (email, password) 

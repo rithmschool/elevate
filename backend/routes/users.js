@@ -9,7 +9,7 @@ const router = express.Router();
 
 /** GET / => {users: [user, ...]} */
 
-router.get('/', async function (req, res, next) {
+router.get('/', authRequired, async function (req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({ users });
