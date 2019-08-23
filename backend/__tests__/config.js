@@ -8,7 +8,6 @@ const app = require("../app");
 const db = require("../db");
 
 
-
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
 const inputPassword = "test"
@@ -44,7 +43,7 @@ async function beforeEachHook(TEST_DATA) {
 				email: inputEmail,
 				password: inputPassword,
 			});
-			console.log("response is", response.body.token)
+			
 
 		TEST_DATA.userToken = response.body.token;
 		TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).id;

@@ -3,14 +3,15 @@ const express = require("express");
 const app = express();
 
 /** import routes */
-const authRoutes = require('./routes/auth');
+
 const usersRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /** routes */
-app.use('/', authRoutes);
+app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 
 /** 404 handler */

@@ -11,7 +11,7 @@ const { afterAllHook,
 	          TEST_DATA,
 	          inputPassword,
 	          inputEmail } = require("../config")
-const bcrypt = require("bcrypt");
+
 
 const db = require("../../db");
 

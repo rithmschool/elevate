@@ -5,31 +5,37 @@ const app = require("../../app");
 const db = require("../../db");
 
 const { SEED_USER_SQL } = require("../../config")
-const bcrypt = require("bcrypt");
+const { afterAllHook,
+  afterEachHook,
+  beforeEachHook,
+  TEST_DATA,
+  inputPassword,
+  inputEmail } = require("../config")
+// const bcrypt = require("bcrypt");
 
 
 describe("routes for login", function () {
   beforeEach(async function () {
-    await db.query(`DELETE FROM users;`);
+    await beforeEachHook(TEST_DATA);
     await db.query(SEED_USER_SQL);
   });
 
   afterEach(async function () {
-    await db.query(`DELETE FROM users;`);
+    await  afterEachHook()
   });
 
   describe("POST /login", function () {
     test("It should have property of token", async function () {
 
-      const inputPassword = 'password123'
-      const inputEmail = 'testuser@gmail.com'
-      const hashedPassword = await bcrypt.hash(inputPassword, 10)
+      // const inputPassword = 'password123'
+      // const inputEmail = 'testuser@gmail.com'
+      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
 
-      // updating plain password to hashed password
-      await db.query(`UPDATE users 
-                      SET password= $1 
-                      WHERE email= $2;`,
-        [hashedPassword, inputEmail]);
+      // // updating plain password to hashed password
+      // await db.query(`UPDATE users 
+      //                 SET password= $1 
+      //                 WHERE email= $2;`,
+      //   [hashedPassword, inputEmail]);
 
       const response = await request(app)
         .post("/login")
@@ -40,38 +46,38 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when email is not valid", async function () {
-      const inputPassword = 'password123'
-      const inputEmail = 'testuser@gmail.com'
-      const hashedPassword = await bcrypt.hash(inputPassword, 10)
+      // const inputPassword = 'password123'
+      // const inputEmail = 'testuser@gmail.com'
+      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
 
-      // updating plain password to hashed password
-      await db.query(`UPDATE users 
-                      SET password= $1 
-                      WHERE email= $2;`,
-        [hashedPassword, inputEmail]);
+      // // updating plain password to hashed password
+      // await db.query(`UPDATE users 
+      //                 SET password= $1 
+      //                 WHERE email= $2;`,
+      //   [hashedPassword, inputEmail]);
       const response = await request(app)
         .post("/login")
-        .send({ "email": 'testuse1r@gmail.com', "password": inputPassword })
+        .send({ "email": 'bad@gmail.com', "password": inputPassword })
       expect(response.body).toEqual({ "message": "Invalid Credentials", "status": 401 })
     });
   });
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when password is not valid", async function () {
-      const inputPassword = 'password123'
-      const inputEmail = 'testuser@gmail.com'
-      const hashedPassword = await bcrypt.hash(inputPassword, 10)
+      // const inputPassword = 'password123'
+      // const inputEmail = 'testuser@gmail.com'
+      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
 
-      // updating plain password to hashed password
-      await db.query(`UPDATE users 
-                      SET password= $1 
-                      WHERE email= $2;`,
-        [hashedPassword, inputEmail]);
+      // // updating plain password to hashed password
+      // await db.query(`UPDATE users 
+      //                 SET password= $1 
+      //                 WHERE email= $2;`,
+      //   [hashedPassword, inputEmail]);
 
       const response = await request(app)
 
         .post("/login")
-        .send({ "email": inputEmail, "password": "secret" })
+        .send({ "email": inputEmail, "password": "badPassword" })
       expect(response.body).toEqual({ "message": "Invalid Credentials", "status": 401 })
     });
   });
