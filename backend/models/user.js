@@ -32,7 +32,7 @@ class User {
       [data.email]
     );
 
-    const user = result.rows[0];
+  
 
 
 
