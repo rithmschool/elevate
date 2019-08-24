@@ -84,5 +84,5 @@ describe("routes for login", function () {
 });
 
 afterAll(async function () {
-  await db.end();
-});
+  await afterAllHook();
+})
