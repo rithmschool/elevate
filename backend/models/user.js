@@ -32,7 +32,7 @@ class User {
       [data.email]
     );
 
-  
+
 
 
 
@@ -117,63 +117,6 @@ class User {
     return user;
   }
 
-  /** Update user data with `data`.
-   *
-   * This is a "partial update" --- it's fine if data doesn't contain
-   * all the fields; this only changes provided ones.
-   *
-   * Return data for changed user.
-   *
-   */
-
-  static async update(id, data) {
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-    }
-
-    let { query, values } = partialUpdate("users", data, "id", id);
-
-    const result = await db.query(query, values);
-    const user = result.rows[0];
-
-    if (!user) {
-      throw new Error(`There exists no user with that id`, 404);
-    }
-
-    delete user.password;
-    delete user.is_admin;
-
-    return result.rows[0];
-  }
-
-  /** Delete given user from database; returns undefined. */
-
-  static async remove(id) {
-    let result = await db.query(
-      `DELETE FROM users 
-        WHERE id = $1
-        RETURNING first_name, last_name`,
-      [id]
-    );
-
-    if (result.rows.length === 0) {
-      throw new Error(`There exists no user with that id`, 404);
-    }
-  }
 }
-
-
-// CREATE TABLE users(
-//   id serial PRIMARY KEY,
-//   email TEXT NOT NULL,
-//   password TEXT NOT NULL,
-//   is_admin BOOLEAN DEFAULT FALSE,
-//   first_name TEXT,
-//   last_name TEXT,
-//   current_company TEXT,
-//   hire_date DATE,
-//   needs TEXT,
-//   goals TEXT
-// );
 
 module.exports = User;

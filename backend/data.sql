@@ -38,10 +38,10 @@ CREATE TABLE charges (
 -- FIXED:  deleted handcode ID because issue with primary key constrain when create new user
 INSERT INTO users ( email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals) VALUES
   ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
-  ( 'admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', ''),
+  ('admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', ''),
   ('nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
-  ( 'elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
-  ( 'joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
+  ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
+  ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
 
 INSERT INTO salaries (user_id, salary, bonus, equity) VALUES
   (1, 150000.00, 25000.00, .001),

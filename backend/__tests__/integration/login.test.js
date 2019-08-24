@@ -11,7 +11,7 @@ const { afterAllHook,
   TEST_DATA,
   inputPassword,
   inputEmail } = require("../config")
-// const bcrypt = require("bcrypt");
+
 
 
 describe("routes for login", function () {
@@ -21,21 +21,11 @@ describe("routes for login", function () {
   });
 
   afterEach(async function () {
-    await  afterEachHook()
+    await afterEachHook()
   });
 
   describe("POST /login", function () {
     test("It should have property of token", async function () {
-
-      // const inputPassword = 'password123'
-      // const inputEmail = 'testuser@gmail.com'
-      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
-
-      // // updating plain password to hashed password
-      // await db.query(`UPDATE users 
-      //                 SET password= $1 
-      //                 WHERE email= $2;`,
-      //   [hashedPassword, inputEmail]);
 
       const response = await request(app)
         .post("/login")
@@ -46,15 +36,7 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when email is not valid", async function () {
-      // const inputPassword = 'password123'
-      // const inputEmail = 'testuser@gmail.com'
-      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
 
-      // // updating plain password to hashed password
-      // await db.query(`UPDATE users 
-      //                 SET password= $1 
-      //                 WHERE email= $2;`,
-      //   [hashedPassword, inputEmail]);
       const response = await request(app)
         .post("/login")
         .send({ "email": 'bad@gmail.com', "password": inputPassword })
@@ -64,15 +46,7 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when password is not valid", async function () {
-      // const inputPassword = 'password123'
-      // const inputEmail = 'testuser@gmail.com'
-      // const hashedPassword = await bcrypt.hash(inputPassword, 10)
 
-      // // updating plain password to hashed password
-      // await db.query(`UPDATE users 
-      //                 SET password= $1 
-      //                 WHERE email= $2;`,
-      //   [hashedPassword, inputEmail]);
 
       const response = await request(app)
 

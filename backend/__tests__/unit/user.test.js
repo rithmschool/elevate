@@ -1,4 +1,4 @@
-// RUN TEST WITH jest ---detectOpenHandles make test pass for now
+
 process.env.NODE_ENV = "test";
 
 
