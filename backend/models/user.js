@@ -33,38 +33,38 @@ class User {
     );
 
     const user = result.rows[0];
-            [data.email]
-        );
 
-        const user = result.rows[0];
-        // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
 
-      
-       
-        if (user) {
-            // compare hashed password to a new hash from password from user input
-            // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
-        
-            const isValid = await bcrypt.compare(data.password, user.password);
-         
-            if (isValid) {
-               
-                return user;
-            }
-        }
 
-        const invalidPass = new Error("Invalid Credentials");
-        invalidPass.status = 401;
-        throw invalidPass;
+    const user = result.rows[0];
+    // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
+
+
+
+    if (user) {
+      // compare hashed password to a new hash from password from user input
+      // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
+
+      const isValid = await bcrypt.compare(data.password, user.password);
+
+      if (isValid) {
+
+        return user;
+      }
     }
 
-    
+    const invalidPass = new Error("Invalid Credentials");
+    invalidPass.status = 401;
+    throw invalidPass;
+  }
+
+
 
   /** Register user with data. Returns new user data. */
   /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
     // check if email is taken or not
-   
+
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
