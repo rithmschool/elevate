@@ -3,16 +3,16 @@ const express = require("express");
 const app = express();
 
 /** import routes */
-const authRoutes = require('./routes/auth');
+
 const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
+const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /** routes */
-// TODO: Mock Middleware Authentication for testing
-// app.use('/', authRoutes);
+app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
 

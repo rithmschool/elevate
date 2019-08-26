@@ -7,7 +7,7 @@ const createToken = require("../createToken");
 const { authRequired, adminRequired, ensureCorrectUser } = require("../middleware/auth")
 
 /**Log in route req.body --- { email, password } */
-router.post("/login", async function(req, res, next) {
+router.post("/", async function(req, res, next) {
   try {
    
     const user = await User.authenticate(req.body);

@@ -9,7 +9,7 @@ const router = express.Router();
 
 /** GET / => {users: [user, ...]} */
 
-router.get('/', async function (req, res, next) {
+router.get('/', authRequired, async function (req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({ users });
@@ -20,16 +20,19 @@ router.get('/', async function (req, res, next) {
 
 /** GET / a specific user => {user: user} */
 
-router.get('/:id', authRequired, async function (req, res, next) {
+router.get('/:id', authRequired, ensureCorrectUser, async function (req, res, next) {
+
   try {
+
     const user = await User.findOne(req.params.id);
     return res.json({ user });
   } catch (err) {
+
     return next(err);
   }
 });
 
-/** POST / a new user {userdata}  => {token: token} */
+/** POST / a new user {email, password}  => {token: token} */
 
 router.post('/', async function (req, res, next) {
   try {
@@ -41,6 +44,7 @@ router.post('/', async function (req, res, next) {
   }
 });
 
+// TODO:
 /** PATCH / a specific user {userData} => {user: updatedUser} */
 
 router.patch('/:id', ensureCorrectUser, async function (req, res, next) {
@@ -52,6 +56,7 @@ router.patch('/:id', ensureCorrectUser, async function (req, res, next) {
   }
 });
 
+// TODO:
 /** DELETE /  =>  {message: "User deleted"}  */
 
 router.delete('/:id', ensureCorrectUser, async function (req, res, next) {

@@ -7,6 +7,9 @@
     "test": "jest --runInBand",
     "start": "node server.js"
   },
+  "jest": {
+    "modulePathIgnorePatterns": ["/__tests__/config.js"]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
