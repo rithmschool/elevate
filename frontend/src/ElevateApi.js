@@ -4,8 +4,7 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
 class ElevateApi {
   static async request(endpoint, params = {}, verb = "get") {
-    let _token = "";
-    // let _token = localStorage.getItem("jobly-token");
+    let _token = localStorage.getItem("token");
 
     console.debug("API Call:", endpoint, params, verb);
 
@@ -37,10 +36,17 @@ class ElevateApi {
 
     return res.token;
   }
+
   static async signup(data) {
     let res = await this.request(`users`, data, "post");
 
     return res.token;
+  }
+
+  static async getUser(id) {
+    let res = await this.request(`users/${id}`);
+
+    return res.user;
   }
 }
 

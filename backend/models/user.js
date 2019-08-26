@@ -46,7 +46,7 @@ class User {
       // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
       const isValid = await bcrypt.compare(data.password, user.password);
       if (isValid) {
-
+        console.log(user);
         return user;
       }
     }

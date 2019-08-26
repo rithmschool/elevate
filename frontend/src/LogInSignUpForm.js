@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
-import ElevateApi from './ElevateApi'
+import ElevateApi from './ElevateApi';
 
 
 class LoginSignUpForm extends Component {
@@ -49,10 +49,13 @@ class LoginSignUpForm extends Component {
     }
 
     localStorage.setItem("token", token);
+    this.props.checkToken(token);
+    this.props.history.push("/");
   }
 
   render() {
     let loginState = this.state.isLogin;
+
 
     const signupForm = (
       <div className="ml-2 mt-3">
