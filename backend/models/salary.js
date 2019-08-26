@@ -1,5 +1,4 @@
 const db = require("../db");
-const sqlForPartialUpdate = require("../helpers/partialUpdate");
 
 /** Related functions for salaries. */
 
@@ -54,12 +53,11 @@ class Salary {
   /**
    * This method updates the salary by finding the latest salary of the user,
    * updating the relevant fields with the new data and then creating a new record.
-   * Hence each salary update will create a new salary entry in the DB.
+   * As a result each salary update will create a new salary entry in the DB.
    * @param int userId 
    * @param object data 
    */
   static async updateWithUserId(userId, data) {
-
     try {
       let latestSalary = await this.findLatestSalaryByUserId(userId);
       let updatedSalary = { ...latestSalary, ...data }

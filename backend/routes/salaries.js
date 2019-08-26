@@ -2,6 +2,7 @@
 
 const express = require('express');
 const Salary = require('../models/salary');
+// const { ensureCorrectUser, authRequired } = require('../middleware/auth');
 
 const router = new express.Router();
 
