@@ -1,0 +1,34 @@
+h1 {
+  text-align: center;
+}
+
+.admin-main {
+  display: grid;
+  grid-template-areas: "content side";
+  grid-template-columns: 70% 30%;
+  height: 100vh;
+}
+
+.admin-panel {
+  grid-area: content;
+
+  /* remove later */
+  border: 1px dashed black; 
+}
+
+.admin-navbar {
+  grid-area: side;
+
+  /* remove later */
+  border: 1px solid blue;
+}
+
+@media only screen and (max-width: 640px)  {
+  .admin-main{
+    grid-template-columns: 100%;
+  }
+
+  .admin-navbar {
+    display: none;
+  }
+}
