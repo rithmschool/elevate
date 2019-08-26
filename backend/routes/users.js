@@ -1,7 +1,7 @@
 /** Routes for users. */
 
 const express = require('express');
-const { ensureCorrectUser, authRequired, adminRequired } = require('../middleware/auth');
+const { ensureCorrectUser, authRequired } = require('../middleware/auth');
 const User = require('../models/User');
 const createToken = require('../createToken');
 
@@ -44,7 +44,6 @@ router.post('/', async function (req, res, next) {
   }
 });
 
-// TODO:
 /** PATCH / a specific user {userData} => {user: updatedUser} */
 
 router.patch('/:id', ensureCorrectUser, async function (req, res, next) {
@@ -56,7 +55,6 @@ router.patch('/:id', ensureCorrectUser, async function (req, res, next) {
   }
 });
 
-// TODO:
 /** DELETE /  =>  {message: "User deleted"}  */
 
 router.delete('/:id', ensureCorrectUser, async function (req, res, next) {
