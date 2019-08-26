@@ -19,7 +19,6 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    // await this.getUser(token);
     await this.checkToken(token);
   }
 
@@ -33,25 +32,10 @@ class App extends React.Component {
         this.setState({isLoggedin: false});
       }
     } catch (err) {
-      // throw new Error("Something went wrong...")
       this.setState({ user: {}, isLoggedin: false });
-      return `error: ${err}`; //this return isn't actually used anywhere
-
+      return `error: ${err}`;
     }
   }
-
-  // async getUser(token) {
-  //   try {
-  //     if (token) {
-  //       let userId = jwt.decode(token).user_id;
-  //       let user = await ElevateApi.getUser(userId);
-
-  //       this.setState({ user });
-  //     }
-  //   } catch(err) {
-  //     // Redirect to login page?
-  //   }
-  // }
 
   render(){
     return(
