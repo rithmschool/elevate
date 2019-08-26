@@ -31,8 +31,6 @@ afterEach(async function () {
   await afterEachHook();
 });
 
-//TODO: figure out if any routes should be protected, ie ensureCorrectUser
-//TODO: where does user_id come from in salaries post route? add id to endpoint?
 describe('POST /salaries', async function () {
   test('Creates a new salary', async function () {
     const response = await request(app)
@@ -42,7 +40,7 @@ describe('POST /salaries', async function () {
         salary: 95000.00,
         bonus: 5000.00,
         equity: 0.003,
-        // _token: TEST_DATA.userToken
+        _token: `${TEST_DATA.userToken}`
       });
     expect(response.statusCode).toBe(201);
     expect(response.body.salary).toHaveProperty('bonus');
@@ -57,28 +55,27 @@ describe('GET /salaries', async function () {
   });
 });
 
-xdescribe('GET /salaries/:id', async function () {
+describe('GET /salaries/:id', async function () {
   test('Gets a single salary for a specific user', async function () {
+    const userId = TEST_DATA.currentId;
     const response = await request(app)
-      .get(`/salaries/${TEST_DATA.currentCompany.handle}`)
-      .send({
-        _token: TEST_DATA.userToken
-      });
-    expect(response.body.company).toHaveProperty('handle');
-    expect(response.body.company.handle).toBe('rithm');
+      .get(`/salaries/${userId}`)
+      .send({ _token: `${TEST_DATA.userToken}` });
+    
+    expect(response.body.salaries).toHaveProperty('bonus');
+    expect(response.body.salaries.bonus).toEqual(25000);
   });
 
-  test('Responds with a 404 if it cannot find the company in question', async function () {
+  test('Responds with a 500 if user has no salary data', async function () {
+    const userId = 6;
     const response = await request(app)
-      .get(`/companies/yaaasss`)
-      .send({
-        _token: TEST_DATA.userToken
-      });
-    expect(response.statusCode).toBe(404);
+      .get(`/salaries/${userId}`)
+      .send({ _token: TEST_DATA.userToken });
+    expect(response.statusCode).toBe(500);
   });
 });
 
-xdescribe('PATCH /companies/:handle', async function () {
+xdescribe('PATCH /salaries/:id', async function () {
   test("Updates a single a company's name", async function () {
     const response = await request(app)
       .patch(`/companies/${TEST_DATA.currentCompany.handle}`)
@@ -91,7 +88,7 @@ xdescribe('PATCH /companies/:handle', async function () {
     expect(response.body.company.handle).not.toBe(null);
   });
 
-  test('Prevents a bad company update', async function () {
+  test('Prevents a bad salary update', async function () {
     const response = await request(app)
       .patch(`/companies/${TEST_DATA.currentCompany.handle}`)
       .send({
@@ -101,7 +98,7 @@ xdescribe('PATCH /companies/:handle', async function () {
     expect(response.statusCode).toBe(400);
   });
 
-  test('Responds with a 404 if it cannot find the company in question', async function () {
+  test('Responds with a 404 if it cannot find the salary in question', async function () {
     // delete company first
     await request(app).delete(`/companies/${TEST_DATA.currentCompany.handle}`);
     const response = await request(app)
@@ -114,17 +111,17 @@ xdescribe('PATCH /companies/:handle', async function () {
   });
 });
 
-xdescribe('DELETE /companies/:handle', async function () {
-  test('Deletes a single a company', async function () {
+xdescribe('DELETE /salaries/:id', async function () {
+  test('Deletes a single salary', async function () {
     const response = await request(app)
-      .delete(`/companies/${TEST_DATA.currentCompany.handle}`)
+      .delete(`/salaries/${TEST_DATA.currentCompany.handle}`)
       .send({
         _token: TEST_DATA.userToken
       });
-    expect(response.body).toEqual({ message: 'Company deleted' });
+    expect(response.body).toEqual({ message: 'Salary deleted' });
   });
 
-  test('Responds with a 404 if it cannot find the company in question', async function () {
+  test('Responds with a 404 if it cannot find the salary in question', async function () {
     // delete company first
     const response = await request(app)
       .delete(`/companies/notme`)

@@ -30,8 +30,11 @@ class Salary {
                                   WHERE user_id=$1
                                   ORDER BY last_modified
                                   LIMIT 1`, [id]);
-
-      return result.rows[0];
+      const salary = result.rows[0];
+      if (salary === undefined) {
+        throw new Error(`Cannot find a salary for user with userId ${id}`);
+      }
+      return salary;
   }
 
   /** Create a salary (from data), update db, return new salary data. */
