@@ -6,6 +6,7 @@ import ElevateApi from './ElevateApi'
 class LoginSignUpForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isLogin: true,
       email: "",
@@ -13,11 +14,9 @@ class LoginSignUpForm extends Component {
       firstName: "",
       lastName: ""
     }
-    this.loginOrSignup = this.loginOrSignup.bind(this)
-    // this.userInput = this.userInput.bind(this)
   }
 
-  loginOrSignup(evt) {
+  loginOrSignup = evt => {
     if (evt.target.name === "login") {
       this.setState({ isLogin: true })
     } else {
@@ -25,52 +24,36 @@ class LoginSignUpForm extends Component {
     }
   }
 
-  async handleSubmit(evt) {
-    evt.preventDefault();
-    let data;
-    let endpoint;
-
-    if (this.state.isLogin) {
-      data = {
-        email: this.state.email,
-        password: this.state.password
-      }
-      endpoint = "login"
-    } else {
-      data = {
-        email: this.state.email,
-        password: this.state.password,
-        firstName: this.props.firstName,
-        lastName: this.props.lastName
-      }
-      endpoint = "users"
-    }
-  }
   handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     });
   };
 
-  inputLogin = async evt => {
+  handleSubmit = async evt => {
     evt.preventDefault();
+    let token;
+    
     if (this.state.isLogin) {
       const data = { email: this.state.email, password: this.state.password };
-      await ElevateApi.login(data)
+      token = await ElevateApi.login(data)
     } else {
       const data = {
         email: this.state.email,
         password: this.state.password,
-        firstName: this.props.firstName,
-        lastName: this.props.lastName
+        firstName: this.state.firstName,
+        lastName: this.state.lastName
       }
-      await ElevateApi.signup(data)
+      
+      token = await ElevateApi.signup(data);
     }
 
+    localStorage.setItem("token", token);
   }
 
   render() {
-    let loginState = this.state.isLogin
+    let loginState = this.state.isLogin;
+
     const signupForm = (
       <div className="ml-2 mt-3">
         <Form.Group>
@@ -98,12 +81,11 @@ class LoginSignUpForm extends Component {
       </div>
     )
     return (
-
       <div>
         <Button name="login" onClick={this.loginOrSignup}>Log In</Button> <Button name="signup" onClick={this.loginOrSignup}>SignUp</Button>
 
         <div >
-          <Form onSubmit={this.inputLogin} >
+          <Form onSubmit={this.handleSubmit} >
             <Form.Group>
               <label htmlFor="id" >Email</label>
               <input
@@ -130,11 +112,9 @@ class LoginSignUpForm extends Component {
             <Button className="login-submit" type="submit" >Submit</Button>
           </Form>
         </div>
-
       </div>
     )
   }
-
 }
 
 export default LoginSignUpForm

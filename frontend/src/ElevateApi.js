@@ -34,12 +34,12 @@ class ElevateApi {
 
   static async login(data) {
     let res = await this.request(`login`, data, "post");
-    console.log(res)
+
     return res.token;
   }
   static async signup(data) {
     let res = await this.request(`users`, data, "post");
-    console.log(res)
+
     return res.token;
   }
 }
