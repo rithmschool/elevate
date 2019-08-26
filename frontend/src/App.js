@@ -29,7 +29,7 @@ class App extends React.Component {
         let user = await ElevateApi.getUser(userId);
         this.setState({ user, isLoggedin: true });
       } else {
-        this.setState({isLoggedin: false});
+        this.setState({user: {}, isLoggedin: false});
       }
     } catch (err) {
       this.setState({ user: {}, isLoggedin: false });
