@@ -4,7 +4,7 @@ process.env.NODE_ENV = "test";
 const db = require("../../db");
 const Salary = require("../../models/salary");
 const User = require("../../models/user");
-const { SEED_USER_SQL, SEED_SALARY_SQL, SEED_CHARGES_SQL } = require("../../config");
+const { SEED_USER_SQL, SEED_SALARY_SQL } = require("../../config");
 
 
 describe("Test Salary model", function () {
@@ -27,7 +27,6 @@ describe("Test Salary model", function () {
   afterAll(async () => {
     await db.end();
   });
-
 
   test("get all salaries", async function () {
     const response = await Salary.findAll();
