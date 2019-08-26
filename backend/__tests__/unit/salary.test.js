@@ -69,8 +69,7 @@ describe("Test Salary model", function () {
     ]);
   });
 
-  // This test will pass once the user registration is correctly creating increasing UID.
-  xtest("create a new salary", async function () {
+  test("create a new salary", async function () {
     const newUser = {
       email: "john@doe.com",
       password: "yeehaw",
