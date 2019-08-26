@@ -119,7 +119,7 @@ class User {
     return user;
   }
 
-  // TODO:
+  
   /** Update user data with `data`.
    *
    * This is a "partial update" --- it's fine if data doesn't contain
@@ -150,7 +150,7 @@ class User {
     return result.rows[0];
   }
 
-  // TODO:
+ 
   /** Delete given user from database; returns undefined. */
 
   static async remove(id) {
