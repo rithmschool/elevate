@@ -15,36 +15,36 @@ class Home extends React.Component {
         </div>
 
         <div className="Home-template">
-          <h1 className="Home-h1-template">Templates and professionals available 24/7</h1>
+          <p>Templates and professionals available 24/7</p>
           <i className="fas fa-user-tie"></i>
         </div>
 
-      <div className="Home-database ">
+      <div className="Home-database">
         <i className="fas fa-chart-bar"></i>
-        <h1 className="Home-h1-template">Get yout comp verified by our proprietary database</h1>
+        <p>Get yout comp verified by our proprietary database</p>
       </div>
 
-      <div className="Home-circle">
+      <div className="Home-stats">
           <div className="row">
               <div className="col-sm-4">
-                <div className="circle ">
-                <h2>75<small>%</small><p>increase offer</p></h2>
+                <div className="Home-circle ">
+                <p>75% increase offer</p>
                 </div>
               </div>
               <div className="col-sm-4">
-                <div className="circle ">
-                <h2>20<small>%</small><p>average increase in salary</p></h2>
+                <div className="Home-circle ">
+                <p>20% average increase in salary</p>
                 </div>
               </div>
               <div className="col-sm-4">
-                <div className="circle ">
-                <h2>90<small>%</small><p>better understand comp</p></h2>
+                <div className="Home-circle ">
+                <p>90% better understand comp</p>
                 </div>
               </div>
           </div>
       </div>
       <div className="Home-get-started">
-          <h2 className="">Get Started Today</h2>
+          <h2 className="">Get Started Today</h2><br></br>
           <Button color="primary">Review My Offer</Button>
         </div>
      </div>
