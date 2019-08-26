@@ -42,12 +42,14 @@ router.post('/', authRequired, async function (req, res, next) {
   }
 });
 
-/** PATCH / {salaryData} => {salary: updatedSalary}  */
+/** PATCH / {salaryData} => {salary: updatedSalary}  
+ * looks up and returns the latest salary id by user id obtained from route params
+*/
 
-router.patch('/:id', async function (req, res, next) {
+router.patch('/:id', authRequired, async function (req, res, next) {
   try {
-    //write logic to look up salary id from user_id fed in from request
-    const salary = await Salary.update(id, req.body);
+    const userId = req.params.id
+    const salary = await Salary.updateWithUserId(userId, req.body);
     return res.json({ salary });
   } catch (err) {
     return next(err);
@@ -56,11 +58,9 @@ router.patch('/:id', async function (req, res, next) {
 
 /** DELETE /  =>  {message: "Salary deleted"}  */
 
-router.delete('/:id', async function (req, res, next) {
+router.delete('/:id', authRequired, async function (req, res, next) {
   try {
-    //write logic to look up salary id from user_id fed in from request
-    const id = req.body.id;
-    await Salary.remove(id);
+    await Salary.remove(req.params.id);
     return res.json({ message: 'Salary deleted' });
   } catch (err) {
     return next(err);

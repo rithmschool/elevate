@@ -17,8 +17,6 @@ const {
   afterEachHook,
   afterAllHook,
   beforeEachHook,
-  inputEmail,
-  inputPassword
 } = require('../config');
 
 beforeEach(async function () {
@@ -31,7 +29,7 @@ afterEach(async function () {
   await afterEachHook();
 });
 
-describe('POST /salaries', async function () {
+describe('POST /salaries', function () {
   test('Creates a new salary', async function () {
     const response = await request(app)
       .post('/salaries')
@@ -47,7 +45,7 @@ describe('POST /salaries', async function () {
   });
 });
 
-describe('GET /salaries', async function () {
+describe('GET /salaries', function () {
   test('Gets a list of all salaries', async function () {
     const response = await request(app).get('/salaries');
     expect(response.body.salaries).toHaveLength(5);
@@ -55,7 +53,7 @@ describe('GET /salaries', async function () {
   });
 });
 
-describe('GET /salaries/:id', async function () {
+describe('GET /salaries/:id', function () {
   test('Gets a single salary for a specific user', async function () {
     const userId = TEST_DATA.currentId;
     const response = await request(app)
@@ -75,63 +73,99 @@ describe('GET /salaries/:id', async function () {
   });
 });
 
-xdescribe('PATCH /salaries/:id', async function () {
-  test("Updates a single a company's name", async function () {
+describe('PATCH /salaries/:id', function () {
+  test("Updates a single field for a salary record", async function () {
+    const newUser = {
+      email: "john_the_third@doe.com",
+      password: "yeehaw",
+      is_admin: false,
+      first_name: "john",
+      last_name: "doe",
+      current_company: "john deer",
+      hire_date: "2016-05-01",
+      needs: "a new truck",
+      goals: "get a raise for new truck down payment"
+    };
+    const userResponse = await User.register(newUser);
+
+    const newSalary = {
+      user_id: userResponse.id,
+      salary: 105000.00,
+      bonus: 2000.00,
+      equity: 0.005
+    };
+
+    const salaryResponse = await Salary.create(newSalary);
+
     const response = await request(app)
-      .patch(`/companies/${TEST_DATA.currentCompany.handle}`)
+      .patch(`/salaries/${userResponse.id}`)
       .send({
-        name: 'xkcd',
+        salary: 150000.00,
         _token: TEST_DATA.userToken
       });
-    expect(response.body.company).toHaveProperty('handle');
-    expect(response.body.company.name).toBe('xkcd');
-    expect(response.body.company.handle).not.toBe(null);
+    expect(response.body.salary).toHaveProperty('salary');
+    expect(response.body.salary.salary).toBe(150000.00);
+    expect(response.body.salary.salary).not.toBe(null);
   });
 
-  test('Prevents a bad salary update', async function () {
+  // TODO: this test requires a schema to validate whether the request contains any valid fields.
+  // The current behavior creates a new record with all of the old fields copied over from
+  // the original salary record and returns a 200
+  xtest('Prevents a bad salary update', async function () {
+    const userId = TEST_DATA.currentId;
     const response = await request(app)
-      .patch(`/companies/${TEST_DATA.currentCompany.handle}`)
+      .patch(`/salaries/${userId}`)
       .send({
         _token: TEST_DATA.userToken,
         cactus: false
       });
     expect(response.statusCode).toBe(400);
   });
-
-  test('Responds with a 404 if it cannot find the salary in question', async function () {
-    // delete company first
-    await request(app).delete(`/companies/${TEST_DATA.currentCompany.handle}`);
-    const response = await request(app)
-      .patch(`/companies/taco`)
-      .send({
-        name: 'newTaco',
-        _token: TEST_DATA.userToken
-      });
-    expect(response.statusCode).toBe(404);
-  });
 });
 
-xdescribe('DELETE /salaries/:id', async function () {
+describe('DELETE /salaries/:id', function () {
   test('Deletes a single salary', async function () {
+    const newUser = {
+      email: "john_the_second@doe.com",
+      password: "yeehaw",
+      is_admin: false,
+      first_name: "john",
+      last_name: "doe",
+      current_company: "john deer",
+      hire_date: "2016-05-01",
+      needs: "a new truck",
+      goals: "get a raise for new truck down payment"
+    };
+    
+    const userResponse = await User.register(newUser);
+
+    const newSalary = {
+      user_id: userResponse.id,
+      salary: 105000.00,
+      bonus: 2000.00,
+      equity: 0.005
+    };
+
+    const salaryResponse = await Salary.create(newSalary);
+    const salaryId = salaryResponse.id
+
     const response = await request(app)
-      .delete(`/salaries/${TEST_DATA.currentCompany.handle}`)
-      .send({
-        _token: TEST_DATA.userToken
-      });
+      .delete(`/salaries/${salaryId}`)
+      .send({ 
+        _token: TEST_DATA.userToken });
     expect(response.body).toEqual({ message: 'Salary deleted' });
   });
 
   test('Responds with a 404 if it cannot find the salary in question', async function () {
-    // delete company first
+    const salaryId = 666; 
     const response = await request(app)
-      .delete(`/companies/notme`)
+      .delete(`/salaries/${salaryId}`)
       .send({
         _token: TEST_DATA.userToken
       });
     expect(response.statusCode).toBe(404);
   });
 });
-
 
 afterAll(async function () {
   await afterAllHook();

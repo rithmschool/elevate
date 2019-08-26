@@ -20,8 +20,9 @@ class Salary {
 
   /** Find latest salary */
 
-  static async findLatestSalaryByUserId(id) {
+  static async findLatestSalaryByUserId(userId) {
       const result = await db.query(`SELECT 
+                                    id,
                                     user_id,
                                     salary,
                                     bonus,
@@ -29,10 +30,10 @@ class Salary {
                                   FROM salaries
                                   WHERE user_id=$1
                                   ORDER BY last_modified
-                                  LIMIT 1`, [id]);
+                                  LIMIT 1`, [userId]);
       const salary = result.rows[0];
       if (salary === undefined) {
-        throw new Error(`Cannot find a salary for user with userId ${id}`);
+        throw new Error(`Cannot find a salary for user with userId ${userId}`);
       }
       return salary;
   }
