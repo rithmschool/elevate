@@ -44,129 +44,133 @@ describe('POST /users',  function () {
       .send(dataObj);
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty('token');
-    
-    });
-  });
 
-  test('Prevents creating a user with duplicate email', async function () {
-    const response = await request(app)
-      .post('/users')
-      .send({
-        email: inputEmail,
-        password: inputPassword,
-      });
-    expect(response.statusCode).toBe(401);
+    });
+    test('Prevents creating a user with duplicate email', async function () {
+      const response = await request(app)
+        .post('/users')
+        .send({
+          email: inputEmail,
+          password: inputPassword,
+        });
+      expect(response.statusCode).toBe(401);
+    });
+  
   });
 
   
+
 
 describe('GET /users', function () {
   test('Gets a list of 1 user', async function () {
     const response = await request(app)
       .get('/users')
       .send({ _token: `${TEST_DATA.userToken}` });
-      
+
     expect(response.body.users).toHaveLength(6);
     expect(response.body.users[0]).toHaveProperty('email');
     expect(response.body.users[0]).not.toHaveProperty('password');
   });
 
-  
+
 });
 
-describe('GET /users', function () {
+describe('GET /users/:id', function () {
   test('Gets a list of 1 user', async function () {
     const response = await request(app)
-    .get(`/users/${TEST_DATA.currentId}`)
-    .send({ _token: `${TEST_DATA.userToken}` });
+      .get(`/users/${TEST_DATA.currentId}`)
+      .send({ _token: `${TEST_DATA.userToken}` });
     expect(response.body.user).toHaveProperty('email');
     expect(response.body.user).not.toHaveProperty('password');
   });
 
-   test('Responds with a 401 if it cannot find the user in question', async function () {
+  test('Responds with a 401 if it cannot find the user in question', async function () {
+    const response = await request(app)
+      .get(`/users/baduser`)
+      .send({ _token: `${TEST_DATA.userToken}` });
+    expect(response.statusCode).toBe(401);
+  });
+});
+
+
+describe('PATCH /users/:id', () => {
+  test("Updates a single a user's first_name with a selective update", async function () {
+    const response = await request(app)
+      .patch(`/users/${TEST_DATA.currentId}`)
+      .send({ first_name: 'xkcd', _token: `${TEST_DATA.userToken}` });
+    const user = response.body.user;
+
+    expect(user).toHaveProperty('email');
+    expect(user).not.toHaveProperty('password');
+    expect(user.first_name).toBe('xkcd');
+    expect(user.username).not.toBe(null)
+    });
+
+       test("Updates a single a user's password", async function () {
+         const response = await request(app)
+          .patch(`/users/${TEST_DATA.currentId}`)
+          .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' });
+
+         const user = response.body.user;
+
+        expect(user).toHaveProperty("email");
+         expect(user).not.toHaveProperty('password');
+      });
+
+       test('Prevents a bad user update', async function () {
+        const response = await request(app)
+          .patch(`/users/${TEST_DATA.currentId}`)
+          .send({ _token: "badtoken"} );
+         expect(response.statusCode).toBe(401);
+       });
+
+    test('Forbids a user from editing another user', async function () {
       const response = await request(app)
-        .get(`/users/baduser`)
-        .send({ _token: `${TEST_DATA.userToken}` });
+        .patch(`/users/notme`)
+        .send({ password: 'foo12345', _token: `${TEST_DATA.userToken}` });
       expect(response.statusCode).toBe(401);
     });
-});
 
- TODO:
-// describe('PATCH /users/:username', async () => {
-//   test("Updates a single a user's first_name with a selective update", async function () {
-//     const response = await request(app)
-//       .patch(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ first_name: 'xkcd', _token: `${TEST_DATA.userToken}` });
-//     const user = response.body.user;
-//     expect(user).toHaveProperty('username');
-//     expect(user).not.toHaveProperty('password');
-//     expect(user.first_name).toBe('xkcd');
-//     expect(user.username).not.toBe(null);
-//   });
+    test('Responds with a 404 if it cannot find the user in question', async function () {
+      // delete user first
+      await request(app)
+        .delete(`/users/${TEST_DATA.currentId}`)
+        .send({ _token: `${TEST_DATA.userToken}` });
+      const response = await request(app)
+        .patch(`/users/${TEST_DATA.currentId}`)
+        .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' });
+      console.log(response.body)
+      expect(response.body.message).toBe("There exists no user with that id");
+    });
+  });
 
-//   test("Updates a single a user's password", async function () {
-//     const response = await request(app)
-//       .patch(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' });
+  describe('DELETE /users/:username', function () {
+    test('Deletes a single a user', async function () {
+      const response = await request(app)
+        .delete(`/users/${TEST_DATA.currentId}`)
+        .send({ _token: `${TEST_DATA.userToken}` });
+      expect(response.body).toEqual({ message: 'User deleted' });
+    });
 
-//     const user = response.body.user;
-//     expect(user).toHaveProperty('username');
-//     expect(user).not.toHaveProperty('password');
-//   });
+    test('Forbids a user from deleting another user', async function () {
+     const response = await request(app)
+     .delete(`/users/notme`)
+     .send({ _token: `${TEST_DATA.userToken}` });
+    expect(response.statusCode).toBe(401);
+    });
 
-//   test('Prevents a bad user update', async function () {
-//     const response = await request(app)
-//       .patch(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ cactus: false, _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(400);
-//   });
+    test('Responds with a 404 if it cannot find the user in question', async function () {
+     // delete user first
+      await request(app)
+       .delete(`/users/${TEST_DATA.currentUsername}`)
+       .send({ _token: `${TEST_DATA.userToken}` });
+    const response = await request(app)
+       .delete(`/users/${TEST_DATA.currentUsername}`)
+       .send({ _token: `${TEST_DATA.userToken}` });
+      expect(response.statusCode).toBe(401);
+     });
+   });
 
-//   test('Forbids a user from editing another user', async function () {
-//     const response = await request(app)
-//       .patch(`/users/notme`)
-//       .send({ password: 'foo12345', _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(401);
-//   });
-
-//   test('Responds with a 404 if it cannot find the user in question', async function () {
-//     // delete user first
-//     await request(app)
-//       .delete(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     const response = await request(app)
-//       .patch(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ password: 'foo12345', _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(404);
-//   });
-// });
-// TODO:
-// describe('DELETE /users/:username', async function () {
-//   test('Deletes a single a user', async function () {
-//     const response = await request(app)
-//       .delete(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     expect(response.body).toEqual({ message: 'User deleted' });
-//   });
-
-//   test('Forbids a user from deleting another user', async function () {
-//     const response = await request(app)
-//       .delete(`/users/notme`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(401);
-//   });
-
-//   test('Responds with a 404 if it cannot find the user in question', async function () {
-//     // delete user first
-//     await request(app)
-//       .delete(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     const response = await request(app)
-//       .delete(`/users/${TEST_DATA.currentUsername}`)
-//       .send({ _token: `${TEST_DATA.userToken}` });
-//     expect(response.statusCode).toBe(404);
-//   });
-// });
-
-afterAll(async function () {
-  await afterAllHook();
-});
+  afterAll(async function () {
+    await afterAllHook();
+  });

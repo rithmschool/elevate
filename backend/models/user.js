@@ -110,8 +110,10 @@ class User {
       [id]
     );
     const user = result.rows[0];
+    console.log("user is",user)
 
     if (!user) {
+      console.log("i am here")
       throw new Error(`There exists no user with that id`, 404);
     }
     return user;
@@ -138,6 +140,7 @@ class User {
     const user = result.rows[0];
 
     if (!user) {
+ 
       throw new Error(`There exists no user with that id`, 404);
     }
 
@@ -165,6 +168,6 @@ class User {
 }
 
 
-}
+
 
 module.exports = User;
