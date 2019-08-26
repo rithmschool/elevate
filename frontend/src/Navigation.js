@@ -41,13 +41,12 @@ class Navigation extends React.Component {
               <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
             <li className="nav-item active">
-              <Link to="/link3" className="fas fa-user Nav-icon"></Link>
+              <Link to="/profile" className="fas fa-user Nav-icon"></Link>
             </li>
           </ul>   
         </Collapse>
       </Navbar>
     );
-                        
   }
 /** Navbar appears when user is logged out */
   loggedOutNavbar(){
