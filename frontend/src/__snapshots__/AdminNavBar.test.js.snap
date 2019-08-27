@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminNavBar matches snapshot 1`] = `
+<AdminNavBar>
+  <div
+    className="adminNavBar"
+  >
+    <div
+      id="users"
+      onClick={[Function]}
+    >
+      Users
+    </div>
+    <div
+      id="invoices"
+      onClick={[Function]}
+    >
+      Invoices
+    </div>
+    <div
+      id="templates"
+      onClick={[Function]}
+    >
+      Templates
+    </div>
+    <div
+      id="calendar"
+      onClick={[Function]}
+    >
+      Calendar
+    </div>
+  </div>
+</AdminNavBar>
+`;
