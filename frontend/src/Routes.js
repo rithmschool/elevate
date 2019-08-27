@@ -1,7 +1,8 @@
 import React from 'react';
 import {  Route, Switch, Redirect } from "react-router-dom";
 import Home from './Home';
-import AdminPanel from './AdminPanel'
+import AdminPanel from './AdminPanel';
+import UserProfile from './UserProfile';
 
 class Routes extends React.Component {
 
