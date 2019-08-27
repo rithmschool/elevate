@@ -1,23 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<div
-  className="admin-main"
->
+exports[`AdminPanel matches snapshot 1`] = `
+<AdminPanel>
   <div
-    className="admin-panel"
+    className="admin-main"
   >
-    <h1>
-      Admin Panel
-    </h1>
-    <div />
+    <div
+      className="admin-panel"
+    >
+      <h1>
+        Admin Panel
+      </h1>
+      <div />
+    </div>
+    <div
+      className="admin-navbar"
+    >
+      <AdminNavBar
+        changeView={[Function]}
+      >
+        <div
+          className="adminNavBar"
+        >
+          <div
+            id="users"
+            onClick={[Function]}
+          >
+            Users
+          </div>
+          <div
+            id="invoices"
+            onClick={[Function]}
+          >
+            Invoices
+          </div>
+          <div
+            id="templates"
+            onClick={[Function]}
+          >
+            Templates
+          </div>
+          <div
+            id="calendar"
+            onClick={[Function]}
+          >
+            Calendar
+          </div>
+        </div>
+      </AdminNavBar>
+    </div>
   </div>
-  <div
-    className="admin-navbar"
-  >
-    <AdminNavBar
-      changeView={[Function]}
-    />
-  </div>
-</div>
+</AdminPanel>
 `;

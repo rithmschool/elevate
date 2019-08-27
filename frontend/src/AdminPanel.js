@@ -37,7 +37,7 @@ class AdminPanel extends Component {
     if(this.state.view === "users"){
     
       return (
-        <Table striped bordered hover size="sm" responsive>
+        <Table striped bordered hover size="sm" responsive id="users-table">
           <thead>
             <tr>
               <th>id</th>
@@ -79,7 +79,6 @@ class AdminPanel extends Component {
       </div>
     )
   }
-
 }
 
 export default AdminPanel;
