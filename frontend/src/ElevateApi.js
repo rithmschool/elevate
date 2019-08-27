@@ -29,8 +29,7 @@ class ElevateApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-
-
+  // User routes
   static async login(data) {
     let res = await this.request(`login`, data, "post");
 
@@ -38,7 +37,6 @@ class ElevateApi {
   }
 
   static async signup(data) {
-    console.log("data", data)
     let res = await this.request(`users`, data, "post");
 
     return res.token;
@@ -48,6 +46,14 @@ class ElevateApi {
     let res = await this.request(`users/${id}`);
 
     return res.user;
+  }
+
+  // Question routes
+  // Input a new question into db. data => {question: "", user_email: ""}
+  static async createQuestion(data) {
+    let res = await this.request('questions', data, "post");
+
+    return res;
   }
 }
 

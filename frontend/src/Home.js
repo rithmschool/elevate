@@ -18,7 +18,8 @@ class Home extends React.Component {
 
         <div className="Home-database">
           <i className="fas fa-balance-scale-left"></i>
-          <p> {<QuestionForm />} </p>
+          {/* Prop drilled from App.js */}
+          {<QuestionForm isLoggedIn={this.props.isLoggedIn} history={this.props.history} />}
         </div>
 
 

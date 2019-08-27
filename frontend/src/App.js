@@ -29,7 +29,7 @@ class App extends React.Component {
         let user = await ElevateApi.getUser(userId);
         this.setState({ user, isLoggedin: true });
       } else {
-        this.setState({user: {}, isLoggedin: false});
+        this.setState({ user: {}, isLoggedin: false });
       }
     } catch (err) {
       this.setState({ user: {}, isLoggedin: false });
@@ -37,12 +37,12 @@ class App extends React.Component {
     }
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="App">
-        <Navigation user={this.state.user} isLoggedin={this.state.isLoggedin}/>
-        <Routes checkToken={this.checkToken}/>
-       </div>
+        <Navigation user={this.state.user} isLoggedin={this.state.isLoggedin} />
+        <Routes checkToken={this.checkToken} isLoggedIn={this.state.isLoggedin} />
+      </div>
     )
   }
 }

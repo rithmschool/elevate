@@ -35,6 +35,15 @@ CREATE TABLE charges (
   paid BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE questions (
+  id serial PRIMARY KEY,
+  question TEXT NOT NULL,
+  user_email TEXT NOT NULL,
+  response TEXT,
+  responder TEXT,
+  resolved BOOLEAN DEFAULT FALSE
+);
+
 -- FIXED:  deleted handcode ID because issue with primary key constrain when create new user
 INSERT INTO users ( email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals) VALUES
   ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),

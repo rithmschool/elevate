@@ -1,23 +1,23 @@
 import React from 'react';
-import {  Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from './Home';
-import LogInSignUpForm from'./LogInSignUpForm';
+import LogInSignUpForm from './LogInSignUpForm';
 import Logout from './Logout';
 import AdminPanel from './AdminPanel'
 
 class Routes extends React.Component {
 
-	render(){
-		return(
+	render() {
+		return (
 			<Switch>
-				<Route exact path="/" render={props => <Home {...props} />} />
-				<Route exact path="/login" render={props => <LogInSignUpForm {...props} checkToken={this.props.checkToken}/>} />
+				<Route exact path="/" render={props => <Home {...props} isLoggedIn={this.props.isLoggedIn} />} />
+				<Route exact path="/login" render={props => <LogInSignUpForm {...props} checkToken={this.props.checkToken} />} />
 				<Route exact path="/admin" render={() => <AdminPanel />} />
-				<Route exact path="/logout" render={() => <Logout checkToken={this.props.checkToken}/>} />
+				<Route exact path="/logout" render={() => <Logout checkToken={this.props.checkToken} />} />
 				<Redirect to="/" />
 			</Switch>
 		)
 	}
 }
 
-export default  Routes;
+export default Routes;
