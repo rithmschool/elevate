@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logout matches snapshot 1`] = `
+<Logout
+  checkToken={[Function]}
+  history={
+    Array [
+      "/",
+    ]
+  }
+/>
+`;
