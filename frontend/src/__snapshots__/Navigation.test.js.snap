@@ -88,7 +88,7 @@ exports[`matches snapshot 1`] = `
       >
         <Link
           className="fas fa-user Nav-icon"
-          to="/link3"
+          to="/profile"
         />
       </li>
     </ul>
