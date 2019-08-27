@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navigation user={this.state.user} isLoggedin={this.state.isLoggedin} />
-        <Routes checkToken={this.checkToken} isLoggedIn={this.state.isLoggedin} />
+        <Routes user={this.state.user} checkToken={this.checkToken} isLoggedIn={this.state.isLoggedin} />
       </div>
     )
   }
