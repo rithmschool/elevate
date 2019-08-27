@@ -124,7 +124,7 @@ class LoginSignUpForm extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Control
-                placeholder="password"
+                placeholder="Password"
                 className="logInInput"
                 id="password"
                 name="password"
