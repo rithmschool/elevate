@@ -37,13 +37,12 @@ class AdminPanel extends Component {
     if(this.state.view === "users"){
     
       return (
-        <Table striped bordered hover size="sm">
+        <Table striped bordered hover size="sm" responsive>
           <thead>
             <tr>
               <th>id</th>
               <th>Name</th>
               <th>Company</th>
-              <th>Salary</th>
               <th>Hire Date</th>
               <th>Needs</th>
               <th>Goals</th>
@@ -56,7 +55,6 @@ class AdminPanel extends Component {
                 <td >{user.id}</td>
                 <td>{`${user.first_name} ${user.last_name}`}</td>
                 <td>{user.current_company}</td>
-                <td>{user.salary}</td>
                 <td>{user.hire_date}</td>
                 <td>{user.needs}</td>
                 <td>{user.goals}</td>

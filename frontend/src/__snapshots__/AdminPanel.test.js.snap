@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="admin-main"
+>
+  <div
+    className="admin-panel"
+  >
+    <h1>
+      Admin Panel
+    </h1>
+    <div />
+  </div>
+  <div
+    className="admin-navbar"
+  >
+    <AdminNavBar
+      changeView={[Function]}
+    />
+  </div>
+</div>
+`;
