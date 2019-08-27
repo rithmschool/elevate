@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
-
 class AdminNavBar extends Component {
-    handleClick = (evt) => {
-      evt.preventDefault();
-      this.props.changeView(evt.target.id);
-    }
+  handleClick = (evt) => {
+    evt.preventDefault();
+    this.props.changeView(evt.target.id);
+  }
 
-    render(){
-
+  render(){
     return (
       <div className="adminNavBar">
         <div id="users" onClick={this.handleClick}>Users</div>
@@ -16,7 +14,6 @@ class AdminNavBar extends Component {
         <div id="templates" onClick={this.handleClick}>Templates</div>
         <div id="calendar" onClick={this.handleClick}>Calendar</div>
       </div>
-
     )
   }
 }
