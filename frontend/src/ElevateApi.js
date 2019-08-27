@@ -38,6 +38,7 @@ class ElevateApi {
   }
 
   static async signup(data) {
+    console.log("data", data)
     let res = await this.request(`users`, data, "post");
 
     return res.token;

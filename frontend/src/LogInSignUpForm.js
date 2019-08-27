@@ -42,8 +42,8 @@ class LoginSignUpForm extends Component {
       const data = {
         email: this.state.email,
         password: this.state.password,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName
+        first_name: this.state.firstName,
+        last_name: this.state.lastName
       }
 
       token = await ElevateApi.signup(data);
@@ -90,13 +90,13 @@ class LoginSignUpForm extends Component {
       <div>
         <div className="login-or"><hr className="hr-or" /><span className="span-or">or</span></div>
 
-        <div class="row justify-content-center"><Button className="google-login btn-block mr-3 ml-3">
+        <div className="row justify-content-center"><Button className="google-login btn-block mr-3 ml-3">
           <i className="fa fa-google"></i> Sign in with Google</Button></div>
         
-        <div class="row justify-content-center mt-2"><Button className="fb-login btn-block mr-3 ml-3">
+        <div className="row justify-content-center mt-2"><Button className="fb-login btn-block mr-3 ml-3">
           <i className="fa fa-facebook"></i> Sign in with Facebook</Button></div>
 
-        <Form.Text id="signup" className="text-muted mt-3" style={{"text-align": "center"}}>
+        <Form.Text id="signup" className="text-muted mt-3" style={{"textAlign": "center"}}>
           Don't have an account? <button className="button-signup" onClick={this.loginOrSignup}>Create One</button>
         </Form.Text>
       </div>
@@ -135,9 +135,9 @@ class LoginSignUpForm extends Component {
             </Form.Group>
 
             {loginState ? "" : signupForm}
-            <div class="row justify-content-center"><Button className="login-submit btn-block mr-3 ml-3" type="submit" >Submit</Button></div>
+            <div className="row justify-content-center"><Button className="login-submit btn-block mr-3 ml-3" type="submit" >Submit</Button></div>
 
-            {loginState ? loginWithSocial : <Form.Text id="signup" className="text-muted" style={{"text-align": "center"}}><button name="login" className="button-signin" onClick={this.loginOrSignup}>Signin</button></Form.Text>}
+            {loginState ? loginWithSocial : <Form.Text id="signup" className="text-muted" style={{"textAlign": "center"}}><button name="login" className="button-signin" onClick={this.loginOrSignup}>Signin</button></Form.Text>}
 
 
           </Form>
