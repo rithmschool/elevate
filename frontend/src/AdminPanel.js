@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './AdminPanel.css'
 import AdminNavBar from './AdminNavBar';
-// import {users, charges, salaries} from './adminPanelTestData'
+import ElevateApi from './ElevateApi';
 import { Table } from 'react-bootstrap';
-import axios from 'axios';
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 
@@ -18,18 +17,10 @@ class AdminPanel extends Component {
       users: null
     }
   }
-  //connect to api
-  //TODO: Move this to ElevateApi file after 
-  getUser = async () => {
-    // let _token = localStorage.getItem("token");
-    const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
-    let res = await axios.get(`${BASE_URL}/users`,{params: {_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNTY2OTI0MDgzfQ.jFe4zxFaCzmToGs_dEVfLaofyiYnKDT5m2qn9rJIseA"}})
-    return res.data.users
-  }
 
   async componentDidMount() {
     mql.addListener(this.mediaQueryChanged);
-    const users = await this.getUser()
+    const users = await ElevateApi.getUsers()
     this.setState({users})
   }
 

@@ -49,6 +49,13 @@ class ElevateApi {
 
     return res.user;
   }
+
+  static async getUsers() {
+    let res = await this.request(`users`)
+
+    return res.users
+  }
+
 }
 
 export default ElevateApi;
