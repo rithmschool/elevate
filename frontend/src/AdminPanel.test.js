@@ -49,6 +49,7 @@ describe('AdminPanel', function() {
   });
 
   it('renders the users table when view state is users', function () {
+    wrapper.setState({users: []})
     wrapper.find('div[id="users"]').simulate('click');
     wrapper.update();
     

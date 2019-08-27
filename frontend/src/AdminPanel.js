@@ -38,7 +38,7 @@ class AdminPanel extends Component {
 
 
   viewComponent = () => {
-    if(this.state.view === "users"){
+    if(this.state.view === "users" && this.state.users){
     
       return (
         <Table striped bordered hover size="sm" responsive id="users-table">

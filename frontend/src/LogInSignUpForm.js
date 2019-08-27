@@ -36,17 +36,26 @@ class LoginSignUpForm extends Component {
     let token;
 
     if (this.state.isLogin) {
-      const data = { email: this.state.email, password: this.state.password };
-      token = await ElevateApi.login(data)
-    } else {
-      const data = {
-        email: this.state.email,
-        password: this.state.password,
-        first_name: this.state.firstName,
-        last_name: this.state.lastName
-      }
 
-      token = await ElevateApi.signup(data);
+      try{
+        const data = { email: this.state.email, password: this.state.password };
+        token = await ElevateApi.login(data)
+      } catch (err){
+        return this.setState({err})
+      }
+    } else {
+      
+      try{
+        const data = {
+          email: this.state.email,
+          password: this.state.password,
+          first_name: this.state.firstName,
+          last_name: this.state.lastName
+        }
+        token = await ElevateApi.signup(data);
+      } catch (err) {
+        return this.setState({err})
+      }
     }
 
     localStorage.setItem("token", token);
