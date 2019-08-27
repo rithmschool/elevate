@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginSignUpForm matches snapshot 1`] = `
+<LoginSignUpForm>
+  <div
+    className="form-container mx-auto"
+  >
+    <div
+      className="from-in mt-5"
+    >
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <div
+            className="mb-3"
+          >
+            Sign In
+          </div>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <FormControl
+                className="logInInput"
+                id="email"
+                name="email"
+                onChange={[Function]}
+                placeholder="Email"
+                type="text"
+                value=""
+              >
+                <input
+                  className="logInInput form-control"
+                  id="email"
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <FormControl
+                className="logInInput"
+                id="password"
+                name="password"
+                onChange={[Function]}
+                placeholder="Password"
+                type="password"
+                value=""
+              >
+                <input
+                  className="logInInput form-control"
+                  id="password"
+                  name="password"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <div
+            className="row justify-content-center"
+          >
+            <Button
+              active={false}
+              className="login-submit btn-block mr-3 ml-3"
+              disabled={false}
+              type="submit"
+              variant="primary"
+            >
+              <button
+                className="login-submit btn-block mr-3 ml-3 btn btn-primary"
+                disabled={false}
+                type="submit"
+              >
+                Submit
+              </button>
+            </Button>
+          </div>
+          <div>
+            <div
+              className="login-or"
+            >
+              <hr
+                className="hr-or"
+              />
+              <span
+                className="span-or"
+              >
+                or
+              </span>
+            </div>
+            <div
+              className="row justify-content-center"
+            >
+              <Button
+                active={false}
+                className="google-login btn-block mr-3 ml-3"
+                disabled={false}
+                type="button"
+                variant="primary"
+              >
+                <button
+                  className="google-login btn-block mr-3 ml-3 btn btn-primary"
+                  disabled={false}
+                  type="button"
+                >
+                  <i
+                    className="fa fa-google"
+                  />
+                   Sign in with Google
+                </button>
+              </Button>
+            </div>
+            <div
+              className="row justify-content-center mt-2"
+            >
+              <Button
+                active={false}
+                className="fb-login btn-block mr-3 ml-3"
+                disabled={false}
+                type="button"
+                variant="primary"
+              >
+                <button
+                  className="fb-login btn-block mr-3 ml-3 btn btn-primary"
+                  disabled={false}
+                  type="button"
+                >
+                  <i
+                    className="fa fa-facebook"
+                  />
+                   Sign in with Facebook
+                </button>
+              </Button>
+            </div>
+            <FormText
+              className="text-muted mt-3"
+              id="signup"
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
+              <small
+                className="text-muted mt-3 form-text"
+                id="signup"
+                style={
+                  Object {
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Don't have an account? 
+                <button
+                  className="button-signup"
+                  onClick={[Function]}
+                >
+                  Create One
+                </button>
+              </small>
+            </FormText>
+          </div>
+        </form>
+      </Form>
+    </div>
+  </div>
+</LoginSignUpForm>
+`;

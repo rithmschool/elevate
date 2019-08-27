@@ -13,7 +13,7 @@ class Routes extends React.Component {
 				<Route exact path="/" render={props => <Home {...props} />} />
 				<Route exact path="/login" render={props => <LogInSignUpForm {...props} checkToken={this.props.checkToken}/>} />
 				<Route exact path="/admin" render={() => <AdminPanel />} />
-				<Route exact path="/logout" render={() => <Logout checkToken={this.props.checkToken}/>} />
+				<Route exact path="/logout" render={props => <Logout {...props} checkToken={this.props.checkToken}/>} />
 				<Redirect to="/" />
 			</Switch>
 		)
