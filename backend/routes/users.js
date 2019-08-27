@@ -23,7 +23,6 @@ router.get('/', authRequired, async function (req, res, next) {
 router.get('/:id', authRequired, ensureCorrectUser, async function (req, res, next) {
 
   try {
-
     const user = await User.findOne(req.params.id);
     return res.json({ user });
   } catch (err) {

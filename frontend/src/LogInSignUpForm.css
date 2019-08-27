@@ -1,0 +1,49 @@
+.login-or {
+  position: relative;
+  color: #aaa;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  }
+  .span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #fff;
+  width: 50px;
+  text-align: center;
+  }
+
+  .hr-or {
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    }
+  
+  .button-signup, .button-signin {
+      background: none!important;
+      border: none;
+      padding: 0!important;
+      /*optional*/
+      font-family: arial, sans-serif;
+      /*input has OS specific font-family*/
+      color: #069;
+      text-decoration: underline;
+      cursor: pointer;
+  }
+  .form-container {
+    width: 30%;
+    max-width: 450px;
+  }
+
+  .from-in {
+    padding: 2em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray
+  }
+
+  .green-background {background-color:#98b398;}
