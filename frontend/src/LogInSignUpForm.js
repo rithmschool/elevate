@@ -61,7 +61,7 @@ class LoginSignUpForm extends Component {
 
     const signupForm = (
       <div>
-        <Form.Group controlId="formBasicFirstName">
+        <Form.Group >
           <Form.Control
             placeholder="First Name"
             className="signUpInput"
@@ -72,7 +72,7 @@ class LoginSignUpForm extends Component {
             value={this.state.firstName}
           />
         </Form.Group>
-        <Form.Group controlId="formBasicLastName">
+        <Form.Group>
           <Form.Control
             placeholder="Last Name"
             className="signUpInput"
@@ -111,7 +111,7 @@ class LoginSignUpForm extends Component {
         <div className="from-in mt-5">
           <Form onSubmit={this.handleSubmit} >
             <div className="mb-3">{text}</div>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group>
               <Form.Control
                 placeholder="Email"
                 className="logInInput"
