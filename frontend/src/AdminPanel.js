@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './AdminPanel.css'
 import AdminNavBar from './AdminNavBar';
-import {users, charges, salaries} from './adminPanelTestData'
+// import {users, charges, salaries} from './adminPanelTestData'
 import { Table } from 'react-bootstrap';
+import axios from 'axios';
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 
@@ -13,12 +14,23 @@ class AdminPanel extends Component {
     this.state = {
       view: '',
       sidebarDocked: mql.matches,
-      sideBarOpen: false
+      sideBarOpen: false,
+      users: null
     }
   }
+  //connect to api
+  //TODO: Move this to ElevateApi file after 
+  getUser = async () => {
+    // let _token = localStorage.getItem("token");
+    const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
+    let res = await axios.get(`${BASE_URL}/users`,{params: {_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNTY2OTI0MDgzfQ.jFe4zxFaCzmToGs_dEVfLaofyiYnKDT5m2qn9rJIseA"}})
+    return res.data.users
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     mql.addListener(this.mediaQueryChanged);
+    const users = await this.getUser()
+    this.setState({users})
   }
 
   changeView = (view) => {
@@ -32,6 +44,7 @@ class AdminPanel extends Component {
   toggleSidebar = () => {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
+
 
   viewComponent = () => {
     if(this.state.view === "users"){
@@ -50,7 +63,7 @@ class AdminPanel extends Component {
             </tr>
           </thead>
           <tbody>
-          {users.map(user => {
+          {this.state.users.map(user => {
             return (
               <tr key={user.id}>
                 <td >{user.id}</td>
