@@ -1,26 +1,52 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import classNames from 'classnames';
 import './Navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
-
+    this.userMenuToggle = this.userMenuToggle.bind(this);
     this.toggle = this.toggle.bind(this);
+
     this.state = {
-      isOpen: false
+      isOpen: false,
+      userMenuIsOpen: false
     };
   }
-
+  //toggle for the navbar
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+// toggle for the user drop down menu
+  userMenuToggle() {
+    this.setState({
+      userMenuIsOpen: !this.state.userMenuIsOpen
+    });
+  }
 
   render() {
-    const logout = <Link to="/logout" className="Nav-link Nav-link-ltr">Logout</Link>
+    const userId =  this.props.user.userId
+    const logout = 
+            <div>
+              <i className="fas fa-user Nav-icon"
+              onClick={this.userMenuToggle}
+              ></i>
+              <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item bg-transparent">
+                  <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
+                </li>
+                <li className="list-group-item bg-transparent">
+                <Link to="/logout" className="Menu-link ">Logout</Link>
+                </li>
+              </ul> 
+              </div>
+            </div>
+      
     const login = <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
     const admin = (
       <li className="nav-item active">

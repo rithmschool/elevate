@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
 import ElevateApi from './ElevateApi';
+import './App.css'
 
 const jwt = require('jsonwebtoken');
 const token = localStorage.getItem('token');
@@ -12,7 +13,8 @@ class App extends React.Component {
 
     this.state = {
       user: null,
-      isLoggedin: false
+      isLoggedin: false,
+      loading: true
     }
 
     this.checkToken = this.checkToken.bind(this)
@@ -27,7 +29,8 @@ class App extends React.Component {
       if (token) {
         let userId = jwt.decode(token).user_id;
         let user = await ElevateApi.getUser(userId);
-        this.setState({ user, isLoggedin: true });
+        user = {...user, userId: userId}
+        this.setState({ user, isLoggedin: true, loading: false });
       } else {
         this.setState({user: {}, isLoggedin: false});
       }
@@ -39,6 +42,7 @@ class App extends React.Component {
 
   render(){
     return(
+      this.state.loading?  <div className="loader"></div>:
       <div className="App">
         <Navigation user={this.state.user} isLoggedin={this.state.isLoggedin}/>
         <Routes checkToken={this.checkToken}/>
