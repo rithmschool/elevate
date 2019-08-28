@@ -5,7 +5,7 @@ class AdminUserView extends Component {
     const { first_name, last_name, email, current_company, hire_date, needs, goals } = this.props.user;
 
     return (
-      <div id='AdminUserView'>
+      <div className='AdminUserView'>
         <h5>{ first_name } { last_name }</h5>
         <p>Email: { email }</p>
         <p>Current Company: { current_company }</p>
@@ -17,7 +17,5 @@ class AdminUserView extends Component {
     )
   }
 }
-
-// Split questions into pending and resolved?
 
 export default AdminUserView;
