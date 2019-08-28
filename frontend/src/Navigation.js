@@ -12,45 +12,22 @@ class Navigation extends React.Component {
       isOpen: false
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
-/** Navbar appears when user is logged in */
 
-  loggedInNavbar(){
-    return(
-      <Navbar color="light" light expand="md">
-        <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-          <ul className="navbar-nav mr-auto ">
-            <li className="nav-item ">
-              <Link to="/link1" className="Nav-link Nav-link-ltr">Our Mission</Link>
-            </li>
-            <li className="nav-item active">
-            <Link to="/link2" className="Nav-link Nav-link-ltr ">How it Works</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">Explore</Link>
-            </li>
-            </ul>
-          <ul className="navbar-nav">
-            <li className="nav-item active">
-              <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/link3" className="fas fa-user Nav-icon"></Link>
-            </li>
-          </ul>   
-        </Collapse>
-      </Navbar>
-    );
-                        
-  }
-/** Navbar appears when user is logged out */
-  loggedOutNavbar(){
+  render() {
+    const logout = <Link to="/logout" className="Nav-link Nav-link-ltr">Logout</Link>
+    const login = <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
+    const admin = (
+      <li className="nav-item active">
+        <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link>
+      </li>
+    )
+
     return(
       <Navbar color="light" light expand="md">
         <Link className="navbar-brand Nav-text" to="/">Super Agent</Link>
@@ -66,23 +43,19 @@ class Navigation extends React.Component {
             <li className="nav-item active">
               <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">About</Link>
             </li>
+            { this.props.user && this.props.user.is_admin ? admin : '' }
             </ul>
           <ul className="navbar-nav">
             <li className="nav-item active">
               <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
             <li className="nav-item active">
-              <Link to="/link3" className="Nav-link Nav-link-ltr"> Sign In</Link>
+              {this.props.isLoggedin ? logout : login }
             </li>
           </ul>   
         </Collapse>
       </Navbar>
     );
-  }
-  render() {
-    return (
-      this.loggedInNavbar()
-    )
   }
 }
 

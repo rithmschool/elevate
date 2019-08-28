@@ -44,11 +44,9 @@ class User {
     if (user) {
       // compare hashed password to a new hash from password from user input
       // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
-
       const isValid = await bcrypt.compare(data.password, user.password);
-
       if (isValid) {
-
+        console.log(user);
         return user;
       }
     }
@@ -82,10 +80,10 @@ class User {
     const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     const result = await db.query(
       `INSERT INTO users 
-            (email, password) 
-            VALUES ($1, $2) 
-            RETURNING id, is_admin`,
-      [data.email, hashedPassword]);
+            (email, password, first_name, last_name) 
+            VALUES ($1, $2, $3, $4) 
+            RETURNING id, is_admin, first_name, last_name`,
+      [data.email, hashedPassword, data.first_name, data.last_name]);
     return result.rows[0];
   }
 
@@ -110,13 +108,64 @@ class User {
       [id]
     );
     const user = result.rows[0];
+    console.log("user is",user)
 
     if (!user) {
+      console.log("i am here")
       throw new Error(`There exists no user with that id`, 404);
     }
     return user;
   }
 
+  
+  /** Update user data with `data`.
+   *
+   * This is a "partial update" --- it's fine if data doesn't contain
+   * all the fields; this only changes provided ones.
+   *
+   * Return data for changed user.
+   *
+   */
+
+  static async update(id, data) {
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    }
+
+    let { query, values } = partialUpdate("users", data, "id", id);
+
+    const result = await db.query(query, values);
+    const user = result.rows[0];
+
+    if (!user) {
+ 
+      throw new Error(`There exists no user with that id`, 404);
+    }
+
+    delete user.password;
+    delete user.is_admin;
+
+    return result.rows[0];
+  }
+
+ 
+  /** Delete given user from database; returns undefined. */
+
+  static async remove(id) {
+    let result = await db.query(
+      `DELETE FROM users 
+        WHERE id = $1
+        RETURNING first_name, last_name`,
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+  }
 }
+
+
+
 
 module.exports = User;

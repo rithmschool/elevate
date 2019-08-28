@@ -1,6 +1,8 @@
 /** Express app for elevate. */
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(cors());
 
 /** import routes */
 
