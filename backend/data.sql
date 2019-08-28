@@ -61,7 +61,7 @@ INSERT INTO salaries (user_id, salary, bonus, equity) VALUES
 
 INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid) VALUES
   (1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false),
-  (3, 1000.99, 'Percentage of negotiation salary.', '2019-09-01', '2019-08-20', true),
+  (2, 1000.99, 'Percentage of negotiation salary.', '2019-09-01', '2019-08-20', true),
   (3, 500.00, 'Percentage of negotiation salary.', '2019-08-23', null, false),
   (4, 750.00, 'Percentage of negotiation salary.', '2019-11-13', null, false),
   (5, 1000.00, 'Percentage of negotiation salary.', '2019-08-28', null, false);
