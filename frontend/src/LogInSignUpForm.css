@@ -39,7 +39,13 @@
     max-width: 450px;
   }
 
-  .from-in {
+  @media screen and (max-width: 750px) {
+    .form-container {
+      width: 345px;
+    }
+  }
+
+  .form-inside-container {
     padding: 2em;
     border-style: solid;
     border-width: 1px;

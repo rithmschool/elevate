@@ -127,7 +127,7 @@ class LoginSignUpForm extends Component {
 
       <div className="form-container mx-auto">
 
-        <div className="from-in mt-5">
+        <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
             <div className="mb-3">{text}</div>
             <Form.Group>
