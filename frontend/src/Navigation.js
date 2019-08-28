@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import './Navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
+import { UserContext, AdminContext} from "./UserContext";
+
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -15,6 +17,9 @@ class Navigation extends React.Component {
       userMenuIsOpen: false
     };
   }
+  componentDidMount() {
+    // console.log(AdminContext.Consumer.value);
+ }
   //toggle for the navbar
   toggle() {
     this.setState({
@@ -29,8 +34,15 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const userId =  this.props.user.userId
-    const logout = 
+    const userId =  this.props.userId;
+
+    // check if user is connected to display wether on navbar
+      
+    const login = (
+      <UserContext.Consumer>
+        {currentUser => (
+          <li className="nav-item active">
+            { currentUser ?
             <div>
               <i className="fas fa-user Nav-icon"
               onClick={this.userMenuToggle}
@@ -41,18 +53,32 @@ class Navigation extends React.Component {
                   <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
                 </li>
                 <li className="list-group-item bg-transparent">
-                <Link to="/logout" className="Menu-link ">Logout</Link>
+                <Link className="nav-link" to="/" onClick={this.props.logout}>
+                  Log out
+                </Link>
                 </li>
               </ul> 
               </div>
-            </div>
-      
-    const login = <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
-    const admin = (
-      <li className="nav-item active">
-        <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link>
-      </li>
+            </div>:
+            <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
+            }
+          </li>
+        )}
+      </UserContext.Consumer>
     )
+    
+    // check if Admin is connected to display admin panel link on navbar
+    const admin = (
+      <AdminContext.Consumer>
+        {isAdmin => (
+          <li className="nav-item active">
+            { isAdmin ?  
+              <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link> : ''
+            }
+          </li>
+        )}
+      </AdminContext.Consumer>
+    );
 
     return(
       <Navbar color="light" light expand="md">
@@ -69,15 +95,13 @@ class Navigation extends React.Component {
             <li className="nav-item active">
               <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">About</Link>
             </li>
-            { this.props.user && this.props.user.is_admin ? admin : '' }
+            {admin}
             </ul>
           <ul className="navbar-nav">
             <li className="nav-item active">
               <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
-            <li className="nav-item active">
-              {this.props.isLoggedin ? logout : login }
-            </li>
+            {login}
           </ul>   
         </Collapse>
       </Navbar>
