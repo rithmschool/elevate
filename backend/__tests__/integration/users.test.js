@@ -67,7 +67,7 @@ describe('GET /users', function () {
       .get('/users')
       .send({ _token: `${TEST_DATA.userToken}` });
 
-    expect(response.body.users).toHaveLength(6);
+    expect(response.body.users).toHaveLength(7);
     expect(response.body.users[0]).toHaveProperty('email');
     expect(response.body.users[0]).not.toHaveProperty('password');
   });
@@ -139,7 +139,6 @@ describe('PATCH /users/:id', () => {
       const response = await request(app)
         .patch(`/users/${TEST_DATA.currentId}`)
         .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' });
-      console.log(response.body)
       expect(response.body.message).toBe("There exists no user with that id");
     });
   });

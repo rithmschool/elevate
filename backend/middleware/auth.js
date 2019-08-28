@@ -13,8 +13,10 @@ const { SECRET } = require("../config");
  */
 
 function authRequired(req, res, next) {
+
   try {
     const reqToken = req.body._token || req.query._token;
+   
     let token = jwt.verify(reqToken, SECRET);
     req.user_id = token.user_id;
     return next();
@@ -40,7 +42,6 @@ function adminRequired(req, res, next) {
     const reqToken = req.body._token || req.query._token;
     let token = jwt.verify(reqToken, SECRET);
     req.user_id = token.user_id;
-
     if (token.is_admin) {
       return next();
     }

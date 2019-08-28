@@ -59,7 +59,6 @@ class Charges {
     }
     /** Create a charge (from data), update db, return new charge data. */
     static async create(data) {
-
         const result = await db.query(
             `INSERT INTO charges (user_id, amount, description, due_date) 
          VALUES ($1, $2, $3, $4) 
@@ -98,18 +97,21 @@ class Charges {
 
     /** Delete given charge from database; returns id of deleted charge. */
     static async remove(id) {
+        console.log("ID,id")
         const result = await db.query(
             `DELETE FROM charges 
          WHERE id = $1 
          RETURNING id`,
             [id]);
-
-        if (result.rows.length === 0) {
+      
+            console.log(result.rows)
+        if (result.rows === 0) {
+            console.log("mdsf")
             let notFound = new Error(`There exists no charge ${id}`);
             notFound.status = 404;
             throw notFound;
         }
-
+        console.log(result.rows[0])
         return result.rows[0];
     }
 

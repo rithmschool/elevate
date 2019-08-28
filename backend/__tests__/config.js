@@ -9,19 +9,23 @@ const db = require("../db");
 
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
+const ADMIN_TEST_DATA = {};
 const inputPassword = "test"
 const inputEmail = "test@gmail.com"
-
+const adminEmail = "asgfdfgd@gmail.com"
+const adminPassword = "adminPassword"
+const is_admin = true
 
 /**
- * Hooks to insert a user, company, and job, and to authenticate
- *  the user and the company for respective tokens that are stored
+ * Hooks to insert a user, charges, and salaries, and to authenticate
+ *  the user for respective tokens that are stored
  *  in the input `testData` parameter.
  * @param {Object} TEST_DATA - build the TEST_DATA object
  */
 async function beforeEachHook(TEST_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
+
     // bcrypt set lower for testing purpose
     const hashedPassword = await bcrypt.hash(inputPassword, 5)
 
@@ -41,6 +45,29 @@ async function beforeEachHook(TEST_DATA) {
       });
     TEST_DATA.userToken = response.body.token;
     TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).user_id;
+
+
+      // bcrypt set lower for testing purpose
+      const hashedPass = await bcrypt.hash(adminPassword, 5)
+
+      // create new user with hashed password
+      await db.query(
+        `INSERT INTO users 
+                    (email, password,is_admin) 
+                    VALUES ($1, $2,$3) 
+                    RETURNING id, is_admin`,
+        [adminEmail, hashedPass, is_admin]);
+  
+      const adminResponse = await request(app)
+        .post("/login")
+        .send({
+          email: adminEmail,
+          password: adminPassword,
+          
+        });
+      ADMIN_TEST_DATA.userToken = adminResponse.body.token;
+      ADMIN_TEST_DATA.currentId = jwt.decode(ADMIN_TEST_DATA.userToken).user_id;
+
   } catch (error) {
     console.error(error);
   }
@@ -69,6 +96,7 @@ module.exports = {
   afterEachHook,
   beforeEachHook,
   TEST_DATA,
+  ADMIN_TEST_DATA,
   inputPassword,
   inputEmail
 };

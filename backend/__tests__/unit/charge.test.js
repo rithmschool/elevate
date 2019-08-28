@@ -26,7 +26,7 @@ describe("Test Charge model", function () {
     afterAll(async () => {
         await db.end();
     });
-    test("get all salaries", async function () {
+    test("get all charges", async function () {
         const response = await Charges.findAll();
         expect(response).toEqual(
             [
@@ -81,13 +81,14 @@ describe("Test Charge model", function () {
     test("creates a new charge", async function () {
         const newCharge =
         {
-            username: '4',
+            user_id: 4,
             amount: 200,
             due_date: "2019-04-20",
             description: "test"
         }
         const response = await Charges.create(newCharge);
         expect(response).toEqual({
+            id: expect.any(Number),
             user_id: 4,
             amount: 200,
             description: "test",
