@@ -10,10 +10,10 @@ class Routes extends React.Component {
 	render() {
 		return (
 			<Switch>
-				<Route exact path="/" render={props => <Home {...props} isLoggedIn={this.props.isLoggedIn} />} />
+				<Route exact path="/" render={props => <Home {...props} isLoggedIn={this.props.isLoggedIn} checkToken={this.props.checkToken} />} />
 				<Route exact path="/login" render={props => <LogInSignUpForm {...props} checkToken={this.props.checkToken} />} />
 				<Route exact path="/admin" render={() => this.props.user && this.props.user.is_admin ? <AdminPanel /> : <LogInSignUpForm />} />
-				<Route exact path="/logout" render={props => <Logout {...props} checkToken={this.props.checkToken}/>} />
+				<Route exact path="/logout" render={props => <Logout {...props} checkToken={this.props.checkToken} />} />
 				<Redirect to="/" />
 			</Switch>
 		)

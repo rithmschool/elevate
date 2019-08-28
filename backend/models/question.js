@@ -4,13 +4,12 @@ const db = require("../db");
 
 class Question {
 
-  // Create a question from input: {question, email}
-  static async create(data) {
-    const { question, user_email } = data;
+  // Create a question from input: {question, id}
+  static async create(question, id) {
     const result = await db.query(
-      `INSERT INTO questions (question, user_email)
+      `INSERT INTO questions (question, user_id)
       VALUES ($1, $2)`,
-      [question, user_email]
+      [question, id]
     );
     return result.rows[0];
   }
