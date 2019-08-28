@@ -12,7 +12,8 @@ class Logout extends Component{
   }
   
   render(){
-    return <Redirect to="/" />
+    this.props.history.push("/");
+    return null;
   }
 }
 

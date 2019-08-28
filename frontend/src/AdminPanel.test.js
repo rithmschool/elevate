@@ -5,9 +5,21 @@ import AdminPanel from './AdminPanel';
 
 describe('AdminPanel', function() {
   let wrapper;
+  let users = [{
+    id: 17, 
+    email: "testadmin@test.com", 
+    is_admin: true, 
+    first_name: "admin", 
+    last_name: "test", 
+    current_company:"testcompany", 
+    hire_date: "2018-06-23", 
+    needs:"To test user data", 
+    goals:"Test pass"
+  }]
 
   beforeEach(() => {
     wrapper = mount(<AdminPanel />);
+    wrapper.setState ({ users })
   });
 
   it('renders without crashing', function () {
@@ -49,7 +61,6 @@ describe('AdminPanel', function() {
   });
 
   it('renders the users table when view state is users', function () {
-    wrapper.setState({users: []})
     wrapper.find('div[id="users"]').simulate('click');
     wrapper.update();
     
@@ -57,19 +68,7 @@ describe('AdminPanel', function() {
   });
 
   it('show expect user data in the table', function () {
-    wrapper.setState({
-      users: [{
-        id: 17, 
-        email: "testadmin@test.com", 
-        is_admin: true, 
-        first_name: "admin", 
-        last_name: "test", 
-        current_company:"testcompany", 
-        hire_date: "2018-06-23", 
-        needs:"To test user data", 
-        goals:"Test pass"
-      }]
-    })
+    wrapper.setState({users})
     wrapper.find('div[id="users"]').simulate('click')
     wrapper.update();
 

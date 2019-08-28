@@ -55,7 +55,7 @@ class LoginSignUpForm extends Component {
     }
 
     localStorage.setItem("token", token);
-    this.props.checkToken(token);
+    await this.props.getCurrentUser();
     this.props.history.push("/");
   }
 
@@ -143,7 +143,7 @@ class LoginSignUpForm extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Control
-                placeholder="password"
+                placeholder="Password"
                 className="logInInput"
                 id="password"
                 name="password"
@@ -181,5 +181,4 @@ class LoginSignUpForm extends Component {
   }
 }
 
-export default LoginSignUpForm
-
+export default LoginSignUpForm;
