@@ -80,10 +80,10 @@ class User {
     const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     const result = await db.query(
       `INSERT INTO users 
-            (email, password) 
-            VALUES ($1, $2) 
-            RETURNING id, is_admin`,
-      [data.email, hashedPassword]);
+            (email, password, first_name, last_name) 
+            VALUES ($1, $2, $3, $4) 
+            RETURNING id, is_admin, first_name, last_name`,
+      [data.email, hashedPassword, data.first_name, data.last_name]);
     return result.rows[0];
   }
 
