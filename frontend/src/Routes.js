@@ -12,10 +12,18 @@ class Routes extends React.Component {
 	render(){
 		return(
 			<Switch>
-				<Route exact path="/" render={props => <Home {...props} />} />
-				<Route exact path="/login" render={props => <LogInSignUpForm {...props} getCurrentUser={this.props.getCurrentUser}/>} />
-				<AdminPrivateRoute exact path="/admin" render={() => <AdminPanel />} />
-				<Route exact path="/logout" render={() => <Logout getCurrentUser={this.props.getCurrentUser}/>} />
+				<Route exact path="/" render={props =>
+					(<Home {...props} />)}/>
+
+				<Route exact path="/login" render={props => 
+					(<LogInSignUpForm {...props} getCurrentUser={this.props.getCurrentUser}/>)}/>
+
+				<AdminPrivateRoute exact path="/admin" render={() =>
+					 (<AdminPanel />)}/>
+
+				<Route exact path="/logout" render={() =>
+					(<Logout getCurrentUser={this.props.getCurrentUser}/>)}/>
+
 				<Redirect to="/" />
 			</Switch>
 		)

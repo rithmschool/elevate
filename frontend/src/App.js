@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 import Routes from "./Routes";
 import ElevateApi from './ElevateApi';
 import { UserContext, AdminContext} from "./UserContext";
+import './App.css'
 
 
 class App extends React.Component {

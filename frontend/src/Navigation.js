@@ -36,28 +36,32 @@ class Navigation extends React.Component {
   render() {
     const userId =  this.props.userId;
 
-    // check if user is connected to display wether on navbar
+    // check if user is connected to display wether sign in or logout on navbar
       
     const login = (
       <UserContext.Consumer>
         {currentUser => (
           <li className="nav-item active">
             { currentUser ?
+
             <div>
               <i className="fas fa-user Nav-icon"
               onClick={this.userMenuToggle}
               ></i>
               <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item bg-transparent">
-                  <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
-                </li>
-                <li className="list-group-item bg-transparent">
-                <Link className="nav-link" to="/" onClick={this.props.logout}>
-                  Log out
-                </Link>
-                </li>
-              </ul> 
+                <ul className="list-group list-group-flush">
+                  {/* you can use these 3 lines below as a template and add menu items as you want
+                  but you need to change Link route and the title to display. */}
+                  <li className="list-group-item bg-transparent">
+                    <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
+                  </li>
+      
+                  <li className="list-group-item bg-transparent">
+                  <Link className="Menu-link " to="/" onClick={this.props.logout}>
+                    Log out
+                  </Link>
+                  </li>
+                </ul> 
               </div>
             </div>:
             <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
