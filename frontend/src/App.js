@@ -4,7 +4,7 @@ import Navigation from "./Navigation";
 import Routes from "./Routes";
 import ElevateApi from './ElevateApi';
 import { UserContext, AdminContext} from "./UserContext";
-import './App.css'
+import Spinner from './Spinner';
 
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
   }
   handleLogOut() {
     localStorage.removeItem("token");
-    this.setState({ currentUser: null, isAdmin: false });
+    this.setState({ currentUser: null, isAdmin: false});
   }
 
 
@@ -45,8 +45,10 @@ class App extends React.Component {
 
 
   render(){
+    if(this.state.isLoading) 
+      return(<Spinner />);
+
     return(
-      this.state.isLoading?  <div className="loader"></div>:
       <UserContext.Provider value={this.state.currentUser}>
         <AdminContext.Provider value={this.state.isAdmin}>
           <Navigation logout={this.handleLogOut}/>
