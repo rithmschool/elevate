@@ -55,4 +55,22 @@ describe('AdminPanel', function() {
     
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
   });
+
+  it('show expect user data in the table', function () {
+    wrapper.setState({users: [{id: 17, email: "testadmin@test.com", is_admin: true, first_name: "admin", last_name: "test", current_company:"testcompany", hire_date: "2018-06-23", needs:"To test user data", goals:"Test pass"}]})
+    wrapper.find('div[id="users"]').simulate('click')
+    wrapper.update();
+
+    const rows = wrapper.find('table[id="users-table"]')
+    expect(rows.length).toEqual(1);
+
+    const dataRow = rows.first().find('td').map(column => column.text())
+    expect(dataRow.length).toEqual(6)
+    expect(dataRow[0]).toEqual("17")
+    expect(dataRow[1]).toEqual("admin test")
+    expect(dataRow[2]).toEqual("testcompany")
+    expect(dataRow[3]).toEqual("2018-06-23")
+    expect(dataRow[4]).toEqual("To test user data")
+    expect(dataRow[5]).toEqual("Test pass")
+  });
 });

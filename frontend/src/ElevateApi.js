@@ -24,7 +24,6 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      console.error("API Error:", err.response);
       let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -38,7 +37,6 @@ class ElevateApi {
   }
 
   static async signup(data) {
-    console.log("data", data)
     let res = await this.request(`users`, data, "post");
 
     return res.token;
