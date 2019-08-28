@@ -93,16 +93,31 @@ class LoginSignUpForm extends Component {
 
     const loginWithSocial = (
       <div>
-        <div className="login-or"><hr className="hr-or" /><span className="span-or">or</span></div>
+        <div className="login-or">
+          <hr className="hr-or" />
+          <span className="span-or">or</span>
+        </div>
 
-        <div className="row justify-content-center"><Button className="google-login btn-block mr-3 ml-3">
-          <i className="fa fa-google"></i> Sign in with Google</Button></div>
+        <div className="row justify-content-center">
+          <Button className="google-login btn-block mr-3 ml-3">
+            <i className="fa fa-google"></i>
+            Sign in with Google
+          </Button></div>
 
-        <div className="row justify-content-center mt-2"><Button className="fb-login btn-block mr-3 ml-3">
-          <i className="fa fa-facebook"></i> Sign in with Facebook</Button></div>
+        <div className="row justify-content-center mt-2">
+          <Button className="fb-login btn-block mr-3 ml-3">
+            <i className="fa fa-facebook"></i>
+            Sign in with Facebook
+          </Button></div>
 
-        <Form.Text id="signup" className="text-muted mt-3" style={{ "textAlign": "center" }}>
-          Don't have an account? <button className="button-signup" onClick={this.loginOrSignup}>Create One</button>
+        <Form.Text id="signup" 
+                    className="text-muted mt-3" 
+                    style={{ "textAlign": "center" }}>
+          Don't have an account? 
+          <button className="button-signup" 
+                  onClick={this.loginOrSignup}>
+            Create One
+          </button>
         </Form.Text>
       </div>
     )
@@ -111,7 +126,6 @@ class LoginSignUpForm extends Component {
     return (
 
       <div className="form-container mx-auto">
-        {/* <Button name="login" onClick={this.loginOrSignup}>Log In</Button> <Button name="signup" onClick={this.loginOrSignup}>SignUp</Button> */}
 
         <div className="from-in mt-5">
           <Form onSubmit={this.handleSubmit} >
@@ -140,9 +154,22 @@ class LoginSignUpForm extends Component {
             </Form.Group>
 
             {loginState ? "" : signupForm}
-            <div className="row justify-content-center"><Button className="login-submit btn-block mr-3 ml-3" type="submit" >Submit</Button></div>
+            <div className="row justify-content-center">
+              <Button className="login-submit btn-block mr-3 ml-3" 
+                      type="submit" >
+                Submit
+              </Button></div>
 
-            {loginState ? loginWithSocial : <Form.Text id="signup" className="text-muted" style={{ "textAlign": "center" }}><button name="login" className="button-signin" onClick={this.loginOrSignup}>Signin</button></Form.Text>}
+            {loginState ? loginWithSocial : 
+            <Form.Text id="signup" 
+                        className="text-muted" 
+                        style={{ "textAlign": "center" }}>
+              <button name="login" 
+                      className="button-signin" 
+                      onClick={this.loginOrSignup}>
+                Signin
+              </button>
+            </Form.Text>}
 
 
           </Form>

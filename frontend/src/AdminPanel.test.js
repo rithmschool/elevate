@@ -57,7 +57,19 @@ describe('AdminPanel', function() {
   });
 
   it('show expect user data in the table', function () {
-    wrapper.setState({users: [{id: 17, email: "testadmin@test.com", is_admin: true, first_name: "admin", last_name: "test", current_company:"testcompany", hire_date: "2018-06-23", needs:"To test user data", goals:"Test pass"}]})
+    wrapper.setState({
+      users: [{
+        id: 17, 
+        email: "testadmin@test.com", 
+        is_admin: true, 
+        first_name: "admin", 
+        last_name: "test", 
+        current_company:"testcompany", 
+        hire_date: "2018-06-23", 
+        needs:"To test user data", 
+        goals:"Test pass"
+      }]
+    })
     wrapper.find('div[id="users"]').simulate('click')
     wrapper.update();
 

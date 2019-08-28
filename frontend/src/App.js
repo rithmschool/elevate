@@ -40,8 +40,10 @@ class App extends React.Component {
   render(){
     return(
       <div className="App">
-        <Navigation user={this.state.user} isLoggedin={this.state.isLoggedin}/>
-        <Routes user={this.state.user} checkToken={this.checkToken}/>
+        <Navigation user={this.state.user} 
+                    isLoggedin={this.state.isLoggedin}/>
+        <Routes user={this.state.user} 
+                checkToken={this.checkToken}/>
        </div>
     )
   }

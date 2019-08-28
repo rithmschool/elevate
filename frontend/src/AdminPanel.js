@@ -71,6 +71,9 @@ class AdminPanel extends Component {
   }
 
   render(){
+    if (!this.state.users){
+      return (<div>...Loading</div>)
+    }
     return(
       <div className="admin-main">
         <div className="admin-panel">
@@ -79,7 +82,10 @@ class AdminPanel extends Component {
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
           <div>{this.viewComponent()}</div>
         </div>
-        <div className="admin-navbar"><AdminNavBar changeView={this.changeView}/></div>
+        
+        <div className="admin-navbar">
+          <AdminNavBar changeView={this.changeView}/>
+        </div>
       </div>
     )
   }
