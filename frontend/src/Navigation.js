@@ -1,32 +1,88 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import classNames from 'classnames';
 import './Navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
+import { UserContext, AdminContext} from "./UserContext";
+
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
-
+    this.userMenuToggle = this.userMenuToggle.bind(this);
     this.toggle = this.toggle.bind(this);
+
     this.state = {
-      isOpen: false
+      isOpen: false,
+      userMenuIsOpen: false
     };
   }
-
+  componentDidMount() {
+    // console.log(AdminContext.Consumer.value);
+ }
+  //toggle for the navbar
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+// toggle for the user drop down menu
+  userMenuToggle() {
+    this.setState({
+      userMenuIsOpen: !this.state.userMenuIsOpen
+    });
+  }
 
   render() {
-    const logout = <Link to="/logout" className="Nav-link Nav-link-ltr">Logout</Link>
-    const login = <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
-    const admin = (
-      <li className="nav-item active">
-        <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link>
-      </li>
+    const userId =  this.props.userId;
+
+    // check if user is connected to display wether sign in or logout on navbar
+      
+    const login = (
+      <UserContext.Consumer>
+        {currentUser => (
+          <li className="nav-item active">
+            { currentUser ?
+
+            <div>
+              <i className="fas fa-user Nav-icon"
+              onClick={this.userMenuToggle}
+              ></i>
+              <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}>
+                <ul className="list-group list-group-flush">
+                  {/* you can use these 3 lines below as a template and add menu items as you want
+                  but you need to change Link route and the title to display. */}
+                  <li className="list-group-item bg-transparent">
+                    <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
+                  </li>
+      
+                  <li className="list-group-item bg-transparent">
+                  <Link className="Menu-link " to="/" onClick={this.props.logout}>
+                    Log out
+                  </Link>
+                  </li>
+                </ul> 
+              </div>
+            </div>:
+            <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
+            }
+          </li>
+        )}
+      </UserContext.Consumer>
     )
+    
+    // check if Admin is connected to display admin panel link on navbar
+    const admin = (
+      <AdminContext.Consumer>
+        {isAdmin => (
+          <li className="nav-item active">
+            { isAdmin ?  
+              <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link> : ''
+            }
+          </li>
+        )}
+      </AdminContext.Consumer>
+    );
 
     return(
       <Navbar color="light" light expand="md">
@@ -43,15 +99,13 @@ class Navigation extends React.Component {
             <li className="nav-item active">
               <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">About</Link>
             </li>
-            { this.props.user && this.props.user.is_admin ? admin : '' }
+            {admin}
             </ul>
           <ul className="navbar-nav">
             <li className="nav-item active">
               <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
             </li>
-            <li className="nav-item active">
-              {this.props.isLoggedin ? logout : login }
-            </li>
+            {login}
           </ul>   
         </Collapse>
       </Navbar>
