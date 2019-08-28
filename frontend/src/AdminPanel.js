@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './AdminPanel.css'
 import AdminNavBar from './AdminNavBar';
 import AdminUserView from './AdminUserView';
-import { users } from './adminPanelTestData'
 import { Table } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 
@@ -16,12 +15,22 @@ class AdminPanel extends Component {
       view: '',
       sidebarDocked: mql.matches,
       sideBarOpen: false,
+      users: null,
       userDetail: null
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     mql.addListener(this.mediaQueryChanged);
+    let users;
+
+    try {
+      users = await ElevateApi.getUsers();
+    } catch(err) {
+      return err;
+    }
+    
+    this.setState({users})
   }
 
   changeView = (view) => {
@@ -35,6 +44,7 @@ class AdminPanel extends Component {
   toggleSidebar = () => {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
+
 
   viewComponent = () => {
     if(this.state.view === "users"){
@@ -52,7 +62,7 @@ class AdminPanel extends Component {
             </tr>
           </thead>
           <tbody>
-          {users.map(user => {
+          {this.state.users.map(user => {
             return (
               <tr key={user.id} onClick={this.handleClick}>
                 <td >{user.id}</td>
@@ -77,6 +87,10 @@ class AdminPanel extends Component {
   }
 
   render(){
+    if (!this.state.users){
+      return (<div>...Loading</div>)
+    }
+
     return(
       <div className="admin-main">
         <div className="admin-panel">
@@ -86,7 +100,10 @@ class AdminPanel extends Component {
           <div>{this.viewComponent()}</div>
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
         </div>
-        <div className="admin-navbar"><AdminNavBar changeView={this.changeView}/></div>
+        
+        <div className="admin-navbar">
+          <AdminNavBar changeView={this.changeView}/>
+        </div>
       </div>
     )
   }
