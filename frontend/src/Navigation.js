@@ -17,9 +17,7 @@ class Navigation extends React.Component {
       userMenuIsOpen: false
     };
   }
-  componentDidMount() {
-    // console.log(AdminContext.Consumer.value);
- }
+
   //toggle for the navbar
   toggle() {
     this.setState({
@@ -34,7 +32,6 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const userId =  this.props.userId;
 
     // check if user is connected to display wether sign in or logout on navbar
       
@@ -53,9 +50,9 @@ class Navigation extends React.Component {
                   {/* you can use these 3 lines below as a template and add menu items as you want
                   but you need to change Link route and the title to display. */}
                   <li className="list-group-item bg-transparent">
-                    <Link to={`${userId}/profile`} className="Menu-link ">Profile</Link>
+                    <Link to={`users/${currentUser.userId}`} className="Menu-link ">Profile</Link>
                   </li>
-      
+                  
                   <li className="list-group-item bg-transparent">
                   <Link className="Menu-link " to="/" onClick={this.props.logout}>
                     Log out

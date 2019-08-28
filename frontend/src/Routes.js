@@ -5,6 +5,7 @@ import UserProfile from './UserProfile';
 import LogInSignUpForm from'./LogInSignUpForm';
 import AdminPanel from './AdminPanel';
 import AdminPrivateRoute from "./AdminPrivateRoute";
+import UserPrivateRoute from './UserPrivateRoute';
 
 
 class Routes extends React.Component {
@@ -12,13 +13,6 @@ class Routes extends React.Component {
 	render(){
 		return(
 			<Switch>
-<<<<<<< HEAD
-				<Route exact path="/" render={props => <Home {...props} />} />
-				<Route excat path="/profile"  render={props => <UserProfile {...props} />} />
-				<Route exact path="/login" render={props => <LogInSignUpForm {...props} checkToken={this.props.checkToken}/>} />
-				<Route exact path="/admin" render={() => <AdminPanel />} />
-				<Route exact path="/logout" render={() => <Logout checkToken={this.props.checkToken}/>} />
-=======
 				<Route exact path="/" render={props =>
 					(<Home {...props} />)}/>
 
@@ -28,7 +22,11 @@ class Routes extends React.Component {
 				<AdminPrivateRoute exact path="/admin" render={() =>
 					 (<AdminPanel />)}/>
 
->>>>>>> 299b69b3c5275131cd61199d4cb9e370031995a7
+				<UserPrivateRoute
+					path="/users/:userId"
+					render={props =>
+						(<UserProfile {...props} />)}/>
+
 				<Redirect to="/" />
 			</Switch>
 		)

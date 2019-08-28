@@ -49,6 +49,11 @@ class ElevateApi {
 
     return res.user;
   }
+
+  static async updateUser(id, data){
+    await this.request(`users/${id}`, data, "patch");
+  }
 }
 
 export default ElevateApi;
+
