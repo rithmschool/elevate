@@ -8,6 +8,7 @@
   padding: 10px 10px;
   margin: 10px 30px;
   opacity: 1;
+  cursor: pointer;
 }
 .Nav-link {
   font-weight: bold;
@@ -54,3 +55,52 @@
 
 
 
+.sidebar a{
+  font-weight: bold;
+  font-size: 14px;
+  color: #394557;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
+
+} 
+
+.Menu-link {
+  font-weight: bold;
+  font-size: 14px;
+  color: #394557;
+  margin: 0px 30px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
+}
+
+.userMenu {
+  min-width: 250px;
+  /* max-width: 250px; */
+  /* height: calc(100vh - 130px); */
+  overflow-y: scroll;
+  /* transition: all 0.5s; */
+  z-index: 1;
+  position: absolute;
+  margin-top: 8px;
+  right: 0;
+  visibility: hidden;
+  background-color: #F8F9FA;
+}
+
+.userMenu.is-open {
+  visibility: visible;
+} 
+
+@media only screen and (max-width: 500px) {
+.fa-user{
+  display: none;
+}
+  .userMenu.is-open {
+    min-width: 100%;
+    max-width: 100%;
+
+  }
+
+}
