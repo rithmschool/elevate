@@ -1,5 +1,5 @@
 import React from "react";
-import elevateAPI from './ElevateAPI';
+import elevateApi from './ElevateApi';
 import Charge from './Charge';
 
 class ChargeList extends React.Component {
@@ -12,7 +12,7 @@ class ChargeList extends React.Component {
   }
   // Get all charges on first render
   async componentDidMount() {
-    let { charges } = await elevateAPI.getCharges();
+    let { charges } = await elevateApi.getCharges();
     this.setState({ charges, loading: false })
   }
 

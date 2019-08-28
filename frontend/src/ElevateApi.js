@@ -49,6 +49,26 @@ class ElevateApi {
 
     return res.user;
   }
+  static async makePayment(token, chargeId) {
+    let res = await this.request(`charges`, { token, chargeId }, "patch");
+    return res;
+  }
+
+  
+
+  static async addCharge(data) {
+
+    let res = await this.request('charges/new', data.invoice, "post");
+    return res;
+  }
+
+  // Get charges for a single user,using the users id.
+  static async getCharges() {
+    let res = await this.request('charges');
+    return res;
+  }
 }
+
+
 
 export default ElevateApi;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ElevateAPI from './ElevateAPI';
+import ElevateApi from './ElevateApi';
 
 // Creates a form for creating a new charge. 
 // Validates user_id and amount fields on submit. Corrects validation on change.
@@ -81,7 +81,7 @@ class InvoiceForm extends Component {
 
     // If all inputs valid:
     else if (this.state.formValid.user_id === true && this.state.formValid.amount === true) {
-      await ElevateAPI.addCharge({ invoice: this.state.invoice });
+      await ElevateApi.addCharge({ invoice: this.state.invoice });
     }
   }
 

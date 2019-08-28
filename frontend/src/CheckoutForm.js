@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import ElevateAPI from "./ElevateAPI";
+import ElevateApi from "./ElevateApi";
 
 // Form for a user to input credit card details. 
 class CheckoutForm extends Component {
@@ -24,7 +24,7 @@ class CheckoutForm extends Component {
     else {
 
       // Attempt stripe payment
-      let response = await ElevateAPI.makePayment(token.id, this.props.chargeId);
+      let response = await ElevateApi.makePayment(token.id, this.props.chargeId);
 
       // On successful transaction:
       if (response.status === "succeeded") console.log("Purchase Complete!")

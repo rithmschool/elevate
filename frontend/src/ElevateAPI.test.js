@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ElevateAPI from './ElevateAPI';
+import ElevateApi from './ElevateApi';
 
 // Create integration tests for each request
 
