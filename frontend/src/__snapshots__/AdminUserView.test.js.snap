@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminUserView matches snapshot 1`] = `
+<AdminUserView
+  user={
+    Object {
+      "current_company": "SpaceX",
+      "email": "han@solo.com",
+      "first_name": "Han",
+      "goals": "Increase salary by 15k",
+      "hire_date": "2018-09-01",
+      "last_name": "Solo",
+      "needs": "Negotiate a raise during annual review",
+    }
+  }
+>
+  <div
+    className="AdminUserView"
+  >
+    <h5>
+      Han
+       
+      Solo
+    </h5>
+    <p>
+      Email: 
+      han@solo.com
+    </p>
+    <p>
+      Current Company: 
+      SpaceX
+    </p>
+    <p>
+      Hire Date: 
+      2018-09-01
+    </p>
+    <p>
+      Needs: 
+      Negotiate a raise during annual review
+    </p>
+    <p>
+      Goals: 
+      Increase salary by 15k
+    </p>
+    <div>
+      Questions: 
+    </div>
+  </div>
+</AdminUserView>
+`;

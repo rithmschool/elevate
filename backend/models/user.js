@@ -46,7 +46,6 @@ class User {
       // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
       const isValid = await bcrypt.compare(data.password, user.password);
       if (isValid) {
-        console.log(user);
         return user;
       }
     }
@@ -93,7 +92,7 @@ class User {
     const result = await db.query(
       `SELECT id, email, is_admin, first_name, last_name, current_company, hire_date, needs, goals
         FROM users
-        ORDER BY last_name`
+        ORDER BY id`
     );
     return result.rows;
   }
@@ -108,10 +107,8 @@ class User {
       [id]
     );
     const user = result.rows[0];
-    console.log("user is",user)
 
     if (!user) {
-      console.log("i am here")
       throw new Error(`There exists no user with that id`, 404);
     }
     return user;
