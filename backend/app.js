@@ -7,6 +7,7 @@ const app = express();
 const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
 const authRoutes = require('./routes/auth');
+const paymentRoutes = require('./routes/charges')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
+app.use('/charges', paymentRoutes)
 
 /** 404 handler */
 
