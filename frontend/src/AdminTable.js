@@ -10,7 +10,7 @@ class AdminTable extends Component {
     const keys = Object.keys(this.props.tableObjs[0]);
 
     return (
-      <Table striped bordered hover size="sm" responsive id="users-table">
+      <Table striped bordered hover size="sm" responsive id={this.props.view + '-table'}>
         <thead>
           <tr>
             { keys.map(key => {

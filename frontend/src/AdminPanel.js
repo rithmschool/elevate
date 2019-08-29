@@ -68,8 +68,9 @@ class AdminPanel extends Component {
           <h1>Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
           { this.state.view === 'users' || this.state.view === 'questions' ? 
-            <AdminTable tableObjs={ this.state[this.state.view] } getUserDetail={ this.getUserDetail }/> : 
-            null 
+            <AdminTable tableObjs={ this.state[this.state.view] } 
+                        getUserDetail={ this.getUserDetail }
+                        view={ this.state.view } /> : null
           }
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
         </div>
