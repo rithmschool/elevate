@@ -97,6 +97,8 @@ class User {
     return result.rows;
   }
 
+ 
+
   /** Given a user id, return data about user. */
 
   static async findOne(id) {

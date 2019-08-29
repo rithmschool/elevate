@@ -34,6 +34,27 @@ class Charges {
         return result.rows;
 
     }
+    /**get all charges for a  user */
+    static async chargesForUser(userId) {
+        if (userId === undefined) {
+            return new Error("UserId is undefined");
+        }
+        const result = await db.query(
+            `SELECT charges.id, user_id, amount, description, due_date, paid, payment_date
+       FROM charges
+      RIGHT JOIN users ON charges.user_id = users.id
+      WHERE user_id = $1
+      ORDER BY paid`,
+            [userId]
+        );
+            
+        if (result.rows.length === 0) {
+            return "No charges"
+        }
+       
+        return result.rows;
+
+    }
 
     static async getCharge(chargeId) {
         /**if payed or not */
@@ -97,21 +118,19 @@ class Charges {
 
     /** Delete given charge from database; returns id of deleted charge. */
     static async remove(id) {
-        console.log("ID,id")
+       
         const result = await db.query(
             `DELETE FROM charges 
          WHERE id = $1 
          RETURNING id`,
             [id]);
 
-        console.log(result.rows)
         if (result.rows === 0) {
-            console.log("mdsf")
             let notFound = new Error(`There exists no charge ${id}`);
             notFound.status = 404;
             throw notFound;
         }
-        console.log(result.rows[0])
+       
         return result.rows[0];
     }
 
