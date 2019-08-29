@@ -23,6 +23,7 @@ class UserInfoEditForm extends React.Component {
   handleChange(evt){
 		this.setState({ [evt.target.name]: evt.target.value });
   }
+  
   handleSubmit(evt){
     evt.preventDefault()
     const updatedUser = {
@@ -41,8 +42,8 @@ class UserInfoEditForm extends React.Component {
 
   render() {
     return (
-      <div className="EditPostForm container">
-        <h2>Edit Post</h2>
+      <div className="EditPUserForm container">
+        <h2>Edit Info</h2>
            <Form onSubmit={this.handleSubmit}> 
         <FormGroup row>
           <Col sm={10}>
@@ -112,7 +113,7 @@ class UserInfoEditForm extends React.Component {
           >Submit
           </Button> {' '}
           <Button
-            onClick={this.props.handleCancel}>Cancel</Button>
+            onClick={this.handleCancel}>Cancel</Button>
           </Col>
         </FormGroup>
       </Form>

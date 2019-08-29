@@ -7,32 +7,30 @@ class UserProfile extends React.Component {
   static defaultProps = {
     match: { params: {} },
   };
-  
   constructor(props) {
     super(props);
     this.state = {
       isEditForm: false,
     }
     this.toggleEditForm = this.toggleEditForm.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this);
 
   }
-
-    // const { userId } = this.props.match.params;
-
   
   toggleEditForm() {
     this.setState(st => ({
       isEditForm: !st.isEditForm
     }))
   }
+
+
   handleUpdate(updatePost){
-    console.log('updated object',updatePost)
     const userId = this.context.userId;
     ElevateApi.updateUser(userId,updatePost)
   }
   render(){
     const currentUser = this.context
+
     return (
       <div >
         {this.state.isEditForm ? <UserInfoEditForm
@@ -68,11 +66,8 @@ class UserProfile extends React.Component {
                   <strong>Hiring date:</strong> {currentUser.hire_date}
                 </li>
               </ul>
-            </div>
-
-            
+            </div>    
           </div> 
-        
         }
     </div>
   )

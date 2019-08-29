@@ -139,7 +139,7 @@ describe('PATCH /users/:id', () => {
       const response = await request(app)
         .patch(`/users/${TEST_DATA.currentId}`)
         .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' });
-      console.log(response.body)
+
       expect(response.body.message).toBe("There exists no user with that id");
     });
   });
