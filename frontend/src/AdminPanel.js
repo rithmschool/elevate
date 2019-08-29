@@ -16,6 +16,7 @@ class AdminPanel extends Component {
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
+      questions:null,
       userDetail: null
     }
   }
@@ -23,14 +24,17 @@ class AdminPanel extends Component {
   async componentDidMount() {
     mql.addListener(this.mediaQueryChanged);
     let users;
+    let questions;
 
     try {
       users = await ElevateApi.getUsers();
+      questions = await ElevateApi.getQuestions();
     } catch(err) {
       return err;
     }
     
     this.setState({users})
+    this.setState({questions})
   }
 
   changeView = (view) => {
@@ -77,6 +81,33 @@ class AdminPanel extends Component {
         </Table>
       )
     }
+    if(this.state.view === "questions") {
+      return (
+        <Table striped bordered hover size="sm" responsive id="users-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Question</th>
+              <th>Resolved</th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.state.questions.map(question => {
+            return (
+              <tr key={question.user_id} onClick={this.handleClick}>
+                <td >{question.user_id}</td>
+                <td>{`${question.first_name} ${question.last_name}`}</td>
+                <td>{question.email}</td>
+                <td>{question.question}</td>
+                <td>{question.resolved ? "true" : "false"}</td>
+              </tr>)
+          })}
+          </tbody>
+        </Table>
+      )
+    }
   }
 
   handleClick = async (evt) => {
@@ -87,7 +118,7 @@ class AdminPanel extends Component {
   }
 
   render(){
-    if (!this.state.users){
+    if (!this.state.users || !this.state.questions){
       return (<div>...Loading</div>)
     }
 
