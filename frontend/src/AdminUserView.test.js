@@ -39,7 +39,7 @@ describe('AdminUserView', function() {
 
   it('has user info fields', function () {
     expect(wrapper.html()).toContain('Email');
-    expect(wrapper.html()).toContain('Current Company');
+    expect(wrapper.html()).toContain('Company');
     expect(wrapper.html()).toContain('Hire Date');
     expect(wrapper.html()).toContain('Needs');
     expect(wrapper.html()).toContain('Goals');

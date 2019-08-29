@@ -9,6 +9,7 @@ app.use(cors());
 const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
 const authRoutes = require('./routes/auth');
+const questionsRoutes = require('./routes/questions');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
+app.use('/questions', questionsRoutes);
 
 /** 404 handler */
 
