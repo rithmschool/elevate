@@ -3,15 +3,8 @@ const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
 
 
-let BCRYPT_WORK_FACTOR;
-
 /** reduce bcrypc rounds in test environemnt **/
-
-if (process.env.NODE_ENV === 'test') {
-  BCRYPT_WORK_FACTOR = 1;
-} else {
-  BCRYPT_WORK_FACTOR = 15;
-}
+let BCRYPT_WORK_FACTOR = process.env.NODE_ENV === 'test' ? 1 : 15;
 
 
 /** Related functions for users. */
