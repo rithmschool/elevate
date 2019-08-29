@@ -7,38 +7,24 @@ class InvoiceForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      paymentSubmited: false,
       formValid: {
         user_id: true,
         amount: true
       },
       invoice: {
-        user_id: 1,
-        amount: 123,
-        description: "dasljkfl",
-        due_date: "2019-04-10"
+        user_id: 0,
+        amount: "",
+        description: "",
+        due_date: ""
       }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChange(e) {
     let newState = this.state;
-
-    // If  is currently invalid
-    if (this.state.formValid.user_id === false) {
-
-      // If input is user_id and is now valid
-      if (e.target.name === 'user_id' && e.target.value === 1) {
-        newState = {
-          ...this.state,
-          formValid: { ...newState.formValid, user_id: true },
-          invoice: { ...newState.invoice, [e.target.name]: e.target.value }
-        };
-        this.setState({ ...newState })
-      }
-    }
 
     // If amount is currently invalid
     if (this.state.formValid.amount === false) {
@@ -68,11 +54,7 @@ class InvoiceForm extends Component {
   async handleSubmit(evt) {
     evt.preventDefault();
     let newState = this.state;
-    // Validate user_id
-    if (this.state.invoice.user_id !== 1) {
-      newState.formValid.user_id = false;
-      this.setState({ ...newState })
-    }
+
     // Validate amount
     if (this.state.invoice.amount <= 0) {
       newState.formValid.amount = false;
@@ -80,12 +62,32 @@ class InvoiceForm extends Component {
     }
 
     // If all inputs valid:
-    else if (this.state.formValid.user_id === true && this.state.formValid.amount === true) {
-      await ElevateApi.addCharge({ invoice: this.state.invoice });
+    else if (this.state.formValid.amount === true) {
+      // Replace user email with user id
+      newState = {
+        ...newState,
+        invoice: {
+          ...newState.invoice,
+          user_id: this.props.user.id
+        }
+      }
+
+      let resp = await ElevateApi.addCharge({ invoice: newState.invoice });
+      if (resp) {
+        this.setState({
+          paymentSubmited: true
+        })
+      }
     }
   }
 
   render() {
+    if (this.state.paymentSubmited) {
+      return (
+        <div><h1>Charge was sent!</h1>
+        </div>
+      )
+    }
     return (
       <div>
         {/* drop down for email/user */}
@@ -94,7 +96,7 @@ class InvoiceForm extends Component {
           <input
             name="user_id"
             className="form-control"
-            value={this.state.invoice.user_id}
+            value={this.props.user.email}
             onChange={this.handleChange}
           />
         </div>
@@ -132,6 +134,7 @@ class InvoiceForm extends Component {
         </div>
         <button onClick={this.handleSubmit}>Submit Charge</button>
       </div >
+
     )
 
   }

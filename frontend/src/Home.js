@@ -2,7 +2,7 @@ import React from "react";
 import './Home.css';
 import { Button } from 'reactstrap';
 import img1 from './img/001.jpg';
-import InvoiceForm from './InvoiceForm';
+
 
 
 class Home extends React.Component {
@@ -46,7 +46,6 @@ class Home extends React.Component {
       </div>
       <div className="Home-get-started">
           <h2 className="">Get Started Today</h2><br></br>
-          <InvoiceForm/>
           <Button color="primary">Review My Offer</Button>
         </div>
      </div>

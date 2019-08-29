@@ -82,7 +82,6 @@ class AdminPanel extends Component {
   handleClick = async (evt) => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
-    
     this.setState({ view: 'userDetail', userDetail: user });
   }
 
@@ -90,7 +89,6 @@ class AdminPanel extends Component {
     if (!this.state.users){
       return (<div>...Loading</div>)
     }
-
     return(
       <div className="admin-main">
         <div className="admin-panel">

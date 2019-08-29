@@ -54,7 +54,6 @@ class ElevateApi {
 
 
   static async addCharge(data) {
-
     let res = await this.request('charges/new', data.invoice, "post");
     return res;
   }
