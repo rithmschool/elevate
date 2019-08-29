@@ -113,7 +113,6 @@ describe('AdminPanel', function() {
     expect(rows.length).toEqual(1);
 
     const dataRow = rows.first().find('td').map(column => column.text());
-    console.log(dataRow)
     expect(dataRow.length).toEqual(7);
     expect(dataRow[0]).toEqual("17");
     expect(dataRow[1]).toEqual("My employer didn't pay me");
