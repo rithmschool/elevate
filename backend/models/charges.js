@@ -17,7 +17,7 @@ class Charges {
     static async findChargesDue(userId) {
         if (userId === undefined) {
             return new Error("UserId is undefined");
-          }
+        }
         const result = await db.query(
             `SELECT charges.id, user_id, amount, description, due_date
        FROM charges
@@ -103,8 +103,8 @@ class Charges {
          WHERE id = $1 
          RETURNING id`,
             [id]);
-      
-            console.log(result.rows)
+
+        console.log(result.rows)
         if (result.rows === 0) {
             console.log("mdsf")
             let notFound = new Error(`There exists no charge ${id}`);
