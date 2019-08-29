@@ -24,7 +24,6 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      console.error("API Error:", err.response);
       let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -49,6 +48,11 @@ class ElevateApi {
     return res.user;
   }
 
+  static async getUsers() {
+    let res = await this.request(`users`)
+
+    return res.users
+  }
   // Question routes
 
   // Input a new question into db. data => {question: "", user_email: ""}
@@ -57,6 +61,7 @@ class ElevateApi {
 
     return res.token;
   }
+
 }
 
 export default ElevateApi;

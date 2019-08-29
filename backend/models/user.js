@@ -3,8 +3,8 @@ const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
 
 
-/**FIXME: work factor is 10 for development purpose. actual recommendation is 15, minimum is 12 */
-const BCRYPT_WORK_FACTOR = 10;
+/** reduce bcrypc rounds in test environemnt **/
+let BCRYPT_WORK_FACTOR = process.env.NODE_ENV === 'test' ? 1 : 15;
 
 
 /** Related functions for users. */
@@ -46,7 +46,6 @@ class User {
       // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
       const isValid = await bcrypt.compare(data.password, user.password);
       if (isValid) {
-        console.log(user);
         return user;
       }
     }
@@ -131,7 +130,7 @@ class User {
     const result = await db.query(
       `SELECT id, email, is_admin, first_name, last_name, current_company, hire_date, needs, goals
         FROM users
-        ORDER BY last_name`
+        ORDER BY id`
     );
     return result.rows;
   }
@@ -146,10 +145,8 @@ class User {
       [id]
     );
     const user = result.rows[0];
-    console.log("user is", user)
 
     if (!user) {
-      console.log("i am here")
       throw new Error(`There exists no user with that id`, 404);
     }
     return user;
