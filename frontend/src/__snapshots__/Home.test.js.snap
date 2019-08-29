@@ -17,6 +17,14 @@ exports[`matches snapshot 1`] = `
     </h1>
   </div>
   <div
+    className="Home-database"
+  >
+    <i
+      className="fas fa-balance-scale-left"
+    />
+    <QuestionForm />
+  </div>
+  <div
     className="Home-template"
   >
     <p>
