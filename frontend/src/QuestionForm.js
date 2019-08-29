@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ElevateApi from './ElevateApi';
 import { emailValidator } from './helperFunctions';
+import { UserContext } from "./UserContext";
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
 
 class QuestionForm extends Component {
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -79,21 +83,15 @@ class QuestionForm extends Component {
       newState.formValid.email = false;
       this.setState({ ...newState });
     }
+
     // If all inputs valid:
 
     else if (this.state.formValid.email !== false && this.state.formValid.question !== false) {
 
-      let token = await ElevateApi.createQuestion(this.state.inputs)
+      // Create question and disable form.
+      await ElevateApi.createQuestion(this.state.inputs)
       this.setState({ questionSubmitted: true })
-      // isLoggedIn prop drilled from App.js
-      if (this.props.isLoggedIn) {
-
-        this.props.history.push("/") // TODO: Change to profile page once it exists
-      } else {
-        localStorage.setItem("token", token);
-        this.props.checkToken(token);
-        this.props.history.push("/");
-      }
+      // TODO: Redirect to profile page
     }
   }
 
@@ -116,43 +114,25 @@ class QuestionForm extends Component {
                 valid={this.state.formValid.question}
                 invalid={this.state.formValid.question === false}
               />
-              <FormFeedback>Please double check your e-mail and try again.</FormFeedback>
-
+              <FormFeedback>Please be a little more descriptive in your question.(10 characters minimum)</FormFeedback>
             </FormGroup>
           </Col>
           {/* Email Input */}
-          <Row form>
-            <Col sm={6}>
-              <FormGroup>
-                <Label> Email:</Label>
-                <Input
-                  disabled={this.state.questionSubmitted ? true : false}
-                  name="email"
-                  className="form-control"
-                  placeholder="example@gmail.com"
-                  value={this.state.inputs.email}
-                  onChange={this.handleChange}
-                  valid={this.state.formValid.email}
-                  invalid={this.state.formValid.email === false}
-                />
-              </FormGroup>
-            </Col>
-            {/* Password Input */}
-            <FormGroup>
-              <Label>Password:</Label>
-              <Input
-                disabled={this.state.questionSubmitted ? true : false}
-                name="password"
-                className="form-control"
-                value={this.state.inputs.password}
-                onChange={this.handleChange}
-                type="password"
-                placeholder="*********"
-                valid={this.state.formValid.password}
-                invalid={this.state.formValid.password === false}
-              />
-            </FormGroup>
-          </Row>
+          <FormGroup>
+            <Label> Email:</Label>
+            <Input
+              disabled={this.state.questionSubmitted ? true : false}
+              name="email"
+              className="form-control"
+              placeholder="example@gmail.com"
+              value={this.state.inputs.email}
+              onChange={this.handleChange}
+              valid={this.state.formValid.email}
+              invalid={this.state.formValid.email === false}
+            />
+          </FormGroup>
+
+
           {/* End of form fields */}
           <Button disabled={this.state.questionSubmitted} color="primary" className="m-1" onClick={this.handleSubmit}>Submit Question</Button>
 

@@ -19,7 +19,7 @@ class Home extends React.Component {
         <div className="Home-database">
           <i className="fas fa-balance-scale-left"></i>
           {/* Prop drilled from App.js */}
-          {<QuestionForm checkToken={this.props.checkToken} isLoggedIn={this.props.isLoggedIn} history={this.props.history} />}
+          {<QuestionForm getCurrentUser={this.props.getCurrentUser} history={this.props.history} />}
         </div>
 
 

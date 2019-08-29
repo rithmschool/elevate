@@ -12,7 +12,7 @@ class Routes extends React.Component {
 		return (
 			<Switch>
 				<Route exact path="/" render={props =>
-					(<Home {...props} />)} />
+					(<Home {...props} getCurrentUser={this.props.getCurrentUser} />)} />
 
 				<Route exact path="/login" render={props =>
 					(<LogInSignUpForm {...props} getCurrentUser={this.props.getCurrentUser} />)} />

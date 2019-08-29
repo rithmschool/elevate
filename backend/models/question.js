@@ -13,6 +13,17 @@ class Question {
     );
     return result.rows[0];
   }
+
+  /** Find all questions. */
+
+  static async findAll() {
+    const result = await db.query(
+      `SELECT user_id, question, resolved, email, first_name, last_name
+      FROM users 
+      JOIN questions ON user_id=users.id`
+    );
+    return result.rows;
+  }
 }
 
 
