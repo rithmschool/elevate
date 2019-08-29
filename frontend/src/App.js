@@ -20,7 +20,6 @@ class App extends React.Component {
     this.getCurrentUser = this.getCurrentUser.bind(this);
   }
   handleLogOut() {
-    console.log('here')
     localStorage.removeItem("token");
     this.setState({ currentUser: null, isAdmin: false});
   }
