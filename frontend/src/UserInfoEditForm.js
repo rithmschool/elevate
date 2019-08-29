@@ -56,7 +56,7 @@ class UserInfoEditForm extends React.Component {
             <h3 className="text-info">User information</h3>
           </Col>
           <Col align="right" md={6} sm={{ size: 8, offset: 0}}>
-          <small><i class="fas fa-user-edit text-info" onClick={this.toggleEdit}> Edit</i> </small>
+          <i class="fas fa-user-edit text-info" onClick={this.toggleEdit} style={{cursor: 'pointer' }}></i>
           </Col>
         </Row>
 
