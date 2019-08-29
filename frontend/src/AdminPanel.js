@@ -49,7 +49,7 @@ class AdminPanel extends Component {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-  handleClick = async (evt) => {
+  getUserDetail = async (evt) => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
     
@@ -67,7 +67,10 @@ class AdminPanel extends Component {
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
           <h1>Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-          { this.state.view ? <AdminTable tableObjs={ this.state.users } /> : null }
+          { this.state.view === 'users' || this.state.view === 'questions' ? 
+            <AdminTable tableObjs={ this.state[this.state.view] } getUserDetail={ this.getUserDetail }/> : 
+            null 
+          }
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
         </div>
         

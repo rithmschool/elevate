@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 
 class AdminTable extends Component {
+  handleClick = (evt) => {
+    this.props.getUserDetail(evt);
+  }
+
   render(){
     const keys = Object.keys(this.props.tableObjs[0]);
 
@@ -20,10 +24,10 @@ class AdminTable extends Component {
             const itemKeys = Object.keys(item)
             const itemValues = Object.values(item);
             return (
-              <tr key={item.id} onClick={this.handleClick}>
+              <tr key={itemValues[0]} onClick={this.handleClick}>
                 {itemValues.map((value, index) => {
                   return (
-                    <td key={`${item.id}-${itemKeys[index]}`}>{ value }</td>
+                    <td key={`${itemValues[0]}-${itemKeys[index]}`}>{ value }</td>
                   );
                 })}
               </tr>

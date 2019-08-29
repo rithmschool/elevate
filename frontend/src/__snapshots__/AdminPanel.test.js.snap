@@ -11,7 +11,6 @@ exports[`AdminPanel matches snapshot 1`] = `
       <h1>
         Admin Panel
       </h1>
-      <div />
     </div>
     <div
       className="admin-navbar"
@@ -39,12 +38,6 @@ exports[`AdminPanel matches snapshot 1`] = `
             onClick={[Function]}
           >
             Invoices
-          </div>
-          <div
-            id="templates"
-            onClick={[Function]}
-          >
-            Templates
           </div>
           <div
             id="calendar"
