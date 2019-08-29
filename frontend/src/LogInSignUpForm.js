@@ -154,11 +154,6 @@ class LoginSignUpForm extends Component {
             </Form.Group>
 
             {loginState ? "" : signupForm}
-<<<<<<< HEAD
-            <div className="row justify-content-center"><Button className="login-submit btn-block mr-3 ml-3" type="submit" >Submit</Button></div>
-
-            {loginState ? loginWithSocial : <Form.Text id="signup" className="text-muted" style={{ "textAlign": "center" }}><button name="login" className="button-signin" onClick={this.loginOrSignup}>Signin</button></Form.Text>}
-=======
             <div className="row justify-content-center">
               <Button className="login-submit btn-block mr-3 ml-3" 
                       type="submit" >
@@ -175,7 +170,6 @@ class LoginSignUpForm extends Component {
                 Signin
               </button>
             </Form.Text>}
->>>>>>> master
 
 
           </Form>

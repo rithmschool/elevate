@@ -37,7 +37,7 @@ CREATE TABLE charges (
 
 CREATE TABLE questions (
   id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id),
+  email TEXT NOT NULL,
   question TEXT NOT NULL,
   response TEXT,
   responder INTEGER REFERENCES users (id),
@@ -66,10 +66,10 @@ INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid)
   (4, 750.00, 'Percentage of negotiation salary.', '2019-11-13', null, false),
   (5, 1000.00, 'Percentage of negotiation salary.', '2019-08-28', null, false);
 
-INSERT INTO questions (user_id, question) VALUES
-(1, 'My employer didnt pay me!'),
-(2, 'My employer wants to pay me too much!'),
-(4, 'How do I negotiate my contract?');
+INSERT INTO questions (email, question) VALUES
+('testuser@gmail.com', 'My employer didnt pay me!'),
+('nate@gmail.com', 'My employer wants to pay me too much!'),
+('notAuser@gmail.com', 'How do I negotiate my contract?');
 
 /* upcoming */
 /* CREATE TABLE messages (); */

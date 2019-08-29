@@ -13,13 +13,11 @@ class QuestionForm extends Component {
     this.state = {
       formValid: {
         question: null,
-        email: null,
-        password: null
+        email: null
       },
       inputs: {
-        question: "My employer wants to give me too much money what do I do ?!",
-        email: "test@gmail.com",
-        password: "secret"
+        question: "",
+        email: ""
       },
       questionSubmitted: false
     }
@@ -62,7 +60,6 @@ class QuestionForm extends Component {
         this.setState({ ...newState, inputs: { ...newState.inputs, [evt.target.name]: evt.target.value } });
       }
     }
-
 
     // If inputs are all valid, update form with inputs
     this.setState({ ...newState, inputs: { ...newState.inputs, [evt.target.name]: evt.target.value } });

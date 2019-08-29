@@ -8,9 +8,9 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-router.post('/', authRequired, async function (req, res, next) {
+router.post('/', async function (req, res, next) {
   try {
-    await Question.create(req.body.question, req.user_id);
+    await Question.create(req.body);
     return res.json({})
   } catch (err) {
     return next(err);

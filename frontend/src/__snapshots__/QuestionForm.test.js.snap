@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <Form
+    tag="form"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <FormGroup
+        tag="div"
+      >
+        <Label
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Have a work-related legal question? Ask for free now:
+        </Label>
+        <Input
+          className="form-control"
+          disabled={false}
+          invalid={false}
+          name="question"
+          onChange={[Function]}
+          placeholder=""
+          type="textarea"
+          valid={null}
+          value=""
+        />
+        <FormFeedback
+          tag="div"
+        >
+          Please be a little more descriptive in your question.(10 characters minimum)
+        </FormFeedback>
+      </FormGroup>
+    </Col>
+    <FormGroup
+      tag="div"
+    >
+      <Label
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+         Email:
+      </Label>
+      <Input
+        className="form-control"
+        disabled={false}
+        invalid={false}
+        name="email"
+        onChange={[Function]}
+        placeholder="example@gmail.com"
+        type="text"
+        valid={null}
+        value=""
+      />
+    </FormGroup>
+    <Button
+      className="m-1"
+      color="primary"
+      disabled={false}
+      onClick={[Function]}
+      tag="button"
+    >
+      Submit Question
+    </Button>
+  </Form>
+</div>
+`;
