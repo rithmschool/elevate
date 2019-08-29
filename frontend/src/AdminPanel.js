@@ -8,7 +8,7 @@ import ElevateApi from './ElevateApi';
 const mql = window.matchMedia(`(max-width: 640px)`);
 
 class AdminPanel extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -16,7 +16,7 @@ class AdminPanel extends Component {
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
-      questions:null,
+      questions: null,
       userDetail: null
     }
   }
@@ -29,12 +29,12 @@ class AdminPanel extends Component {
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
-    } catch(err) {
+    } catch (err) {
       return err;
     }
-    
-    this.setState({users})
-    this.setState({questions})
+
+    this.setState({ users })
+    this.setState({ questions })
   }
 
   changeView = (view) => {
@@ -51,8 +51,8 @@ class AdminPanel extends Component {
 
 
   viewComponent = () => {
-    if(this.state.view === "users"){
-    
+    if (this.state.view === "users") {
+
       return (
         <Table striped bordered hover size="sm" responsive id="users-table">
           <thead>
@@ -66,22 +66,22 @@ class AdminPanel extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.state.users.map(user => {
-            return (
-              <tr key={user.id} onClick={this.handleClick}>
-                <td >{user.id}</td>
-                <td>{`${user.first_name} ${user.last_name}`}</td>
-                <td>{user.current_company}</td>
-                <td>{user.hire_date}</td>
-                <td>{user.needs}</td>
-                <td>{user.goals}</td>
-              </tr>)
-          })}
+            {this.state.users.map(user => {
+              return (
+                <tr key={user.id} onClick={this.handleClick}>
+                  <td >{user.id}</td>
+                  <td>{`${user.first_name} ${user.last_name}`}</td>
+                  <td>{user.current_company}</td>
+                  <td>{user.hire_date}</td>
+                  <td>{user.needs}</td>
+                  <td>{user.goals}</td>
+                </tr>)
+            })}
           </tbody>
         </Table>
       )
     }
-    if(this.state.view === "questions") {
+    if (this.state.view === "questions") {
       return (
         <Table striped bordered hover size="sm" responsive id="questions-table">
           <thead>
@@ -95,17 +95,17 @@ class AdminPanel extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.state.questions.map(question => {
-            return (
-              <tr key={question.user_id} onClick={this.handleClick}>
-                <td >{question.user_id}</td>
-                <td>{`${question.first_name} ${question.last_name}`}</td>
-                <td>{question.email}</td>
-                <td>{question.question}</td>
-                <td>{question.resolved ? "true" : "false"}</td>
-                <td>{question.created_date.slice(0,10) }</td>
-              </tr>)
-          })}
+            {this.state.questions.map(question => {
+              return (
+                <tr key={question.id} onClick={this.handleClick}>
+                  <td >{question.id}</td>
+                  <td>{`${question.first_name} ${question.last_name}`}</td>
+                  <td>{question.email}</td>
+                  <td>{question.question}</td>
+                  <td>{question.resolved ? "true" : "false"}</td>
+                  <td>{question.created_date.slice(0, 10)}</td>
+                </tr>)
+            })}
           </tbody>
         </Table>
       )
@@ -115,27 +115,27 @@ class AdminPanel extends Component {
   handleClick = async (evt) => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
-    
+
     this.setState({ view: 'userDetail', userDetail: user });
   }
 
-  render(){
-    if (!this.state.users || !this.state.questions){
+  render() {
+    if (!this.state.users || !this.state.questions) {
       return (<div>...Loading</div>)
     }
 
-    return(
+    return (
       <div className="admin-main">
         <div className="admin-panel">
-          { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
+          {mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button>}
           <h1>Admin Panel</h1>
-          { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
+          {this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} />}
           <div>{this.viewComponent()}</div>
-          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
+          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} /> : null}
         </div>
-        
+
         <div className="admin-navbar">
-          <AdminNavBar changeView={this.changeView}/>
+          <AdminNavBar changeView={this.changeView} />
         </div>
       </div>
     )

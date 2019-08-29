@@ -17,9 +17,9 @@ class Question {
   /** Find all questions. */
   static async findAll() {
     const result = await db.query(
-      `SELECT user_id, question, resolved, email, first_name, last_name, created_date
+      `SELECT users.id, question, resolved, questions.email, first_name, last_name, created_date
       FROM users
-      JOIN questions ON user_id=users.id`
+      RIGHT JOIN questions ON users.email=questions.email;`
     );
     return result.rows;
   }

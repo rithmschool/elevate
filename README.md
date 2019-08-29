@@ -3,3 +3,7 @@
 - To seed the database, run `psql < data.sql` in the terminal
 - To start the server, run `npm start` in the terminal
 - To run tests, run `npm test`
+
+- Admin account:
+email: admin@gmail.com 
+password: secret

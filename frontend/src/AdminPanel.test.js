@@ -17,7 +17,7 @@ describe('AdminPanel', function() {
     goals:"Test pass"
   }]
   let questions = [{
-    user_id: 17,
+    id: 17,
     question: "My employer didn't pay me",
     resolved: false,
     email: "user@test.com",

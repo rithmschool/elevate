@@ -119,12 +119,12 @@ CREATE TABLE charges (
 );
 
 CREATE TABLE questions (
- id serial PRIMARY KEY,
- user_id INTEGER NOT NULL REFERENCES users (id),
- question TEXT NOT NULL,
- response TEXT,
- responder INTEGER REFERENCES users (id),
- resolved BOOLEAN DEFAULT FALSE
+  id serial PRIMARY KEY,
+  email TEXT NOT NULL,
+  question TEXT NOT NULL,
+  response TEXT,
+  responder INTEGER REFERENCES users (id),
+  resolved BOOLEAN DEFAULT FALSE,
+  created_date TIMESTAMP DEFAULT current_timestamp
 );
-
 

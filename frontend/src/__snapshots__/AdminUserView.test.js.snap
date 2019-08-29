@@ -43,7 +43,7 @@ exports[`AdminUserView matches snapshot 1`] = `
       Increase salary by 15k
     </p>
     <div>
-      Questions: 
+      Questions:  
     </div>
   </div>
 </AdminUserView>
