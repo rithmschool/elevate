@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, Row} from 'reactstrap';
+import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
 import './UserInfoEditForm.css';
 import moment from 'moment';
 

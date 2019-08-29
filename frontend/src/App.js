@@ -46,7 +46,6 @@ class App extends React.Component {
 
 
   render(){
-    console.log(this.state.currentUser)
     if(this.state.isLoading) 
       return(<Spinner />);
 

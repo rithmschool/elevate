@@ -2,7 +2,7 @@ import React from "react";
 import {UserContext} from "./UserContext"
 import UserInfoEditForm from './UserInfoEditForm';
 import ElevateApi from './ElevateApi';
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 
 
