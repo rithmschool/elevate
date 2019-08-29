@@ -20,6 +20,10 @@ class ElevateApi {
       q = axios.patch(
         `${BASE_URL}/${endpoint}`, { _token, ...params });
     }
+    else if (verb === "delete") {
+      q = axios.delete(
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
+    }
 
     try {
       return (await q).data;
@@ -77,6 +81,33 @@ class ElevateApi {
     let res = await this.request(`questions`)
 
     return res.questions
+  }
+  static async makePayment(token, chargeId) {
+    let res = await this.request(`charges`, { token, chargeId }, "patch");
+    return res;
+  }
+  
+  static async addCharge(data) {
+    let res = await this.request('charges/new', data.invoice, "post");
+    return res;
+  }
+
+  // Get charges for a single user,using the users id.
+  static async getCharges(id) {
+    let res = await this.request(`charges/${id}`);
+
+    return res;
+  }
+
+  static async allChargesForUser(id) {
+    let res = await this.request(`charges/user/${id}`);
+    return res;
+  }
+
+  static async deleteCharge(id) {
+
+    let res = await this.request(`charges/${id}`, { verb: 'delete' });
+    return res;
   }
 
 }
