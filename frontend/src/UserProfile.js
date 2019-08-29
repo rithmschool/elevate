@@ -1,7 +1,11 @@
 import React from "react";
 import {UserContext} from "./UserContext"
 import UserInfoEditForm from './UserInfoEditForm';
-import ElevateApi from './ElevateApi'
+import ElevateApi from './ElevateApi';
+import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+
+
+
 class UserProfile extends React.Component {
   static contextType = UserContext;
   static defaultProps = {
@@ -11,66 +15,44 @@ class UserProfile extends React.Component {
     super(props);
     this.state = {
       isEditForm: false,
+      updateStatus: ''
     }
-    this.toggleEditForm = this.toggleEditForm.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
 
   }
   
-  toggleEditForm() {
-    this.setState(st => ({
-      isEditForm: !st.isEditForm
-    }))
-  }
 
-
-  handleUpdate(updatePost){
+  async handleUpdate(updatePost){
     const userId = this.context.userId;
-    ElevateApi.updateUser(userId,updatePost)
+    let res = await ElevateApi.updateUser(userId,updatePost);
+    if(res){
+      this.setState({updateStatus: 'Your info updated successfully!'})
+    }
   }
   render(){
     const currentUser = this.context
 
     return (
-      <div >
-        {this.state.isEditForm ? <UserInfoEditForm
-          handleUpdate={this.handleUpdate}
-          toggleEditForm={this.toggleEditForm}
-          {...currentUser}
-          userId={currentUser.userId}/>:
+      <div className="container">
+      <br></br>
+        <Row>
+        <Col sm="8">
+        <div >
+          <UserInfoEditForm
+            handleUpdate={this.handleUpdate}
+            {...currentUser}
+            updateStatus={this.state.updateStatus}
+            userId={currentUser.userId}/>
+        </div>
+        </Col>
+        <Col sm="4">
+       <div>
 
-          <div className="container">
-            <div>
-              <div>
-                <h1 className="d-inline  left" >Hello {currentUser.first_name}!</h1>
-                <i className="far fa-edit d-inline p-2 m-1 float-right PostIcon PostEdit" 
-                  onClick={this.toggleEditForm} />
-              </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <strong>First Name:</strong> {currentUser.first_name}
-                </li>
-                <li className="list-group-item">
-                  <strong>Last name:</strong> {currentUser.last_name}
-                </li>
-                <li className="list-group-item">
-                  <strong>Email:</strong> {currentUser.email}
-                </li>
-                <li className="list-group-item">
-                  <strong>Current company:</strong> {currentUser.current_company}
-                </li>
-                <li className="list-group-item">
-                  <strong>Salary:</strong> {currentUser.salary}
-                </li>
-                <li className="list-group-item">
-                  <strong>Hiring date:</strong> {currentUser.hire_date}
-                </li>
-              </ul>
-            </div>    
-          </div> 
-        }
-    </div>
-  )
+       </div>
+        </Col>
+      </Row>
+    </div>  
+    )
   } 
 }
 

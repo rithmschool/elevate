@@ -49,7 +49,8 @@ class ElevateApi {
   }
 
   static async updateUser(id, data){
-    await this.request(`users/${id}`, data, "patch");
+    let res = await this.request(`users/${id}`, data, "patch");
+    return res.user;
   }
   static async getUsers() {
     let res = await this.request(`users`)

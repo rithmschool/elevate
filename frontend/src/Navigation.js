@@ -44,9 +44,11 @@ class Navigation extends React.Component {
             <div>
               <i className="fas fa-user Nav-icon"
               onClick={this.userMenuToggle}
+              // onClick={this.userMenuToggle}
               ></i>
-              <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}>
-                <ul className="list-group list-group-flush">
+              <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}
+                >
+                <ul className="list-group list-group-flush" onMouseUp={this.userMenuToggle}>
                   {/* you can use these 3 lines below as a template and add menu items as you want
                   but you need to change Link route and the title to display. */}
                   <li className="list-group-item bg-transparent">
@@ -87,7 +89,7 @@ class Navigation extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar className="collapse.navbar-collapse">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active ">
+            <li className="nav-item active " data-toggle="collapse" data-target=".in" >
               <Link to="/link1" className="Nav-link Nav-link-ltr">Get Started</Link>
             </li>
             <li className="nav-item active">
