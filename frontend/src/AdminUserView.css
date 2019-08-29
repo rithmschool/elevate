@@ -1,3 +1,7 @@
 #InvoiceButton {
     float:right;
 }
+.AdminUserView {
+  padding: 1vh 5vw;
+  font-size: 1rem;
+}
