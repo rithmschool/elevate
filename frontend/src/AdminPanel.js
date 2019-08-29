@@ -37,8 +37,17 @@ class AdminPanel extends Component {
     this.setState({ questions });
   }
 
-  changeView = view => {
-    this.setState({ view });
+  // get update users after delete a user in AdminUserView
+  updateState = (users) => {
+    this.setState({users})
+  }
+
+  updateViewState = (view) => {
+    this.setState({view})
+  }
+
+  changeView = (view) => {
+    this.setState({ view })
   }
 
   mediaQueryChanged = () => {
@@ -72,6 +81,7 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
+          <div>{this.viewComponent()}</div>
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
         </div>
         

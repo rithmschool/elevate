@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import './AdminUserView.css';
+import ElevateApi from './ElevateApi';
 
 class AdminUserView extends Component {
+  handleClickX = async () => {
+      await ElevateApi.deleteUser(this.props.user.id)
+      let users;
+
+    try {
+      users = await ElevateApi.getUsers();
+    } catch(err) {
+      return err;
+    }
+      this.props.updateState(users)
+      this.props.updateViewState("users")
+  }
   render(){
     const { first_name, last_name, email, current_company, hire_date, needs, goals } = this.props.user;
 

@@ -19,6 +19,10 @@ class ElevateApi {
     } else if (verb === "patch") {
       q = axios.patch(
         `${BASE_URL}/${endpoint}`, { _token, ...params });
+    } else if (verb === "delete") {
+      q = axios.delete(
+        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } }
+      )
     }
 
     try {
@@ -88,6 +92,12 @@ class ElevateApi {
     });
 
     return res.questions
+  }
+
+  static async deleteUser(id) {
+    await this.request(`users/${id}`, {}, "delete")
+    // let _token = localStorage.getItem("token");
+    // await axios.delete(`http://localhost:3001/users/${id}`,_token);
   }
 
 }

@@ -45,4 +45,13 @@ describe('AdminUserView', function() {
     expect(wrapper.html()).toContain('Goals');
     expect(wrapper.html()).toContain('Questions');
   });
+
+  it('row length of the users-table become zero once click delete button', function () {
+    wrapper.find('button[id="delete-click"]').simulate('click');
+    wrapper.update();
+
+    const rows = wrapper.find('table[id="users-table"]')
+    expect(rows.length).toEqual(0);
+  });
+
 });
