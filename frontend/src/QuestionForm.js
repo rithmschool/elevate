@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import ElevateApi from './ElevateApi';
 import { emailValidator } from './helperFunctions';
 import { UserContext } from "./UserContext";
-import { Button, Form, FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, Col } from 'reactstrap';
 
 class QuestionForm extends Component {
   static contextType = UserContext;
@@ -26,6 +25,11 @@ class QuestionForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.context) {
+      this.setState(st => ({ ...st, inputs: { ...st.inputs, email: this.context.email } }))
+    }
+  }
   handleChange(evt) {
     let newState = this.state
 
@@ -72,27 +76,47 @@ class QuestionForm extends Component {
     // Validate question
     if (this.state.inputs.question.length <= 10) {
       newState.formValid.question = false;
-      this.setState({ ...newState });
     }
 
-    // Validate email
-    if (!this.state.inputs.email.match(emailValidator)) {
-      newState.formValid.email = false;
-      this.setState({ ...newState });
+    // Validate email if there isn't a user logged in
+    if (!this.context) {
+      if (!this.state.inputs.email.match(emailValidator)) {
+        newState.formValid.email = false;
+      }
     }
 
     // If all inputs valid:
-
-    else if (this.state.formValid.email !== false && this.state.formValid.question !== false) {
+    if (newState.formValid.email !== false && newState.formValid.question !== false) {
 
       // Create question and disable form.
       await ElevateApi.createQuestion(this.state.inputs)
       this.setState({ questionSubmitted: true })
       // TODO: Redirect to profile page
     }
+    else {
+      this.setState({ ...newState })
+    }
   }
 
   render() {
+    const emailInput =
+      <div>
+        <FormGroup>
+          <Label> Email:</Label>
+          <Input
+            disabled={this.state.questionSubmitted ? true : false}
+            name="email"
+            className="form-control"
+            placeholder="example@gmail.com"
+            value={this.state.inputs.email}
+            onChange={this.handleChange}
+            valid={this.state.formValid.email}
+            invalid={this.state.formValid.email === false}
+          />
+          <FormFeedback>Oops! That appears to not be a valid e-mail</FormFeedback>
+        </FormGroup>
+      </div>
+
     return (
       <div>
         <Form>
@@ -114,24 +138,11 @@ class QuestionForm extends Component {
               <FormFeedback>Please be a little more descriptive in your question.(10 characters minimum)</FormFeedback>
             </FormGroup>
           </Col>
-          {/* Email Input */}
-          <FormGroup>
-            <Label> Email:</Label>
-            <Input
-              disabled={this.state.questionSubmitted ? true : false}
-              name="email"
-              className="form-control"
-              placeholder="example@gmail.com"
-              value={this.state.inputs.email}
-              onChange={this.handleChange}
-              valid={this.state.formValid.email}
-              invalid={this.state.formValid.email === false}
-            />
-          </FormGroup>
-
+          {/* Show e-mail input if a user is not logged in */}
+          {this.context ? null : emailInput}
 
           {/* End of form fields */}
-          <Button disabled={this.state.questionSubmitted} color="primary" className="m-1" onClick={this.handleSubmit}>Submit Question</Button>
+          <Button type="submit" disabled={this.state.questionSubmitted} color="primary" className="m-1" onClick={this.handleSubmit}>Submit Question</Button>
 
           {this.state.questionSubmitted ? <h4>Thanks for your question! Our legal experts will get back to you promptly.</h4> : null}
         </Form >

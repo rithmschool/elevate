@@ -97,8 +97,8 @@ class AdminPanel extends Component {
           <tbody>
             {this.state.questions.map(question => {
               return (
-                <tr key={question.id} onClick={this.handleClick}>
-                  <td >{question.id}</td>
+                <tr key={question.question_id} onClick={this.handleClick}>
+                  <td >{question.user_id}</td>
                   <td>{`${question.first_name} ${question.last_name}`}</td>
                   <td>{question.email}</td>
                   <td>{question.question}</td>
@@ -115,7 +115,9 @@ class AdminPanel extends Component {
   handleClick = async (evt) => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
-
+    user["questions"] = this.state.questions.filter(question =>
+      (question.email === user.email)
+    )
     this.setState({ view: 'userDetail', userDetail: user });
   }
 
