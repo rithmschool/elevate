@@ -1,69 +1,93 @@
 import axios from "axios";
 
-
 const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
-class ElevateAPI {
+class ElevateApi {
   static async request(endpoint, params = {}, verb = "get") {
-    // for now, hardcode a token for user "testuser"
-
+    let _token = localStorage.getItem("token");
 
     console.debug("API Call:", endpoint, params, verb);
-    console.log(params)
+
     let q;
 
     if (verb === "get") {
       q = axios.get(
-        `${BASE_URL}/${endpoint}`, {params } );
+        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } });
     } else if (verb === "post") {
       q = axios.post(
-        `${BASE_URL}/${endpoint}`, {params});
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "patch") {
       q = axios.patch(
-        `${BASE_URL}/${endpoint}`, { ...params });
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
+    }
+    else if (verb === "delete") {
+      q = axios.delete(
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
     }
 
     try {
-
       return (await q).data;
-
     } catch (err) {
-      console.error("API Error:", err.response);
       let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
 
-  // User making a payment.
-  // Inputs: token - pass in token.id from stripe API
-  // ChargeId - 
+
+  static async login(data) {
+    let res = await this.request(`login`, data, "post");
+
+    return res.token;
+  }
+
+  static async signup(data) {
+    let res = await this.request(`users`, data, "post");
+
+    return res.token;
+  }
+
+  static async getUser(id) {
+    let res = await this.request(`users/${id}`);
+
+    return res.user;
+  }
   static async makePayment(token, chargeId) {
     let res = await this.request(`charges`, { token, chargeId }, "patch");
     return res;
   }
+  static async getUsers() {
+    let res = await this.request(`users`)
 
-  // Admin creating a new charge. formData looks like: 
-  //      { 
-  //       invoice: {
-  //        username: ""
-  //        amount: Number
-  //        due_date: "YYYY-MM-DD",
-  //        description: ""}
-  //      }
+    return res.users
+  }
 
-  static async addCharge(formData) {
-    console.log(formData);
-    let res = await this.request('charges/new', formData.invoice, "post");
-    console.log(res);
+  static async addCharge(data) {
+    let res = await this.request('charges/new', data.invoice, "post");
     return res;
   }
 
-  // Get charges for a single user. Uses token to find proper user.
-  static async getCharges() {
-    let res = await this.request('charges');
+  // Get charges for a single user,using the users id.
+  static async getCharges(id) {
+    let res = await this.request(`charges/${id}`);
+
     return res;
   }
+
+  static async allChargesForUser(id) {
+    let res = await this.request(`charges/user/${id}`);
+    return res;
+  }
+
+  static async deleteCharge(id) {
+
+    let res = await this.request(`charges/${id}`, { verb: 'delete' });
+    return res;
+  }
+
+
+
 }
 
 
-export default ElevateAPI;
+
+export default ElevateApi;

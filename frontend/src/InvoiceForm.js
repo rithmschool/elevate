@@ -17,10 +17,14 @@ class InvoiceForm extends Component {
         amount: "",
         description: "",
         due_date: ""
-      }
+      },
+      email: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  async componentDidMount() {
+    this.setState({email:this.props.user.email})
   }
 
   handleChange(e) {
@@ -96,7 +100,7 @@ class InvoiceForm extends Component {
           <input
             name="user_id"
             className="form-control"
-            value={this.props.user.email}
+            value={this.state.email}
             onChange={this.handleChange}
           />
         </div>
