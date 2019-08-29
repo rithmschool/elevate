@@ -12,6 +12,7 @@ h1 {
 .admin-panel {
   grid-area: content;
   font-size: 0.75rem;
+  text-transform: capitalize;
 
   /* remove later */
   border: 1px dashed black; 

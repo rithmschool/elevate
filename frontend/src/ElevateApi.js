@@ -51,6 +51,11 @@ class ElevateApi {
   static async getUsers() {
     let res = await this.request(`users`)
 
+    // Format hire_date for each user
+    res.users.forEach(user => {
+      user.hire_date = user.hire_date.slice(0, 10);
+    });
+
     return res.users
   }
 
