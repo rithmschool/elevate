@@ -41,7 +41,8 @@ CREATE TABLE questions (
  question TEXT NOT NULL,
  response TEXT,
  responder INTEGER REFERENCES users (id),
- resolved BOOLEAN DEFAULT FALSE
+ resolved BOOLEAN DEFAULT FALSE,
+ created_date TIMESTAMP DEFAULT current_timestamp
 );
 
 -- FIXED:  deleted handcode ID because issue with primary key constrain when create new user

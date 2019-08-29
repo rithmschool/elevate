@@ -83,7 +83,7 @@ class AdminPanel extends Component {
     }
     if(this.state.view === "questions") {
       return (
-        <Table striped bordered hover size="sm" responsive id="users-table">
+        <Table striped bordered hover size="sm" responsive id="questions-table">
           <thead>
             <tr>
               <th>User ID</th>
@@ -91,6 +91,7 @@ class AdminPanel extends Component {
               <th>Email</th>
               <th>Question</th>
               <th>Resolved</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -102,6 +103,7 @@ class AdminPanel extends Component {
                 <td>{question.email}</td>
                 <td>{question.question}</td>
                 <td>{question.resolved ? "true" : "false"}</td>
+                <td>{question.created_date.slice(0,10) }</td>
               </tr>)
           })}
           </tbody>
