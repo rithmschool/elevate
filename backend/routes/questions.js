@@ -1,12 +1,12 @@
-/** Routes for users. */
+/** Routes for questions. */
 
 const express = require('express');
-const { authRequired } = require('../middleware/auth');
+const { authRequired, ensureCorrectUser } = require('../middleware/auth');
 const Question = require('../models/question');
-const createToken = require('../createToken');
-const User = require('../models/user');
-
 const router = express.Router();
+
+
+// Create a question => Input: {req.body.question: "", req.body.email: ""}
 
 router.post('/', async function (req, res, next) {
   try {
@@ -17,5 +17,17 @@ router.post('/', async function (req, res, next) {
   }
 
 })
+
+/** GET / => {questions: [questions , ...]} */
+
+router.get('/', authRequired, async function (req, res, next) {
+  try {
+    const questions = await Question.findAll();
+    console.log("questions", questions)
+    return res.json({ questions });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;

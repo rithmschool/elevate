@@ -62,6 +62,12 @@ class ElevateApi {
     return res.token;
   }
 
+  static async getQuestions() {
+    let res = await this.request(`questions`)
+
+    return res.questions
+  }
+
 }
 
 export default ElevateApi;
