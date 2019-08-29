@@ -3,8 +3,15 @@ const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
 
 
-/**FIXME: work factor is 10 for development purpose. actual recommendation is 15, minimum is 12 */
-const BCRYPT_WORK_FACTOR = 10;
+let BCRYPT_WORK_FACTOR;
+
+/** reduce bcrypc rounds in test environemnt **/
+
+if (process.env.NODE_ENV === 'test') {
+  BCRYPT_WORK_FACTOR = 1;
+} else {
+  BCRYPT_WORK_FACTOR = 15;
+}
 
 
 /** Related functions for users. */
