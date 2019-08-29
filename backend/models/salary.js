@@ -29,7 +29,7 @@ class Salary {
                                     equity
                                   FROM salaries
                                   WHERE user_id=$1
-                                  ORDER BY last_modified
+                                  ORDER BY id desc
                                   LIMIT 1`, [userId]);
       const salary = result.rows[0];
       if (salary === undefined) {
