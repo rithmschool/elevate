@@ -1,7 +1,7 @@
 /** Routes for questions. */
 
 const express = require('express');
-const { authRequired, ensureCorrectUser } = require('../middleware/auth');
+const { authRequired } = require('../middleware/auth');
 const Question = require('../models/question');
 const router = express.Router();
 
@@ -23,7 +23,6 @@ router.post('/', async function (req, res, next) {
 router.get('/', authRequired, async function (req, res, next) {
   try {
     const questions = await Question.findAll();
-    console.log("questions", questions)
     return res.json({ questions });
   } catch (err) {
     return next(err);

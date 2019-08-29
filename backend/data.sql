@@ -37,6 +37,7 @@ CREATE TABLE charges (
 
 CREATE TABLE questions (
   id serial PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
   email TEXT NOT NULL,
   question TEXT NOT NULL,
   response TEXT,
@@ -120,6 +121,7 @@ CREATE TABLE charges (
 
 CREATE TABLE questions (
   id serial PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
   email TEXT NOT NULL,
   question TEXT NOT NULL,
   response TEXT,
@@ -127,4 +129,3 @@ CREATE TABLE questions (
   resolved BOOLEAN DEFAULT FALSE,
   created_date TIMESTAMP DEFAULT current_timestamp
 );
-
