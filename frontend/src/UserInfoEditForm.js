@@ -31,10 +31,13 @@ class UserInfoEditForm extends React.Component {
       last_name: this.state.last_name,
       email: this.state.email,
       current_company: this.state.current_company,
-      salary: this.state.salary,
       hire_date: this.state.hire_date
     }
-    this.props.handleUpdate(updatedUser,this.props.userId)
+    this.props.handleUpdate(updatedUser, this.props.userId);
+
+    const salary = this.state.salary;
+    this.props.handleSalaryUpdate(this.props.userId, salary);
+
     this.toggleEdit()
 
   }
@@ -53,10 +56,7 @@ class UserInfoEditForm extends React.Component {
             <h3 className="text-info">User information</h3>
           </Col>
           <Col align="right" md={6} sm={{ size: 8, offset: 0}}>
-            <Button color="info" size="sm"
-            style={{marginTop: '6px'}}
-            onClick={this.toggleEdit}>
-            Edit details</Button>
+          <small><i class="fas fa-user-edit text-info" onClick={this.toggleEdit}> Edit</i> </small>
           </Col>
         </Row>
 

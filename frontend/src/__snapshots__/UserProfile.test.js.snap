@@ -51,19 +51,15 @@ exports[`matches snapshot 1`] = `
         ]
       }
     >
-      <Button
-        color="info"
-        onClick={[Function]}
-        size="sm"
-        style={
-          Object {
-            "marginTop": "6px",
-          }
-        }
-        tag="button"
-      >
-        Edit details
-      </Button>
+      <small>
+        <i
+          class="fas fa-user-edit text-info"
+          onClick={[Function]}
+        >
+           Edit
+        </i>
+         
+      </small>
     </Col>
   </Row>
   <hr />

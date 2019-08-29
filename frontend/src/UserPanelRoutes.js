@@ -43,3 +43,15 @@ const UserPanelRoutes = [
 ];
 
 export default UserPanelRoutes;
+
+
+<Row>
+  <Col md={6}>
+    <h3 className="text-info">User information</h3>
+  </Col>
+  <Col align="right" md={6} sm={{ size: 10, offset: 0}}>
+    <Button color="info" size="sm" 
+    onClick={this.toggleEdit}>
+    Edit details</Button>
+  </Col>
+</Row>
