@@ -16,6 +16,7 @@ class AdminPanel extends Component {
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
+      questions:null,
       userDetail: null
     }
   }
@@ -23,14 +24,17 @@ class AdminPanel extends Component {
   async componentDidMount() {
     mql.addListener(this.mediaQueryChanged);
     let users;
+    let questions;
 
     try {
       users = await ElevateApi.getUsers();
+      questions = await ElevateApi.getQuestions();
     } catch(err) {
       return err;
     }
     
     this.setState({users})
+    this.setState({questions})
   }
 
   changeView = (view) => {
@@ -53,7 +57,7 @@ class AdminPanel extends Component {
   }
 
   render(){
-    if (!this.state.users){
+    if (!this.state.users || !this.state.questions){
       return (<div>...Loading</div>)
     }
 
