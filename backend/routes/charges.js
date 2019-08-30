@@ -31,9 +31,12 @@ router.get("/", authRequired,adminRequired, async function (req, res, next) {
 
 /**GET all outstanding charges for individual user*/
 router.get("/:id", authRequired, ensureCorrectUser, async function (req, res, next) {
+  console.log("Hello")
   try {
   const userId = req.params.id;
+  console.log(userId,"userid")
   let charges = await Charges.findChargesDue(userId);
+  console.log(charges,"Maraharges")
   /**put nice message if there is no charges */
   return res.json({ charges });
   } catch(err) {
@@ -86,8 +89,8 @@ router.patch("/" ,authRequired, async function (req, res, next) {
 
 
 /**delete a charge in the db by the ADMIN ONLY */
-router.delete("/:chargeId", adminRequired ,async function (req, res, next) {
-  
+router.delete("/:chargeId" ,async function (req, res, next) {
+  console.log("got here")
   try {
     const response = await Charges.remove(req.params.chargeId);
     if(!response) {

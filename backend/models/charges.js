@@ -118,7 +118,7 @@ class Charges {
 
     /** Delete given charge from database; returns id of deleted charge. */
     static async remove(id) {
-       
+        console.log("rmeove")
         const result = await db.query(
             `DELETE FROM charges 
          WHERE id = $1 
