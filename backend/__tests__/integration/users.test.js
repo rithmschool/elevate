@@ -68,7 +68,7 @@ describe('GET /users', function () {
       .send({ _token: `${TEST_DATA.userToken}` });
 
     expect(response.body.users).toHaveLength(6);
-    expect(response.body.users[0]).toHaveProperty('email');
+    expect(response.body.users[0]).toHaveProperty('company');
     expect(response.body.users[0]).not.toHaveProperty('password');
   });
 

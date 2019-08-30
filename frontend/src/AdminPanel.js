@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './AdminPanel.css'
 import AdminNavBar from './AdminNavBar';
 import AdminUserView from './AdminUserView';
-import { Table } from 'react-bootstrap';
+import AdminTable from './AdminTable';
 import ElevateApi from './ElevateApi';
 
 const mql = window.matchMedia(`(max-width: 640px)`);
@@ -49,70 +49,7 @@ class AdminPanel extends Component {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-
-  viewComponent = () => {
-    if(this.state.view === "users"){
-    
-      return (
-        <Table striped bordered hover size="sm" responsive id="users-table">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Name</th>
-              <th>Company</th>
-              <th>Hire Date</th>
-              <th>Needs</th>
-              <th>Goals</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.state.users.map(user => {
-            return (
-              <tr key={user.id} onClick={this.handleClick}>
-                <td >{user.id}</td>
-                <td>{`${user.first_name} ${user.last_name}`}</td>
-                <td>{user.current_company}</td>
-                <td>{user.hire_date}</td>
-                <td>{user.needs}</td>
-                <td>{user.goals}</td>
-              </tr>)
-          })}
-          </tbody>
-        </Table>
-      )
-    }
-    if(this.state.view === "questions") {
-      return (
-        <Table striped bordered hover size="sm" responsive id="questions-table">
-          <thead>
-            <tr>
-              <th>User ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Question</th>
-              <th>Resolved</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.state.questions.map(question => {
-            return (
-              <tr key={question.user_id} onClick={this.handleClick}>
-                <td >{question.user_id}</td>
-                <td>{`${question.first_name} ${question.last_name}`}</td>
-                <td>{question.email}</td>
-                <td>{question.question}</td>
-                <td>{question.resolved ? "true" : "false"}</td>
-                <td>{question.created_date.slice(0,10) }</td>
-              </tr>)
-          })}
-          </tbody>
-        </Table>
-      )
-    }
-  }
-
-  handleClick = async (evt) => {
+  getUserDetail = async (evt) => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
     
@@ -130,7 +67,11 @@ class AdminPanel extends Component {
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
           <h1>Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-          <div>{this.viewComponent()}</div>
+          { this.state.view === 'users' || this.state.view === 'questions' ? 
+            <AdminTable tableObjs={ this.state[this.state.view] } 
+                        getUserDetail={ this.getUserDetail }
+                        view={ this.state.view } /> : null
+          }
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
         </div>
         
