@@ -94,8 +94,9 @@ class ElevateApi {
 
   // Get charges for a single user,using the users id.
   static async getCharges(id) {
+    
     let res = await this.request(`charges/${id}`);
-
+    console.log(res,"RES")
     return res;
   }
 
@@ -105,8 +106,8 @@ class ElevateApi {
   }
 
   static async deleteCharge(id) {
-
-    let res = await this.request(`charges/${id}`, { verb: 'delete' });
+    console.log("here")
+    let res = await this.request(`charges/${id}`,"",'delete');
     return res;
   }
 

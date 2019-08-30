@@ -60,7 +60,6 @@ class AdminUserView extends Component {
 
       <div className='AdminUserView'>
         <div>
-<<<<<<< HEAD
           <button onClick={this.handleClick} id="InvoiceButton">Add a new charge</button>
         </div>
         <div>
@@ -71,9 +70,7 @@ class AdminUserView extends Component {
           <p>Needs: {needs}</p>
           <p>Goals: {goals}</p>
           <div>Questions: </div>
-
           <div>
-            <br></br>
             <strong>Charges:</strong>
             <Table striped bordered hover size="sm" responsive id="users-table">
               <thead>
@@ -86,9 +83,7 @@ class AdminUserView extends Component {
               </thead>
               {charges}
             </Table>
-
           </div>
-=======
           <h4>{ first_name } { last_name }</h4>
           <table>
             <tbody>
@@ -118,7 +113,6 @@ class AdminUserView extends Component {
               </tr>
             </tbody>
           </table>
->>>>>>> master
         </div>
       </div>
     )

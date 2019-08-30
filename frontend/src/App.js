@@ -5,7 +5,7 @@ import Routes from "./Routes";
 import ElevateApi from './ElevateApi';
 import { UserContext, AdminContext} from "./UserContext";
 import Spinner from './Spinner';
-
+import { Elements, StripeProvider } from 'react-stripe-elements';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,12 +49,16 @@ class App extends React.Component {
       return(<Spinner />);
 
     return(
+      <StripeProvider apiKey="pk_test_lQa4CsK6zmkSZztiLm1P1C4600Ftwrsnuw">
+        <Elements>
       <UserContext.Provider value={this.state.currentUser}>
         <AdminContext.Provider value={this.state.isAdmin}>
           <Navigation logout={this.handleLogOut}/>
           <Routes getCurrentUser={this.getCurrentUser}/>
         </AdminContext.Provider>
       </UserContext.Provider>
+      </Elements>
+      </StripeProvider>
     )
   }
 }

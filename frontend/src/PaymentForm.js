@@ -24,7 +24,8 @@ class PaymentForm extends Component {
     else {
 
       // Attempt stripe payment
-      let response = await ElevateApi.makePayment(token.id, this.props.chargeId);
+      console.log(this.props)
+      let response = await ElevateApi.makePayment(token.id, this.props.id);
 
       // On successful transaction:
       if (response.status === "succeeded") console.log("Purchase Complete!")
