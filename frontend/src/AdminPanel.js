@@ -38,7 +38,7 @@ class AdminPanel extends Component {
   }
 
   changeView = view => {
-    this.setState({ view }, () => console.log(this.state));
+    this.setState({ view });
   }
 
   mediaQueryChanged = () => {
