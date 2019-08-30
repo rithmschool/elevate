@@ -1,28 +1,27 @@
-h1 {
-  text-align: center;
+.admin-h1 {
+  font-size: 2em;
 }
 
 .admin-main {
   display: grid;
   grid-template-areas: "content side";
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 75% 25%;
   height: 100vh;
+  background: #ECF0F5;
 }
 
 .admin-panel {
   grid-area: content;
   font-size: 0.75rem;
   text-transform: capitalize;
-
-  /* remove later */
-  border: 1px dashed black; 
+  padding: 1.2em;
 }
 
 .admin-navbar {
   grid-area: side;
-
-  /* remove later */
-  border: 1px solid blue;
+  background: #222D32;
+  color: lightgrey;
+  padding: 0.7em;
 }
 
 @media only screen and (max-width: 640px)  {
