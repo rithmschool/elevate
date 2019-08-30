@@ -21,7 +21,7 @@ class AdminPanel extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     mql.addListener(this.mediaQueryChanged);
     let users;
     let questions;
@@ -33,12 +33,12 @@ class AdminPanel extends Component {
       return err;
     }
     
-    this.setState({users})
-    this.setState({questions})
+    this.setState({ users });
+    this.setState({ questions });
   }
 
-  changeView = (view) => {
-    this.setState({ view })
+  changeView = view => {
+    this.setState({ view });
   }
 
   mediaQueryChanged = () => {
@@ -49,7 +49,7 @@ class AdminPanel extends Component {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-  getUserDetail = async (evt) => {
+  getUserDetail = async evt => {
     const userId = +evt.target.parentNode.firstElementChild.innerText;
     const user = await ElevateApi.getUser(userId);
     
@@ -58,14 +58,14 @@ class AdminPanel extends Component {
 
   render(){
     if (!this.state.users || !this.state.questions){
-      return (<div>...Loading</div>)
+      return (<div>...Loading</div>);
     }
 
     return(
       <div className="admin-main">
         <div className="admin-panel">
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
-          <h1>Admin Panel</h1>
+          <h1 className="admin-h1">Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
           { this.state.view === 'users' || this.state.view === 'questions' ? 
             <AdminTable tableObjs={ this.state[this.state.view] } 

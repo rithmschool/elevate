@@ -18,143 +18,138 @@ exports[`AdminTable matches snapshot 1`] = `
     ]
   }
 >
-  <Bootstrap(Table)
-    bordered={true}
-    hover={true}
-    id="undefined-table"
-    responsive={true}
-    size="sm"
-    striped={true}
+  <div
+    className="admin-table"
   >
-    <Table
+    <Bootstrap(Table)
       bordered={true}
-      bsPrefix="table"
       hover={true}
       id="undefined-table"
       responsive={true}
       size="sm"
       striped={true}
     >
-      <div
-        className="table-responsive"
+      <Table
+        bordered={true}
+        bsPrefix="table"
+        hover={true}
+        id="undefined-table"
+        responsive={true}
+        size="sm"
+        striped={true}
       >
-        <table
-          className="table table-sm table-striped table-bordered table-hover"
-          id="undefined-table"
+        <div
+          className="table-responsive"
         >
-          <thead>
-            <tr>
-              <th
-                key="id"
-                width="55vw"
+          <table
+            className="table table-sm table-striped table-bordered table-hover"
+            id="undefined-table"
+          >
+            <thead>
+              <tr>
+                <th
+                  key="id"
+                >
+                  id
+                </th>
+                <th
+                  key="email"
+                >
+                  email
+                </th>
+                <th
+                  key="is admin"
+                >
+                  is admin
+                </th>
+                <th
+                  key="first name"
+                >
+                  first name
+                </th>
+                <th
+                  key="last name"
+                >
+                  last name
+                </th>
+                <th
+                  key="current company"
+                >
+                  current company
+                </th>
+                <th
+                  key="hire date"
+                >
+                  hire date
+                </th>
+                <th
+                  key="needs"
+                >
+                  needs
+                </th>
+                <th
+                  key="goals"
+                >
+                  goals
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                key="17"
+                onClick={[Function]}
               >
-                id
-              </th>
-              <th
-                key="email"
-                width="55vw"
-              >
-                email
-              </th>
-              <th
-                key="is admin"
-                width="55vw"
-              >
-                is admin
-              </th>
-              <th
-                key="first name"
-                width="55vw"
-              >
-                first name
-              </th>
-              <th
-                key="last name"
-                width="55vw"
-              >
-                last name
-              </th>
-              <th
-                key="current company"
-                width="55vw"
-              >
-                current company
-              </th>
-              <th
-                key="hire date"
-                width="55vw"
-              >
-                hire date
-              </th>
-              <th
-                key="needs"
-                width="55vw"
-              >
-                needs
-              </th>
-              <th
-                key="goals"
-                width="55vw"
-              >
-                goals
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              key="17"
-              onClick={[Function]}
-            >
-              <td
-                key="17-id"
-              >
-                17
-              </td>
-              <td
-                key="17-email"
-              >
-                testadmin@test.com
-              </td>
-              <td
-                key="17-is_admin"
-              >
-                <Component />
-              </td>
-              <td
-                key="17-first_name"
-              >
-                admin
-              </td>
-              <td
-                key="17-last_name"
-              >
-                test
-              </td>
-              <td
-                key="17-current_company"
-              >
-                testcompany
-              </td>
-              <td
-                key="17-hire_date"
-              >
-                2018-06-23
-              </td>
-              <td
-                key="17-needs"
-              >
-                To test user data
-              </td>
-              <td
-                key="17-goals"
-              >
-                Test pass
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Table>
-  </Bootstrap(Table)>
+                <td
+                  key="17-id"
+                >
+                  17
+                </td>
+                <td
+                  key="17-email"
+                >
+                  testadmin@test.com
+                </td>
+                <td
+                  key="17-is_admin"
+                >
+                  <Component />
+                </td>
+                <td
+                  key="17-first_name"
+                >
+                  admin
+                </td>
+                <td
+                  key="17-last_name"
+                >
+                  test
+                </td>
+                <td
+                  key="17-current_company"
+                >
+                  testcompany
+                </td>
+                <td
+                  key="17-hire_date"
+                >
+                  2018-06-23
+                </td>
+                <td
+                  key="17-needs"
+                >
+                  To test user data
+                </td>
+                <td
+                  key="17-goals"
+                >
+                  Test pass
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Table>
+    </Bootstrap(Table)>
+  </div>
 </AdminTable>
 `;

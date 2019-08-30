@@ -8,7 +8,9 @@ exports[`AdminPanel matches snapshot 1`] = `
     <div
       className="admin-panel"
     >
-      <h1>
+      <h1
+        className="admin-h1"
+      >
         Admin Panel
       </h1>
     </div>
