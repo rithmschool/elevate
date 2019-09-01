@@ -25,7 +25,7 @@ class AdminPanel extends Component {
     mql.addListener(this.mediaQueryChanged);
     let users;
     let questions;
-    
+
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
@@ -34,8 +34,7 @@ class AdminPanel extends Component {
       return err;
     }
     
-    this.setState({ users });
-    this.setState({ questions });
+    this.setState({ users, questions });
   }
 
   // get update users after delete a user in AdminUserView
@@ -82,7 +81,6 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {/* <div>{this.viewComponent()}</div> */}
           {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} updateState={this.updateState} updateViewState={this.updateViewState} /> : null }
         </div>
         

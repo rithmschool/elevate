@@ -3,7 +3,7 @@ import './AdminUserView.css';
 import ElevateApi from './ElevateApi';
 
 class AdminUserView extends Component {
-  handleClickX = async () => {
+  handleClickDeleteUser = async () => {
       await ElevateApi.deleteUser(this.props.user.id)
       let users;
 
@@ -34,7 +34,7 @@ class AdminUserView extends Component {
               </tr>
               <tr>
                 <td><b>Hire Date:</b></td>
-                <td>{ hire_date.slice(0, 10) }</td> 
+                <td>{ hire_date && hire_date.slice(0,10) }</td> 
               </tr>
               <tr>
                 <td><b>Needs:</b></td>
@@ -51,7 +51,7 @@ class AdminUserView extends Component {
             </tbody>
           </table>
         </div>
-        <button id="delete-click" onClick={ (e) => { if (window.confirm('Are you sure you want to delete this user?')) this.handleClickX(e) }}>Delete</button>
+        <button id="delete-click" onClick={ (e) => { if (window.confirm('Are you sure you want to delete this user?')) this.handleClickDeleteUser(e) }}>Delete</button>
       </div>
     )
   }
