@@ -5,7 +5,6 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 class ElevateApi {
   static async request(endpoint, params = {}, verb = "get") {
     let _token = localStorage.getItem("token");
-
     console.debug("API Call:", endpoint, params, verb);
 
     let q;
@@ -60,9 +59,11 @@ class ElevateApi {
     let res = await this.request(`users`);
 
     // Format hire_date for each user
-    res.users.forEach(user => {
-      user.hire_date = user.hire_date.slice(0, 10);
-    });
+    if (res.users){
+      res.users.forEach(user => {
+        user.hire_date = user.hire_date && user.hire_date.slice(0, 10); // check if the user has hire_date then format
+      });
+    }
 
     return res.users
   }

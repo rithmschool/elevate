@@ -51,6 +51,7 @@ class AdminUserView extends Component {
             </tbody>
           </table>
         </div>
+        <button id="delete-click" onClick={ (e) => { if (window.confirm('Are you sure you want to delete this user?')) this.handleClickX(e) }}>Delete</button>
       </div>
     )
   }

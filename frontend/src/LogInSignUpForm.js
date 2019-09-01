@@ -35,8 +35,6 @@ class LoginSignUpForm extends Component {
     evt.preventDefault();
     let token;
 
-
-
     try {
       if (this.state.isLogin) {
         const data = { email: this.state.email, password: this.state.password };
@@ -51,6 +49,7 @@ class LoginSignUpForm extends Component {
         token = await ElevateApi.signup(data);
       }
     } catch (err) {
+      console.log(err)
       return this.setState({ err })
     }
 

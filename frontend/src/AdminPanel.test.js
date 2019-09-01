@@ -122,4 +122,26 @@ describe('AdminPanel', function() {
     expect(dataRow[5]).toEqual("test");
     expect(dataRow[6]).toEqual("2019-08-29");
   });
+
+  // it('row length of the users-table become zero once click delete button', function () {
+  //   wrapper.find('div[id="users"]').simulate('click')
+  //   wrapper.update();
+
+  //   const rows = wrapper.find('table[id="users-table"]')
+
+    // wrapper.update();
+    // console.log(wrapper.find('tr[id=17]').debug())
+
+
+    // wrapper.find('button[id="delete-click"]').simulate('click');
+    // wrapper.update();
+
+    // const rows = wrapper.find('table[id="users-table"]')
+    // expect(rows.length).toEqual(0);
+    // expect(wrapper.state('view')).toEqual('users');
+    // console.log(wrapper.find('button[id="delete-click"]').debug())
+    // console.log(wrapper.html())
+    // console.log(wrapper.state())
+
+  });
 });
