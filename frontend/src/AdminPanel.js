@@ -32,7 +32,7 @@ class AdminPanel extends Component {
     } catch (err) {
       return err;
     }
-    
+
     this.setState({ users });
     this.setState({ questions });
   }
@@ -48,9 +48,11 @@ class AdminPanel extends Component {
   toggleSidebar = () => {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
-
+  // When clicking on a row, get the userId and change view to userDetail.
+  // This will render AdminUserView component.
   getUserDetail = async evt => {
-    const userId = +evt.target.parentNode.firstElementChild.innerText;
+    const userId = +evt.target.parentNode.firstElementChild.nextSibling.innerText;
+    console.log("userId is:", userId);
     const user = await ElevateApi.getUser(userId);
     user["questions"] = this.state.questions.filter(question =>
       (question.email === user.email)
@@ -58,23 +60,23 @@ class AdminPanel extends Component {
     this.setState({ view: 'userDetail', userDetail: user });
   }
 
-  render(){
-    if (!this.state.users || !this.state.questions){
+  render() {
+    if (!this.state.users || !this.state.questions) {
       return (<div>...Loading</div>);
     }
 
     return (
       <div className="admin-main">
         <div className="admin-panel">
-          { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
+          {mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button>}
           <h1 className="admin-h1">Admin Panel</h1>
-          { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-          { this.state.view === 'users' || this.state.view === 'questions' ? 
-            <AdminTable tableObjs={ this.state[this.state.view] } 
-                        getUserDetail={ this.getUserDetail }
-                        view={ this.state.view } /> : null
+          {this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} />}
+          {this.state.view === 'users' || this.state.view === 'questions' ?
+            <AdminTable tableObjs={this.state[this.state.view]}
+              getUserDetail={this.getUserDetail}
+              view={this.state.view} /> : null
           }
-          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
+          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} /> : null}
         </div>
 
         <div className="admin-navbar">

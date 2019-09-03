@@ -87,7 +87,7 @@ class AdminTable extends Component {
           <thead>
             { this.createTableHeader() }
           </thead>
-          <tbody>
+          <tbody  style={{cursor: "pointer"}}>
             { this.createTableBody() }
           </tbody>
         </Table>
