@@ -99,9 +99,8 @@ class LoginSignUpForm extends Component {
         </div>
 
         <div className="row justify-content-center">
-          <Button className="google-login btn-block mr-3 ml-3">
-            <i className="fa fa-google"></i>
-            Sign in with Google
+          <Button className="g-signin2 google-login btn-block mr-3 ml-3" data-onsuccess="onSignIn">
+          {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
           </Button></div>
 
         <div className="row justify-content-center mt-2">
