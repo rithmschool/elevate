@@ -24,12 +24,6 @@ exports[`AdminNavBar matches snapshot 1`] = `
       Invoices
     </div>
     <div
-      id="templates"
-      onClick={[Function]}
-    >
-      Templates
-    </div>
-    <div
       id="calendar"
       onClick={[Function]}
     >

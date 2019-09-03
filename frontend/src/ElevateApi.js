@@ -48,8 +48,17 @@ class ElevateApi {
     return res.user;
   }
 
+  static async updateUser(userId, data) {
+    let res = await this.request(`users/${userId}`, data, "patch");
+    return res.user;
+  }
   static async getUsers() {
-    let res = await this.request(`users`)
+    let res = await this.request(`users`);
+
+    // Format hire_date for each user
+    res.users.forEach(user => {
+      user.hire_date = user.hire_date.slice(0, 10);
+    });
 
     return res.users
   }
@@ -60,14 +69,41 @@ class ElevateApi {
     let res = await this.request('questions', data, "post");
 
     return res.token;
+
   }
 
+  // Get all questions
   static async getQuestions() {
-    let res = await this.request(`questions`)
+    let res = await this.request(`questions`);
+
+    // Format created_date for each question
+    res.questions.forEach(question => {
+      question.created_date = question.created_date.slice(0, 10);
+    });
 
     return res.questions
+  }
+
+  // Salary Routes
+
+  /** gets the latest slaray for a specific user
+   * input uesrId
+   * return salary object
+  */
+  static async getLatestSalary(userId) {
+    let res = await this.request(`salaries/${userId}`);
+    return res.salaries
+  }
+  /** update salary
+   * input: userId and salary
+   * return new updates salary
+   */
+  static async updateSalary(userId, data) {
+    let res = await this.request(`salaries/${userId}`, data, "patch");
+    return res
   }
 
 }
 
 export default ElevateApi;
+

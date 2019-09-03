@@ -1,9 +1,11 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from './Home';
-import LogInSignUpForm from './LogInSignUpForm';
+import UserProfile from './UserProfile';
+import LogInSignUpForm from'./LogInSignUpForm';
 import AdminPanel from './AdminPanel';
 import AdminPrivateRoute from "./AdminPrivateRoute";
+import UserPrivateRoute from './UserPrivateRoute';
 
 
 class Routes extends React.Component {
@@ -19,6 +21,11 @@ class Routes extends React.Component {
 
 				<AdminPrivateRoute exact path="/admin" render={() =>
 					(<AdminPanel />)} />
+
+				<UserPrivateRoute
+					path="/users/:userId"
+					render={props =>
+						(<UserProfile {...props} />)}/>
 
 				<Redirect to="/" />
 			</Switch>

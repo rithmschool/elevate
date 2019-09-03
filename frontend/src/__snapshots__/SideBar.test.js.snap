@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <Button
+    color="secondary"
+    onClick={[Function]}
+    tag="button"
+  >
+    <i
+      className="fas fa-th-list"
+    />
+  </Button>
+  <div
+    className="sidebar"
+  >
+    <ul
+      className="list-group list-group-flush"
+    >
+      <li
+        className="list-group-item"
+        key="/overview"
+      >
+        <Link
+          onClick={[Function]}
+          to="/overview"
+        >
+          My Comp Overview
+        </Link>
+      </li>
+      <li
+        className="list-group-item"
+        key="/offers"
+      >
+        <Link
+          onClick={[Function]}
+          to="/offers"
+        >
+          My offers
+        </Link>
+      </li>
+      <li
+        className="list-group-item"
+        key="/upload-offer"
+      >
+        <Link
+          onClick={[Function]}
+          to="/upload-offer"
+        >
+          Upload an offer
+        </Link>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
