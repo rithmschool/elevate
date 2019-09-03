@@ -80,7 +80,12 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} updateUserState={this.updateUserState} updateViewState={this.updateViewState} /> : null }
+          {this.state.view === 'userDetail' 
+                                ? <AdminUserView 
+                                  user={this.state.userDetail} 
+                                  updateUserState={this.updateUserState} 
+                                  updateViewState={this.updateViewState} /> 
+                                : null }
         </div>
         
         <div className="admin-navbar">
