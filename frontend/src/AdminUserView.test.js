@@ -45,7 +45,4 @@ describe('AdminUserView', function() {
     expect(wrapper.html()).toContain('Goals');
     expect(wrapper.html()).toContain('Questions');
   });
-
-
-
 });

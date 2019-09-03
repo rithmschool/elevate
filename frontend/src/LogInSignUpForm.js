@@ -37,7 +37,8 @@ class LoginSignUpForm extends Component {
 
     try {
       if (this.state.isLogin) {
-        const data = { email: this.state.email, password: this.state.password };
+        const data = { email: this.state.email, 
+                      password: this.state.password };
         token = await ElevateApi.login(data)
       } else {
         const data = {

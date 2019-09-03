@@ -7,15 +7,13 @@ import AdminPanel from './AdminPanel';
 jest.mock('axios');
 const users = { data: 
                 { "users": [
-                  { "id": 1, 
-                    "first_name": "Test", 
+                  { "first_name": "Test", 
                     "last_name": "User", 
                     "company": "Google", 
                     "hire_date": "2018-06-23T07:00:00.000Z", 
                     "needs": "Talk to financial advisor about salary/equity negotiations.", 
                     "goals": "Increase in equity." }, 
-                  { "id": 2, 
-                    "first_name": "Admin", 
+                  { "first_name": "Admin", 
                     "last_name": "User", 
                     "company": "", 
                     "hire_date": "2019-06-23T07:00:00.000Z", 
@@ -25,8 +23,7 @@ const users = { data:
               }
 const user = { data: 
               {"user":
-                {"id":1,
-                "email":"testuser@gmail.com",
+                {"email":"testuser@gmail.com",
                 "is_admin":false,
                 "first_name":"Test",
                 "last_name":"User",
@@ -39,15 +36,13 @@ const user = { data:
 
 const questions = { data: 
                     { "questions": [
-                      { "user_id": 1, 
-                        "first_name": "Test", 
+                      { "first_name": "Test", 
                         "last_name": "User", 
                         "email": "testuser@gmail.com", 
                         "question": "My employer didnt pay me!", 
                         "created_date": "2019-09-01T19:28:53.468Z", 
                         "resolved": false }, 
-                      { "user_id": 2, 
-                        "first_name": "Admin", 
+                      { "first_name": "Admin", 
                         "last_name": "User", 
                         "email": "admin@gmail.com", 
                         "question": "My employer wants to pay me too much!", 
@@ -57,8 +52,9 @@ const questions = { data:
                     } 
                   }
 
+const id = "17"
 axios.get.mockImplementation((reqUrl) => {
-  if (reqUrl.includes('17')) {
+  if (reqUrl.includes(id)) {
     return user;
   }
   if (reqUrl.includes('users')) {
@@ -70,9 +66,10 @@ axios.get.mockImplementation((reqUrl) => {
 });
 
 describe('AdminPanel', function () {
+
   let wrapper;
   let users = [{
-    id: 17,
+    id: id,
     email: "testadmin@test.com",
     is_admin: true,
     first_name: "admin",
@@ -83,7 +80,7 @@ describe('AdminPanel', function () {
     goals: "Test pass"
   }]
   let questions = [{
-    user_id: 17,
+    user_id: id,
     question: "My employer didn't pay me",
     resolved: false,
     email: "user@test.com",
@@ -94,7 +91,7 @@ describe('AdminPanel', function () {
 
   beforeEach(async () => {
     wrapper = mount(<AdminPanel />);
-    await wrapper.instance().componentDidMount
+    await wrapper.instance().componentDidMount()
     wrapper.setState({ users, questions })
   });
 
@@ -153,7 +150,7 @@ describe('AdminPanel', function () {
 
     const dataRow = rows.first().find('td').map(column => column.text())
     expect(dataRow.length).toEqual(9);
-    expect(dataRow[0]).toEqual("17");
+    expect(dataRow[0]).toEqual(id);
     expect(dataRow[1]).toEqual("testadmin@test.com");
     expect(dataRow[2]).toEqual("");
     expect(dataRow[3]).toEqual("admin");
@@ -181,7 +178,7 @@ describe('AdminPanel', function () {
 
     const dataRow = rows.first().find('td').map(column => column.text());
     expect(dataRow.length).toEqual(7);
-    expect(dataRow[0]).toEqual("17");
+    expect(dataRow[0]).toEqual(id);
     expect(dataRow[1]).toEqual("My employer didn't pay me");
     expect(dataRow[2]).toEqual("");
     expect(dataRow[3]).toEqual("user@test.com");

@@ -42,10 +42,6 @@ class AdminPanel extends Component {
     this.setState({users})
   }
 
-  updateViewState = (view) => {
-    this.setState({view})
-  }
-
   changeView = (view) => {
     this.setState({ view })
   }
@@ -80,12 +76,12 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {this.state.view === 'userDetail' 
-                                ? <AdminUserView 
+          {this.state.view === 'userDetail' && 
+                                <AdminUserView 
                                   user={this.state.userDetail} 
                                   updateUserState={this.updateUserState} 
-                                  updateViewState={this.updateViewState} /> 
-                                : null }
+                                  changeView={this.changeView} /> 
+          }
         </div>
         
         <div className="admin-navbar">

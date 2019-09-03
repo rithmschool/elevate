@@ -13,10 +13,16 @@ class AdminUserView extends Component {
       return err;
     }
       this.props.updateUserState(users)
-      this.props.updateViewState("users")
+      this.props.changeView("users")
   }
   render(){
-    const { first_name, last_name, email, current_company, hire_date, needs, goals } = this.props.user;
+    const { first_name, 
+            last_name, 
+            email, 
+            current_company, 
+            hire_date, 
+            needs, 
+            goals } = this.props.user;
 console.log('AdminUserView')
     return (
       <div className='AdminUserView'>
@@ -51,7 +57,12 @@ console.log('AdminUserView')
             </tbody>
           </table>
         </div>
-        <button id="delete-click" onClick={ (e) => { if (window.confirm('Are you sure you want to delete this user?')) this.handleClickDeleteUser(e) }}>Delete</button>
+        <button id="delete-click" 
+                onClick={ (e) => { 
+                  if (window.confirm('Are you sure you want to delete this user?')) 
+                  this.handleClickDeleteUser(e) 
+                }}>Delete
+        </button>
       </div>
     )
   }

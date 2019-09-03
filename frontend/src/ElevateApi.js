@@ -61,7 +61,8 @@ class ElevateApi {
     // Format hire_date for each user
     if (res.users){
       res.users.forEach(user => {
-        user.hire_date = user.hire_date && user.hire_date.slice(0, 10); // check if the user has hire_date then format
+        // check if the user has hire_date then format
+        user.hire_date = (user.hire_date && user.hire_date.slice(0, 10)); 
       });
     }
 
@@ -97,8 +98,6 @@ class ElevateApi {
 
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete")
-    // let _token = localStorage.getItem("token");
-    // await axios.delete(`http://localhost:3001/users/${id}`,_token);
   }
 
 }
