@@ -52,7 +52,6 @@ class AdminPanel extends Component {
   // This will render AdminUserView component.
   getUserDetail = async evt => {
     const userId = +evt.target.parentNode.firstElementChild.nextSibling.innerText;
-    console.log("userId is:", userId);
     const user = await ElevateApi.getUser(userId);
     user["questions"] = this.state.questions.filter(question =>
       (question.email === user.email)
