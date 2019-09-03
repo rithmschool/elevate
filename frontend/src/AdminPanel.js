@@ -63,7 +63,7 @@ class AdminPanel extends Component {
   }
 
   render(){
-    if (!this.state.users || !this.state.questions){
+    if (!this.state.users || !this.state.questions || !this.state.appointments){
       return (<div>...Loading</div>);
     }
 

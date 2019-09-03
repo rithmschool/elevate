@@ -96,7 +96,6 @@ class ElevateApi {
     let res = await this.request(`appointments`);
     return res.appointments;
   }
-
 }
 
 export default ElevateApi;
