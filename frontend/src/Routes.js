@@ -6,6 +6,7 @@ import LogInSignUpForm from'./LogInSignUpForm';
 import AdminPanel from './AdminPanel';
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import UserPrivateRoute from './UserPrivateRoute';
+import ForgotPassword from './ForgotPassword';
 
 
 class Routes extends React.Component {
@@ -26,6 +27,9 @@ class Routes extends React.Component {
 					path="/users/:userId"
 					render={props =>
 						(<UserProfile {...props} />)}/>
+
+				<Route exact path="/forgotpassword" render={() =>
+					(<ForgotPassword />)} />
 
 				<Redirect to="/" />
 			</Switch>
