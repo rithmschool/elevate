@@ -16,8 +16,9 @@ class AdminPanel extends Component {
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
-      questions:null,
-      userDetail: null
+      questions: null,
+      userDetail: null,
+      appointments: null
     }
   }
 
@@ -25,10 +26,14 @@ class AdminPanel extends Component {
     mql.addListener(this.mediaQueryChanged);
     let users;
     let questions;
+    // let appointments;
 
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
+      
+      //TODO: add API call to getAppointments() data from backend 
+
     } catch(err) {
       return err;
     }
@@ -61,13 +66,15 @@ class AdminPanel extends Component {
       return (<div>...Loading</div>);
     }
 
+// TODO: refactoring logic of this.state.view to render AdminTable for correct view
     return(
       <div className="admin-main">
         <div className="admin-panel">
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
           <h1 className="admin-h1">Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-          { this.state.view === 'users' || this.state.view === 'questions' ? 
+        
+          { this.state.view ? 
             <AdminTable tableObjs={ this.state[this.state.view] } 
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
