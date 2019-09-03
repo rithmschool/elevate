@@ -72,12 +72,17 @@ class ElevateApi {
     let res = await this.request(`salaries/${userId}`, data, "patch");
     return res
   }
+  static async postSalary(data){
+    let res = await this.request(`salaries/`, data, "post");
+    return res;
+  }
 
   static async getQuestions() {
     let res = await this.request(`questions`)
-
     return res.questions
   }
+
+  
 
 }
 
