@@ -1,6 +1,7 @@
 import React from "react";
 import {UserContext} from "./UserContext"
-import UserInfoEditForm from './UserInfoEditForm';
+import UserBasicInfoForm from './UserBasicInfoForm';
+import UserSalaryInfoForm from './UserSalaryInfoForm'
 import ElevateApi from './ElevateApi';
 import { Row, Col } from 'reactstrap';
 import Spinner from './Spinner';
@@ -17,24 +18,19 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEdit: false,
       lastestSalary: null,
       isLoading: true,
-      hasSalaryRecord: true,
       errors: [],
       saveConfirmed: false,
+      hasSalaryRecord: true,
     }
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleSalaryUpdate = this.handleSalaryUpdate.bind(this);
-    this.toggleEdit = this.toggleEdit.bind(this)
+    
 
   }
 
-  toggleEdit(){
-    this.setState({
-      isEdit: !this.state.isEdit
-    });
-  }
+
   /**
    * check if the user has any salary records in salaries table
    * if No set hasSalaryRecord to false and create latestSalary object with default values of 0
@@ -52,19 +48,33 @@ class UserProfile extends React.Component {
           bonus: 0,
           equity: 0
         }
-        this.setState({lastestSalary, isLoading: false});
+        this.setState({lastestSalary, isLoading: false, hasSalaryRecord: false});
       }
   }
 
-  async handleSalaryUpdate(salary, currentCompany){
-    // can't update salary without providing the company name
-    if(currentCompany.length === 0 && Object.values({...salary, user_id: 0}).some( i=> i>0)) {
-      let errors = ['You should provide a company name'];
-      this.setState({ errors });
+  async handleSalaryUpdate(salary){
+    if(!this.state.hasSalaryRecord){
+      try{
+        let res = await ElevateApi.postSalary(salary);
+        console.log('salary response',res)
+        this.setState(
+          {
+            errors: [],
+            saveConfirmed: true,
+            isEdit: false,
+          }, () => {
+            // after a short period, remove status message
+            setTimeout(
+              () => this.setState({ saveConfirmed: false }),
+              MESSAGE_SHOW_PERIOD_IN_MSEC);
+          });
+      } catch (errors) {
+          this.setState({ errors });
+        }
     }
-    else{      
+    else {
         try{
-          await ElevateApi.updateSalary(this.context.userId, salary)
+          let res = await ElevateApi.updateSalary(this.context.userId, salary);
           this.setState(
             {
               errors: [],
@@ -79,8 +89,7 @@ class UserProfile extends React.Component {
         } catch (errors) {
             this.setState({ errors });
           }
-      
-    } 
+        }
 }
 // update user infos
   async handleUserUpdate(updateUser,userId){
@@ -110,34 +119,45 @@ class UserProfile extends React.Component {
 
     return (
       <div className="container">
+        {this.state.errors.length ? (
+              <Alert type="danger" messages={this.state.errors} />
+            ) : null}
+
+            {this.state.saveConfirmed ? (
+              <Alert type="success"
+                    messages={["Updated successfully."]} />
+            ) : null}
+        <Row>
+         <Col md={6}>
+            <h3 className="text-info">User information</h3>
+          </Col>
+        </Row>
         <br></br>
         <Row>
-          <Col sm="8">
+          <Col md={6}>
           <div >
-          {this.state.errors.length ? (
-                  <Alert type="danger" messages={this.state.errors} />
-                ) : null}
-
-                {this.state.saveConfirmed ? (
-                  <Alert type="success"
-                        messages={["Basic info updated successfully."]} />
-                ) : null}
-
-            <UserInfoEditForm
+            <UserBasicInfoForm
               handleUserUpdate={this.handleUserUpdate}
               handleSalaryUpdate={this.handleSalaryUpdate}
-              toggleEdit={this.toggleEdit}
-              isEdit={this.state.isEdit}
-              {...lastestSalary}
               {...currentUser}
-              userId={currentUser.userId}/>
-              
+              />
           </div>
           </Col>
         </Row>
+        <br></br>
+        <Row>
+          <Col md={6}>
+          <div >
+
+            <UserSalaryInfoForm
+              handleSalaryUpdate={this.handleSalaryUpdate}
+              {...lastestSalary}
+              />
+          </div>
+          </Col>
+          </Row>
       </div>  
     )
   } 
 }
-
 export default UserProfile;
