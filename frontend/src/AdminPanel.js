@@ -38,7 +38,7 @@ class AdminPanel extends Component {
   }
 
   // get update users after delete a user in AdminUserView
-  updateState = (users) => {
+  updateUserState = (users) => {
     this.setState({users})
   }
 
@@ -80,7 +80,7 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} updateState={this.updateState} updateViewState={this.updateViewState} /> : null }
+          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail} updateUserState={this.updateUserState} updateViewState={this.updateViewState} /> : null }
         </div>
         
         <div className="admin-navbar">
