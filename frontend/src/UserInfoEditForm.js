@@ -135,6 +135,7 @@ class UserInfoEditForm extends React.Component {
             <Input onChange={this.handleChange}
                     value={this.state.salary}
                     type="number" name="salary"
+                    step="10000"
                     id="EditUser-salary" 
                     disabled={!isEdit}/>
             <span>salary</span>
@@ -145,6 +146,7 @@ class UserInfoEditForm extends React.Component {
             <Input onChange={this.handleChange}
                     value={this.state.equity}
                     type="number" name="equity"
+                    step="0.1"
                     id="EditUser-salary" 
                     disabled={!isEdit}/>
             <span>Equity</span>
@@ -155,6 +157,7 @@ class UserInfoEditForm extends React.Component {
             <Input onChange={this.handleChange}
                     value={this.state.bonus}
                     type="number" name="bonus"
+                    step="1000"
                     id="EditUser-salary" 
                     disabled={!isEdit}/>
             <span>Bonus</span>

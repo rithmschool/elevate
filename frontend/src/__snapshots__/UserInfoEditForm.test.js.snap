@@ -314,6 +314,7 @@ exports[`matches snapshot after loading 1`] = `
             id="EditUser-salary"
             name="salary"
             onChange={[Function]}
+            step="10000"
             type="number"
           />
           <span>
@@ -352,6 +353,7 @@ exports[`matches snapshot after loading 1`] = `
             id="EditUser-salary"
             name="equity"
             onChange={[Function]}
+            step="0.1"
             type="number"
           />
           <span>
@@ -390,6 +392,7 @@ exports[`matches snapshot after loading 1`] = `
             id="EditUser-salary"
             name="bonus"
             onChange={[Function]}
+            step="1000"
             type="number"
           />
           <span>
@@ -740,6 +743,7 @@ exports[`matches snapshot while loading 1`] = `
             id="EditUser-salary"
             name="salary"
             onChange={[Function]}
+            step="10000"
             type="number"
           />
           <span>
@@ -778,6 +782,7 @@ exports[`matches snapshot while loading 1`] = `
             id="EditUser-salary"
             name="equity"
             onChange={[Function]}
+            step="0.1"
             type="number"
           />
           <span>
@@ -816,6 +821,7 @@ exports[`matches snapshot while loading 1`] = `
             id="EditUser-salary"
             name="bonus"
             onChange={[Function]}
+            step="1000"
             type="number"
           />
           <span>
