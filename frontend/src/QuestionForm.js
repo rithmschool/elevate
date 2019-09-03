@@ -89,8 +89,13 @@ class QuestionForm extends Component {
     if (newState.formValid.email !== false && newState.formValid.question !== false) {
 
       // Create question and disable form.
-      await ElevateApi.createQuestion(this.state.inputs)
-      this.setState({ questionSubmitted: true })
+      try {
+        await ElevateApi.createQuestion(this.state.inputs)
+        this.setState({ questionSubmitted: true })
+      }
+      catch (err) {
+        console.error(err);
+      }
       // TODO: Redirect to profile page
     }
     else {
@@ -119,7 +124,7 @@ class QuestionForm extends Component {
 
     return (
       <div>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Col>
             {/* Question Input */}
             <FormGroup>
@@ -142,7 +147,7 @@ class QuestionForm extends Component {
           {this.context ? null : emailInput}
 
           {/* End of form fields */}
-          <Button type="submit" disabled={this.state.questionSubmitted} color="primary" className="m-1" onClick={this.handleSubmit}>Submit Question</Button>
+          <Button type="submit" disabled={this.state.questionSubmitted} color="primary" className="m-1">Submit Question</Button>
 
           {this.state.questionSubmitted ? <h4>Thanks for your question! Our legal experts will get back to you promptly.</h4> : null}
         </Form >

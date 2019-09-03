@@ -29,21 +29,22 @@ it('Should capture email correctly onChange', function () {
   expect(component.state().inputs.email).toEqual('test@gmail.com');
 })
 
-// TODO: Simulate a submit and make sure the validation passes and the thank you message appears.
+it('should submit, pass validation, and return a thanks message', function () {
+  const component = mount(<QuestionForm />);
+  const instance = component.instance()
+  const spy = jest.spyOn(instance, "handleSubmit");
 
-// it('should submit, pass validation, and return a thanks message', function () {
-//   const component = mount(<QuestionForm />);
+  const emailInput = component.find('input').at(0);
+  emailInput.instance().value = 'test@gmail.com';
+  emailInput.simulate('change');
 
-//   const emailInput = component.find('input').at(0);
-//   emailInput.instance().value = 'test@gmail.com';
-//   emailInput.simulate('change');
+  const questionInput = component.find('textarea').at(0);
+  questionInput.instance().value = 'This is a test question?';
+  questionInput.simulate('change');
+  const submit = component.find('form').at(0);
+  submit.simulate('submit');
+  component.update()
 
-//   const questionInput = component.find('textarea').at(0);
-//   questionInput.instance().value = 'This is a test question?';
-//   questionInput.simulate('change');
+  expect(instance.handleSubmit).toHaveBeenCalled();
 
-//   const form = component.find('form');
-//   form.simulate('submit');
-// expect(component.state().questionSubmitted).toEqual(true);
-
-// });
+});
