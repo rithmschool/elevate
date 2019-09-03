@@ -5,9 +5,57 @@ import toJson from "enzyme-to-json";
 import AdminPanel from './AdminPanel';
 
 jest.mock('axios');
-const users = { data: { "users": [{ "id": 1, "first_name": "Test", "last_name": "User", "company": "Google", "hire_date": "2018-06-23T07:00:00.000Z", "needs": "Talk to financial advisor about salary/equity negotiations.", "goals": "Increase in equity." }, { "id": 2, "first_name": "Admin", "last_name": "User", "company": "", "hire_date": "2019-06-23T07:00:00.000Z", "needs": "", "goals": "" }] } }
-const user = {data: {"user":{"id":1,"email":"testuser@gmail.com","is_admin":false,"first_name":"Test","last_name":"User","current_company":"Google","hire_date":"2018-06-23T07:00:00.000Z","needs":"Talk to financial advisor about salary/equity negotiations.","goals":"Increase in equity."}}}
-const questions = { data: { "questions": [{ "user_id": 1, "first_name": "Test", "last_name": "User", "email": "testuser@gmail.com", "question": "My employer didnt pay me!", "created_date": "2019-09-01T19:28:53.468Z", "resolved": false }, { "user_id": 2, "first_name": "Admin", "last_name": "User", "email": "admin@gmail.com", "question": "My employer wants to pay me too much!", "created_date": "2019-09-01T19:28:53.468Z", "resolved": false }] } }
+const users = { data: 
+                { "users": [
+                  { "id": 1, 
+                    "first_name": "Test", 
+                    "last_name": "User", 
+                    "company": "Google", 
+                    "hire_date": "2018-06-23T07:00:00.000Z", 
+                    "needs": "Talk to financial advisor about salary/equity negotiations.", 
+                    "goals": "Increase in equity." }, 
+                  { "id": 2, 
+                    "first_name": "Admin", 
+                    "last_name": "User", 
+                    "company": "", 
+                    "hire_date": "2019-06-23T07:00:00.000Z", 
+                    "needs": "", "goals": "" }
+                  ] 
+                } 
+              }
+const user = { data: 
+              {"user":
+                {"id":1,
+                "email":"testuser@gmail.com",
+                "is_admin":false,
+                "first_name":"Test",
+                "last_name":"User",
+                "current_company":"Google",
+                "hire_date":"2018-06-23T07:00:00.000Z",
+                "needs":"Talk to financial advisor about salary/equity negotiations.",
+                "goals":"Increase in equity."}
+              }
+            }
+
+const questions = { data: 
+                    { "questions": [
+                      { "user_id": 1, 
+                        "first_name": "Test", 
+                        "last_name": "User", 
+                        "email": "testuser@gmail.com", 
+                        "question": "My employer didnt pay me!", 
+                        "created_date": "2019-09-01T19:28:53.468Z", 
+                        "resolved": false }, 
+                      { "user_id": 2, 
+                        "first_name": "Admin", 
+                        "last_name": "User", 
+                        "email": "admin@gmail.com", 
+                        "question": "My employer wants to pay me too much!", 
+                        "created_date": "2019-09-01T19:28:53.468Z", 
+                        "resolved": false }
+                      ] 
+                    } 
+                  }
 
 axios.get.mockImplementation((reqUrl) => {
   if (reqUrl.includes('17')) {

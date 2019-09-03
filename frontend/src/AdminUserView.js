@@ -12,7 +12,7 @@ class AdminUserView extends Component {
     } catch(err) {
       return err;
     }
-      this.props.updateState(users)
+      this.props.updateUserState(users)
       this.props.updateViewState("users")
   }
   render(){
