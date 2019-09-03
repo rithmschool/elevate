@@ -30,6 +30,7 @@ class UserCharge extends Component {
         this.setState({chargeRemoved:true, checking:false})
     }
    }
+   /**FIXME: payment form */
     render() {
         const charge = this.props
        
@@ -42,7 +43,7 @@ class UserCharge extends Component {
                         <td>{charge.description}</td>
                         
                         </tr>
-                        {/* <PaymentForm /> */}
+                        <PaymentForm />
                 </tbody>
                  
 

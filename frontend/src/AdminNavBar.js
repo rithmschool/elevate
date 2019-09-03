@@ -12,7 +12,6 @@ class AdminNavBar extends Component {
         <div id="users" onClick={this.handleClick}>Users</div>
         <div id="questions" onClick={this.handleClick}>Questions</div>
         <div id="invoices" onClick={this.handleClick}>Invoices</div>
-        <div id="templates" onClick={this.handleClick}>Templates</div>
         <div id="calendar" onClick={this.handleClick}>Calendar</div>
       </div>
     )

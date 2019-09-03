@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', authRequired, async function (req, res, next) {
   try {
     const questions = await Question.findAll();
-    console.log("questions", questions)
+
     return res.json({ questions });
   } catch (err) {
     return next(err);

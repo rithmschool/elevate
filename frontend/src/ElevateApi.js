@@ -57,7 +57,13 @@ class ElevateApi {
     return res.user;
   }
   static async getUsers() {
-    let res = await this.request(`users`)
+    let res = await this.request(`users`);
+
+    // Format hire_date for each user
+    res.users.forEach(user => {
+      user.hire_date = user.hire_date.slice(0, 10);
+    });
+
     return res.users
   }
   /** gets the latest slaray for a specific user
@@ -78,7 +84,12 @@ class ElevateApi {
   }
 
   static async getQuestions() {
-    let res = await this.request(`questions`)
+    let res = await this.request(`questions`);
+
+    // Format created_date for each question
+    res.questions.forEach(question => {
+      question.created_date = question.created_date.slice(0, 10);
+    });
 
     return res.questions
   }
