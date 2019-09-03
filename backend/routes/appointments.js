@@ -17,9 +17,9 @@ router.get('/', authRequired, async function (req, res, next) {
 });
 
 // GET---endpoint for getting appointments matched with params email
-router.get('/:email', authRequired, async function (req, res, next) {
+router.get('/:userId', authRequired, async function (req, res, next) {
     try {
-        let appointments = await Appointment.findAppointmentsByUserEmail(req.params.email);
+        let appointments = await Appointment.findAppointmentsByUserId(req.params.userId);
         return res.json({ appointments });
     } catch (err) {
         next(err);

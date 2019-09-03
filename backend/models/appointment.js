@@ -34,7 +34,7 @@ class Appointment {
     return appointments;
   }
 
-  /** find appointments by user email from elevate appointments database
+  /** find appointments by user id from elevate appointments database
   { appointments: [{
   user_id, 
   first_name, 
@@ -49,19 +49,18 @@ class Appointment {
   }]}
   */
 
-  static async findAppointmentsByUserEmail(email) {
-
+  static async findAppointmentsByUserId(userId) {
     const result = await db.query(
       `SELECT  user_id, users.first_name, users.last_name, users.email, created_at, event_type, event_type_name, start_time_pretty, location, canceled
       FROM appointments
       JOIN users on users.id = appointments.user_id
-      WHERE users.email = $1
-       `, [email]);
+      WHERE users.id = $1
+       `, [userId]);
 
-    let appointments = result.rows[0];
+    let appointments = result.rows;
 
     if (!appointments) {
-      const error = new Error(`no appointment for ${email}`);
+      const error = new Error(`no appointment for user id ${userId}`);
       error.status = 404;   // 404 NOT FOUND
       throw error;
     }
