@@ -114,6 +114,21 @@ class User {
     return user;
   }
 
+  /** Given a user email, return data about user. */
+  static async findUserbyEmail(email) {
+    const result = await db.query(
+      `SELECT id, email, first_name, last_name
+        FROM users 
+        WHERE email = $1`,
+      [email]
+    );
+    const user = result.rows[0];
+
+    if (!user) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+    return user;
+  }
   
   /** Update user data with `data`.
    *
