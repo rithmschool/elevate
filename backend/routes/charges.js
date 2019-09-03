@@ -8,7 +8,7 @@ const User = require('../models/User');
 //const {getData} = require("../../date.js")
 
 /**add a new charge to the database */
-router.post("/new" , adminRequired, async function (req, res, next) {
+router.post("/new", adminRequired, async function (req, res, next) {
   try {
     const newCharge = await Charges.create(req.body);
     return res.json(newCharge)
@@ -20,7 +20,7 @@ router.post("/new" , adminRequired, async function (req, res, next) {
 
 });
 /**Get All charges for admin */
-router.get("/", authRequired,adminRequired, async function (req, res, next) {
+router.get("/", authRequired, adminRequired, async function (req, res, next) {
 
   let charges = await Charges.findAll();
   if (charges.length === 0) {
@@ -31,15 +31,12 @@ router.get("/", authRequired,adminRequired, async function (req, res, next) {
 
 /**GET all outstanding charges for individual user*/
 router.get("/:id", authRequired, ensureCorrectUser, async function (req, res, next) {
-  console.log("Hello")
   try {
-  const userId = req.params.id;
-  console.log(userId,"userid")
-  let charges = await Charges.findChargesDue(userId);
-  console.log(charges,"Maraharges")
-  /**put nice message if there is no charges */
-  return res.json({ charges });
-  } catch(err) {
+    const userId = req.params.id;
+    let charges = await Charges.findChargesDue(userId);
+    /**put nice message if there is no charges */
+    return res.json({ charges });
+  } catch (err) {
     return next(err);
   }
 });
@@ -47,27 +44,28 @@ router.get("/:id", authRequired, ensureCorrectUser, async function (req, res, ne
 /**GET all user charges for individual user*/
 router.get("/user/:id", adminRequired, async function (req, res, next) {
   try {
-  const userId = req.params.id;
-  let charges = await Charges.chargesForUser(userId);
-  /**put nice message if there is no charges */
-  return res.json({ charges });
-  } catch(err) {
+    const userId = req.params.id;
+    let charges = await Charges.chargesForUser(userId);
+    /**put nice message if there is no charges */
+    return res.json({ charges });
+  } catch (err) {
     return next(err);
   }
 });
 
 
 /**update the charge to completed */
-router.patch("/" ,authRequired, async function (req, res, next) {
+router.patch("/", authRequired, async function (req, res, next) {
   var dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1; //months from 1-12
   var day = dateObj.getUTCDate();
   var year = dateObj.getUTCFullYear();
   let date = year + "/" + month + "/" + day;
   try {
+    console.log(req.body);
     const chargeDetails = await Charges.getCharge(req.body.chargeId);
     if (chargeDetails === undefined) {
-      return res.json("No charge exits or already payed")
+      return res.json("No charge exists or already payed")
     }
     const status = await Charges.makeStripePayment(chargeDetails, req.body.token);
     if (status === 'succeeded') {
@@ -89,11 +87,10 @@ router.patch("/" ,authRequired, async function (req, res, next) {
 
 
 /**delete a charge in the db by the ADMIN ONLY */
-router.delete("/:chargeId" ,async function (req, res, next) {
-  console.log("got here")
+router.delete("/:chargeId", async function (req, res, next) {
   try {
     const response = await Charges.remove(req.params.chargeId);
-    if(!response) {
+    if (!response) {
       return res.json("this charge does not exist")
     }
     return res.json("Charge deleted!");

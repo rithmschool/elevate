@@ -10,7 +10,6 @@ const router = express.Router();
 /** GET / => {users: [user, ...]} */
 
 router.get('/', authRequired, async function (req, res, next) {
-  console.log(req,"req")
   try {
     const users = await User.findAll();
     return res.json({ users });
@@ -22,7 +21,6 @@ router.get('/', authRequired, async function (req, res, next) {
 /** GET / a specific user => {user: user} */
 
 router.get('/:id', authRequired, ensureCorrectUser, async function (req, res, next) {
-  console.log("hello")
   try {
     const user = await User.findOne(req.params.id);
     return res.json({ user });

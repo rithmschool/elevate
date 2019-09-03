@@ -16,10 +16,8 @@ class UserCharges extends Component {
   async componentDidMount() {
 
     let { charges } = await ElevateApi.getCharges(this.props.userId);
-    console.log(charges,"CHarges")
     
     this.setState({ charges: charges }, () => {
-      console.log('this.state.........', this.state)
     });
   }
 

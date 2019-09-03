@@ -40,7 +40,7 @@ class AdminPanelCharges extends Component {
         let message;
         let button;
         if (!this.state.checking && !this.state.chargeRemoved) {
-            button = <Button color="danger" onClick={this.handleClick}>Remove this charge</Button>
+            button = <Button size="sm"  color="danger" onClick={this.handleClick}>Remove this charge</Button>
         }
        else if (!this.state.chargeRemoved) {
         button =  <div>

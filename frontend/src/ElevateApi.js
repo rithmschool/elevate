@@ -107,7 +107,6 @@ class ElevateApi {
   static async getCharges(id) {
     
     let res = await this.request(`charges/${id}`);
-    console.log(res,"RES")
     return res;
   }
 
@@ -117,7 +116,6 @@ class ElevateApi {
   }
 
   static async deleteCharge(id) {
-    console.log("here")
     let res = await this.request(`charges/${id}`,"",'delete');
     return res;
   }
