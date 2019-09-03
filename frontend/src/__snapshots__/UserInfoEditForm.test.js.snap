@@ -271,7 +271,7 @@ exports[`matches snapshot after loading 1`] = `
             name="hire_date"
             onChange={[Function]}
             type="date"
-            value="2019-09-02"
+            value="2019-09-03"
           />
           <span>
             Hire date
@@ -697,7 +697,7 @@ exports[`matches snapshot while loading 1`] = `
             name="hire_date"
             onChange={[Function]}
             type="date"
-            value="2019-09-02"
+            value="2019-09-03"
           />
           <span>
             Hire date
