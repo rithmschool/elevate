@@ -65,9 +65,6 @@ describe('AdminPanel', function() {
     wrapper.find('div[id="invoices"]').simulate('click');
     expect(wrapper.state('view')).toEqual('invoices');
 
-    wrapper.find('div[id="templates"]').simulate('click');
-    expect(wrapper.state('view')).toEqual('templates');
-
     wrapper.find('div[id="calendar"]').simulate('click');
     expect(wrapper.state('view')).toEqual('calendar');
   });
@@ -79,8 +76,8 @@ describe('AdminPanel', function() {
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
   });
 
-  it('show expect user data in the table', function () {
-    wrapper.setState({users})
+  it('show expected user data in the table', function () {
+    wrapper.setState({users});
     wrapper.find('div[id="users"]').simulate('click')
     wrapper.update();
 
@@ -88,13 +85,16 @@ describe('AdminPanel', function() {
     expect(rows.length).toEqual(1);
 
     const dataRow = rows.first().find('td').map(column => column.text())
-    expect(dataRow.length).toEqual(6)
-    expect(dataRow[0]).toEqual("17")
-    expect(dataRow[1]).toEqual("admin test")
-    expect(dataRow[2]).toEqual("testcompany")
-    expect(dataRow[3]).toEqual("2018-06-23")
-    expect(dataRow[4]).toEqual("To test user data")
-    expect(dataRow[5]).toEqual("Test pass")
+    expect(dataRow.length).toEqual(9);
+    expect(dataRow[0]).toEqual("17");
+    expect(dataRow[1]).toEqual("testadmin@test.com");
+    expect(dataRow[2]).toEqual("");
+    expect(dataRow[3]).toEqual("admin");
+    expect(dataRow[4]).toEqual("test");
+    expect(dataRow[5]).toEqual("testcompany");
+    expect(dataRow[6]).toEqual("2018-06-23");
+    expect(dataRow[7]).toEqual("To test user data");
+    expect(dataRow[8]).toEqual("Test pass");
   });
 
   it('renders the questions table when view state is questions', function () {
@@ -104,7 +104,7 @@ describe('AdminPanel', function() {
     expect(wrapper.find('table[id="questions-table"]')).toHaveLength(1);
   });
 
-  it('show expect user data in the table', function () {
+  it('show expected question data in the table', function () {
     wrapper.setState({questions})
     wrapper.find('div[id="questions"]').simulate('click')
     wrapper.update();
@@ -112,13 +112,14 @@ describe('AdminPanel', function() {
     const rows = wrapper.find('table[id="questions-table"]')
     expect(rows.length).toEqual(1);
 
-    const dataRow = rows.first().find('td').map(column => column.text())
-    expect(dataRow.length).toEqual(6)
-    expect(dataRow[0]).toEqual("17")
-    expect(dataRow[1]).toEqual("user test")
-    expect(dataRow[2]).toEqual("user@test.com")
-    expect(dataRow[3]).toEqual("My employer didn't pay me")
-    expect(dataRow[4]).toEqual("false")
-    expect(dataRow[5]).toEqual("2019-08-29")
+    const dataRow = rows.first().find('td').map(column => column.text());
+    expect(dataRow.length).toEqual(7);
+    expect(dataRow[0]).toEqual("17");
+    expect(dataRow[1]).toEqual("My employer didn't pay me");
+    expect(dataRow[2]).toEqual("");
+    expect(dataRow[3]).toEqual("user@test.com");
+    expect(dataRow[4]).toEqual("user");
+    expect(dataRow[5]).toEqual("test");
+    expect(dataRow[6]).toEqual("2019-08-29");
   });
 });
