@@ -23,11 +23,9 @@ class UserBasicInfoForm extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this)
   }
  // toggle edit form
-  toggleEdit(){
-    this.setState({
-      isEdit: !this.state.isEdit
-    });
-  }
+ toggleEdit() {
+  this.setState(state => ({isEdit: !state.isEdit }));
+}
 
  // sync state values with inputs values
   handleChange(evt){
