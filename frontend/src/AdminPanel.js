@@ -26,13 +26,13 @@ class AdminPanel extends Component {
     mql.addListener(this.mediaQueryChanged);
     let users;
     let questions;
-    // let appointments;
+    let appointments;
 
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
-      
-      //TODO: add API call to getAppointments() data from backend 
+      appointments = await ElevateApi.getAppointments();
+    
 
     } catch(err) {
       return err;
@@ -40,6 +40,7 @@ class AdminPanel extends Component {
     
     this.setState({ users });
     this.setState({ questions });
+    this.setState({ appointments });
   }
 
   changeView = view => {
