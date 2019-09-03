@@ -59,6 +59,37 @@ class LoginSignUpForm extends Component {
     this.props.history.push("/");
   }
 
+  googleOath = () => {
+    // Google's OAuth 2.0 endpoint for requesting an access token
+    const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+    // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+    let form = document.createElement('form');
+    form.setAttribute('method', 'GET'); // Send as a GET request.
+    form.setAttribute('action', oauth2Endpoint);
+
+    // Parameters to pass to OAuth 2.0 endpoint.
+    const params = {'client_id': '98215850405-5arv9rvobnbgdldm7jij5pql8tbarse7.apps.googleusercontent.com',
+                    'redirect_uri': 'http://127.0.0.1:3000',
+                    'response_type': 'token',
+                    'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                    'include_granted_scopes': 'true',
+                    'state': 'pass-through value'};
+
+    // Add form parameters as hidden input values.
+    for (let p in params) {
+      let input = document.createElement('input');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', p);
+      input.setAttribute('value', params[p]);
+      form.appendChild(input);
+    }
+
+    // Add form to page and submit it to open the OAuth 2.0 endpoint.
+    document.body.appendChild(form);
+    form.submit();
+  }
+
   render() {
     let loginState = this.state.isLogin;
     let text = loginState ? "Sign In" : "Sign Up"
@@ -99,8 +130,11 @@ class LoginSignUpForm extends Component {
         </div>
 
         <div className="row justify-content-center">
-          <Button className="g-signin2 google-login btn-block mr-3 ml-3" data-onsuccess="onSignIn">
-          {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
+          <Button className="g-signin2 google-login btn-block mr-3 ml-3"
+                  data-onsuccess="onSignIn"
+                  onClick={ this.googleOath }>
+            <i className="fa fa-google"></i>
+            Sign in with Google
           </Button></div>
 
         <div className="row justify-content-center mt-2">
