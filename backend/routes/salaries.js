@@ -34,7 +34,6 @@ router.get('/:id', authRequired, async function (req, res, next) {
 /** POST / {salaryData} =>  {salaries: newSalary} */
 
 router.post('/', authRequired, async function (req, res, next) {
-  console.log('hereeeee..',req.body)
   try {
     const salary = await Salary.create(req.body);
     return res.status(201).json({ salary });

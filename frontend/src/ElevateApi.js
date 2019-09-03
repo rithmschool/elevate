@@ -56,18 +56,12 @@ class ElevateApi {
     let res = await this.request(`users`)
     return res.users
   }
-  /** gets the latest slaray for a specific user
-   * input uesrId
-   * return salary object
-  */
+
   static async getLatestSalary(userId) {
     let res = await this.request(`salaries/${userId}`);
     return res.salaries
   }
-/** update salary
- * input: userId and salary
- * return new updates salary
- */
+
   static async updateSalary(userId, data) {
     let res = await this.request(`salaries/${userId}`, data, "patch");
     return res
@@ -82,9 +76,6 @@ class ElevateApi {
     return res.questions
   }
 
-  
-
 }
 
 export default ElevateApi;
-
