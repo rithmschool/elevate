@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import Alert from "./Alert";
 
@@ -19,4 +19,34 @@ it("matches snapshot for success", function() {
   let wrapper = shallow(<Alert type="success" messages={messages} />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
+});
+
+describe('Test error messages', function() {
+  let wrapper;
+  let messages = ["Everything is broken"];
+  beforeEach(() => {
+    wrapper = mount(<Alert type="danger" messages={messages} />);
+  });
+
+  it('render the props', function () {
+    expect(wrapper.find('div.alert-danger')).toHaveLength(1);
+    expect(wrapper.find('p.small')).toHaveLength(1);
+    expect(wrapper.find('p').text()).toEqual('Everything is broken');
+  });
+});
+
+describe('Test success messages', function() {
+  let wrapper;
+  let messages = ["Everything is awesome!"];
+  beforeEach(() => {
+    wrapper = mount(<Alert type="success" messages={messages} />);
+  });
+
+  it('render the props', function () {
+    expect(wrapper.find('div.alert-success')).toHaveLength(1);
+    expect(wrapper.find('p.small')).toHaveLength(1);
+    expect(wrapper.find('p').text()).toEqual('Everything is awesome!');
+    
+    
+  });
 });

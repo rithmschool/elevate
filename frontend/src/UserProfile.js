@@ -56,7 +56,6 @@ class UserProfile extends React.Component {
     if(!this.state.hasSalaryRecord){
       try{
         let res = await ElevateApi.postSalary(salary);
-        console.log('salary response',res)
         this.setState(
           {
             errors: [],
@@ -74,7 +73,7 @@ class UserProfile extends React.Component {
     }
     else {
         try{
-          let res = await ElevateApi.updateSalary(this.context.userId, salary);
+          await ElevateApi.updateSalary(this.context.userId, salary);
           this.setState(
             {
               errors: [],
@@ -114,19 +113,16 @@ class UserProfile extends React.Component {
   render(){
     const currentUser = this.context;
     const lastestSalary = this.state.lastestSalary;
-    if(this.state.isLoading)
-      return <Spinner/>;
+    if(this.state.isLoading)return <Spinner/>;
 
     return (
       <div className="container">
-        {this.state.errors.length ? (
-              <Alert type="danger" messages={this.state.errors} />
-            ) : null}
+        {this.state.errors.length > 0 &&
+              <Alert type="danger" messages={this.state.errors} />}
 
-            {this.state.saveConfirmed ? (
+            {this.state.saveConfirmed &&
               <Alert type="success"
-                    messages={["Updated successfully."]} />
-            ) : null}
+                    messages={["Updated successfully."]} />}
         <Row>
          <Col md={6}>
             <h3 className="text-info">User information</h3>

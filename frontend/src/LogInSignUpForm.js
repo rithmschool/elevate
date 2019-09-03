@@ -132,9 +132,8 @@ class LoginSignUpForm extends Component {
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
           {/* handle login failure */}
-          {this.state.errors.length ? (
-            <Alert type="danger" messages={["Invalid Email or Password"]} />
-            ): null}
+          {this.state.errors.length > 0 && 
+            <Alert type="danger" messages={["Invalid Email or Password"]} />}
 
             <div className="mb-3">{text}</div>
             <Form.Group>
