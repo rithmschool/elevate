@@ -17,7 +17,7 @@ class AdminUserView extends Component {
   }
   render(){
     const { first_name, last_name, email, current_company, hire_date, needs, goals } = this.props.user;
-
+console.log('AdminUserView')
     return (
       <div className='AdminUserView'>
         <div>

@@ -58,8 +58,7 @@ class AdminPanel extends Component {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-  getUserDetail = async evt => {
-    const userId = +evt.target.parentNode.firstElementChild.innerText;
+  getUserDetail = async (userId) => {
     const user = await ElevateApi.getUser(userId);
     
     this.setState({ view: 'userDetail', userDetail: user });

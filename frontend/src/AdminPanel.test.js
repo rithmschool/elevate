@@ -1,20 +1,38 @@
 import React from 'react';
+import axios from 'axios';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
 import AdminPanel from './AdminPanel';
 
-describe('AdminPanel', function() {
+jest.mock('axios');
+const users = { data: { "users": [{ "id": 1, "first_name": "Test", "last_name": "User", "company": "Google", "hire_date": "2018-06-23T07:00:00.000Z", "needs": "Talk to financial advisor about salary/equity negotiations.", "goals": "Increase in equity." }, { "id": 2, "first_name": "Admin", "last_name": "User", "company": "", "hire_date": "2019-06-23T07:00:00.000Z", "needs": "", "goals": "" }] } }
+const user = {data: {"user":{"id":1,"email":"testuser@gmail.com","is_admin":false,"first_name":"Test","last_name":"User","current_company":"Google","hire_date":"2018-06-23T07:00:00.000Z","needs":"Talk to financial advisor about salary/equity negotiations.","goals":"Increase in equity."}}}
+const questions = { data: { "questions": [{ "user_id": 1, "first_name": "Test", "last_name": "User", "email": "testuser@gmail.com", "question": "My employer didnt pay me!", "created_date": "2019-09-01T19:28:53.468Z", "resolved": false }, { "user_id": 2, "first_name": "Admin", "last_name": "User", "email": "admin@gmail.com", "question": "My employer wants to pay me too much!", "created_date": "2019-09-01T19:28:53.468Z", "resolved": false }] } }
+
+axios.get.mockImplementation((reqUrl) => {
+  if (reqUrl.includes('17')) {
+    return user;
+  }
+  if (reqUrl.includes('users')) {
+    return users;
+  }
+  if (reqUrl.includes('questions')) {
+    return questions;
+  }
+});
+
+describe('AdminPanel', function () {
   let wrapper;
   let users = [{
-    id: 17, 
-    email: "testadmin@test.com", 
-    is_admin: true, 
-    first_name: "admin", 
-    last_name: "test", 
-    current_company:"testcompany", 
-    hire_date: "2018-06-23", 
-    needs:"To test user data", 
-    goals:"Test pass"
+    id: 17,
+    email: "testadmin@test.com",
+    is_admin: true,
+    first_name: "admin",
+    last_name: "test",
+    current_company: "testcompany",
+    hire_date: "2018-06-23",
+    needs: "To test user data",
+    goals: "Test pass"
   }]
   let questions = [{
     user_id: 17,
@@ -26,15 +44,16 @@ describe('AdminPanel', function() {
     created_date: "2019-08-29"
   }]
 
-  beforeEach(() => {
+  beforeEach(async () => {
     wrapper = mount(<AdminPanel />);
-    wrapper.setState ({ users, questions })
+    await wrapper.instance().componentDidMount
+    wrapper.setState({ users, questions })
   });
 
   it('renders without crashing', function () {
     shallow(<AdminPanel />);
   });
-  
+
   it('matches snapshot', function () {
     const serialized = toJson(wrapper);
 
@@ -72,12 +91,12 @@ describe('AdminPanel', function() {
   it('renders the users table when view state is users', function () {
     wrapper.find('div[id="users"]').simulate('click');
     wrapper.update();
-    
+
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
   });
 
   it('show expected user data in the table', function () {
-    wrapper.setState({users});
+    wrapper.setState({ users });
     wrapper.find('div[id="users"]').simulate('click')
     wrapper.update();
 
@@ -100,12 +119,12 @@ describe('AdminPanel', function() {
   it('renders the questions table when view state is questions', function () {
     wrapper.find('div[id="questions"]').simulate('click');
     wrapper.update();
-    
+
     expect(wrapper.find('table[id="questions-table"]')).toHaveLength(1);
   });
 
   it('show expected question data in the table', function () {
-    wrapper.setState({questions})
+    wrapper.setState({ questions })
     wrapper.find('div[id="questions"]').simulate('click')
     wrapper.update();
 
@@ -121,27 +140,5 @@ describe('AdminPanel', function() {
     expect(dataRow[4]).toEqual("user");
     expect(dataRow[5]).toEqual("test");
     expect(dataRow[6]).toEqual("2019-08-29");
-  });
-
-  // it('row length of the users-table become zero once click delete button', function () {
-  //   wrapper.find('div[id="users"]').simulate('click')
-  //   wrapper.update();
-
-  //   const rows = wrapper.find('table[id="users-table"]')
-
-    // wrapper.update();
-    // console.log(wrapper.find('tr[id=17]').debug())
-
-
-    // wrapper.find('button[id="delete-click"]').simulate('click');
-    // wrapper.update();
-
-    // const rows = wrapper.find('table[id="users-table"]')
-    // expect(rows.length).toEqual(0);
-    // expect(wrapper.state('view')).toEqual('users');
-    // console.log(wrapper.find('button[id="delete-click"]').debug())
-    // console.log(wrapper.html())
-    // console.log(wrapper.state())
-
   });
 });
