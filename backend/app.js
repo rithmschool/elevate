@@ -10,6 +10,8 @@ const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
 const authRoutes = require('./routes/auth');
 const questionsRoutes = require('./routes/questions');
+const appointmentsRoutes = require('./routes/appointments');
+const calendlyWebhook = require('./routes/calendlyWebhook')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +21,9 @@ app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
 app.use('/questions', questionsRoutes);
+app.use('/appointments', appointmentsRoutes);
+app.use('/webhook', calendlyWebhook);
+
 
 /** 404 handler */
 
