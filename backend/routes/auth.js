@@ -47,13 +47,13 @@ async function verify(token) {
 
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
-  
+
 }
 router.post("/tokensignin", async function(req,res,next) {
   try {
     const token = req.body.token
     verify(token); 
-
+    
   }
   catch (error){
     return next(error)
