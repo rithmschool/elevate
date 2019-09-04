@@ -37,7 +37,7 @@ CREATE TABLE charges (
 
 CREATE TABLE questions (
  id serial PRIMARY KEY,
- user_id INTEGER NOT NULL REFERENCES users (id),
+ user_id INTEGER NOT NULL REFERENCES users (id)  ON DELETE CASCADE,
  question TEXT NOT NULL,
  response TEXT,
  responder INTEGER REFERENCES users (id),
