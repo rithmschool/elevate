@@ -85,6 +85,12 @@ exports[`AdminUserView matches snapshot 1`] = `
         </tbody>
       </table>
     </div>
+    <button
+      id="delete-click"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
   </div>
 </AdminUserView>
 `;

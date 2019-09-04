@@ -37,11 +37,10 @@ class LoginSignUpForm extends Component {
     evt.preventDefault();
     let token;
 
-
-
     try {
       if (this.state.isLogin) {
-        const data = { email: this.state.email, password: this.state.password };
+        const data = { email: this.state.email, 
+                      password: this.state.password };
         token = await ElevateApi.login(data)
       } else {
         const data = {
@@ -55,7 +54,6 @@ class LoginSignUpForm extends Component {
     } catch (errors) {
       return this.setState({ errors })
     }
-
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
     this.props.history.push("/");

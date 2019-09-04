@@ -19,8 +19,8 @@ class Routes extends React.Component {
 				<Route exact path="/login" render={props => 
 					(<LogInSignUpForm {...props} getCurrentUser={this.props.getCurrentUser}/>)}/>
 
-				<AdminPrivateRoute exact path="/admin" render={() =>
-					 (<AdminPanel />)}/>
+				<AdminPrivateRoute exact path="/admin" render={props =>
+					 (<AdminPanel {...props} />)}/>
 
 				<UserPrivateRoute
 					path="/users/:userId"
