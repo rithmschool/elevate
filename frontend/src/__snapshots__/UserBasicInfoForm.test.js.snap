@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="EditPUserForm container border rounded"
+  style={
+    Object {
+      "backgroundColor": "#F4F6F8",
+    }
+  }
+>
+  <Row
+    tag="div"
+  >
+    <Col
+      md={6}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <p>
+        Basic info
+      </p>
+    </Col>
+    <Col
+      align="right"
+      md={6}
+      sm={
+        Object {
+          "offset": 0,
+          "size": 8,
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <i
+        className="fas fa-edit text-info"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "fontSize": "1.1em",
+            "marginTop": "1em",
+          }
+        }
+      />
+    </Col>
+  </Row>
+  <hr />
+  <Form
+    onSubmit={[Function]}
+    tag="form"
+  >
+    <Row
+      form={true}
+      tag="div"
+    >
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Label
+          className="form-group has-float-label"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            disabled={true}
+            id="EditUser-first_name"
+            name="first_name"
+            onChange={[Function]}
+            type="text"
+          />
+          <span>
+            First name
+          </span>
+        </Label>
+      </Col>
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Label
+          className="form-group has-float-label"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            disabled={true}
+            id="EditUser-last_name"
+            name="last_name"
+            onChange={[Function]}
+            type="text"
+          />
+          <span>
+            Last name
+          </span>
+        </Label>
+      </Col>
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Label
+          className="form-group has-float-label"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            disabled={true}
+            id="EditUser-email"
+            name="email"
+            onChange={[Function]}
+            type="email"
+          />
+          <span>
+            Email
+          </span>
+        </Label>
+      </Col>
+    </Row>
+    <Row
+      form={true}
+      tag="div"
+    >
+      <Col
+        md={6}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Label
+          className="form-group has-float-label"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            disabled={true}
+            id="EditUser-current_company"
+            name="current_company"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <span>
+            Current company
+          </span>
+        </Label>
+      </Col>
+      <Col
+        md={6}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Label
+          className="form-group has-float-label"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            disabled={true}
+            id="EditUser-hire_date"
+            name="hire_date"
+            onChange={[Function]}
+            type="date"
+            value="2019-09-04"
+          />
+          <span>
+            Hire date
+          </span>
+        </Label>
+      </Col>
+    </Row>
+    <Col
+      align="left"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        color="info"
+        disabled={true}
+        size="sm"
+        tag="button"
+      >
+        Save
+      </Button>
+    </Col>
+    <br />
+  </Form>
+</div>
+`;

@@ -1,7 +1,7 @@
 /** Routes for users. */
 
 const express = require('express');
-const { ensureCorrectUser, authRequired } = require('../middleware/auth');
+const { ensureCorrectUser, authRequired, adminRequired } = require('../middleware/auth');
 const User = require('../models/User');
 const createToken = require('../createToken');
 
@@ -9,7 +9,7 @@ const router = express.Router();
 
 /** GET / => {users: [user, ...]} */
 
-router.get('/', authRequired, async function (req, res, next) {
+router.get('/', adminRequired, async function (req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({ users });

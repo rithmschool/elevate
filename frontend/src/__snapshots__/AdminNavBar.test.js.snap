@@ -4,12 +4,17 @@ exports[`AdminNavBar matches snapshot 1`] = `
 <AdminNavBar>
   <div
     className="adminNavBar"
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
   >
     <div
       id="users"
       onClick={[Function]}
     >
-      Users
+       Users
     </div>
     <div
       id="questions"

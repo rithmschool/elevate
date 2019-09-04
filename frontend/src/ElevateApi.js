@@ -5,7 +5,6 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 class ElevateApi {
   static async request(endpoint, params = {}, verb = "get") {
     let _token = localStorage.getItem("token");
-
     console.debug("API Call:", endpoint, params, verb);
 
     let q;
@@ -19,6 +18,10 @@ class ElevateApi {
     } else if (verb === "patch") {
       q = axios.patch(
         `${BASE_URL}/${endpoint}`, { _token, ...params });
+    } else if (verb === "delete") {
+      q = axios.delete(
+        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } }
+      )
     }
 
     try {
@@ -56,11 +59,18 @@ class ElevateApi {
     let res = await this.request(`users`);
 
     // Format hire_date for each user
-    res.users.forEach(user => {
-      user.hire_date = user.hire_date.slice(0, 10);
-    });
+    if (res.users) {
+      res.users.forEach(user => {
+        // check if the user has hire_date then format
+        user.hire_date = (user.hire_date && user.hire_date.slice(0, 10));
+      });
+    }
 
     return res.users
+  }
+
+  static async deleteUser(id) {
+    await this.request(`users/${id}`, {}, "delete")
   }
   // Question routes
 
@@ -69,7 +79,11 @@ class ElevateApi {
     let res = await this.request('questions', data, "post");
 
     return res.token;
+  }
 
+  static async postSalary(data) {
+    let res = await this.request(`salaries/`, data, "post");
+    return res;
   }
 
   // Get all questions
@@ -103,7 +117,8 @@ class ElevateApi {
     return res
   }
 
+
+
 }
 
 export default ElevateApi;
-

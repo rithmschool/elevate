@@ -8,35 +8,40 @@ const maxColumCount = mql.matches ? 5 : 12;
 
 class AdminTable extends Component {
   handleClick = (evt) => {
-    this.props.getUserDetail(evt);
+    const id = evt.target.parentElement.id;
+    console.log("id is:", evt.target);
+    this.props.getUserDetail(id);
   }
-  
+
+  // Generate table headers from data passed in as tableObjs in props.
   createTableHeader() {
     const keys = Object.keys(this.props.tableObjs[0]);
 
     return (
       <tr>
-        { keys.map(key => {
+        {keys.map(key => {
           // Remove underscore from key name
           key = key.replace(/_/g, ' ');
-          
-          return <th key={ key }>{ key }</th> 
+
+          return <th key={key}>{key}</th>
         }).filter((key, idx) => idx < maxColumCount)}
       </tr>
     );
   }
 
+  // Creates the table without the headers. Headers are made in createTableHeader
+  // tableObjs is data pulled from API to populate the table.
   createTableBody() {
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
-
+      const email = item["email"];
       return this.createTableRows(itemKeys, itemValues);
     });
 
     return table;
   }
-
+  // Adjusts text length based on screen size
   concantinateText(value) {
     // concatinate at 6 characters for small screen and 25 for large
     if (typeof value === 'string') {
@@ -59,36 +64,37 @@ class AdminTable extends Component {
 
     return value;
   }
-
+  // Creates table rows. Used in createTableBody.
   createTableRows(keys, values) {
+    console.log("Values are:", values);
     return (
-      <tr key={values[0]} onClick={this.handleClick}>
+      <tr key={values[0]} onClick={this.handleClick} id={values[0]}>
         {values.map((value, index) => {
           value = this.concantinateText(value);
 
           return (
-            <td key={`${values[0]}-${keys[index]}`}>{ value }</td>
+            <td key={`${values[0]}-${keys[index]}`} >{value}</td>
           );
         }).filter((value, idx) => idx < maxColumCount)}
       </tr>
     );
   }
 
-  render(){
+  render() {
     return (
       <div className="admin-table">
-        <Table 
+        <Table
           striped
           bordered
-          hover 
-          size="sm" 
-          responsive 
+          hover
+          size="sm"
+          responsive
           id={this.props.view + '-table'}>
           <thead>
-            { this.createTableHeader() }
+            {this.createTableHeader()}
           </thead>
-          <tbody  style={{cursor: "pointer"}}>
-            { this.createTableBody() }
+          <tbody style={{ cursor: "pointer" }}>
+            {this.createTableBody()}
           </tbody>
         </Table>
       </div>

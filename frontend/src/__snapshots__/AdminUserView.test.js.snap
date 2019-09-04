@@ -75,16 +75,62 @@ exports[`AdminUserView matches snapshot 1`] = `
               Increase salary by 15k
             </td>
           </tr>
-          <tr>
-            <td>
-              <b>
-                Questions:
-              </b>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
+    <p>
+      <b>
+        Questions:
+      </b>
+    </p>
+    <Bootstrap(Table)
+      bordered={true}
+      hover={true}
+      id="questions-table"
+      responsive={true}
+      size="sm"
+      striped={true}
+    >
+      <Table
+        bordered={true}
+        bsPrefix="table"
+        hover={true}
+        id="questions-table"
+        responsive={true}
+        size="sm"
+        striped={true}
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="table table-sm table-striped table-bordered table-hover"
+            id="questions-table"
+          >
+            <thead>
+              <tr>
+                <th>
+                  Question
+                </th>
+                <th>
+                  Resolved
+                </th>
+                <th>
+                  Date
+                </th>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+        </div>
+      </Table>
+    </Bootstrap(Table)>
+    <button
+      id="delete-click"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
   </div>
 </AdminUserView>
 `;

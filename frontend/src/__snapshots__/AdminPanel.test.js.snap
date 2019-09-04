@@ -22,12 +22,17 @@ exports[`AdminPanel matches snapshot 1`] = `
       >
         <div
           className="adminNavBar"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
           <div
             id="users"
             onClick={[Function]}
           >
-            Users
+             Users
           </div>
           <div
             id="questions"

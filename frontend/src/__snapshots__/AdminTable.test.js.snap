@@ -94,8 +94,15 @@ exports[`AdminTable matches snapshot 1`] = `
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
               <tr
+                id={17}
                 key="17"
                 onClick={[Function]}
               >
