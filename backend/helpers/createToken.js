@@ -1,3 +1,4 @@
+/**Helper function to issue token  */
 const jwt = require("jsonwebtoken");
 const { SECRET }= require("../config")
 
