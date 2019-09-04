@@ -10,10 +10,7 @@ const db = require("../db");
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
 const TEST_ADMIN_DATA = {};
-const inputPassword = "test";
-const inputEmail = "test@gmail.com";
-const inputAdminPassword = "admin123";
-const inputAdminEmail = "admin@gmail.com"
+
 
 /**
  * Hooks to insert a user, company, and job, and to authenticate
