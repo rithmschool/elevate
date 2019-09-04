@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
+import Spinner from './Spinner';
 
 
 class LoginSignUpForm extends Component {
@@ -15,7 +16,8 @@ class LoginSignUpForm extends Component {
       password: "",
       firstName: "",
       lastName: "",
-      errors: []
+      errors: [],
+      isLoading: false
     }
   }
 
@@ -37,10 +39,13 @@ class LoginSignUpForm extends Component {
     evt.preventDefault();
     let token;
 
+    await this.setState({ isLoading: true })
     try {
       if (this.state.isLogin) {
-        const data = { email: this.state.email, 
-                      password: this.state.password };
+        const data = {
+          email: this.state.email,
+          password: this.state.password
+        };
         token = await ElevateApi.login(data)
       } else {
         const data = {
@@ -52,7 +57,7 @@ class LoginSignUpForm extends Component {
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
-      return this.setState({ errors })
+      return this.setState({ isLoading: false, errors })
     }
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
@@ -62,6 +67,7 @@ class LoginSignUpForm extends Component {
   render() {
     let loginState = this.state.isLogin;
     let text = loginState ? "Sign In" : "Sign Up"
+    if (this.state.isLoading) return <Spinner />;
 
 
     const signupForm = (
@@ -110,12 +116,12 @@ class LoginSignUpForm extends Component {
             Sign in with Facebook
           </Button></div>
 
-        <Form.Text id="signup" 
-                    className="text-muted mt-3" 
-                    style={{ "textAlign": "center" }}>
-          Don't have an account? 
-          <button className="button-signup" 
-                  onClick={this.loginOrSignup}>
+        <Form.Text id="signup"
+          className="text-muted mt-3"
+          style={{ "textAlign": "center" }}>
+          Don't have an account?
+          <button className="button-signup"
+            onClick={this.loginOrSignup}>
             Create One
           </button>
         </Form.Text>
@@ -126,12 +132,12 @@ class LoginSignUpForm extends Component {
     return (
 
       <div className="form-container mx-auto">
-      
+
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
-          {/* handle login failure */}
-          {this.state.errors.length > 0 && 
-            <Alert type="danger" messages={["Invalid Email or Password"]} />}
+            {/* handle login failure */}
+            {this.state.errors.length > 0 &&
+              <Alert type="danger" messages={["Invalid Email or Password"]} />}
 
             <div className="mb-3">{text}</div>
             <Form.Group>
@@ -159,21 +165,21 @@ class LoginSignUpForm extends Component {
 
             {loginState ? "" : signupForm}
             <div className="row justify-content-center">
-              <Button className="login-submit btn-block mr-3 ml-3" 
-                      type="submit" >
+              <Button className="login-submit btn-block mr-3 ml-3"
+                type="submit" >
                 Submit
               </Button></div>
 
-            {loginState ? loginWithSocial : 
-            <Form.Text id="signup" 
-                        className="text-muted" 
-                        style={{ "textAlign": "center" }}>
-              <button name="login" 
-                      className="button-signin" 
-                      onClick={this.loginOrSignup}>
-                Signin
+            {loginState ? loginWithSocial :
+              <Form.Text id="signup"
+                className="text-muted"
+                style={{ "textAlign": "center" }}>
+                <button name="login"
+                  className="button-signin"
+                  onClick={this.loginOrSignup}>
+                  Signin
               </button>
-            </Form.Text>}
+              </Form.Text>}
           </Form>
         </div>
 
