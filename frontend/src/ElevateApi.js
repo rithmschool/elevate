@@ -98,6 +98,10 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete")
   }
 
+  static async signinGoogle(token){
+    let res = await this.request('login/tokensignin',{token}, "post")
+    return res.token;
+  }
 }
 
 export default ElevateApi;

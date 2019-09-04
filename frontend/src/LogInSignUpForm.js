@@ -4,7 +4,8 @@ import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
 
-
+const your_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
+let auth2;
 class LoginSignUpForm extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,32 @@ class LoginSignUpForm extends Component {
       lastName: "",
       errors: []
     }
+  }
+
+  onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log(id_token)
+    ElevateApi.signinGoogle(id_token)
+  }
+  
+  componentDidMount() {
+    window.gapi.load('auth2', () => {
+      auth2 = window.gapi.auth2.init({
+        client_id: your_id,
+        fetch_basic_profile: false,
+        scope: 'profile'
+      });
+    });
+  }
+
+  handleGoogleSignin = () => {
+    auth2.signIn().then(googleUser => {
+      this.onSignIn(googleUser);
+    });
   }
 
   loginOrSignup = evt => {
@@ -58,7 +85,7 @@ class LoginSignUpForm extends Component {
     await this.props.getCurrentUser();
     this.props.history.push("/");
   }
-
+  
   render() {
     let loginState = this.state.isLogin;
     let text = loginState ? "Sign In" : "Sign Up"
@@ -100,8 +127,7 @@ class LoginSignUpForm extends Component {
 
         <div className="row justify-content-center">
           <Button className="g-signin2 google-login btn-block mr-3 ml-3"
-                  data-onsuccess="onSignIn "
-                  onClick={ this.googleOath }>
+                  onClick={this.handleGoogleSignin}>
             <i className="fab fa-google"></i>  Sign in with Google
           </Button></div>
 
