@@ -3,7 +3,6 @@ const mockCalendlyCreate = require("../mockCalendlyJson/mockCalendlyCreate.json"
 const mockCalendlyCancel = require("../mockCalendlyJson/mockCalendlyCancel.json");
 
 describe("Test webhook helper  function", function () {
-
     const createPayload = mockCalendlyCreate.payload
     const cancelPayload = mockCalendlyCancel.payload
 
@@ -27,15 +26,14 @@ describe("Test webhook helper  function", function () {
             cancel_reason: null,
             canceled_at: null,
             old_event_id: null,
-            new_event_id: null 
+            new_event_id: null
         });
     });
 
     test("should return flatten and parsed cancel object", async function () {
-        
         let obj = parseResponse(cancelPayload)
         expect(obj).toEqual({
-             event_id: 'FHKED5IPUQV6KXXG',
+            event_id: 'FHKED5IPUQV6KXXG',
             user_email: 'testuser@gmail.com',
             calendly_user_id: 'FAHHE7B6TQA4PFHG',
             created_at: '2019-08-29T15:59:11-07:00',
@@ -52,7 +50,7 @@ describe("Test webhook helper  function", function () {
             cancel_reason: 'canceling my fake appointment',
             canceled_at: '2019-08-29T16:00:04-07:00',
             old_event_id: null,
-            new_event_id: null 
+            new_event_id: null
         });
     });
 
