@@ -23,7 +23,6 @@ describe('UserProfile', function() {
   });
 
   it('has states', function () {
-    console.log('wrapper1....', wrapper)
     expect(wrapper.state('hasSalaryRecord')).toEqual(true);
     expect(wrapper.state('lastestSalary')).toEqual(null);
     expect(wrapper.state('isLoading')).toEqual(true);
