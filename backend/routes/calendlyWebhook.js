@@ -14,10 +14,10 @@ router.post('/', async function (req, res, next) {
     // parse request payload then validate
     const eventPayload = req.body.payload;
     const parsedObj = parseResponse(eventPayload);
-    const validate = jsonschema.validate(parsedObj, appointmentSchema);
+    const validatedObj = jsonschema.validate(parsedObj, appointmentSchema);
 
-    if (!validate.valid) {
-      let listOfErrors = validate.errors.map(error => error.stack);
+    if (!validatedObj.valid) {
+      let listOfErrors = validatedObj.errors.map(error => error.stack);
       throw new ExpressError(listOfErrors, 400);
     }
     // Handle the event
