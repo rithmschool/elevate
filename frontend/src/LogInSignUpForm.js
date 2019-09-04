@@ -99,15 +99,15 @@ class LoginSignUpForm extends Component {
         </div>
 
         <div className="row justify-content-center">
-          <Button className="google-login btn-block mr-3 ml-3">
-            <i className="fa fa-google"></i>
-            Sign in with Google
+          <Button className="g-signin2 google-login btn-block mr-3 ml-3"
+                  data-onsuccess="onSignIn "
+                  onClick={ this.googleOath }>
+            <i className="fab fa-google"></i>  Sign in with Google
           </Button></div>
 
         <div className="row justify-content-center mt-2">
           <Button className="fb-login btn-block mr-3 ml-3">
-            <i className="fa fa-facebook"></i>
-            Sign in with Facebook
+            <i className="fab fa-facebook"></i>  Sign in with Facebook
           </Button></div>
 
         <Form.Text id="signup" 
