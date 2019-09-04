@@ -1,9 +1,15 @@
 process.env.NODE_ENV = "test";
 
+// test suits import
 const request = require("supertest");
+
+// app import
 const app = require("../../app");
+
+// database import
 const db = require("../../db");
 
+// test config import
 const { SEED_USER_SQL } = require("../../config")
 const { afterAllHook,
   afterEachHook,
@@ -11,8 +17,6 @@ const { afterAllHook,
   TEST_DATA,
   inputPassword,
   inputEmail } = require("../config")
-
-
 
 describe("routes for login", function () {
   beforeEach(async function () {
@@ -26,7 +30,6 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should have property of token", async function () {
-
       const response = await request(app)
         .post("/login")
         .send({ "email": inputEmail, "password": inputPassword })
@@ -36,7 +39,6 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when email is not valid", async function () {
-
       const response = await request(app)
         .post("/login")
         .send({ "email": 'bad@gmail.com', "password": inputPassword })
@@ -46,10 +48,7 @@ describe("routes for login", function () {
 
   describe("POST /login", function () {
     test("It should give an error of invalid credential when password is not valid", async function () {
-
-
       const response = await request(app)
-
         .post("/login")
         .send({ "email": inputEmail, "password": "badPassword" })
       expect(response.body).toEqual({ "message": "Invalid Credentials", "status": 401 })
