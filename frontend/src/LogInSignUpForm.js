@@ -4,12 +4,12 @@ import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
 
-const your_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
+//created client_id form configure a project from google
+const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
 let auth2;
 class LoginSignUpForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isLogin: true,
       email: "",
@@ -20,26 +20,51 @@ class LoginSignUpForm extends Component {
     }
   }
 
+  /** To get profile information 
+  *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
+  */
   onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    
+    /** this ID token will be sent to the server with HTTP post request
+     *  in ElevateApi to get verify from google
+     */
     var id_token = googleUser.getAuthResponse().id_token;
     console.log(id_token)
-    ElevateApi.signinGoogle(id_token)
+
+    /** wait to signinGoogle
+     *  use google token to sign in to elevate api
+     *  signinGoogle will return a token, use this token
+     */
+    try {
+      //TODO:get token to work in the backend!
+      let token = ElevateApi.signinGoogle(id_token)
+    } catch(err) {
+      return this.setState({ errors })
+    }
+    localStorage.setItem("token", token);
+    await this.props.getCurrentUser();
+    this.props.history.push("/");
   }
   
   componentDidMount() {
+    /** Initialize the auth2 library and we use this auth2 with method sign in
+     *  in handleGoogleSignin below
+     */
     window.gapi.load('auth2', () => {
       auth2 = window.gapi.auth2.init({
-        client_id: your_id,
+        client_id: client_id,
         fetch_basic_profile: false,
         scope: 'profile'
       });
     });
   }
-
+  /** auth2.signIn() gives back googleUser which can use
+   *  for argument in onSignIn method
+   */
   handleGoogleSignin = () => {
     auth2.signIn().then(googleUser => {
       this.onSignIn(googleUser);

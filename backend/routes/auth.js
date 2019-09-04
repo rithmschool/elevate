@@ -5,7 +5,12 @@ const express = require("express");
 const router = new express.Router();
 const createToken = require("../createToken");
 const { authRequired, adminRequired, ensureCorrectUser } = require("../middleware/auth")
+
+// Google API Client Libraries used to verify goole token (id_token)
 const {OAuth2Client} = require('google-auth-library');
+/**  CLIENT_ID from created a Google API Console project from
+ *    https://developers.google.com/identity/sign-in/web/sign-in
+*/
 const CLIENT_ID = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
 
@@ -23,7 +28,12 @@ router.post("/", async function(req, res, next) {
   }
 });
 
-/**Validate Google ID token */
+
+
+/**Validate Google ID token using Google API Client Libraries
+ * need to ==> npm install google-auth-library --save
+*/
+
 async function verify(token) {
   const ticket = await client.verifyIdToken({
       idToken: token,
@@ -37,17 +47,19 @@ async function verify(token) {
 
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
+  
 }
 router.post("/tokensignin", async function(req,res,next) {
   try {
     const token = req.body.token
-    verify(token);
+    verify(token); 
 
   }
   catch (error){
     return next(error)
   }
 })
+
 
 
 

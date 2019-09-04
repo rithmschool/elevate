@@ -32,10 +32,6 @@ class User {
       [data.email]
     );
 
-
-
-
-
     const user = result.rows[0];
     // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
 
