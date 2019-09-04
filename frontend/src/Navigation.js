@@ -7,10 +7,12 @@ import { UserContext, AdminContext} from "./UserContext";
 
 
 class Navigation extends React.Component {
+  
   constructor(props) {
     super(props);
     this.userMenuToggle = this.userMenuToggle.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
 
     this.state = {
       isOpen: false,
@@ -18,13 +20,28 @@ class Navigation extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+  
+  myRef = React.createRef();
+
+  // Hide user menu when click outside
+  handleClickOutside = e => {
+    if (!this.myRef.current.contains(e.target)) {
+      this.setState({ userMenuIsOpen: false });
+    }
+  };
   //toggle for the navbar
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
-// toggle for the user drop down menu
+// toggle for the user menu
   userMenuToggle() {
     this.setState({
       userMenuIsOpen: !this.state.userMenuIsOpen
@@ -42,13 +59,12 @@ class Navigation extends React.Component {
             { currentUser ?
 
             <div>
-              <i className="fas fa-user Nav-icon"
+              <i className="fas fa-user Nav-icon" 
               onClick={this.userMenuToggle}
-              // onClick={this.userMenuToggle}
               ></i>
               <div className={classNames('userMenu', {'is-open': this.state.userMenuIsOpen})}
-                >
-                <ul className="list-group list-group-flush" onMouseUp={this.userMenuToggle}>
+                ref={this.myRef}>
+                <ul className="list-group list-group-flush" onClick={this.userMenuToggle}>
                   {/* you can use these 3 lines below as a template and add menu items as you want
                   but you need to change Link route and the title to display. */}
                   <li className="list-group-item bg-transparent">
@@ -62,8 +78,10 @@ class Navigation extends React.Component {
                   </li>
                 </ul> 
               </div>
-            </div>:
-            <Link to="/login" className="Nav-link Nav-link-ltr">Sign In</Link>
+            </div >:
+            <div ref={this.myRef}>
+              <Link to="/login" className="Nav-link Nav-link-ltr" >Sign In</Link>
+              </div>
             }
           </li>
         )}

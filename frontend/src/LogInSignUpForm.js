@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
+import Alert from "./Alert";
 
 
 class LoginSignUpForm extends Component {
@@ -13,7 +14,8 @@ class LoginSignUpForm extends Component {
       email: "",
       password: "",
       firstName: "",
-      lastName: ""
+      lastName: "",
+      errors: []
     }
   }
 
@@ -49,11 +51,9 @@ class LoginSignUpForm extends Component {
         }
         token = await ElevateApi.signup(data);
       }
-    } catch (err) {
-      console.log(err)
-      return this.setState({ err })
+    } catch (errors) {
+      return this.setState({ errors })
     }
-
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
     this.props.history.push("/");
@@ -126,9 +126,13 @@ class LoginSignUpForm extends Component {
     return (
 
       <div className="form-container mx-auto">
-
+      
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
+          {/* handle login failure */}
+          {this.state.errors.length > 0 && 
+            <Alert type="danger" messages={["Invalid Email or Password"]} />}
+
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
@@ -170,8 +174,6 @@ class LoginSignUpForm extends Component {
                 Signin
               </button>
             </Form.Text>}
-
-
           </Form>
         </div>
 
