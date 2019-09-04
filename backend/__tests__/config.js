@@ -9,8 +9,8 @@ const db = require("../db");
 
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
-const inputPassword = "test"
-const inputEmail = "test@gmail.com"
+const inputPassword = "test";
+const inputEmail = "test@gmail.com";
 
 
 /**
