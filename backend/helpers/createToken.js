@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { SECRET }= require("./config")
+const { SECRET }= require("../config")
 
 /**return signed JWT from user data----email and is_admin */
 function createToken(user){
