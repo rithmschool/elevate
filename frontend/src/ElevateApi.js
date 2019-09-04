@@ -99,10 +99,9 @@ class ElevateApi {
     let res = await this.request(`appointments`);
     return res.appointments;
   }
-}
 
   static async deleteUser(id) {
-    await this.request(`users/${id}`, {}, "delete")
+    await this.request(`users/${id}`, {}, "delete");
   }
 }
 
