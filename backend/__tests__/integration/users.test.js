@@ -14,6 +14,7 @@ const { SEED_USER_SQL } = require("../../config")
 const db = require("../../db");
 const {
   TEST_DATA,
+  TEST_ADMIN_DATA,
   afterEachHook,
   afterAllHook,
   beforeEachHook,
@@ -22,7 +23,7 @@ const {
 } = require('../config');
 
 beforeEach(async function () {
-  await beforeEachHook(TEST_DATA);
+  await beforeEachHook(TEST_DATA, TEST_ADMIN_DATA);
   await db.query(SEED_USER_SQL);
 
 });
@@ -62,7 +63,7 @@ describe('GET /users', function () {
       .get('/users')
       .send({ _token: `${TEST_DATA.userToken}` });
 
-    expect(response.body.users).toHaveLength(6);
+    expect(response.body.users).toHaveLength(7);
     expect(response.body.users[0]).toHaveProperty('company');
     expect(response.body.users[0]).not.toHaveProperty('password');
   });

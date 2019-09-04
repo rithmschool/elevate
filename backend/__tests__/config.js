@@ -9,17 +9,20 @@ const db = require("../db");
 
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
+const TEST_ADMIN_DATA = {};
 const inputPassword = "test";
 const inputEmail = "test@gmail.com";
-
+const inputAdminPassword = "admin123";
+const inputAdminEmail = "admin@gmail.com"
 
 /**
  * Hooks to insert a user, company, and job, and to authenticate
  *  the user and the company for respective tokens that are stored
  *  in the input `testData` parameter.
  * @param {Object} TEST_DATA - build the TEST_DATA object
+ * @param {Object} TEST_ADMIN_DATA - build the TEST_ADMIN_DATA object
  */
-async function beforeEachHook(TEST_DATA) {
+async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
     // bcrypt set lower for testing purpose
@@ -39,8 +42,35 @@ async function beforeEachHook(TEST_DATA) {
         email: inputEmail,
         password: inputPassword,
       });
+      
     TEST_DATA.userToken = response.body.token;
     TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).user_id;
+  } catch (error) {
+    console.error(error);
+  }
+
+  // create and login a user, get a token, store the user ID and token
+  try {
+    // bcrypt set lower for testing purpose
+    const hashedPassword = await bcrypt.hash(inputAdminPassword, 5)
+
+    // create new user with hashed password
+    await db.query(
+      `INSERT INTO users 
+                  (email, password, is_admin) 
+                  VALUES ($1, $2, $3) 
+                  RETURNING id, is_admin`,
+      [inputAdminEmail, hashedPassword, true]);
+
+    const response = await request(app)
+      .post("/login")
+      .send({
+        email: inputAdminEmail,
+        password: inputAdminPassword,
+      });
+      
+    TEST_ADMIN_DATA.userToken = response.body.token;
+    TEST_ADMIN_DATA.currentId = jwt.decode(TEST_ADMIN_DATA.userToken).user_id;
   } catch (error) {
     console.error(error);
   }
@@ -68,6 +98,9 @@ module.exports = {
   afterEachHook,
   beforeEachHook,
   TEST_DATA,
+  TEST_ADMIN_DATA,
   inputPassword,
-  inputEmail
+  inputEmail,
+  inputAdminPassword,
+  inputAdminEmail
 };
