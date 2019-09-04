@@ -30,15 +30,20 @@ class AdminPanel extends Component {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
     } catch(err) {
+      console.log(err)
       return err;
     }
     
-    this.setState({ users });
-    this.setState({ questions });
+    this.setState({ users, questions });
   }
 
-  changeView = view => {
-    this.setState({ view });
+  // get update users after delete a user in AdminUserView
+  updateUserState = (users) => {
+    this.setState({users})
+  }
+
+  changeView = (view) => {
+    this.setState({ view })
   }
 
   mediaQueryChanged = () => {
@@ -49,8 +54,7 @@ class AdminPanel extends Component {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-  getUserDetail = async evt => {
-    const userId = +evt.target.parentNode.firstElementChild.innerText;
+  getUserDetail = async (userId) => {
     const user = await ElevateApi.getUser(userId);
     
     this.setState({ view: 'userDetail', userDetail: user });
@@ -72,7 +76,12 @@ class AdminPanel extends Component {
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {this.state.view === 'userDetail' ? <AdminUserView user={this.state.userDetail}/> : null }
+          {this.state.view === 'userDetail' && 
+                                <AdminUserView 
+                                  user={this.state.userDetail} 
+                                  updateUserState={this.updateUserState} 
+                                  changeView={this.changeView} /> 
+          }
         </div>
         
         <div className="admin-navbar">
