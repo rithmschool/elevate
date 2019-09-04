@@ -88,6 +88,20 @@ class ElevateApi {
     return res.questions
   }
 
+  static async forgotPassword(email) {
+    let res = await this.request(`password/`, email, "post");
+    return res
+  }
+
+  static async verifyResetPasswordToken(resetPasswordToken){
+    let res = await this.request(`password/${resetPasswordToken}`);
+    return res;
+  }
+
+  static async updatePassword(id, password){
+    let res = await this.request(`password/`, {id, password}, 'patch');
+    return res;
+  }
 }
 
 export default ElevateApi;

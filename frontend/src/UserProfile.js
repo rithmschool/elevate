@@ -80,8 +80,8 @@ class UserProfile extends React.Component {
             this.setState({ errors });
           }
       
-    } 
-}
+  } 
+  }
 // update user infos
   async handleUserUpdate(updateUser,userId){
     try{
@@ -109,7 +109,7 @@ class UserProfile extends React.Component {
       return <Spinner/>;
 
     return (
-      <div className="container">
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <br></br>
         <Row>
           <Col sm="8">

@@ -1,6 +1,9 @@
 import React from 'react';
-import axios from 'axios'
+import ElevateApi from './ElevateApi';
 import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
+import Alert from "./Alert";
+
+
 
 class ForgotPassword extends React.Component {
 
@@ -8,8 +11,8 @@ class ForgotPassword extends React.Component {
     super(props);
     this.state = {
       email: '',
-      messageFromServer: '',
-      showError: false,
+      errors: [],
+      emailSent: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
@@ -20,42 +23,47 @@ class ForgotPassword extends React.Component {
 		this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  sendEmail(evt){
+  
+  componentDidMount(){
+    //change document title
+    document.title = "Forgot password"
+  }
+
+  async sendEmail(evt){
     evt.preventDefault();
     if(this.state.email === ''){
-      this.setState({
-        showError: false, messageFromServer: '',
-      });
-    } else {
-      axios.post('http://localhost:3001/forgotpassword', {
-        email: this.state.email,
-      })
-      .then(response => {
-        console.log(response.data);
-        if(response.data === 'email not in db'){
-          this.setState({
-            showError: false, messageFromServer: ''
-          });
-        } else if(response.data === 'recovery email sent'){
-            this.setState({
-              showError: false,
-              messageFromServer: 'recovery email senf',
-            });
-        }
-      })
-      .catch(error => {
-        console.log(error.data);
-      });
+      this.setState({ errors: ['Please enter your email address!']});
+    } 
+    else {
+      try{
+        await ElevateApi.forgotPassword({ email: this.state.email });
+        console.log('hereeeeeeeee11111')
+        this.setState({ errors: [], emailSent: true });
+        console.log('hereeeeeeeee11111')
+
+      }
+      catch(errors){
+        this.setState({ errors });
+      }
     }
   }
 
   render(){
-    const { email, messageFromServer, showError} = this.state;
+    const { email, errors, emailSent} = this.state;
+
     return(
-      <div>
-        <form onSubmit={this.sendEmail}>
+      <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+        style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
+
+      <Form onSubmit={this.sendEmail}>
+        <br></br><br></br>
+        <div style={{textAlign: 'center'}}>
+          <h3>Forgot Password</h3>
+         <p>Please enter your email address and we'll send you instructions on how to reset your password</p>
+        </div>
+          <hr></hr><br></br>
         <Row form>
-          <Col md={4}>                  
+          <Col md={12}>                  
             <Label className="form-group has-float-label">
               <Input onChange={this.handleChange}
                     value={email}
@@ -67,12 +75,22 @@ class ForgotPassword extends React.Component {
             </Label>
             </Col>
           </Row>
-          <Col >
-            <Button color="info" size="sm"> 
-              Send Password Reset Email
-            </Button>
-        </Col>
-        </form>
+          <hr></hr>
+
+          {errors.length > 0 &&
+              <Alert type="danger" messages={errors} />}
+
+            { emailSent &&
+              <Alert type="success"
+                    messages={["Recovery email sent!"]} />}
+
+          <Col align="center" >
+            <Button color="info" size="sm"
+              > 
+               Send Password Reset Email</Button>
+          </Col>
+          <br></br>
+        </Form>
       </div>
     )
   }

@@ -8,7 +8,7 @@ class Alert extends Component {
 
   render() {
     return (
-      <div className={`alert alert-${this.props.type}`} role="alert">
+      <div className={`alert alert-${this.props.type}`} role="alert" align="center">
         {this.props.messages.map(error => (
           <p className="mb-0 small" key={error}>
             {error}

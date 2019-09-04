@@ -3,6 +3,9 @@
 require("dotenv").config();
 
 const SECRET = process.env.SECRET_KEY || 'test';
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS || `elevate2super@gmail.com`;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD || `elevate2super12345`;
+const SERVICE = 'gmail';
 
 const PORT = +process.env.PORT || 3001;
 
@@ -47,4 +50,7 @@ module.exports = {
   SEED_USER_SQL,
   SEED_SALARY_SQL,
   SEED_CHARGES_SQL,
+  EMAIL_ADDRESS,
+  EMAIL_PASSWORD,
+  SERVICE
 };
