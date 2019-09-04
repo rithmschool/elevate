@@ -29,9 +29,11 @@ password: secret
 
 ## Running Tests
 
+Backend tests are configured to run in band and silent. Run `jest --runInBand` to see all error messages printed to console.
+
 ```
 cd backend
-jest
+npm test
 
 cd frontend
 npm test
