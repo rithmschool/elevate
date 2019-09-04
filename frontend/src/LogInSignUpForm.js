@@ -42,7 +42,7 @@ class LoginSignUpForm extends Component {
 
     // try {
     //   //TODO:get token to work in the backend!
-    //   let token = ElevateApi.signinGoogle(id_token)
+      let token = ElevateApi.signinGoogle(id_token)
     // } catch(errors) {
     //   return this.setState({ error })
     // }
@@ -59,7 +59,7 @@ class LoginSignUpForm extends Component {
       auth2 = window.gapi.auth2.init({
         client_id: client_id,
         fetch_basic_profile: false,
-        scope: 'profile'
+        scope: 'profile openid' 
       });
     });
   }

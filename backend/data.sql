@@ -15,6 +15,11 @@ CREATE TABLE users (
   goals TEXT
 );
 
+CREATE TABLE google_users (
+  google_id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -91,6 +96,9 @@ INSERT INTO users ( email, password, is_admin, first_name, last_name, current_co
   ('nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
   ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
   ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
+
+INSERT INTO google_users (user_id, google_id) VALUES
+  ('2','12345');
 
 INSERT INTO salaries (user_id, salary, bonus, equity) VALUES
   (1, 150000.00, 25000.00, .001),

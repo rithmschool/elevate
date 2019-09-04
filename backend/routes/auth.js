@@ -43,8 +43,9 @@ async function verify(token) {
   });
   const payload = ticket.getPayload();
   const userid = payload['sub'];
-  console.log(payload)
-
+  // console.log(payload)
+  const user = await User.googleLogin(payload)
+  // console.log("user", user)
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
 
