@@ -24,7 +24,7 @@ class InvoiceForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
-    this.setState({email:this.props.user.email})
+    this.setState({ email: this.props.user.email })
   }
 
   handleChange(e) {

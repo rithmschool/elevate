@@ -47,11 +47,11 @@ class Charges {
       ORDER BY paid`,
             [userId]
         );
-            
+
         if (result.rows.length === 0) {
             return "No charges"
         }
-       
+
         return result.rows;
 
     }
@@ -69,22 +69,27 @@ class Charges {
     }
 
     static async makeStripePayment(chargeDetails, token) {
-
+        // Properly round amount to 2 decimals
+        let { amount, description } = chargeDetails
+        let fixedNum = amount * 100
+        console.log(typeof fixedNum)
+        console.log("charge amount is: ", fixedNum) + "cents";
         let { status } = await stripe.charges.create({
-            amount: chargeDetails.amount,
+            amount: fixedNum,
             currency: "usd",
-            description: chargeDetails.description,
+            description: description,
             source: token
         });
         return status;
     }
     /** Create a charge (from data), update db, return new charge data. */
     static async create(data) {
+        let { user_id, amount, description, due_date } = data;
         const result = await db.query(
             `INSERT INTO charges (user_id, amount, description, due_date) 
          VALUES ($1, $2, $3, $4) 
          RETURNING id, user_id, amount, description, due_date`,
-            [data.user_id, +data.amount, data.description, data.due_date]
+            [user_id, +amount, description, due_date]
         );
         return result.rows[0];
     }
@@ -129,7 +134,7 @@ class Charges {
             notFound.status = 404;
             throw notFound;
         }
-       
+
         return result.rows[0];
     }
 

@@ -33,18 +33,19 @@ class UserCharge extends Component {
     }
     /**FIXME: payment form */
     render() {
-        const charge = this.props
-
-
+        let { due_date, amount, description, id, handlePayment } = this.props;
         return (
             <tbody>
                 <tr >
-                    <td>{charge.due_date.slice(0, 10)}</td>
-                    <td>${charge.amount}</td>
-                    <td>{charge.description}</td>
-
+                    <td> <Button id={id} onClick={handlePayment} size="sm" outline color="success" >Pay Now</Button></td>
+                    <td> {due_date.slice(0, 10)}</td>
+                    {/* <td>${parseFloat(amount).toFixed(2)}</td> */}
+                    <td>{parseFloat(amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                    <td>{description} </td>
+                    <td><Button className="m-1" size="sm" outline color="danger">X</Button></td>
                 </tr>
-                <PaymentForm chargeId={charge.id} />
+
+
             </tbody>
 
 

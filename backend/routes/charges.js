@@ -62,8 +62,8 @@ router.patch("/", authRequired, async function (req, res, next) {
   var year = dateObj.getUTCFullYear();
   let date = year + "/" + month + "/" + day;
   try {
-    console.log(req.body);
     const chargeDetails = await Charges.getCharge(req.body.chargeId);
+    console.log("chargeDetails are:", chargeDetails)
     if (chargeDetails === undefined) {
       return res.json("No charge exists or already payed")
     }
