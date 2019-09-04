@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot for danger 1`] = `
+<div
+  className="alert alert-danger"
+  role="alert"
+>
+  <p
+    className="mb-0 small"
+    key="Everything is broken"
+  >
+    Everything is broken
+  </p>
+  <p
+    className="mb-0 small"
+    key="Run for the hills"
+  >
+    Run for the hills
+  </p>
+</div>
+`;
+
+exports[`matches snapshot for success 1`] = `
+<div
+  className="alert alert-success"
+  role="alert"
+>
+  <p
+    className="mb-0 small"
+    key="Everything is awesome!"
+  >
+    Everything is awesome!
+  </p>
+</div>
+`;
