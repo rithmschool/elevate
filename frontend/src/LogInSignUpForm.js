@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
+import Spinner from './Spinner';
 
 //created client_id from configure a project from google
 const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
@@ -17,7 +18,8 @@ class LoginSignUpForm extends Component {
       password: "",
       firstName: "",
       lastName: "",
-      errors: []
+      errors: [],
+      isLoading: false
     }
   }
 
@@ -97,11 +99,14 @@ class LoginSignUpForm extends Component {
     evt.preventDefault();
     let token;
 
+    this.setState({ isLoading: true })
     try {
       if (this.state.isLogin) {
-        const data = { email: this.state.email, 
-                      password: this.state.password };
-        token = await ElevateApi.login(data);
+        const data = {
+          email: this.state.email,
+          password: this.state.password
+        };
+        token = await ElevateApi.login(data)
       } else {
         const data = {
           email: this.state.email,
@@ -112,7 +117,7 @@ class LoginSignUpForm extends Component {
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
-      return this.setState({ errors })
+      return this.setState({ isLoading: false, errors })
     }
 
     localStorage.setItem("token", token);
@@ -123,7 +128,8 @@ class LoginSignUpForm extends Component {
   
   render() {
     let loginState = this.state.isLogin;
-    let text = loginState ? "Sign In" : "Sign Up";
+    let text = loginState ? "Sign In" : "Sign Up"
+    if (this.state.isLoading) return <Spinner />;
 
     const signupForm = (
       <div>
@@ -202,7 +208,7 @@ class LoginSignUpForm extends Component {
                 className="logInInput"
                 id="email"
                 name="email"
-                type="text"
+                type="email"
                 onChange={this.handleChange}
                 value={this.state.email}
               />
@@ -218,30 +224,27 @@ class LoginSignUpForm extends Component {
                 value={this.state.password}
               />
             </Form.Group>
-
             {loginState ? "" : signupForm}
 
             <div className="row justify-content-center">
-              <Button className="login-submit btn-block mr-3 ml-3" 
-                      type="submit" >
+              <Button className="login-submit btn-block mr-3 ml-3"
+                type="submit" >
                 Submit
               </Button></div>
-
-            {loginState ? loginWithSocial : 
-            <Form.Text id="signup" 
-                        className="text-muted" 
-                        style={{ "textAlign": "center" }}>
-              <button name="login" 
-                      className="button-signin" 
-                      onClick={this.loginOrSignup}>
-                Signin
+            {loginState ? loginWithSocial :
+              <Form.Text id="signup"
+                className="text-muted"
+                style={{ "textAlign": "center" }}>
+                <button name="login"
+                  className="button-signin"
+                  onClick={this.loginOrSignup}>
+                  Signin
               </button>
-            </Form.Text>}
+              </Form.Text>}
           </Form>
         </div>
       </div>
     );
   }
 }
-
 export default LoginSignUpForm;
