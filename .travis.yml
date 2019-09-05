@@ -5,7 +5,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database elevate;' -U postgres
-  - psql < data.sql
+  - psql < backend/data.sql
 before_install:
 - npm update
 install:
