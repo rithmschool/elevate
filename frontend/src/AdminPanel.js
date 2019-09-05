@@ -77,18 +77,19 @@ class AdminPanel extends Component {
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
           <h1 className="admin-h1">Admin Panel</h1>
           { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-        
-          { this.state.view ? 
+         
+          { this.state.view && this.state.view !== "userDetail" ?
             <AdminTable tableObjs={ this.state[this.state.view] } 
                         getUserDetail={ this.getUserDetail }
                         view={ this.state.view } /> : null
           }
-          {this.state.view === 'userDetail' && 
+           {this.state.view === 'userDetail' ?
                                 <AdminUserView 
                                   user={this.state.userDetail} 
                                   updateUserState={this.updateUserState} 
-                                  changeView={this.changeView} /> 
+                                  changeView={this.changeView} /> : null
           }
+          
         </div>
         
         <div className="admin-navbar">

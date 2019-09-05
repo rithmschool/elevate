@@ -9,7 +9,6 @@ const maxColumCount = mql.matches ? 5 : 12;
 class AdminTable extends Component {
   handleClick = (evt) => {
     const id = evt.target.parentElement.id;
-
     this.props.getUserDetail(id);
   }
   createTableHeader() {
@@ -28,6 +27,7 @@ class AdminTable extends Component {
   }
 
   createTableBody() {
+
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
