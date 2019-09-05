@@ -36,6 +36,7 @@ class Appointment {
 
   /** find appointments by user id from elevate appointments database
   { appointments: [{
+  id,
   user_id, 
   first_name, 
   last_name, 

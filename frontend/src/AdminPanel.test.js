@@ -92,14 +92,21 @@ describe('AdminPanel', function () {
   let appointments = [{
     id: 1,
     user_id: id,
-
+    first_name: "user",
+    last_name: "test",
+    email: "user@test.com",
+    created_at: "2019-11-11",
+    event_type: "One-on-One",
+    event_name: "30 Minute Meeting",
+    start_time_pretty: "2019-11-13",
+    location: "Zoom",
+    canceled: false
   }]
 
   beforeEach(async () => {
     wrapper = mount(<AdminPanel />);
     await wrapper.instance().componentDidMount()
     wrapper.setState({ users, questions, appointments })
-    console.log("before each wrapper",  wrapper.debug());
   });
 
   it('renders without crashing', function () {
@@ -133,8 +140,9 @@ describe('AdminPanel', function () {
     wrapper.find('div[id="questions"]').simulate('click');
     expect(wrapper.state('view')).toEqual('questions');
 
-    wrapper.find('div[id="invoices"]').simulate('click');
-    expect(wrapper.state('view')).toEqual('invoices');
+    // NOTE: no table for invoices until charges branch gets merged 
+    // wrapper.find('div[id="invoices"]').simulate('click');
+    // expect(wrapper.state('view')).toEqual('invoices');
 
     wrapper.find('div[id="appointments"]').simulate('click');
     expect(wrapper.state('view')).toEqual('appointments');
@@ -184,13 +192,13 @@ describe('AdminPanel', function () {
     expect(rows.length).toEqual(1);
 
     const dataRow = rows.first().find('td').map(column => column.text());
-    expect(dataRow.length).toEqual(7);
-    expect(dataRow[0]).toEqual(id);
-    expect(dataRow[1]).toEqual("My employer didn't pay me");
-    expect(dataRow[2]).toEqual("");
-    expect(dataRow[3]).toEqual("user@test.com");
-    expect(dataRow[4]).toEqual("user");
-    expect(dataRow[5]).toEqual("test");
-    expect(dataRow[6]).toEqual("2019-08-29");
+    expect(dataRow.length).toEqual(8);
+    expect(dataRow[2]).toEqual("My employer didn't pay me");
+    expect(dataRow[3]).toEqual("");
+    
+    expect(dataRow[4]).toEqual("user@test.com");
+    expect(dataRow[5]).toEqual("user");
+    expect(dataRow[6]).toEqual("test");
+    expect(dataRow[7]).toEqual("2019-08-29");
   });
 });
