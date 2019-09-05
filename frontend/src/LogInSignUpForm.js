@@ -3,6 +3,8 @@ import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import LoginError from "./LoginError";
+import Spinner from './Spinner';
+
 
 class LoginSignUpForm extends Component {
   constructor(props) {
@@ -14,7 +16,9 @@ class LoginSignUpForm extends Component {
       password: "",
       firstName: "",
       lastName: "",
-      errors: []
+      errors: [],
+      isLoading: false
+
     }
   }
 
@@ -35,6 +39,7 @@ class LoginSignUpForm extends Component {
   handleSubmit = async evt => {
     evt.preventDefault();
     let token;
+    this.setState({ isLoading: true });
 
     try {
       if (this.state.isLogin) {
@@ -51,7 +56,7 @@ class LoginSignUpForm extends Component {
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
-      return this.setState({ errors })
+      return this.setState({ errors, isLoading: false })
     }
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
@@ -60,7 +65,8 @@ class LoginSignUpForm extends Component {
 
   render() {
     let loginState = this.state.isLogin;
-    let text = loginState ? "Sign In" : "Sign Up"
+    let text = loginState ? "Sign In" : "Sign Up";
+    if (this.state.isLoading) return <Spinner />;
 
 
     const signupForm = (
