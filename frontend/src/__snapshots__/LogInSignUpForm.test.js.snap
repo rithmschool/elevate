@@ -3,7 +3,13 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className="form-container mx-auto"
+    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+    style={
+      Object {
+        "backgroundColor": "#F4F6F8",
+        "marginTop": "10%",
+      }
+    }
   >
     <div
       className="form-inside-container mt-5"
@@ -16,11 +22,11 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           className=""
           onSubmit={[Function]}
         >
-          <div
+          <h3
             className="mb-3"
           >
             Sign In
-          </div>
+          </h3>
           <FormGroup>
             <div
               className="form-group"
@@ -76,13 +82,13 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           >
             <Button
               active={false}
-              className="login-submit btn-block mr-3 ml-3"
+              className="login-submit btn-block mr-3 ml-3 "
               disabled={false}
               type="submit"
               variant="primary"
             >
               <button
-                className="login-submit btn-block mr-3 ml-3 btn btn-primary"
+                className="login-submit btn-block mr-3 ml-3  btn btn-primary"
                 disabled={false}
                 type="submit"
               >

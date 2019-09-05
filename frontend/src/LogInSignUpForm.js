@@ -2,9 +2,7 @@ import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
-import Alert from "./Alert";
-
-const BASE_URL = "http://localhost:3000"
+import LoginError from "./LoginError";
 
 class LoginSignUpForm extends Component {
   constructor(props) {
@@ -30,7 +28,7 @@ class LoginSignUpForm extends Component {
 
   handleChange = evt => {
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value, errors: []
     });
   };
 
@@ -126,17 +124,15 @@ class LoginSignUpForm extends Component {
 
     return (
 
-      <div className="form-container mx-auto">
+      <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+        style={{ marginTop: '10%', backgroundColor:'#F4F6F8'}}>
       
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
           {/* handle login failure */}
-          {this.state.errors.length > 0 && 
-            <Alert type="danger" messages={["Invalid Email or Password", "Forgot your password?"]} 
-            text={`Click here!`}
-            link={`${BASE_URL}/reset-password/forgot`}/>}
+          {this.state.errors.length > 0 &&   <LoginError />}
 
-            <div className="mb-3">{text}</div>
+            <h3 className="mb-3">{text}</h3>
             <Form.Group>
               <Form.Control
                 placeholder="Email"
@@ -162,7 +158,7 @@ class LoginSignUpForm extends Component {
 
             {loginState ? "" : signupForm}
             <div className="row justify-content-center">
-              <Button className="login-submit btn-block mr-3 ml-3" 
+              <Button className="login-submit btn-block mr-3 ml-3 " 
                       type="submit" >
                 Submit
               </Button></div>

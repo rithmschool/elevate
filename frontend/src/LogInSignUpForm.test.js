@@ -28,9 +28,6 @@ describe('LoginSignUpForm', function() {
     expect(wrapper.state('lastName')).toEqual('');
   });
 
-  it('has div with form-container class', function () {
-    expect(wrapper.find('div.form-container')).toHaveLength(1);
-  });
 
   it('changes isLogin state on click and shows additional form fields', function () {
     expect(wrapper.find('input[id="firstName"]')).toHaveLength(0);
