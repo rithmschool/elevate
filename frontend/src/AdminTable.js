@@ -16,25 +16,24 @@ class AdminTable extends Component {
 
     return (
       <tr>
-        { keys.map(key => {
+        {keys.map(key => {
           // Remove underscore from key name
           key = key.replace(/_/g, ' ');
-          
-          return <th key={ key }>{ key }</th> 
+
+          return <th key={key}>{key}</th>
         }).filter((key, idx) => idx < maxColumnCount)}
       </tr>
     );
   }
 
   createTableBody() {
-
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
+      const id= item.user_id
 
-      return this.createTableRows(itemKeys, itemValues);
+      return this.createTableRows(itemKeys, itemValues, id);
     });
-
     return table;
   }
 
@@ -57,39 +56,39 @@ class AdminTable extends Component {
         }
       }
     }
-
     return value;
   }
 
-  createTableRows(keys, values) {
+  createTableRows(keys, values, id) {
+   
     return (
-      <tr key={values[0]} onClick={this.handleClick} id={values[0]}>
+      <tr key={values[0]} onClick={this.handleClick} id={id}>
         {values.map((value, index) => {
           value = this.concatenateText(value);
 
           return (
-            <td key={`${values[0]}-${keys[index]}`} >{ value }</td>
+            <td key={`${values[0]}-${keys[index]}`} >{value}</td>
           );
         }).filter((value, idx) => idx < maxColumnCount)}
       </tr>
     );
   }
 
-  render(){
+  render() {
     return (
       <div className="admin-table">
-        <Table 
+        <Table
           striped
           bordered
-          hover 
-          size="sm" 
-          responsive 
+          hover
+          size="sm"
+          responsive
           id={this.props.view + '-table'}>
           <thead>
-            { this.createTableHeader() }
+            {this.createTableHeader()}
           </thead>
           <tbody>
-            { this.createTableBody() }
+            {this.createTableBody()}
           </tbody>
         </Table>
       </div>

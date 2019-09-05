@@ -90,7 +90,7 @@ class User {
 
   static async findAll() {
     const result = await db.query(
-      `SELECT id, 
+      `SELECT id AS user_id, 
               first_name, 
               last_name, 
               current_company AS company, 

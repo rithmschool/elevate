@@ -48,7 +48,6 @@ class ElevateApi {
   static async getUser(id) {
    
     let res = await this.request(`users/${id}`);
-    console.log("response is", res.user)
 
     return res.user;
   }
