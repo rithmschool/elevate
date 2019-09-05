@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
    * if No set hasSalaryRecord to false and create latestSalary object with default values of 0
    *  */
   async componentDidMount(){
-    const userId = this.context.userId;
+    const userId = this.context.userId || 0;
     try{
       let lastestSalary = await ElevateApi.getLatestSalary(userId);
       this.setState({lastestSalary, isLoading: false});
@@ -55,7 +55,7 @@ class UserProfile extends React.Component {
   async handleSalaryUpdate(salary){
     if(!this.state.hasSalaryRecord){
       try{
-        let res = await ElevateApi.postSalary(salary);
+        await ElevateApi.postSalary(salary);
         this.setState(
           {
             errors: [],

@@ -17,7 +17,6 @@ it("matches snapshot", function () {
 
 describe('UserProfile', function() {
   let wrapper;
-
   beforeEach(() => {
     wrapper = mount(<UserProfile />);
   });

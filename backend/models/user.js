@@ -121,6 +121,7 @@ class User {
   }
 
   
+  
   /** Update user data with `data`.
    *
    * This is a "partial update" --- it's fine if data doesn't contain
@@ -134,21 +135,21 @@ class User {
     if (data.password) {
       data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     }
-
     let { query, values } = partialUpdate("users", data, "id", id);
 
     const result = await db.query(query, values);
     const user = result.rows[0];
-
     if (!user) {
- 
       throw new Error(`There exists no user with that id`, 404);
     }
 
     delete user.password;
     delete user.is_admin;
+    delete user.reset_password_token;
+    delete user.reset_password_expires;
 
     return result.rows[0];
+    
   }
 
  
@@ -166,8 +167,42 @@ class User {
       throw new Error(`There exists no user with that id`, 404);
     }
   }
-}
 
+
+  /** Given a user email, return data about user. */
+  static async findUserbyEmail(email) {
+    const result = await db.query(
+      `SELECT id, email, first_name, last_name
+        FROM users 
+        WHERE email = $1`,
+      [email]
+    );
+    const user = result.rows[0];
+
+    if (!user) {
+      throw {message: `This user with this email ${email} doesn't exist!`, status: 400 };
+    }
+    return user;
+  }
+
+    /** Given a reset password reset token and check if the token is valid and not expired yet. */
+    static async verifyPasswordToken(resetPasswordToken) {
+      const result = await db.query(
+        `SELECT id, first_name, reset_password_expires
+          FROM users 
+          WHERE reset_password_token = $1`,
+        [resetPasswordToken]
+      );
+      const user = result.rows[0];
+      if(!user){
+        throw { message: `Password reset link is invalid`, status: 400 };
+      }
+      else if((user.reset_password_expires <  Date.now())){
+        throw { message: `Password reset link has expired`, status: 400 };
+      }
+      return user;
+    }
+}
 
 
 

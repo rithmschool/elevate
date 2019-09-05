@@ -10,6 +10,7 @@ const usersRoutes = require('./routes/users');
 const salariesRoutes = require('./routes/salaries');
 const authRoutes = require('./routes/auth');
 const questionsRoutes = require('./routes/questions');
+const passwordResetRoutes = require('./routes/resetPassword');
 const appointmentsRoutes = require('./routes/appointments');
 const calendlyWebhook = require('./routes/calendlyWebhook')
 
@@ -21,6 +22,7 @@ app.use('/login', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/salaries', salariesRoutes);
 app.use('/questions', questionsRoutes);
+app.use('/password', passwordResetRoutes);
 app.use('/appointments', appointmentsRoutes);
 app.use('/webhook', calendlyWebhook);
 

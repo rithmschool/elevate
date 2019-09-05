@@ -3,6 +3,11 @@
 require("dotenv").config();
 
 const SECRET = process.env.SECRET_KEY || 'test';
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS || `elevate2super@gmail.com`;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD || `elevate2super12345`;
+const FROM_EMAIL = `superAgent@gmail.com`
+const SERVICE = 'gmail';
+const EXPIRE_TIME = 3600000; // 1 hour 
 
 const PORT = +process.env.PORT || 3001;
 
@@ -17,12 +22,12 @@ if (process.env.NODE_ENV === "test") {
 console.log("Using database", DB_URI);
 
 const SEED_USER_SQL = `
-  INSERT INTO users (email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals) VALUES
-    ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
-    ('admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', ''),
-    ('nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
-    ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
-    ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');`
+  INSERT INTO users (email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals, reset_password_token, reset_password_expires) VALUES
+    ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.','', ''),
+    ('admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', '', '', ''),
+    ('nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.', '', ''),
+    ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.', '', ''),
+    ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.', '','');`
 
 const SEED_SALARY_SQL = `
   INSERT INTO salaries (user_id, salary, bonus, equity) VALUES
@@ -61,6 +66,11 @@ module.exports = {
   SEED_USER_SQL,
   SEED_SALARY_SQL,
   SEED_CHARGES_SQL,
+  EMAIL_ADDRESS,
+  EMAIL_PASSWORD,
+  FROM_EMAIL,
+  EXPIRE_TIME,
+  SERVICE,
   SEED_APPT_SQL,
   SEED_USERS_CALENDLY_USERS_SQL
 };
