@@ -12,4 +12,4 @@ install:
 - npm install
 - npm install --save-dev jest
 script:
-- npm test
+- jest backend --runInBand --silent
