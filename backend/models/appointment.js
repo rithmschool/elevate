@@ -24,7 +24,7 @@ class Appointment {
 
   static async findAll() {
     const result = await db.query(
-      `SELECT  user_id, users.first_name, users.last_name, users.email, created_at, event_type, event_type_name, start_time_pretty, location, canceled
+      `SELECT  appointments.id, user_id, users.first_name, users.last_name, users.email, created_at, event_type, event_type_name, start_time_pretty, location, canceled
       FROM appointments
       JOIN users on users.id = appointments.user_id
       ORDER BY users.last_name
