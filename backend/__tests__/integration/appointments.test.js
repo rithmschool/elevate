@@ -44,9 +44,9 @@ describe('GET /appointments', function () {
 
 describe('GET /appointments/:id', function () {
     test('should response with matched appointments with params id', async function () {
-        console.log("I am enter test")
+        
         let userId = TEST_DATA.currentId;
-        console.log("id is ", userId)
+
         const appointment = {
             user_email: inputEmail,
             user_id: userId,
@@ -74,7 +74,6 @@ describe('GET /appointments/:id', function () {
         let response = await request(app)
             .get(`/appointments/${userId}`)
             .send({ _token: TEST_DATA.userToken });
-            console.log("res body is", response.body.appointments.user_id)
         expect(response.statusCode).toBe(200);
         expect(response.body.appointments[0].user_id).toBe(userId);
     });
