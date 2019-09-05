@@ -7,9 +7,9 @@ before_script:
   - psql -c 'create database elevate;' -U postgres
   - psql < backend/data.sql
 before_install:
-- npm update
-script:
 - cd backend
+install:
 - npm install  
 - npm install --save-dev jest
+script:
 - npm test
