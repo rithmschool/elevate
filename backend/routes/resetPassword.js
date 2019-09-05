@@ -74,7 +74,7 @@ router.get('/:token', async function (req, res, next) {
 
 });
 
-/** PATCH / {ipassword} => {user} */
+/** PATCH / {password} => {user} */
 router.patch('/:id', async function (req, res, next) {
   
   try {
