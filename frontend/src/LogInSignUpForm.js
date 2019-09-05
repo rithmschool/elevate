@@ -4,9 +4,10 @@ import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
 
-//created client_id form configure a project from google
+//created client_id from configure a project from google
 const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
 let auth2;
+
 class LoginSignUpForm extends Component {
   constructor(props) {
     super(props);
@@ -24,36 +25,37 @@ class LoginSignUpForm extends Component {
   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
   */
   onSignIn = async (googleUser) => {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    const profile = googleUser.getBasicProfile();
+    // ID: profile.getId()
+    // Name: profile.getName()
+    // Email: profile.getEmail()
     
     /** this ID token will be sent to the server with HTTP post request
      *  in ElevateApi to get verify from google
      */
     var id_token = googleUser.getAuthResponse().id_token;
-    console.log(id_token)
 
     /** wait to signinGoogle
      *  use google token to sign in to elevate api
      *  signinGoogle will return a token, use this token
      */
     let token;
+
     try {
-      //TODO:get token to work in the backend!
       token = await ElevateApi.signinGoogle(id_token)
     } catch(errors) {
       return this.setState({ errors })
     }
+
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
+
     this.props.history.push("/");
   }
   
   componentDidMount() {
-    /** Initialize the auth2 library and we use this auth2 with method sign in
-     *  in handleGoogleSignin below
+    /** Initialize the auth2 library and we use this auth2 with
+     *  handleGoogleSignin below
      */
     try {
       window.gapi.load('auth2', () => {
@@ -67,7 +69,8 @@ class LoginSignUpForm extends Component {
       return this.setState({ errors })
     }
   }
-  /** auth2.signIn() gives back googleUser which can use
+
+  /** auth2.signIn() gives back googleUser which can be used
    *  for argument in onSignIn method
    */
   handleGoogleSignin = () => {
@@ -78,9 +81,9 @@ class LoginSignUpForm extends Component {
 
   loginOrSignup = evt => {
     if (evt.target.name === "login") {
-      this.setState({ isLogin: true })
+      this.setState({ isLogin: true });
     } else {
-      this.setState({ isLogin: false })
+      this.setState({ isLogin: false });
     }
   }
 
@@ -98,7 +101,7 @@ class LoginSignUpForm extends Component {
       if (this.state.isLogin) {
         const data = { email: this.state.email, 
                       password: this.state.password };
-        token = await ElevateApi.login(data)
+        token = await ElevateApi.login(data);
       } else {
         const data = {
           email: this.state.email,
@@ -111,15 +114,16 @@ class LoginSignUpForm extends Component {
     } catch (errors) {
       return this.setState({ errors })
     }
+
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
+
     this.props.history.push("/");
   }
   
   render() {
     let loginState = this.state.isLogin;
-    let text = loginState ? "Sign In" : "Sign Up"
-
+    let text = loginState ? "Sign In" : "Sign Up";
 
     const signupForm = (
       <div>
@@ -146,7 +150,7 @@ class LoginSignUpForm extends Component {
           />
         </Form.Group>
       </div>
-    )
+    );
 
     const loginWithSocial = (
       <div>
@@ -155,36 +159,38 @@ class LoginSignUpForm extends Component {
           <span className="span-or">or</span>
         </div>
 
+        {/* Google Sign In Button */}
         <div className="row justify-content-center">
           <Button className="btn-block mr-3 ml-3"
                   onClick={this.handleGoogleSignin}>
-            <i className="fab fa-google"></i>  Sign in with Google
+                  <i className="fab fa-google"></i>
+                  {` Sign in with Google`}
           </Button></div>
 
+        {/* Facebook Sign In Button */}
         <div className="row justify-content-center mt-2">
           <Button className="fb-login btn-block mr-3 ml-3">
-            <i className="fab fa-facebook"></i>  Sign in with Facebook
+               <i className="fab fa-facebook"></i>
+               {` Sign in with Facebook`}
           </Button></div>
 
         <Form.Text id="signup" 
-                    className="text-muted mt-3" 
-                    style={{ "textAlign": "center" }}>
-          Don't have an account? 
+                   className="text-muted mt-3" 
+                   style={{ "textAlign": "center" }}>
+                   {`Don't have an account? `}
           <button className="button-signup" 
                   onClick={this.loginOrSignup}>
-            Create One
+                  Create One
           </button>
         </Form.Text>
       </div>
-    )
-
+    );
 
     return (
-
       <div className="form-container mx-auto">
-      
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
+
           {/* handle login failure */}
           {this.state.errors.length > 0 && 
             <Alert type="danger" messages={["Invalid Email or Password"]} />}
@@ -214,6 +220,7 @@ class LoginSignUpForm extends Component {
             </Form.Group>
 
             {loginState ? "" : signupForm}
+
             <div className="row justify-content-center">
               <Button className="login-submit btn-block mr-3 ml-3" 
                       type="submit" >
@@ -232,10 +239,8 @@ class LoginSignUpForm extends Component {
             </Form.Text>}
           </Form>
         </div>
-
       </div>
-
-    )
+    );
   }
 }
 
