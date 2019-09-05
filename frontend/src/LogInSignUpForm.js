@@ -55,13 +55,17 @@ class LoginSignUpForm extends Component {
     /** Initialize the auth2 library and we use this auth2 with method sign in
      *  in handleGoogleSignin below
      */
-    window.gapi.load('auth2', () => {
-      auth2 = window.gapi.auth2.init({
-        client_id: client_id,
-        fetch_basic_profile: false,
-        scope: 'profile openid' 
+    try {
+      window.gapi.load('auth2', () => {
+        auth2 = window.gapi.auth2.init({
+          client_id: client_id,
+          fetch_basic_profile: false,
+          scope: 'profile openid' 
+        });
       });
-    });
+    } catch (errors){
+      return this.setState({ errors })
+    }
   }
   /** auth2.signIn() gives back googleUser which can use
    *  for argument in onSignIn method

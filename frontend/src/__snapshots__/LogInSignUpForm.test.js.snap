@@ -108,20 +108,22 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
             >
               <Button
                 active={false}
-                className="google-login btn-block mr-3 ml-3"
+                className="g-signin2 google-login btn-block mr-3 ml-3"
                 disabled={false}
+                onClick={[Function]}
                 type="button"
                 variant="primary"
               >
                 <button
-                  className="google-login btn-block mr-3 ml-3 btn btn-primary"
+                  className="g-signin2 google-login btn-block mr-3 ml-3 btn btn-primary"
                   disabled={false}
+                  onClick={[Function]}
                   type="button"
                 >
                   <i
-                    className="fa fa-google"
+                    className="fab fa-google"
                   />
-                  Sign in with Google
+                    Sign in with Google
                 </button>
               </Button>
             </div>
@@ -141,9 +143,9 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   type="button"
                 >
                   <i
-                    className="fa fa-facebook"
+                    className="fab fa-facebook"
                   />
-                  Sign in with Facebook
+                    Sign in with Facebook
                 </button>
               </Button>
             </div>
