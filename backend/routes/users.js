@@ -35,7 +35,7 @@ router.get('/:id', authRequired, ensureCorrectUser, async function (req, res, ne
 
 router.post('/', async function (req, res, next) {
   try {
-    const newUser = await User.register(req.body);
+    const newUser = await User.create(req.body);
     const token = createToken(newUser);
     return res.status(201).json({ token });
   } catch (err) {

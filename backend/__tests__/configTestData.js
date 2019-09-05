@@ -1,7 +1,3 @@
-const inputPassword = "test";
-const inputEmail = "test@gmail.com";
-const inputAdminPassword = "admin123";
-const inputAdminEmail = "admin@gmail.com"
 
 const USER_DATA = [
   {email: 'testuser@gmail.com', password: 'password123', first_name: 'Test', last_name: 'User'},
@@ -28,37 +24,25 @@ const CHARGE_DATA = [
 ]
 
 const APPOINTMENTS_DATA = [
-  {user_id: 3, event_id: 'BCHFF2F62BWNJVPP', calendly_user_id: 'ABCFF2F62BWNJVPP',  created_at: '2020-08-29T09:15:00-07:00', event_type: 'One-on-One', event_type_name: '30 Minute Meeting', reason: 'legal advice', admin_notes: null, start_time:'2020-08-31T09:15:00-07:00'},
-  {user_id: 3, event_id: 'GCIEBYAHGKWNENHS', calendly_user_id: 'BCHFF2F62BWNJVPP',  created_at: '2020-08-27T14:00:29-07:00', event_type: 'One-on-One', event_type_name: '15 Minute Meeting', reason: 'consult with a lawyer', admin_notes: null, start_time:'2020-08-30T14:00:29-07:00'},
-  {user_id: 3, event_id: 'AAFOAUQKKVOBSZVD', calendly_user_id: 'BCHFF2F62BWNJVPP',  created_at: '2020-08-27T16:30:00-07:00', event_type: 'One-on-One', event_type_name: '30 Minute Meeting',reason:'negotiate my salary',admin_notes: null, start_time:'2020-09-02T16:30:00-07:00',},
-  {user_id: 4, event_id:'EGMBBYHHDUZTVUKA', calendly_user_id:  'BCHFF2F62BWNJVPP',  created_at:  '2020-08-27T12:01:01-07:00', event_type: 'One-on-One', event_type_name: '60 Minute Meeting',reason:'legal advice', admin_notes: null, start_time:'2020-08-29T16:30:00-07:00'},
-  {user_id: 5, event_id: 'FDLGUGK6SOB54B3G', calendly_user_id: 'BCHFF2F62BWNJVPP',  created_at: '2020-08-27T14:00:29-07:00', event_type: 'One-on-One', event_type_name:'30 Minute Meeting',reason:'consult with a lawyer', admin_notes: null, start_time:'2020-08-27T14:00:29-07:00'},
+  { user_id: 3, event_id: 'BCHFF2F62BWNJVPP', calendly_user_id: 'ABCFF2F62BWNJVPP', created_at: '2020-08-29T09:15:00-07:00', event_type: 'One-on-One', event_type_name: '30 Minute Meeting', reason: 'legal advice', admin_notes: null, start_time: '2020-08-31T09:15:00-07:00', start_time_pretty: '09:15 am - Saturday, August 31, 2020', end_time: '2020-08-31T09:45:00-07:00', end_time_pretty: '09:45 am - Saturday, August 31, 2020', location: 'Zoom', canceled: false, canceler_name: null, cancel_reason: null, canceled_at: null, old_event_id: null, new_event_id: null},
+  {user_id: 3, event_id: 'GCIEBYAHGKWNENHS', calendly_user_id: 'BCHFF2F62BWNJVPP', created_at: '2020-08-27T14:00:29-07:00', event_type: 'One-on-One', event_type_name: '15 Minute Meeting', reason: 'consult with a lawyer', admin_notes: null, start_time: '2020-08-30T14:00:29-07:00',start_time_pretty: '02:00 pm - Friday, August 30, 2020', end_time: '2020-08-30T14:15:29-07:00', end_time_pretty: '02:15 pm - Friday, August 30, 2020', location: 'Zoom', canceled: false, canceler_name: null, cancel_reason: null, canceled_at: null, old_event_id: null, new_event_id: null},
+  {user_id: 3, event_id: 'AAFOAUQKKVOBSZVD', calendly_user_id: 'BCHFF2F62BWNJVPP', created_at: '2020-08-27T16:30:00-07:00', event_type: 'One-on-One', event_type_name: '30 Minute Meeting', reason: 'negotiate my salary', admin_notes: null, start_time: '2020-09-02T16:30:00-07:00', start_time_pretty: '04:30 pm - Moday, September 2, 2020', end_time:'2020-09-02T17:00:00-07:00',  end_time_pretty: '05:00 pm - Moday, September 2, 2020', location: 'Zoom', canceled: false, canceler_name: null, cancel_reason: null, canceled_at: null, old_event_id:null, new_event_id: null},
+  {user_id: 4, event_id: 'EGMBBYHHDUZTVUKA', calendly_user_id: 'BCHFF2F62BWNJVPP', created_at: '2020-08-27T12:01:01-07:00', event_type: 'One-on-One', event_type_name: '60 Minute Meeting', reason: 'legal advice', admin_notes: null, start_time: '2020-08-29T16:30:00-07:00', start_time_pretty: '04:30 pm - Thursday, August 29, 2020', end_time:'2020-08-29T17:30:00-07:00', end_time_pretty:  '04:30 pm - Thursday, August 29, 2020', location: 'Zoom', canceled: true, canceler_name: 'Test Cancel', cancel_reason: 'too many meetings', canceled_at: '2020-08-29T09:15:00-07:00', old_event_id: 'BCHFF2F62BWNJVZZ', new_event_id: null},
+  {user_id: 5, event_id: 'FDLGUGK6SOB54B3G', calendly_user_id: 'BCHFF2F62BWNJVPP', created_at: '2020-08-27T14:00:29-07:00', event_type: 'One-on-One', event_type_name: '30 Minute Meeting', reason: 'consult with a lawyer', admin_notes: null, start_time: '2020-08-30T11:30:00-07:00', start_time_pretty: '11:30 am - Friday, August 30, 2020', end_time: '2020-08-30T12:00:00-07:00', end_time_pretty: '12:00 pm - Friday, August 30, 2020',location: 'Zoom', canceled: true, canceler_name: 'Test Cancel2', cancel_reason: 'meetings hate em', canceled_at: '2020-08-28T09:15:00-07:00', old_event_id: 'BCHFF2F62BWNJVAA', new_event_id: null}
 ]
 
 
-const SEED_APPT_SQL = `
-INSERT INTO appointments (user_id, event_id, calendly_user_id, created_at, event_type, event_type_name, reason, admin_notes, start_time, start_time_pretty, end_time, end_time_pretty, location, canceled, canceler_name, cancel_reason, canceled_at, old_event_id, new_event_id) VALUES
-  (3, 'BCHFF2F62BWNJVPP', 'ABCFF2F62BWNJVPP', '2020-08-29T09:15:00-07:00', 'One-on-One', '30 Minute Meeting', 'legal advice', null, '2020-08-31T09:15:00-07:00', '09:15 am - Saturday, August 31, 2020', '2020-08-31T09:45:00-07:00','09:45 am - Saturday, August 31, 2020', 'Zoom', false, null, null, null, null, null),
-  (3, 'GCIEBYAHGKWNENHS', 'BCHFF2F62BWNJVPP', '2020-08-27T14:00:29-07:00', 'One-on-One', '15 Minute Meeting', 'consult with a lawyer', null, '2020-08-30T14:00:29-07:00','02:00 pm - Friday, August 30, 2020', '2020-08-30T14:15:29-07:00', '02:15 pm - Friday, August 30, 2020', 'Zoom', false, null, null, null, null, null),
-  (3, 'AAFOAUQKKVOBSZVD', 'BCHFF2F62BWNJVPP', '2020-08-27T16:30:00-07:00', 'One-on-One', '30 Minute Meeting', 'negotiate my salary', null, '2020-09-02T16:30:00-07:00', '04:30 pm - Moday, September 2, 2020', '2020-09-02T17:00:00-07:00',  '05:00 pm - Moday, September 2, 2020','Zoom', false, null, null, null, null, null),
-  (4, 'EGMBBYHHDUZTVUKA', 'BCHFF2F62BWNJVPP', '2020-08-27T12:01:01-07:00', 'One-on-One', '60 Minute Meeting', 'legal advice', null, '2020-08-29T16:30:00-07:00', '04:30 pm - Thursday, August 29, 2020', '2020-08-29T17:30:00-07:00', '04:30 pm - Thursday, August 29, 2020','Zoom', true, 'Emi Tsukuda', 'too many meetings', '2020-08-29T09:15:00-07:00', 'BCHFF2F62BWNJVZZ', null),
-  (5, 'FDLGUGK6SOB54B3G', 'BCHFF2F62BWNJVPP', '2020-08-27T14:00:29-07:00', 'One-on-One', '30 Minute Meeting', 'consult with a lawyer', null, '2020-08-30T11:30:00-07:00', '11:30 am - Friday, August 30, 2020','2020-08-30T12:00:00-07:00', '12:00 pm - Friday, August 30, 2020','Zoom', true, 'Stephanie Simms', 'meetings hate em', '2020-08-28T09:15:00-07:00', 'BCHFF2F62BWNJVAA', null);`
-
 // NOTE: currently not used in any test but it is for future use for frontend calendly feature
-const SEED_USERS_CALENDLY_USERS_SQL = 
-`INSERT INTO users_calendly_users (user_id, calendly_user_id) VALUES
-  (1, 'ABCFF2F62BWNJVPP'),
-  (2, 'BCHFF2F62BWNJVPP');`
-
+const USERS_CALENDLY_USERS_DATA = [
+{user_id: 1, calendly_user_id: 'ABCFF2F62BWNJVPP'},
+{user_id: 2, calendly_user_id: 'BCHFF2F62BWNJVPP'}
+]
+  
   module.exports = {
-    SEED_USER_SQL,
-    SEED_SALARY_SQL,
-    SEED_CHARGES_SQL,
-    SEED_APPT_SQL,
-    SEED_USERS_CALENDLY_USERS_SQL, 
-    inputPassword,
-    inputEmail,
-    inputAdminPassword,
-    inputAdminEmail
+    USER_DATA,
+    SALARY_DATA,
+    CHARGE_DATA,
+    APPOINTMENTS_DATA,
+    USERS_CALENDLY_USERS_DATA,
   };
   

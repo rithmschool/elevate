@@ -59,9 +59,9 @@ class User {
 
   /** Register user with data. Returns new user data. */
   /**NOTE: ask Alex what kind of initial sign up data from new user */
-  static async register(data) {
+  static async create(data) {
     // check if email is taken or not
-
+console.log("I am here at model user")
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 

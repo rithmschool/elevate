@@ -9,7 +9,8 @@
   },
   "jest": {
     "modulePathIgnorePatterns": [
-      "/__tests__/config.js"
+      "/__tests__/configTest.js",
+      "/__tests__/configTestData.js"
     ]
   },
   "keywords": [],
