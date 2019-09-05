@@ -9,7 +9,7 @@ before_script:
 before_install:
 - npm update
 install:
-- npm install
+- npm --prefix ./backend install ./
 - npm install --save-dev jest
 script:
 - jest backend --runInBand --silent
