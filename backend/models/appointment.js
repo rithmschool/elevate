@@ -72,9 +72,10 @@ class Appointment {
   {event_id, start_time}
   */
   static async create(obj) {
-    console.log("I am here at appointment")
+    
 
     let user_email = obj.user_email
+
     const userResult = await db.query(
       `SELECT id
           FROM users

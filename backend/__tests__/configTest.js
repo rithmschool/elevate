@@ -6,9 +6,10 @@ const jwt = require("jsonwebtoken");
 const app = require("../app");
 const db = require("../db");
 
-const User = require("../models/user");
-const Appointment = require("../models/appointment");
-const Salary = require("../models/salary");
+// seed imports
+const seedData = require("../seed")
+
+
 
 /** login a user, get a token, store the user ID and token*/
 async function getUserToken(userData) {
@@ -31,6 +32,13 @@ async function getUserToken(userData) {
   }
 }
 
+async function beforeEachHook() {
+  try {
+    await seedData()
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
 async function afterEachHook(table) {
@@ -54,5 +62,5 @@ module.exports = {
   afterAllHook,
   afterEachHook,
   getUserToken,
-  createTestData
+  beforeEachHook,
 };

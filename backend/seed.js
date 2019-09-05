@@ -7,6 +7,7 @@ const Appointment = require("./models/appointment");
 const Salary = require("./models/salary");
 const [USER_DATA, SALARY_DATA, APPOINTMENTS_DATA] = require("./seedData");
 
+
 async function cleanData() {
   try {
     await db.query("DELETE FROM appointments;")
@@ -24,11 +25,11 @@ async function createTestData() {
       for(const user of USER_DATA){
         await User.create(user)
       }
+       for(const salary of SALARY_DATA){
+        await Salary.create(salary)
+      }
       for(const apt of APPOINTMENTS_DATA){
         await Appointment.create(apt)
-      }
-      for(const salary of SALARY_DATA){
-        await Salary.create(salary)
       }
     } catch(err){
       console.log("something went wrong with createTestData", err)
@@ -43,7 +44,10 @@ async function seedData(){
     console.log("something went wrong!", err)
   }
 }
+
 seedData().then(async function(){
     console.log("ALL DONE!")
     process.exit(0)
 })
+
+module.exports = seedData;

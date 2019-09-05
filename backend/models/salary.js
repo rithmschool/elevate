@@ -41,6 +41,7 @@ class Salary {
   /** Create a salary (from data), update db, return new salary data. */
 
   static async create(data) {
+  
     const { user_id, salary, bonus, equity } = data;
     if (user_id === undefined) {
       return new Error("UserId is undefined");
