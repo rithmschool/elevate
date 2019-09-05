@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import './AdminTable.css'
 
-const mql = window.matchMedia(`(max-width: 640px)`);
+const MQL = window.matchMedia(`(max-width: 640px)`);
 // set the maximum number of table columns for smaller and larger screens
-const maxColumnCount = mql.matches ? 5 : 12;
+const MAXCOLUMNCOUNT = MQL.matches ? 5 : 12;
 
 class AdminTable extends Component {
   handleClick = (evt) => {
@@ -21,7 +21,7 @@ class AdminTable extends Component {
           key = key.replace(/_/g, ' ');
 
           return <th key={key}>{key}</th>
-        }).filter((key, idx) => idx < maxColumnCount)}
+        }).filter((key, idx) => idx < MAXCOLUMNCOUNT)}
       </tr>
     );
   }
@@ -43,7 +43,7 @@ class AdminTable extends Component {
   concatenateText(value) {
     // concatenate at 6 characters for small screen and 25 for large
     if (typeof value === 'string') {
-      if (mql.matches) {
+      if (MQL.matches) {
         // small screen
         if (value.slice(0, 2) === '19' || value.slice(0, 2) === '20') {
           // only show year on small strings
@@ -73,7 +73,7 @@ class AdminTable extends Component {
           return (
             <td key={`${values[0]}-${keys[index]}`} >{value}</td>
           );
-        }).filter((value, idx) => idx < maxColumnCount)}
+        }).filter((value, idx) => idx < MAXCOLUMNCOUNT)}
       </tr>
     );
   }

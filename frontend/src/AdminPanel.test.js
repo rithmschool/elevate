@@ -134,22 +134,22 @@ describe('AdminPanel', function () {
   });
 
   it('changes view state on click', function () {
-    wrapper.find('div[id="users"]').simulate('click');
+    wrapper.find("#users").simulate('click');
     expect(wrapper.state('view')).toEqual('users');
 
-    wrapper.find('div[id="questions"]').simulate('click');
+    wrapper.find("#questions").simulate('click');
     expect(wrapper.state('view')).toEqual('questions');
 
     // NOTE: no table for invoices until charges branch gets merged 
     // wrapper.find('div[id="invoices"]').simulate('click');
     // expect(wrapper.state('view')).toEqual('invoices');
 
-    wrapper.find('div[id="appointments"]').simulate('click');
+    wrapper.find("#appointments").simulate('click');
     expect(wrapper.state('view')).toEqual('appointments');
   });
 
   it('renders the users table when view state is users', function () {
-    wrapper.find('div[id="users"]').simulate('click');
+    wrapper.find("#users").simulate('click');
     wrapper.update();
 
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
@@ -157,7 +157,7 @@ describe('AdminPanel', function () {
 
   it('show expected user data in the table', function () {
     wrapper.setState({ users });
-    wrapper.find('div[id="users"]').simulate('click')
+    wrapper.find("#users").simulate('click')
     wrapper.update();
 
     const rows = wrapper.find('table[id="users-table"]')
