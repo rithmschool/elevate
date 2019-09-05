@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --silent",
     "start": "node server.js"
   },
   "jest": {
@@ -21,6 +21,8 @@
     "db": "^1.1.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "flat": "^4.1.0",
+    "jsonschema": "^1.2.4",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.3.0",
     "pg": "^7.12.1",

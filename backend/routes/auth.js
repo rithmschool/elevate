@@ -3,7 +3,7 @@
 const User = require("../models/user");
 const express = require("express");
 const router = new express.Router();
-const createToken = require("../createToken");
+const createToken = require("../helpers/createToken");
 const { authRequired, adminRequired, ensureCorrectUser } = require("../middleware/auth")
 
 /**Log in route req.body --- { email, password } */
