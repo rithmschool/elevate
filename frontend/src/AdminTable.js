@@ -26,13 +26,16 @@ class AdminTable extends Component {
     );
   }
 
+  /** For each array of objects it returns an array of itemKeys, itemValues 
+   * and accesses the user_id from each object record. The user_id is required
+   * for createTableRows() to identify and display user details when clicking on any given table row */
   createTableBody() {
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
-      const id= item.user_id
+      const userId= item.user_id
 
-      return this.createTableRows(itemKeys, itemValues, id);
+      return this.createTableRows(itemKeys, itemValues, userId);
     });
     return table;
   }
@@ -59,10 +62,11 @@ class AdminTable extends Component {
     return value;
   }
 
-  createTableRows(keys, values, id) {
-   
+  /** Accesses keys, values, and userId to populate each table in Admin panel. 
+   * Requires user_id to render user details when clicking on any given row */
+  createTableRows(keys, values, userId) {
     return (
-      <tr key={values[0]} onClick={this.handleClick} id={id}>
+      <tr key={values[0]} onClick={this.handleClick} id={userId}>
         {values.map((value, index) => {
           value = this.concatenateText(value);
 

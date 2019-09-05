@@ -86,7 +86,9 @@ class User {
     return result.rows[0];
   }
 
-  /** Find all users. */
+  /** Find all users. Front end logic requires id to be aliased as user_id. 
+   * e.g., AdminTable component renders user details for each row in any table
+   * so it must have a consistent key "user_id"  */
 
   static async findAll() {
     const result = await db.query(
