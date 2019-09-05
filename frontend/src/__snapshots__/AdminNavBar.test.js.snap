@@ -24,10 +24,10 @@ exports[`AdminNavBar matches snapshot 1`] = `
       Invoices
     </div>
     <div
-      id="calendar"
+      id="appointments"
       onClick={[Function]}
     >
-      Calendar
+      Appointments
     </div>
   </div>
 </AdminNavBar>

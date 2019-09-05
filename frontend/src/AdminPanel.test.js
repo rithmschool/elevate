@@ -69,7 +69,7 @@ describe('AdminPanel', function () {
 
   let wrapper;
   let users = [{
-    id: id,
+    user_id: id,
     email: "testadmin@test.com",
     is_admin: true,
     first_name: "admin",
@@ -80,6 +80,7 @@ describe('AdminPanel', function () {
     goals: "Test pass"
   }]
   let questions = [{
+    id: 1,
     user_id: id,
     question: "My employer didn't pay me",
     resolved: false,
@@ -88,11 +89,17 @@ describe('AdminPanel', function () {
     last_name: "test",
     created_date: "2019-08-29"
   }]
+  let appointments = [{
+    id: 1,
+    user_id: id,
+
+  }]
 
   beforeEach(async () => {
     wrapper = mount(<AdminPanel />);
     await wrapper.instance().componentDidMount()
-    wrapper.setState({ users, questions })
+    wrapper.setState({ users, questions, appointments })
+    console.log("before each wrapper",  wrapper.debug());
   });
 
   it('renders without crashing', function () {
@@ -129,8 +136,8 @@ describe('AdminPanel', function () {
     wrapper.find('div[id="invoices"]').simulate('click');
     expect(wrapper.state('view')).toEqual('invoices');
 
-    wrapper.find('div[id="calendar"]').simulate('click');
-    expect(wrapper.state('view')).toEqual('calendar');
+    wrapper.find('div[id="appointments"]').simulate('click');
+    expect(wrapper.state('view')).toEqual('appointments');
   });
 
   it('renders the users table when view state is users', function () {

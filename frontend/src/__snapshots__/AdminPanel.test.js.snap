@@ -2,54 +2,8 @@
 
 exports[`AdminPanel matches snapshot 1`] = `
 <AdminPanel>
-  <div
-    className="admin-main"
-  >
-    <div
-      className="admin-panel"
-    >
-      <h1
-        className="admin-h1"
-      >
-        Admin Panel
-      </h1>
-    </div>
-    <div
-      className="admin-navbar"
-    >
-      <AdminNavBar
-        changeView={[Function]}
-      >
-        <div
-          className="adminNavBar"
-        >
-          <div
-            id="users"
-            onClick={[Function]}
-          >
-            Users
-          </div>
-          <div
-            id="questions"
-            onClick={[Function]}
-          >
-            Questions
-          </div>
-          <div
-            id="invoices"
-            onClick={[Function]}
-          >
-            Invoices
-          </div>
-          <div
-            id="calendar"
-            onClick={[Function]}
-          >
-            Calendar
-          </div>
-        </div>
-      </AdminNavBar>
-    </div>
+  <div>
+    ...Loading
   </div>
 </AdminPanel>
 `;

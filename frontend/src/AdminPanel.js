@@ -70,7 +70,7 @@ class AdminPanel extends Component {
       return (<div>...Loading</div>);
     }
 
-// TODO: refactoring logic of this.state.view to render AdminTable for correct view
+
     return(
       <div className="admin-main">
         <div className="admin-panel">

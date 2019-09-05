@@ -27,7 +27,7 @@ describe('AdminNavBar', function() {
   it('has a div for users, invoices, templates, and calendars', function () {
     expect(wrapper.find('div[id="users"]')).toHaveLength(1);
     expect(wrapper.find('div[id="invoices"]')).toHaveLength(1);
-    expect(wrapper.find('div[id="calendar"]')).toHaveLength(1);
+    expect(wrapper.find('div[id="appointments"]')).toHaveLength(1);
   });
 
   it('calls handleClick', function () {
