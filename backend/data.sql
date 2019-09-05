@@ -5,7 +5,7 @@ CREATE DATABASE "elevate";
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
-  password TEXT NOT NULL,
+  password TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
   first_name TEXT,
   last_name TEXT,
