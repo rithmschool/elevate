@@ -18,7 +18,7 @@ class ForgotPassword extends React.Component {
     this.sendEmail = this.sendEmail.bind(this);
   }
 
-
+  // handle input change
   handleChange(evt){
 		this.setState({ [evt.target.name]: evt.target.value });
   }
@@ -29,6 +29,7 @@ class ForgotPassword extends React.Component {
     document.title = "Forgot password"
   }
 
+  // verify if user entred its email and send  it to backend and then handle response
   async sendEmail(evt){
     evt.preventDefault();
     if(this.state.email === ''){
@@ -37,10 +38,7 @@ class ForgotPassword extends React.Component {
     else {
       try{
         await ElevateApi.forgotPassword({ email: this.state.email });
-        console.log('hereeeeeeeee11111')
         this.setState({ errors: [], emailSent: true });
-        console.log('hereeeeeeeee11111')
-
       }
       catch(errors){
         this.setState({ errors });
@@ -69,7 +67,7 @@ class ForgotPassword extends React.Component {
                     value={email}
                     type="email"
                     name="email"
-                    id="EditUser-first_name"
+                    id="forgt-email"
                     />
               <span>Email</span>
             </Label>
@@ -85,7 +83,8 @@ class ForgotPassword extends React.Component {
                     messages={["Recovery email sent!"]} />}
 
           <Col align="center" >
-            <Button color="info" size="sm"
+            <Button size="sm"
+            className="btn btn-info"
               > 
                Send Password Reset Email</Button>
           </Col>

@@ -4,6 +4,7 @@ import ElevateApi from './ElevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./Alert";
 
+const BASE_URL = "http://localhost:3000"
 
 class LoginSignUpForm extends Component {
   constructor(props) {
@@ -100,13 +101,13 @@ class LoginSignUpForm extends Component {
 
         <div className="row justify-content-center">
           <Button className="google-login btn-block mr-3 ml-3">
-            <i className="fa fa-google"></i>
+            <i className="fab fa-google"></i> {' '}
             Sign in with Google
           </Button></div>
 
         <div className="row justify-content-center mt-2">
           <Button className="fb-login btn-block mr-3 ml-3">
-            <i className="fa fa-facebook"></i>
+            <i className="fab fa-facebook"></i> {' '}
             Sign in with Facebook
           </Button></div>
 
@@ -131,7 +132,9 @@ class LoginSignUpForm extends Component {
           <Form onSubmit={this.handleSubmit} >
           {/* handle login failure */}
           {this.state.errors.length > 0 && 
-            <Alert type="danger" messages={["Invalid Email or Password"]} />}
+            <Alert type="danger" messages={["Invalid Email or Password", "Forgot your password?"]} 
+            text={`Click here!`}
+            link={`${BASE_URL}/reset-password/forgot`}/>}
 
             <div className="mb-3">{text}</div>
             <Form.Group>

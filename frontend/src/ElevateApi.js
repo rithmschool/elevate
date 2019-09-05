@@ -105,7 +105,7 @@ class ElevateApi {
   }
 
   static async updatePassword(id, password){
-    let res = await this.request(`password/`, {id, password}, 'patch');
+    let res = await this.request(`password/${id}`, {password}, 'patch');
     return res;
   }
   static async deleteUser(id) {

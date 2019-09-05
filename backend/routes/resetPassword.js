@@ -4,10 +4,10 @@ const User = require('../models/User');
 const router = express.Router();
 const crypto = require('crypto');
 const resetPasswordTemplate = require("../helpers/resetPasswordTemplate");
-const {EMAIL_ADDRESS, EMAIL_PASSWORD, SERVICE} = require("../config");
+const {EMAIL_ADDRESS, EMAIL_PASSWORD, FROM_EMAIL, SERVICE, EXPIRE_TIME} = require("../config");
 
 
-/** POST / check if email address exist in database and send password reset email */
+/** POST / check if email address exist in database and send password reset link to user email */
 
 router.post('/', async function (req, res, next) {
   let user = null;
@@ -19,14 +19,18 @@ router.post('/', async function (req, res, next) {
     catch (err) {
       return next(err);
     }
-    
+      /**  Generate a token using crypto Node.js built in module
+       *   Generate an expire time string usong Date.now() module */ 
       const token = crypto.randomBytes(20).toString('hex');
       let data = {
         reset_password_token: token,
-        reset_password_expires: Date.now() + 360000,
+        reset_password_expires: Date.now() + EXPIRE_TIME,
       }
+
+      // update our database with this new token and expire time
       User.update(user.id, data);
 
+      // Create a Nodemailer transporter
       const transporter = nodemailer.createTransport({
         service: `${SERVICE}`,
         auth: {
@@ -34,26 +38,29 @@ router.post('/', async function (req, res, next) {
           pass: `${EMAIL_PASSWORD}`,
         },
       });
+
+      // Create Mail Options
       const mailOption = {
-        from: `superAgent@gmail.com`,
+        from: `${FROM_EMAIL}`,
         to: `${user.email}`,
         subject: `Link to reset password`,
         html: resetPasswordTemplate(user.first_name, token)
       };
+
+      // Send mail to the user  with a link to reset the password
       transporter.sendMail(mailOption, function(err, response){
         if(err){
-          console.log("there was an error: ", err);
           return(err)
         }
         else {
-          console.log('here is the res:', response);
-          return res.json('Recovery email sent!');
+          return res.json({ message: 'Recovery email sent!'});
         }
-      })
-     
+      })    
 });
 
-
+/** GET / Verify in the database if the token is valid and not expired yet
+ *        return {id, first_name}
+  */
 router.get('/:token', async function (req, res, next) {
   
   const resetPasswordToken = req.params.token;
@@ -67,15 +74,14 @@ router.get('/:token', async function (req, res, next) {
 
 });
 
-
-router.patch('/', async function (req, res, next) {
+/** PATCH / {ipassword} => {user} */
+router.patch('/:id', async function (req, res, next) {
   
-  const id = req.body.id;
-  const password = req.body.password;
-  const data = {password};
   try {
-    const user = await User.update(id, data);
-    return res.json({ user });
+    const user = await User.update(req.params.id, req.body);
+    if (user) {
+      return res.json({ user });
+  }
   }
   catch (err) {
     return next(err);

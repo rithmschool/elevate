@@ -13,7 +13,9 @@ class Alert extends Component {
           <p className="mb-0 small" key={error}>
             {error}
           </p>
+          
         ))}
+        <a href={this.props.link}>{this.props.text}</a>
       </div>
     );
   }

@@ -7,7 +7,8 @@ import AdminPanel from './AdminPanel';
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import UserPrivateRoute from './UserPrivateRoute';
 import ForgotPassword from './ForgotPassword';
-import ResetPassword from './ResetPassword'
+import ResetPassword from './ResetPassword';
+import ForgotPassRoutes from './ForgotPassRoutes'
 
 
 class Routes extends React.Component {
@@ -29,10 +30,10 @@ class Routes extends React.Component {
 					render={props =>
 						(<UserProfile {...props} />)}/>
 
-				<Route exact path="/reset-password/forgot" render={() =>
+				<ForgotPassRoutes exact path="/reset-password/forgot" render={() =>
 					(<ForgotPassword />)} />
 
-				<Route exact path="/reset-password/:token" render={props =>
+				<ForgotPassRoutes exact path="/reset-password/:token" render={props =>
 									(<ResetPassword {...props}/>)} />
 
 				<Redirect to="/" />

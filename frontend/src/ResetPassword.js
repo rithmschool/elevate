@@ -1,10 +1,10 @@
 import React from 'react';
 import ElevateApi from './ElevateApi';
-import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
+import { Col, Button, Form, Label, Input, Row } from 'reactstrap';
 import Alert from "./Alert";
 import Spinner from './Spinner';
 
-
+const BASE_URL = "http://localhost:3000";
 
 class ResetPassword extends React.Component {
 
@@ -13,7 +13,6 @@ class ResetPassword extends React.Component {
     this.state = {
       userId: null,
       first_name: null,
-      email: '',
       password: '',
       confirmPassword: '',
       updated: false,
@@ -28,15 +27,17 @@ class ResetPassword extends React.Component {
 		this.setState({ [evt.target.name]: evt.target.value });
   }
 
-
+/** send token to backend to check its validity
+ * if valid and not expired yet display the form to enter a new password
+ * else display error and a link to try to get a new reset link
+ *  */ 
   async componentDidMount(){
     //change document title
-    document.title = "Reset Password"
+    document.title = "Reset Password";
     
     try{
       const resetPasswordToken = this.props.match.params.token;
       const response = await ElevateApi.verifyResetPasswordToken(resetPasswordToken);
-      console.log(response);
 
       this.setState({ 
         userId: response.id,
@@ -45,8 +46,7 @@ class ResetPassword extends React.Component {
         });
 
     } catch(errors){
-
-      this.setState({errors, isLoading: false})
+      this.setState({errors, isLoading: false});
     }
   }
 
@@ -54,7 +54,7 @@ class ResetPassword extends React.Component {
     evt.preventDefault();
 
     if(this.state.password !== this.state.confirmPassword){
-      this.setState({errors: ["These passwords don't match. Try again?"]})
+      this.setState({errors: ["These passwords don't match. Try again?"]});
     }
 
     try{
@@ -62,76 +62,80 @@ class ResetPassword extends React.Component {
       await ElevateApi.updatePassword(userId, password)
       this.setState({ errors: [], updated: true });
     } catch(errors){
-      this.setState({errors, })
+      this.setState({errors});
     }
   }
   render(){
     const {isLoading, errors, updated,  password, confirmPassword, first_name} = this.state;
     if(isLoading)
       return <Spinner/>;
-      if (errors.length > 0 ) {
-        return <Alert type="danger" messages={errors} />
-      }
+      if (errors.length > 0 )  
+        return (
+        <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+          style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
+            <br></br>
+         <Alert type="danger" messages={errors}
+          text={`Try to get a new link`}
+          link={`${BASE_URL}/reset-password/forgot`}/>
+        </div>
+      )
 
     
     return(
       <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
-        style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
+        style={{ marginTop: '10%'}}>
 
         <Form onSubmit={this.updatePassword}> 
-        <br/>
-        <h3>Hello {first_name}:</h3>
+          <br/>
+          <h4 style={{textAlign: 'center'}}>Hello {first_name}</h4>
+          <hr></hr>
           <h4 style={{textAlign: 'center', fontWeight: 'bold'}}>Choose a new password</h4>
           <hr></hr><br></br>
-            <Row form>
-                </Row>
-                <Row>
-              <Col md={12}>
-                <Label className="form-group has-float-label">
-                <Input onChange={this.handleChange}
-                        value={password}
-                        type="password" 
-                        name="password"
-                        id="EditUser-last_name" 
-                        />
-                <span>Password</span>
-                </Label>
-              </Col>
+          <Row form>
               </Row>
               <Row>
-              <Col md={12}>
-                <Label className="form-group has-float-label">
-                <Input onChange={this.handleChange}
-                        value={confirmPassword}
-                        type="password" name="confirmPassword"
-                        id="EditUser-email"
-                        />
-                <span>Confirm password</span>
-                </Label>
-              </Col>
+            <Col md={12}>
+              <Label className="form-group has-float-label">
+              <Input onChange={this.handleChange}
+                      value={password}
+                      type="password" 
+                      name="password"
+                      id="reset-password" 
+                      />
+              <span>Password</span>
+              </Label>
+            </Col>
             </Row>
-            <hr></hr>
-            {errors.length > 0 &&
-              <Alert type="danger" messages={errors} />}
+            <Row>
+            <Col md={12}>
+              <Label className="form-group has-float-label">
+              <Input onChange={this.handleChange}
+                      value={confirmPassword}
+                      type="password" name="confirmPassword"
+                      id="reset-confirmPassword"
+                      />
+              <span>Confirm password</span>
+              </Label>
+            </Col>
+          </Row>
+          <hr></hr>
+          {errors.length > 0 &&
+            <Alert type="danger" messages={errors} />}
 
-            { updated &&
-              <Alert type="success"
-                    messages={["Recovery email sent!"]} />}
-        <Col align="center" >
-          <Button color="info" size="sm"
-            > 
-            Reset Password</Button>
-        </Col>
-        <br></br>
+          { updated &&
+            <Alert type="success"
+                  messages={["Password updated successfully!"]}
+                  text={`Try to login again`}
+                  link={`${BASE_URL}/login`} />}
+            <Col align="center" >
+              <Button color="info" size="sm"
+                > 
+                Reset Password</Button>
+            </Col>
+          <br></br>
         </Form>
       </div>
     )
   }
-
-
-
-
-
 }
-
 export default ResetPassword;
