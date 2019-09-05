@@ -33,8 +33,6 @@ class ResetPassword extends React.Component {
  * else display error and a link to try to get a new reset link
  *  */ 
   async componentDidMount(){
-    //change document title
-    document.title = "Reset Password";
     
     try{
       const resetPasswordToken = this.props.match.params.token;
@@ -59,8 +57,10 @@ class ResetPassword extends React.Component {
     }
 
     try{
+      const resetPasswordToken = this.props.match.params.token;
       const {userId, password} = this.state;
-      await ElevateApi.updatePassword(userId, password)
+      
+      await ElevateApi.updatePassword(userId, resetPasswordToken,  password)
       this.setState({ errors: [], updated: true });
     } catch(errors){
       this.setState({errors});

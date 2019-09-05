@@ -31,9 +31,7 @@ class LoginSignUpForm extends Component {
   }
 
   handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value, errors: []
-    });
+    this.setState({ [evt.target.name]: evt.target.value });
   };
 
   handleSubmit = async evt => {

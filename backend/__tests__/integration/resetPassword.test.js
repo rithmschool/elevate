@@ -17,7 +17,6 @@ const {
   afterAllHook,
   beforeEachHook,
   inputEmail,
-  inputPassword
 } = require('../config');
 
 beforeEach(async function () {
@@ -25,9 +24,7 @@ beforeEach(async function () {
   await db.query(SEED_USER_SQL);
 
 });
-
 afterEach(async function () {
-
   await afterEachHook();
 });
 

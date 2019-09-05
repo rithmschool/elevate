@@ -2,6 +2,7 @@ import React from 'react';
 import ElevateApi from './ElevateApi';
 import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
 import Alert from "./Alert";
+import './ForgotPassword.css'
 
 
 
@@ -59,9 +60,7 @@ class ForgotPassword extends React.Component {
     const { email, errors, emailSent} = this.state;
 
     return(
-      <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
-        style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
-
+      <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ForgotPassword-container">
       <Form onSubmit={this.sendEmail}>
         <br></br><br></br>
         <div style={{textAlign: 'center'}}>

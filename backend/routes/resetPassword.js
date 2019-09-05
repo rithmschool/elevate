@@ -10,7 +10,7 @@ const {EMAIL_ADDRESS, EMAIL_PASSWORD, FROM_EMAIL, SERVICE, EXPIRE_TIME} = requir
 /** POST / check if email address exist in database and send password reset link to user email */
 
 router.post('/', async function (req, res, next) {
-  let user = null;
+  let user ;
   const email = req.body.email
 
     try {
@@ -28,7 +28,7 @@ router.post('/', async function (req, res, next) {
       }
 
       // update our database with this new token and expire time
-      User.update(user.id, data);
+      await User.update(user.id, data);
 
       // Create a Nodemailer transporter
       const transporter = nodemailer.createTransport({
@@ -78,10 +78,16 @@ router.get('/:token', async function (req, res, next) {
 router.patch('/:id', async function (req, res, next) {
   
   try {
-    const user = await User.update(req.params.id, req.body);
-    if (user) {
-      return res.json({ user });
-  }
+    const {resetPasswordToken , password} = req.body;
+
+    const user = await User.verifyPasswordToken(resetPasswordToken);
+    if(user){
+      const resposne = await User.update(req.params.id, {password});
+      if (resposne) {
+        return res.json({ resposne });
+      }
+    }
+  
   }
   catch (err) {
     return next(err);
