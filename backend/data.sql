@@ -132,6 +132,8 @@ DROP DATABASE IF EXISTS "elevate-test";
 CREATE DATABASE "elevate-test";
 \c "elevate-test"
 
+ALTER DATABASE elevate-test SET timezone='US/Pacific';
+
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
