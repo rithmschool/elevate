@@ -53,20 +53,25 @@ class User {
 
   static async googleLogin(data){
     let user;
-    
-    // Get user id with matching email from Google
-    let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`,[data.email]);
-    let user_id = existing_user.rows[0].id;
 
-    // Get user_id from google_users table
-    // NEED TRY CATCH TO HANDLE ID NOT EXISTING
-    let google_user = await db.query(`SELECT * FROM google_users WHERE user_id=$1`,[user_id]);
-    console.log("google id!!!", google_user);
+      let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`,[data.email]);
+      let user_id = existing_user.rows[0] && existing_user.rows[0].id;
+      console.log("user_id",user_id)
+  
+      // Get user_id from google_users table
+      // NEED TRY CATCH TO HANDLE ID NOT EXISTING
+      let google_user = await db.query(`SELECT * FROM google_users WHERE user_id=$1`,[user_id]);
+      console.log("here", google_user)
+      let user_id_google = google_user.rows[0] && google_user.rows[0]
+    // Get user id with matching email from Google
   
     // Check if user_id exists in google_users table, 
     // false: add to google_users table, then return user
     // true: return user
-    if(!google_user){
+    if(!google_user.rows[0]){
+      console.log("YES")
+      console.log("user_id", user_id)
+      console.log("google_id", data.sub)
       await db.query(
         `INSERT INTO google_users
                 (user_id, google_id)
@@ -76,19 +81,20 @@ class User {
       )
 
       // Return current user
-      user = User.findOne(user_id);
+      user = await User.findOne(user_id);
+      console.log("USER",user)
       return user;
 
     } else if(user_id_google){
-       user = User.findOne(user_id);
-
-      return user;
+        user = await User.findOne(user_id);
+        console.log("USER",user)
+        return user;
     } else if (!user_id) {
       user = await db.query(
         `INSERT INTO users 
               (email, password, first_name, last_name) 
               VALUES ($1, $2, $3, $4) 
-              RETURNING id, is_admin, first_name, last_name`,
+              RETURNING email, first_name, last_name`,
         [data.email, null, data.given_name, data.family_name]);
 
       await db.query(
@@ -97,7 +103,7 @@ class User {
                 VALUES ($1,$2)
                 RETURNING user_id, google_id`,
                 [user.id, data.sub]);
-
+      console.log("USER",user)
       return user;
     }
   }

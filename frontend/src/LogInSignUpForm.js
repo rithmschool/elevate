@@ -23,7 +23,7 @@ class LoginSignUpForm extends Component {
   /** To get profile information 
   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
   */
-  onSignIn(googleUser){
+  onSignIn = async (googleUser) => {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
@@ -39,16 +39,16 @@ class LoginSignUpForm extends Component {
      *  use google token to sign in to elevate api
      *  signinGoogle will return a token, use this token
      */
-
-    // try {
-    //   //TODO:get token to work in the backend!
-      let token = ElevateApi.signinGoogle(id_token)
-    // } catch(errors) {
-    //   return this.setState({ error })
-    // }
-    // localStorage.setItem("token", token);
-    // await this.props.getCurrentUser();
-    // this.props.history.push("/");
+    let token;
+    try {
+      //TODO:get token to work in the backend!
+      token = await ElevateApi.signinGoogle(id_token)
+    } catch(errors) {
+      return this.setState({ errors })
+    }
+    localStorage.setItem("token", token);
+    await this.props.getCurrentUser();
+    this.props.history.push("/");
   }
   
   componentDidMount() {

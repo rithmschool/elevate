@@ -16,7 +16,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE google_users (
-  google_id INTEGER PRIMARY KEY,
+  google_id TEXT PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 

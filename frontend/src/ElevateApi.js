@@ -99,7 +99,7 @@ class ElevateApi {
   }
 
   static async signinGoogle(token){
-    let res = await this.request('login/tokensignin',{token}, "post")
+    let res = await this.request('login/ggtokensignin',{token}, "post")
     return res.token;
   }
 }

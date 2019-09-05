@@ -42,19 +42,17 @@ async function verify(token) {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
   const payload = ticket.getPayload();
-  const userid = payload['sub'];
-  // console.log(payload)
-  const user = await User.googleLogin(payload)
-  // console.log("user", user)
-  // If request specified a G Suite domain:
-  //const domain = payload['hd'];
+  return payload
+  
 
 }
-router.post("/tokensignin", async function(req,res,next) {
+router.post("/ggtokensignin", async function(req,res,next) {
   try {
-    const token = req.body.token
-    verify(token); 
-    
+    const ggToken = req.body.token
+    let payload = await verify(ggToken)
+    const user = await User.googleLogin(payload)
+    const token = createToken(user)
+    return res.json({ token });
   }
   catch (error){
     return next(error)
