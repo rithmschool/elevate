@@ -3,6 +3,7 @@ import ElevateApi from './ElevateApi';
 import { Col, Button, Form, Label, Input, Row } from 'reactstrap';
 import Alert from "./Alert";
 import Spinner from './Spinner';
+import ResetLinkExpired from './ResetLinkExpired'
 
 const BASE_URL = "http://localhost:3000";
 
@@ -74,9 +75,7 @@ class ResetPassword extends React.Component {
         <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
           style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
             <br></br>
-         <Alert type="danger" messages={errors}
-          text={`Try to get a new link`}
-          link={`${BASE_URL}/reset-password/forgot`}/>
+            <ResetLinkExpired />
         </div>
       )
 
