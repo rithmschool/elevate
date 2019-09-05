@@ -31,19 +31,7 @@ async function getUserToken(userData) {
   }
 }
 
-async function createTestData(model, dataArray) {
- console.log(model)
-  for(data of dataArray){
-   switch(model){
-    case 'user':
-       await User.create(data);
-    case 'appointment':
-      await Appointment.create(data)
-    case 'salary':
-     await Salary.create(data)
-   }
- }
-}
+
 
 async function afterEachHook(table) {
   try {
