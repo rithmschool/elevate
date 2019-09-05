@@ -1,3 +1,5 @@
+process.env.NODE_ENV = "test";
+
 // npm packages
 const request = require('supertest');
 
@@ -17,13 +19,14 @@ const {
   afterEachHook,
   afterAllHook
 } = require("../config");
+
+// mock calendly json
 const mockCalendlyCreate = require("../mockCalendlyJson/mockCalendlyCreate.json");
 const mockCalendlyCancel = require("../mockCalendlyJson/mockCalendlyCancel.json");
 const mockCalendlyCreateBadEmail = require("../mockCalendlyJson/mockCalendlyCreateBadEmail.json");
 const mockCalendlyCreateBadData = require("../mockCalendlyJson/mockCalendlyCreateBadData.json");
 
 const db = require("../../db");
-
 
 beforeEach(async function () {
   await db.query(SEED_USER_SQL);

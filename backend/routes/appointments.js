@@ -4,10 +4,10 @@ const Appointment = require("../models/appointment");
 const express = require("express");
 const router = new express.Router();
 const ExpressError = require("../helpers/expressError");
-const { authRequired } = require('../middleware/auth');
+const { ensureCorrectUser, adminRequired} = require('../middleware/auth');
 
 // GET--- endpoint for getting all appointment
-router.get('/', authRequired, async function (req, res, next) {
+router.get('/', adminRequired, async function (req, res, next) {
     try {
         let appointments = await Appointment.findAll();
         return res.json({ appointments });
@@ -16,13 +16,13 @@ router.get('/', authRequired, async function (req, res, next) {
     }
 });
 
-// GET---endpoint for getting appointments matched with params email
-router.get('/:userId', authRequired, async function (req, res, next) {
+// GET---endpoint for getting appointments matched with params user id
+router.get('/:id', ensureCorrectUser, async function (req, res, next) {
     try {
-        let appointments = await Appointment.findAppointmentsByUserId(req.params.userId);
+        let appointments = await Appointment.findByUserId(req.params.id);
         return res.json({ appointments });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
