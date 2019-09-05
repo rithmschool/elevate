@@ -108,14 +108,14 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
             >
               <Button
                 active={false}
-                className="g-signin2 google-login btn-block mr-3 ml-3"
+                className="btn-block mr-3 ml-3"
                 disabled={false}
                 onClick={[Function]}
                 type="button"
                 variant="primary"
               >
                 <button
-                  className="g-signin2 google-login btn-block mr-3 ml-3 btn btn-primary"
+                  className="btn-block mr-3 ml-3 btn btn-primary"
                   disabled={false}
                   onClick={[Function]}
                   type="button"

@@ -44,4 +44,10 @@ describe('LoginSignUpForm', function() {
     expect(wrapper.find('input[id="firstName"]')).toHaveLength(1);
     expect(wrapper.find('input[id="lastName"]')).toHaveLength(1);
   });
+
+  it('has the Google sign in button', function () {
+    expect(wrapper.find('i.fa-google')).toHaveLength(1);
+  });
+
+
 });

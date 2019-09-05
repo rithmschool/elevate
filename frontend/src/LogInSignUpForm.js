@@ -60,7 +60,7 @@ class LoginSignUpForm extends Component {
         auth2 = window.gapi.auth2.init({
           client_id: client_id,
           fetch_basic_profile: false,
-          scope: 'profile openid' 
+          scope: 'profile email openid' 
         });
       });
     } catch (errors){
@@ -156,7 +156,7 @@ class LoginSignUpForm extends Component {
         </div>
 
         <div className="row justify-content-center">
-          <Button className="g-signin2 google-login btn-block mr-3 ml-3"
+          <Button className="btn-block mr-3 ml-3"
                   onClick={this.handleGoogleSignin}>
             <i className="fab fa-google"></i>  Sign in with Google
           </Button></div>
