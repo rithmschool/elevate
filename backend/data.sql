@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS "elevate";
 CREATE DATABASE "elevate";
 \c "elevate"
 
+ALTER DATABASE elevate SET timezone='US/Pacific';
+
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
