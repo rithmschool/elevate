@@ -49,19 +49,19 @@ class Appointment {
   }]}
   */
 
-  static async findAppointmentsByUserEmail(email) {
+  static async findByUserId(id) {
 
     const result = await db.query(
       `SELECT  user_id, users.first_name, users.last_name, users.email, created_at, event_type, event_type_name, start_time_pretty, location, canceled
       FROM appointments
-      JOIN users on users.id = appointments.user_id
-      WHERE users.email = $1
-       `, [email]);
+      JOIN users ON users.id = appointments.user_id
+      WHERE users.id = $1
+       `, [id]);
 
     let appointments = result.rows[0];
 
     if (!appointments) {
-      const error = new Error(`no appointment for ${email}`);
+      const error = new Error(`no appointment for ${id}`);
       error.status = 404;   // 404 NOT FOUND
       throw error;
     }
@@ -165,7 +165,7 @@ class Appointment {
       error.status = 404;   // 404 NOT FOUND
       throw error;
     }
-    const array = [
+    const canceledEvent = [
       oldEventId.event_id,
       obj.canceled,
       obj.canceler_name,
@@ -184,7 +184,7 @@ class Appointment {
                   canceled_at = $5 
           WHERE event_id = $1
           RETURNING event_id, start_time, canceled`
-        , array);
+        , canceledEvent);
 
     } catch (err) {
       console.log(err);
@@ -195,4 +195,3 @@ class Appointment {
 }
 
 module.exports = Appointment;
-

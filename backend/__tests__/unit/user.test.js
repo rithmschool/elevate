@@ -1,10 +1,11 @@
 
 process.env.NODE_ENV = "test";
 
-
+// model import
 const User = require("../../models/user")
-const { SEED_USER_SQL } = require("../../config")
 
+// test config
+const { SEED_USER_SQL } = require("../../config")
 const { afterAllHook,
 	          afterEachHook,
 	          beforeEachHook,
@@ -12,7 +13,7 @@ const { afterAllHook,
 	          inputPassword,
 	          inputEmail } = require("../config")
 
-
+// database import
 const db = require("../../db");
 
 describe("model user", function () {
@@ -44,7 +45,6 @@ describe("model user", function () {
 
   describe("Test User Class authenticate", function () {
     test("should return user object if correct password and email", async function () {
-     
       let user = await User.authenticate({ "email": inputEmail, "password": inputPassword })
 
       expect(typeof user.id).toBe('number');
@@ -53,7 +53,6 @@ describe("model user", function () {
     });
 
     test("should return error message if password is wrong", async function () {
-    
       try {
         await User.authenticate({ "email": inputEmail, "password": "badPassword" })
       } catch (err) {
@@ -63,7 +62,6 @@ describe("model user", function () {
     });
 
     test("should return error message if email is wrong", async function () {
-     
       try {
         await User.authenticate({ "email": "bad@test.com", "password": inputPassword })
       } catch (err) {
