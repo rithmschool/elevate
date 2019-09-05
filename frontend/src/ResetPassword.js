@@ -83,7 +83,7 @@ class ResetPassword extends React.Component {
     
     return(
       <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
-        style={{ marginTop: '10%'}}>
+        style={{ marginTop: '10%', backgroundColor:'#F4F6F8'}}>
 
         <Form onSubmit={this.updatePassword}> 
           <br/>
