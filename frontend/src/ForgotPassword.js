@@ -12,6 +12,7 @@ class ForgotPassword extends React.Component {
     this.state = {
       email: '',
       errors: [],
+      msgFromServer: [],
       emailSent: false,
     }
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +21,11 @@ class ForgotPassword extends React.Component {
 
   // handle input change
   handleChange(evt){
-		this.setState({ [evt.target.name]: evt.target.value });
+		this.setState({
+      [evt.target.name]: evt.target.value,
+       emailSent: false,
+       errors: [],
+      });
   }
 
   
@@ -37,8 +42,12 @@ class ForgotPassword extends React.Component {
     } 
     else {
       try{
-        await ElevateApi.forgotPassword({ email: this.state.email });
-        this.setState({ errors: [], emailSent: true });
+        let response = await ElevateApi.forgotPassword({ email: this.state.email });
+        this.setState({
+          errors: [],
+          emailSent: true,
+          msgFromServer: [response.message]
+        });
       }
       catch(errors){
         this.setState({ errors });
@@ -80,7 +89,7 @@ class ForgotPassword extends React.Component {
 
             { emailSent &&
               <Alert type="success"
-                    messages={["Recovery email sent!"]} />}
+                    messages={this.state.msgFromServer} />}
 
           <Col align="center" >
             <Button size="sm"
