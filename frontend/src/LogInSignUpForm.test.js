@@ -44,4 +44,12 @@ describe('LoginSignUpForm', function() {
     expect(wrapper.find('input[id="firstName"]')).toHaveLength(1);
     expect(wrapper.find('input[id="lastName"]')).toHaveLength(1);
   });
+
+  it('Removes form and changes state to loading when submit is clicked', function () {
+    expect(wrapper.state().isLoading).toEqual(false);
+    const submit = wrapper.find('form').at(0);
+    submit.simulate('submit');
+    expect(wrapper.html()).toEqual("<div class=\"loader\"></div>")
+    expect(wrapper.state().isLoading).toEqual(true);
+  })
 });
