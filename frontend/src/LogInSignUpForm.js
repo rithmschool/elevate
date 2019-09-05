@@ -39,7 +39,7 @@ class LoginSignUpForm extends Component {
     evt.preventDefault();
     let token;
 
-    await this.setState({ isLoading: true })
+    this.setState({ isLoading: true })
     try {
       if (this.state.isLogin) {
         const data = {
@@ -133,7 +133,7 @@ class LoginSignUpForm extends Component {
           <Form onSubmit={this.handleSubmit} >
             {/* handle login failure */}
             {this.state.errors.length > 0 &&
-              <Alert type="danger" messages={["Invalid Email or Password"]} />}
+              <Alert type="danger" messages={[this.state.errors]} />}
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
