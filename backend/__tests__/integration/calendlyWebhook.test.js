@@ -14,11 +14,12 @@ const { parseResponse } = require("../../helpers/helperWebhook");
 
 
 //test config  
-const { SEED_USER_SQL, SEED_APPT_SQL } = require("../../config");
 const {
-  afterEachHook,
-  afterAllHook
-} = require("../config");
+  afterAllHook,
+  beforeEachHook,
+  getUserToken
+  
+} = require('../configTest');
 
 // mock calendly json
 const mockCalendlyCreate = require("../mockCalendlyJson/mockCalendlyCreate.json");
@@ -29,12 +30,7 @@ const mockCalendlyCreateBadData = require("../mockCalendlyJson/mockCalendlyCreat
 const db = require("../../db");
 
 beforeEach(async function () {
-  await db.query(SEED_USER_SQL);
-  await db.query(SEED_APPT_SQL);
-});
-
-afterEach(async function () {
-  await afterEachHook();
+  await beforeEachHook()
 });
 
 describe('POST /webhook', function () {
