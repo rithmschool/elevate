@@ -1,7 +1,7 @@
 import React from "react";
 import {UserContext} from "./UserContext"
 import UserBasicInfoForm from './userBasicInfoForm';
-import UserSalaryInfoForm from './UserSalaryInfoForm'
+import UserSalaryInfoForm from './userSalaryInfoForm'
 import ElevateApi from './ElevateApi';
 import { Row, Col } from 'reactstrap';
 import Spinner from './Spinner';
