@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import home from "./Home";
+import Home from "./home";
 
 it("renders without crashing", function () {
   shallow(<Home />);
