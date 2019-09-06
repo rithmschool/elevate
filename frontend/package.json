@@ -22,8 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "CI=true react-scripts test --env=jsdom",
-    "test:coverage": "npm test -- --coverage"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
