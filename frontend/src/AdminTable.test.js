@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
-import AdminTable from './AdminTable';
+import AdminTable from './adminTable';
 
 describe('AdminTable', function() {
   let wrapper;

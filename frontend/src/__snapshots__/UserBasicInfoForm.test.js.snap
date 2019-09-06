@@ -103,6 +103,7 @@ exports[`matches snapshot 1`] = `
             name="first_name"
             onChange={[Function]}
             type="text"
+            value="user"
           />
           <span>
             First name
@@ -141,6 +142,7 @@ exports[`matches snapshot 1`] = `
             name="last_name"
             onChange={[Function]}
             type="text"
+            value="test"
           />
           <span>
             Last name
@@ -179,6 +181,7 @@ exports[`matches snapshot 1`] = `
             name="email"
             onChange={[Function]}
             type="email"
+            value="test@gmail.com"
           />
           <span>
             Email
@@ -222,7 +225,7 @@ exports[`matches snapshot 1`] = `
             name="current_company"
             onChange={[Function]}
             type="text"
-            value=""
+            value="Rithm"
           />
           <span>
             Current company
@@ -261,7 +264,7 @@ exports[`matches snapshot 1`] = `
             name="hire_date"
             onChange={[Function]}
             type="date"
-            value="2019-09-05"
+            value="2019-08-13"
           />
           <span>
             Hire date

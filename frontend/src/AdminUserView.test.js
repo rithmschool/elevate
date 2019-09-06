@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import AdminUserView from './AdminUserView';
+import AdminUserView from './adminUserView';
 
 describe('AdminUserView', function() {
   let wrapper;

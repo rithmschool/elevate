@@ -1,11 +1,11 @@
 import React from 'react';
 import {  Route, Switch, Redirect } from "react-router-dom";
-import Home from './Home';
-import UserProfile from './UserProfile';
-import LogInSignUpForm from'./LogInSignUpForm';
-import AdminPanel from './AdminPanel';
-import AdminPrivateRoute from "./AdminPrivateRoute";
-import UserPrivateRoute from './UserPrivateRoute';
+import Home from './home';
+import UserProfile from './userProfile';
+import LogInSignUpForm from'./logInSignUpForm';
+import AdminPanel from './adminPanel';
+import AdminPrivateRoute from "./adminPrivateRoute";
+import UserPrivateRoute from './userPrivateRoute';
 
 
 class Routes extends React.Component {

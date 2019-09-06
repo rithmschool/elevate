@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
-import LoginSignUpForm from './LoginSignUpForm';
+import LoginSignUpForm from './logInSignUpForm';
 
 describe('LoginSignUpForm', function() {
   let wrapper;
