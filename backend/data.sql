@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS "elevate";
 CREATE DATABASE "elevate";
 \c "elevate"
 
-ALTER DATABASE elevate SET timezone='US/Pacific';
+ALTER DATABASE "elevate" SET timezone='US/Pacific';
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -11,8 +11,6 @@ CREATE TABLE users (
   reset_password_token TEXT,
   reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
-  reset_password_token TEXT,
-  reset_password_expires TEXT,
   first_name TEXT,
   last_name TEXT,
   current_company TEXT,
