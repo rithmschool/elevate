@@ -20,7 +20,7 @@ class LoginSignUpForm extends Component {
       lastName: "",
       errors: [],
       isLoading: false
-    }
+    };
   }
 
   /** To get profile information 
@@ -87,53 +87,51 @@ class LoginSignUpForm extends Component {
     } else {
       this.setState({ isLogin: false });
     }
-  }
+  };
 
   handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
+    this.setState({ [evt.target.name]: evt.target.value });
   };
 
   handleSubmit = async evt => {
     evt.preventDefault();
     let token;
+    this.setState({ isLoading: true });
 
-    this.setState({ isLoading: true })
     try {
       if (this.state.isLogin) {
         const data = {
           email: this.state.email,
           password: this.state.password
         };
-        token = await ElevateApi.login(data)
+        token = await ElevateApi.login(data);
       } else {
         const data = {
           email: this.state.email,
           password: this.state.password,
           first_name: this.state.firstName,
           last_name: this.state.lastName
-        }
+        };
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
-      return this.setState({ isLoading: false, errors })
+      return this.setState({ isLoading: false, errors });
     }
 
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
 
     this.props.history.push("/");
-  }
-  
+  };
+
   render() {
     let loginState = this.state.isLogin;
-    let text = loginState ? "Sign In" : "Sign Up"
+    let text = loginState ? "Sign In" : "Sign Up";
     if (this.state.isLoading) return <Spinner />;
 
     const signupForm = (
       <div>
-        <Form.Group >
+        <Form.Group>
           <Form.Control
             placeholder="First Name"
             className="signUpInput"
@@ -193,7 +191,10 @@ class LoginSignUpForm extends Component {
     );
 
     return (
-      <div className="form-container mx-auto">
+      <div
+        className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+      >
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit} >
 
@@ -208,7 +209,7 @@ class LoginSignUpForm extends Component {
                 className="logInInput"
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 onChange={this.handleChange}
                 value={this.state.email}
               />
@@ -224,23 +225,34 @@ class LoginSignUpForm extends Component {
                 value={this.state.password}
               />
             </Form.Group>
+
             {loginState ? "" : signupForm}
 
             <div className="row justify-content-center">
-              <Button className="login-submit btn-block mr-3 ml-3"
-                type="submit" >
+              <Button
+                className="login-submit btn-block mr-3 ml-3"
+                type="submit"
+              >
                 Submit
-              </Button></div>
-            {loginState ? loginWithSocial :
-              <Form.Text id="signup"
+              </Button>
+            </div>
+            {loginState ? (
+              loginWithSocial
+            ) : (
+              <Form.Text
+                id="signup"
                 className="text-muted"
-                style={{ "textAlign": "center" }}>
-                <button name="login"
+                style={{ textAlign: "center" }}
+              >
+                <button
+                  name="login"
                   className="button-signin"
-                  onClick={this.loginOrSignup}>
+                  onClick={this.loginOrSignup}
+                >
                   Signin
-              </button>
-              </Form.Text>}
+                </button>
+              </Form.Text>
+            )}
           </Form>
         </div>
       </div>
