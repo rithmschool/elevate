@@ -59,7 +59,9 @@ class ForgotPassword extends React.Component {
 
   render(){
     const { email, errors, emailSent, isLoading} = this.state;
+
     if(isLoading ) return <Spinner />
+    
     return(
       <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ForgotPassword-container">
       <Form onSubmit={this.sendEmail}>
