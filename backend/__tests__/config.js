@@ -16,7 +16,6 @@ const inputAdminPassword = "admin123";
 const inputAdminEmail = "admin@gmail.com";
 const passwordToken = "t3ae9a322f541237af6890edc9b3a4f940f124566";
 const expireTime = 99999999999999;
-
 /**
  * Hooks to insert a user, company, and job, and to authenticate
  *  the user and the company for respective tokens that are stored
@@ -33,10 +32,10 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
     // create new user with hashed password
     await db.query(
       `INSERT INTO users 
-                  (email, password) 
-                  VALUES ($1, $2) 
+                  (email, password, reset_password_token, reset_password_expires) 
+                  VALUES ($1, $2, $3, $4) 
                   RETURNING id, is_admin`,
-      [inputEmail, hashedPassword]
+      [inputEmail, hashedPassword, passwordToken, expireTime]
     );
 
     const response = await request(app)
@@ -106,6 +105,6 @@ module.exports = {
   inputPassword,
   inputEmail,
   inputAdminPassword,
-  passwordToken,
-  inputAdminEmail
+  inputAdminEmail,
+  passwordToken
 };

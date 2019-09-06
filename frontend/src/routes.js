@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import ForgotPassword from "./forgotPassword";
+import ResetPassword from "./resetPassword";
+import ForgotPassRoutes from "./forgotPassRoutes";
 import Home from "./home";
 import UserProfile from "./userProfile";
 import LogInSignUpForm from "./logInSignUpForm";
@@ -33,6 +36,18 @@ class Routes extends React.Component {
         <UserPrivateRoute
           path="/users/:userId"
           render={props => <UserProfile {...props} />}
+        />
+
+        <ForgotPassRoutes
+          exact
+          path="/reset-password/forgot"
+          render={() => <ForgotPassword />}
+        />
+
+        <ForgotPassRoutes
+          exact
+          path="/reset-password/:token"
+          render={props => <ResetPassword {...props} />}
         />
 
         <Redirect to="/" />

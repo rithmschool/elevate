@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 import ElevateApi from "./elevateApi";
 import "./LogInSignUpForm.css";
-import Alert from "./alert";
 import Spinner from "./spinner";
+import Alert from "./alert";
 
 class LoginSignUpForm extends Component {
   constructor(props) {
@@ -29,16 +29,14 @@ class LoginSignUpForm extends Component {
   };
 
   handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
+    this.setState({ [evt.target.name]: evt.target.value });
   };
 
   handleSubmit = async evt => {
     evt.preventDefault();
     let token;
-
     this.setState({ isLoading: true });
+
     try {
       if (this.state.isLogin) {
         const data = {
@@ -104,15 +102,13 @@ class LoginSignUpForm extends Component {
 
         <div className="row justify-content-center">
           <Button className="google-login btn-block mr-3 ml-3">
-            <i className="fa fa-google"></i>
-            Sign in with Google
+            <i className="fab fa-google"></i> Sign in with Google
           </Button>
         </div>
 
         <div className="row justify-content-center mt-2">
           <Button className="fb-login btn-block mr-3 ml-3">
-            <i className="fa fa-facebook"></i>
-            Sign in with Facebook
+            <i className="fab fa-facebook"></i> Sign in with Facebook
           </Button>
         </div>
 
@@ -129,7 +125,10 @@ class LoginSignUpForm extends Component {
       </div>
     );
     return (
-      <div className="form-container mx-auto">
+      <div
+        className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+      >
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
             {/* handle login failure */}
@@ -143,7 +142,7 @@ class LoginSignUpForm extends Component {
                 className="logInInput"
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 onChange={this.handleChange}
                 value={this.state.email}
               />
@@ -159,6 +158,7 @@ class LoginSignUpForm extends Component {
                 value={this.state.password}
               />
             </Form.Group>
+
             {loginState ? "" : signupForm}
             <div className="row justify-content-center">
               <Button

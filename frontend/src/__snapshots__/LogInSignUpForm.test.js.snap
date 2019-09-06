@@ -3,7 +3,13 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className="form-container mx-auto"
+    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+    style={
+      Object {
+        "backgroundColor": "#F4F6F8",
+        "marginTop": "10%",
+      }
+    }
   >
     <div
       className="form-inside-container mt-5"
@@ -31,7 +37,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 name="email"
                 onChange={[Function]}
                 placeholder="Email"
-                type="email"
+                type="text"
                 value=""
               >
                 <input
@@ -40,7 +46,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   name="email"
                   onChange={[Function]}
                   placeholder="Email"
-                  type="email"
+                  type="text"
                   value=""
                 />
               </FormControl>
@@ -119,9 +125,9 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   type="button"
                 >
                   <i
-                    className="fa fa-google"
+                    className="fab fa-google"
                   />
-                  Sign in with Google
+                   Sign in with Google
                 </button>
               </Button>
             </div>
@@ -141,9 +147,9 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   type="button"
                 >
                   <i
-                    className="fa fa-facebook"
+                    className="fab fa-facebook"
                   />
-                  Sign in with Facebook
+                   Sign in with Facebook
                 </button>
               </Button>
             </div>

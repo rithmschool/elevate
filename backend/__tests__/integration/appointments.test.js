@@ -34,7 +34,6 @@ afterEach(async function() {
 
 // TODO: FIX THIS
 xdescribe("GET /appointments", function() {
-  console.log("FUCK OFF", TEST_ADMIN_DATA);
   test("should response with all appointments ", async function() {
     const response = await request(app)
       .get("/appointments")
@@ -73,7 +72,7 @@ xdescribe("GET /appointments/:id", function() {
     };
     await Appointments.create(appointment);
 
-    let response = await request(app)
+    const response = await request(app)
       .get(`/appointments/${userId}`)
       .send({ _token: TEST_DATA.userToken });
     expect(response.statusCode).toBe(200);
@@ -81,7 +80,7 @@ xdescribe("GET /appointments/:id", function() {
   });
 
   test("should allow admin user  to get matched appointments with user_id", async function() {
-    let userId = TEST_DATA.currentId;
+    const userId = TEST_DATA.currentId;
     const appointment = {
       user_email: inputEmail,
       user_id: userId,
@@ -106,7 +105,7 @@ xdescribe("GET /appointments/:id", function() {
     };
     await Appointments.create(appointment);
 
-    let response = await request(app)
+    const response = await request(app)
       .get(`/appointments/${userId}`)
       .send({ _token: TEST_ADMIN_DATA.userToken });
     expect(response.statusCode).toBe(200);
@@ -114,7 +113,7 @@ xdescribe("GET /appointments/:id", function() {
   });
 
   test("Return 401 if user is not authorized", async function() {
-    let response = await request(app)
+    const response = await request(app)
       .get("/appointments/100")
       .send({ _token: `${TEST_DATA.userToken}` });
     expect(response.statusCode).toBe(401);

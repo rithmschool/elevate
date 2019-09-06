@@ -1,7 +1,6 @@
 const db = require("../db");
 
 class Question {
-
   // Create a question from input: {question, id}
   static async create(question, id) {
     const result = await db.query(
@@ -20,5 +19,5 @@ class Question {
     );
     return result.rows;
   }
- }
- module.exports = Question;
+}
+module.exports = Question;

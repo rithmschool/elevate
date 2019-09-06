@@ -92,12 +92,24 @@ class ElevateApi {
     return res.questions;
   }
 
-  /*Getting all appointments from backend api */
-  static async getAppointments() {
-    let res = await this.request(`appointments`);
-    return res.appointments;
+  static async forgotPassword(email) {
+    let res = await this.request(`password/`, email, "post");
+    return res;
   }
 
+  static async verifyResetPasswordToken(resetPasswordToken) {
+    let res = await this.request(`password/${resetPasswordToken}`);
+    return res;
+  }
+
+  static async updatePassword(id, resetPasswordToken, password) {
+    let res = await this.request(
+      `password/${id}`,
+      { resetPasswordToken, password },
+      "patch"
+    );
+    return res;
+  }
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
   }

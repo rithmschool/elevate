@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import LoginSignUpForm from "./logInSignUpForm";
 
@@ -21,15 +21,15 @@ describe("LoginSignUpForm", function() {
   });
 
   it("has states", function() {
-    expect(wrapper.state("isLogin")).toEqual(true);
-    expect(wrapper.state("email")).toEqual("");
-    expect(wrapper.state("password")).toEqual("");
-    expect(wrapper.state("firstName")).toEqual("");
-    expect(wrapper.state("lastName")).toEqual("");
-  });
-
-  it("has div with form-container class", function() {
-    expect(wrapper.find("div.form-container")).toHaveLength(1);
+    expect(wrapper.state()).toEqual({
+      errors: [],
+      isLoading: false,
+      isLogin: true,
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: ""
+    });
   });
 
   it("changes isLogin state on click and shows additional form fields", function() {

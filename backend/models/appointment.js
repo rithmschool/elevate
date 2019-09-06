@@ -4,7 +4,7 @@ class Appointment {
   /** ALL methods need to check for existing user and retrieve user_id using email from calendly
    * If we can't find a user_id, then send an email saying that the meeting will be canceled
    * please try again and be sure to use the same email as elevate account
-   * 
+   *
    */
 
   /**  find all appointment data from elevate appointments database
@@ -28,7 +28,8 @@ class Appointment {
       FROM appointments
       JOIN users on users.id = appointments.user_id
       ORDER BY users.last_name
-       `);
+       `
+    );
 
     let appointments = result.rows;
     return appointments;
@@ -51,19 +52,20 @@ class Appointment {
   */
 
   static async findByUserId(id) {
-
     const result = await db.query(
       `SELECT  user_id, users.first_name, users.last_name, users.email, created_at, event_type, event_type_name, start_time_pretty, location, canceled
       FROM appointments
       JOIN users ON users.id = appointments.user_id
       WHERE users.id = $1
-       `, [id]);
+       `,
+      [id]
+    );
 
     let appointments = result.rows;
 
     if (!appointments) {
       const error = new Error(`no appointment for ${id}`);
-      error.status = 404;   // 404 NOT FOUND
+      error.status = 404; // 404 NOT FOUND
       throw error;
     }
     return appointments;
@@ -73,40 +75,43 @@ class Appointment {
   {event_id, start_time}
   */
   static async create(obj) {
-
-    let user_email = obj.user_email
+    let user_email = obj.user_email;
     const userResult = await db.query(
       `SELECT id
           FROM users
           WHERE email = $1`,
-      [user_email]);
+      [user_email]
+    );
 
     const user = userResult.rows[0];
 
     if (!user) {
-      const error = new Error(`no email matched with  '${user_email}'. Appointment must be rescheduled with correct email`);
-      error.status = 404;   // 404 NOT FOUND
+      const error = new Error(
+        `no email matched with  '${user_email}'. Appointment must be rescheduled with correct email`
+      );
+      error.status = 404; // 404 NOT FOUND
       throw error;
     }
 
-    let queryArray = [user.id,
-    obj.event_id,
-    obj.calendly_user_id,
-    obj.created_at,
-    obj.event_type,
-    obj.event_type_name,
-    obj.reason,
-    obj.start_time,
-    obj.start_time_pretty,
-    obj.end_time,
-    obj.end_time_pretty,
-    obj.location,
-    obj.canceled,
-    obj.canceler_name,
-    obj.cancel_reason,
-    obj.canceled_at,
-    obj.old_event_id,
-    obj.new_event_id
+    let queryArray = [
+      user.id,
+      obj.event_id,
+      obj.calendly_user_id,
+      obj.created_at,
+      obj.event_type,
+      obj.event_type_name,
+      obj.reason,
+      obj.start_time,
+      obj.start_time_pretty,
+      obj.end_time,
+      obj.end_time_pretty,
+      obj.location,
+      obj.canceled,
+      obj.canceler_name,
+      obj.cancel_reason,
+      obj.canceled_at,
+      obj.old_event_id,
+      obj.new_event_id
     ];
 
     let result;
@@ -135,9 +140,9 @@ class Appointment {
             new_event_id
             )
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
-        RETURNING event_id, start_time`
-        , queryArray);
-
+        RETURNING event_id, start_time`,
+        queryArray
+      );
     } catch (err) {
       console.log(err);
     }
@@ -149,21 +154,21 @@ class Appointment {
   {event_id, start_time, canceled}
   */
   static async cancel(obj) {
-
-    let startTime = obj.start_time
-    let professionalId = obj.calendly_user_id
+    let startTime = obj.start_time;
+    let professionalId = obj.calendly_user_id;
 
     const oldEventResult = await db.query(
       `SELECT event_id, start_time, canceled
           FROM appointments
           WHERE (start_time = $1 AND calendly_user_id = $2)`,
-      [startTime, professionalId]);
+      [startTime, professionalId]
+    );
 
     const oldEventId = oldEventResult.rows[0];
 
     if (!oldEventId) {
       const error = new Error(`no record of the appointment.`);
-      error.status = 404;   // 404 NOT FOUND
+      error.status = 404; // 404 NOT FOUND
       throw error;
     }
     const canceledEvent = [
@@ -171,7 +176,7 @@ class Appointment {
       obj.canceled,
       obj.canceler_name,
       obj.cancel_reason,
-      obj.canceled_at,
+      obj.canceled_at
     ];
 
     let result;
@@ -184,9 +189,9 @@ class Appointment {
                   cancel_reason = $4,
                   canceled_at = $5 
           WHERE event_id = $1
-          RETURNING event_id, start_time, canceled`
-        , canceledEvent);
-
+          RETURNING event_id, start_time, canceled`,
+        canceledEvent
+      );
     } catch (err) {
       console.log(err);
     }

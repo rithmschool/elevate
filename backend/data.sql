@@ -8,6 +8,8 @@ CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
   password TEXT NOT NULL,
+  reset_password_token TEXT,
+  reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
   reset_password_token TEXT,
   reset_password_expires TEXT,

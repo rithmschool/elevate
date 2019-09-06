@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect} from 'react-router-dom';
 
-class Logout extends Component {
+class Logout extends Component{
   componentDidMount() {
     this.clearLocalStorage();
   }
 
-  async clearLocalStorage() {
-    localStorage.removeItem("token");
+  async clearLocalStorage(){
+    localStorage.removeItem('token');
     this.props.checkToken();
   }
-
-  render() {
+  
+  render(){
     this.props.history.push("/");
     return null;
   }

@@ -7,13 +7,16 @@ class Alert extends Component {
   };
 
   render() {
+    const { messages, type, link, text } = this.props;
     return (
-      <div className={`alert alert-${this.props.type}`} role="alert">
-        {this.props.messages.map(error => (
+      <div className={`alert alert-${type}`} role="alert" align="center">
+        {messages.map(error => (
           <p className="mb-0 small" key={error}>
             {error}
           </p>
+          
         ))}
+        <a href={link}>{text}</a>
       </div>
     );
   }
