@@ -13,8 +13,8 @@ const TEST_ADMIN_DATA = {};
 const inputPassword = "password123";
 const inputEmail = "testuser@gmail.com";
 const inputAdminPassword = "admin123";
-const inputAdminEmail = "admin@gmail.com"
-const passwordToken = 't3ae9a322f541237af6890edc9b3a4f940f124566';
+const inputAdminEmail = "admin@gmail.com";
+const passwordToken = "t3ae9a322f541237af6890edc9b3a4f940f124566";
 const expireTime = 99999999999999;
 
 /**
@@ -28,7 +28,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
     // bcrypt set lower for testing purpose
-    const hashedPassword = await bcrypt.hash(inputPassword, 5)
+    const hashedPassword = await bcrypt.hash(inputPassword, 5);
 
     // create new user with hashed password
     await db.query(
@@ -36,15 +36,16 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
                   (email, password) 
                   VALUES ($1, $2) 
                   RETURNING id, is_admin`,
-      [inputEmail, hashedPassword]);
+      [inputEmail, hashedPassword]
+    );
 
     const response = await request(app)
       .post("/login")
       .send({
         email: inputEmail,
-        password: inputPassword,
+        password: inputPassword
       });
-      
+
     TEST_DATA.userToken = response.body.token;
     TEST_DATA.currentId = jwt.decode(TEST_DATA.userToken).user_id;
   } catch (error) {
@@ -54,7 +55,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
     // bcrypt set lower for testing purpose
-    const hashedPassword = await bcrypt.hash(inputAdminPassword, 5)
+    const hashedPassword = await bcrypt.hash(inputAdminPassword, 5);
 
     // create new user with hashed password
     await db.query(
@@ -62,14 +63,14 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
                   (email, password, reset_password_token, reset_password_expires, is_admin) 
                   VALUES ($1, $2, $3, $4, $5)
                   RETURNING id, is_admin`,
-      [inputEmail, hashedPassword, passwordToken, expireTime,true]
+      [inputEmail, hashedPassword, passwordToken, expireTime, true]
     );
 
     const response = await request(app)
       .post("/login")
       .send({
         email: inputAdminEmail,
-        password: inputAdminPassword,
+        password: inputAdminPassword
       });
     console.log("TOKEN!", response.body);
     TEST_ADMIN_DATA.userToken = response.body.token;
@@ -82,7 +83,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
 async function afterEachHook() {
   try {
     await db.query("DELETE FROM users");
-    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`)
+    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`);
   } catch (error) {
     console.error(error);
   }
