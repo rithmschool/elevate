@@ -10,7 +10,10 @@ Human resources for the employee. A full-stack application built in React and Ex
 ## Installation
 
 1. Clone this repository
-2. cd into the "backend" directory, install required packages, seed database, and start the server
+2. Run `npm install`
+
+
+3. cd into the "backend" directory, install required packages, seed database, and start the server
 
 ```
 cd backend
@@ -20,7 +23,7 @@ nodemon server.js
 ```
 This will start the server on port 3001
 
-3. cd into the "frontend" directory, install required packages, then start the app
+4. cd into the "frontend" directory, install required packages, then start the app
 
 ```
 cd frontend
