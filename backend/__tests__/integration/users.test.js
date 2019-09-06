@@ -13,18 +13,15 @@ let USER = {}
 
 //test config  
 const {
-
   afterAllHook,
   beforeEachHook,
   getUserToken
-  
 } = require('../configTest');
 
 beforeEach(async function () {
   await beforeEachHook();
   await getUserToken(USER, TEST_USER)
 });
-
 
 describe('POST /users', function () {
   test('Creates a new user', async function () {
@@ -101,7 +98,6 @@ describe('PATCH /users/:id', () => {
       .send({ _token: USER.userToken, password: 'foo12345' });
 
     const user = response.body.user;
-
     expect(user).toHaveProperty("email");
     expect(user).not.toHaveProperty('password');
   });
@@ -148,8 +144,6 @@ describe('DELETE /users/:username', function () {
   });
 
   test('Responds with a 404 if it cannot find the user in question', async function () {
-    // delete user first
-    console.log(`/users/${USER.currentId}`)
     await request(app)
       .delete(`/users/${USER.currentId}`)
       .send({ _token: USER.userToken });
@@ -157,7 +151,6 @@ describe('DELETE /users/:username', function () {
     const response = await request(app)
       .delete(`/users/${USER.currentId}`)
       .send({ _token: USER.userToken });
-      console.log("should be 401", response.statusCode)
   expect(response.statusCode).toBe(500);
     expect("hello").toBe("hello");
   });

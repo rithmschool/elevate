@@ -26,7 +26,6 @@ beforeEach(async function () {
     await getAdminToken(ADMIN_USER, TEST_ADMIN)
 });
 
-
 describe('GET /appointments', function () {
     test('should response with all appointments ', async function () {
         const response = await request(app)
@@ -54,7 +53,6 @@ describe('GET /appointments/:id', function () {
             .get(`/appointments/${USER.currentId}`)
             .send({ _token: ADMIN_USER.userToken });
         expect(response.statusCode).toBe(200);
-        // expect(response.body.appointments.user_id).toBe(userId);
     });
 
     test('Return 401 if user is not authorized', async function () {

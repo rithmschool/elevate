@@ -7,7 +7,6 @@ const request = require('supertest');
 const app = require('../../app');
 
 // model imports
-const User = require('../../models/user');
 const Salary = require('../../models/salary');
 
 // test data imports
@@ -53,7 +52,6 @@ describe('GET /salaries', function () {
 
 describe('GET /salaries/:id', function () {
   test('Gets a single salary for a specific user', async function () {
-   
     const response = await request(app)
       .get(`/salaries/${USER.currentId}`)
       .send({ _token: USER.userToken });

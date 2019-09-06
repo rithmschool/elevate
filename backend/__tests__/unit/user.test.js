@@ -8,23 +8,16 @@ const User = require("../../models/user")
 const [TEST_USER_DATA] = require('../../seedData')
 const TEST_USER = TEST_USER_DATA[0]
 
-
 //test config  
 const {
   afterAllHook,
   beforeEachHook,
-  getUserToken
-
 } = require('../configTest');
-
-// database import
-const db = require("../../db");
 
 describe("model user", function () {
   beforeEach(async function () {
     await beforeEachHook()
   });
-
 
   describe("Test User Class register", function () {
     test("should return  id and is_admin after successful register", async function () {
@@ -36,7 +29,6 @@ describe("model user", function () {
       })
       expect(typeof user.id).toBe('number');
       expect(user.is_admin).toEqual(false);
-
     });
 
     test("should return error message when registering duplicate email address", async function () {
@@ -56,7 +48,7 @@ describe("model user", function () {
 
   describe("Test User Class authenticate", function () {
     test("should return user object if correct password and email", async function () {
-      let user = await User.authenticate({ "email": TEST_USER.email, "password": TEST_USER.password})
+      let user = await User.authenticate({ "email": TEST_USER.email, "password": TEST_USER.password })
 
       expect(typeof user.id).toBe('number');
       expect(user.email).toBe(TEST_USER.email);
