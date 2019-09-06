@@ -92,10 +92,8 @@ class Navigation extends React.Component {
     const admin = (
       <AdminContext.Consumer>
         {isAdmin => (
-          <li className="nav-item active">
-            { isAdmin ?  
-              <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">Admin</Link> : ''
-            }
+          <li className="nav-item adminStyle danger active">
+            { isAdmin && <Link to="/admin" className="Nav-text Nav-link Nav-link-ltr">**Admin**</Link> }
           </li>
         )}
       </AdminContext.Consumer>
@@ -108,19 +106,13 @@ class Navigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar className="collapse.navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active " data-toggle="collapse" data-target=".in" >
-              <Link to="/link1" className="Nav-link Nav-link-ltr">Get Started</Link>
-            </li>
-            <li className="nav-item active">
-            <Link to="/link2" className="Nav-link Nav-link-ltr ">How it Works</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/link3" className="Nav-text Nav-link Nav-link-ltr">About</Link>
+              <Link to="/link1" className="Nav-link Nav-link-ltr">Ask An Expert</Link>
             </li>
             {admin}
             </ul>
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <Link to="/link3" className="Nav-link Nav-link-ltr">Help</Link>
+              <Link to="/link3" className="Nav-link Nav-link-ltr">About</Link>
             </li>
             {login}
           </ul>   
