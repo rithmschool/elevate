@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '10'
+services:
+  - postgresql
+before_install:
+- cd backend
+before_script:
+  - psql -c 'create database elevate;' -U postgres
+  - psql < data.sql
+install:
+- npm install  
+- npm install --save-dev jest
+script:
+- npm test
