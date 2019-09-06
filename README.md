@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rithmschool/elevate.svg?token=Pxy3GeuzWCYvsNZiz4da&branch=master)](https://travis-ci.com/rithmschool/elevate.svg?token=Pxy3GeuzWCYvsNZiz4da&branch=master)
+[![Build Status](https://travis-ci.com/rithmschool/elevate)](https://travis-ci.com/rithmschool/elevate.svg?token=Pxy3GeuzWCYvsNZiz4da&branch=master)
 
 # Elevate
 Human resources for the employee. A full-stack application built in React and Express with a Postgres database.
