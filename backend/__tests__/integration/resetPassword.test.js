@@ -64,18 +64,18 @@ describe('GET /reset-password/:token', function () {
     const response = await request(app)
       .get(`/password/${resetPasswordToken}`);
 
-  expect(response.statusCode).toBe(200);
-  expect(response.body).toHaveProperty('first_name');
-  expect(response.body).toHaveProperty('id');
-  expect(response.body.id).toBe(1);
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('first_name');
+    expect(response.body).toHaveProperty('id');
+    expect(response.body.id).toBe(1);
   });
 
   test('verify if token is not valid', async function () {
     const response = await request(app)
       .get(`/password/${baddToken}`);
 
-  expect(response.statusCode).toBe(400);
-  expect(response.body).toEqual({ "message": "Password reset link is invalid", "status": 400});
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toEqual({ "message": "Password reset link is invalid", "status": 400});
 
   });
 });
@@ -90,22 +90,22 @@ describe("PATCH /password/", function(){
         password: "Touili12345"
       });
 
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toEqual({
-        user: {
-          id: 1,
-          email: "test@gmail.com",
-          first_name: null,
-          last_name: null,
-          current_company: null,
-          hire_date: null,
-          needs: null,
-          goals: null
-        }
-      });
-  });
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+      user: {
+        id: 1,
+        email: "test@gmail.com",
+        first_name: null,
+        last_name: null,
+        current_company: null,
+        hire_date: null,
+        needs: null,
+        goals: null
+      }
+    });
+});
 });
 
-  afterAll(async function () {
-    await afterAllHook();
-  });
+afterAll(async function () {
+  await afterAllHook();
+});

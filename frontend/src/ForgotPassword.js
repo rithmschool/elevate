@@ -2,7 +2,8 @@ import React from 'react';
 import ElevateApi from './ElevateApi';
 import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
 import Alert from "./Alert";
-import './ForgotPassword.css'
+import './ForgotPassword.css';
+import Spinner from './Spinner';
 
 
 
@@ -15,6 +16,7 @@ class ForgotPassword extends React.Component {
       errors: [],
       msgFromServer: [],
       emailSent: false,
+      isLoading: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
@@ -30,10 +32,7 @@ class ForgotPassword extends React.Component {
   }
 
   
-  componentDidMount(){
-    //change document title
-    document.title = "Forgot password"
-  }
+
 
   // verify if user entred its email and send  it to backend and then handle response
   async sendEmail(evt){
@@ -43,22 +42,24 @@ class ForgotPassword extends React.Component {
     } 
     else {
       try{
+        this.setState({ isLoading: true});
         let response = await ElevateApi.forgotPassword({ email: this.state.email });
         this.setState({
           errors: [],
           emailSent: true,
-          msgFromServer: [response.message]
+          msgFromServer: [response.message],
+          isLoading: false,
         });
       }
       catch(errors){
-        this.setState({ errors });
+        this.setState({ errors, isLoading: false });
       }
     }
   }
 
   render(){
-    const { email, errors, emailSent} = this.state;
-
+    const { email, errors, emailSent, isLoading} = this.state;
+    if(isLoading ) return <Spinner />
     return(
       <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ForgotPassword-container">
       <Form onSubmit={this.sendEmail}>
