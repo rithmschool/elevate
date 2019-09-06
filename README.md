@@ -4,7 +4,7 @@
 
 Human resources for the employee. A full-stack application built in React and Express with a Postgres database.
 
-You can find a live version at https://elevate-main.herokuapp.com/
+You can find a live version at https://determined-jackson-84767e.netlify.com/
 
 ## Important Notes
 

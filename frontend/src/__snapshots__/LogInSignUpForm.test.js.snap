@@ -22,11 +22,11 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           className=""
           onSubmit={[Function]}
         >
-          <h3
+          <div
             className="mb-3"
           >
             Sign In
-          </h3>
+          </div>
           <FormGroup>
             <div
               className="form-group"
@@ -82,13 +82,13 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           >
             <Button
               active={false}
-              className="login-submit btn-block mr-3 ml-3 "
+              className="login-submit btn-block mr-3 ml-3"
               disabled={false}
               type="submit"
               variant="primary"
             >
               <button
-                className="login-submit btn-block mr-3 ml-3  btn btn-primary"
+                className="login-submit btn-block mr-3 ml-3 btn btn-primary"
                 disabled={false}
                 type="submit"
               >

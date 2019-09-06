@@ -53,9 +53,9 @@ class ElevateApi {
     let res = await this.request(`users/${userId}`, data, "patch");
     return res.user;
   }
+
   static async getUsers() {
     let res = await this.request(`users`);
-
     // Format hire_date for each user
     if (res.users) {
       res.users.forEach(user => {
@@ -94,16 +94,20 @@ class ElevateApi {
 
   static async forgotPassword(email) {
     let res = await this.request(`password/`, email, "post");
-    return res
+    return res;
   }
 
-  static async verifyResetPasswordToken(resetPasswordToken){
+  static async verifyResetPasswordToken(resetPasswordToken) {
     let res = await this.request(`password/${resetPasswordToken}`);
     return res;
   }
 
-  static async updatePassword(id, resetPasswordToken, password){
-    let res = await this.request(`password/${id}`, {resetPasswordToken, password}, 'patch');
+  static async updatePassword(id, resetPasswordToken, password) {
+    let res = await this.request(
+      `password/${id}`,
+      { resetPasswordToken, password },
+      "patch"
+    );
     return res;
   }
   static async deleteUser(id) {
