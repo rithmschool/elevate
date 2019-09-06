@@ -124,7 +124,7 @@ class UserBasicInfoForm extends React.Component {
                 onChange={this.handleChange}
                 id="EditUser-hire_date"
                 name="hire_date"
-                type="text"
+                type="date"
                 disabled={!isEdit}  
                 value={this.state.hire_date}
               />

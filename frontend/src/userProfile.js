@@ -115,13 +115,6 @@ class UserProfile extends React.Component {
 
         {this.state.saveConfirmed &&
           <Alert type="success" messages={["Updated successfully."]} />}
-
-        <Row>
-         <Col md={6}>
-            <h3 className="text-info">User information</h3>
-          </Col>
-        </Row>
-
         <Row>
           <Col md={6}>
             <div >
@@ -136,7 +129,7 @@ class UserProfile extends React.Component {
 
         <Row>
           <Col md={6}>
-            <div>
+            <div style={{"marginBottom": "8em"}}>
               <UserSalaryInfoForm
                 handleSalaryUpdate={this.handleSalaryUpdate}
                 {...lastestSalary} />
