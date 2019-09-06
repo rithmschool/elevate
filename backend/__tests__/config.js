@@ -14,7 +14,8 @@ const inputPassword = "test";
 const inputEmail = "test@gmail.com";
 const inputAdminPassword = "admin123";
 const inputAdminEmail = "admin@gmail.com"
-
+const passwordToken = 't3ae9a322f541237af6890edc9b3a4f940f124566';
+const expireTime = 99999999999999;
 /**
  * Hooks to insert a user, company, and job, and to authenticate
  *  the user and the company for respective tokens that are stored
@@ -29,8 +30,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
     const hashedPassword = await bcrypt.hash(inputPassword, 5);
 
     // random string for password token
-    const passwordToken = 't3ae9a322f541237af6890edc9b3a4f940f124566';
-    const expireTime = 99999999999999;
+    
 
     // create new user with hashed password
     await db.query(
@@ -106,5 +106,6 @@ module.exports = {
   inputPassword,
   inputEmail,
   inputAdminPassword,
-  inputAdminEmail
+  inputAdminEmail,
+  passwordToken,
 };

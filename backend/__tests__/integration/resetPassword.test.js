@@ -17,6 +17,7 @@ const {
   afterAllHook,
   beforeEachHook,
   inputEmail,
+  passwordToken,
 } = require('../config');
 
 beforeEach(async function () {
@@ -86,13 +87,13 @@ describe("PATCH /password/", function(){
     const response = await request(app)
       .patch(`/password/${id}`)
       .send({
-        id: 1,
+        resetPasswordToken: passwordToken,
         password: "Touili12345"
       });
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({
-      user: {
+      response: {
         id: 1,
         email: "test@gmail.com",
         first_name: null,

@@ -82,9 +82,9 @@ router.patch('/:id', async function (req, res, next) {
 
     const user = await User.verifyPasswordToken(resetPasswordToken);
     if(user){
-      const resposne = await User.update(req.params.id, {password});
-      if (resposne) {
-        return res.json({ resposne });
+      const response = await User.update(req.params.id, {password});
+      if (response) {
+        return res.json({ response });
       }
     }
   
