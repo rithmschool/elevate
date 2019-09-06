@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import './AdminPanel.css'
-import AdminNavBar from './adminNavBar';
-import AdminUserView from './adminUserView';
-import AdminTable from './adminTable';
-import ElevateApi from './elevateApi';
+import React, { Component } from "react";
+import "./AdminPanel.css";
+import AdminNavBar from "./adminNavBar";
+import AdminUserView from "./adminUserView";
+import AdminTable from "./adminTable";
+import ElevateApi from "./elevateApi";
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 
 class AdminPanel extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      view: '',
+      view: "",
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
-      questions:null,
+      questions: null,
       userDetail: null
-    }
+    };
   }
 
   componentDidMount = async () => {
@@ -29,66 +29,71 @@ class AdminPanel extends Component {
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
       return err;
     }
-    
+
     this.setState({ users, questions });
-  }
+  };
 
   // get update users after delete a user in AdminUserView
-  updateUserState = (users) => {
-    this.setState({users})
-  }
+  updateUserState = users => {
+    this.setState({ users });
+  };
 
-  changeView = (view) => {
-    this.setState({ view })
-  }
+  changeView = view => {
+    this.setState({ view });
+  };
 
   mediaQueryChanged = () => {
     this.setState({ sidebarDocked: mql.matches });
-  }
+  };
 
   toggleSidebar = () => {
     this.setState({ sideBarOpen: !this.state.sideBarOpen });
-  }
+  };
 
-  getUserDetail = async (userId) => {
+  getUserDetail = async userId => {
     const user = await ElevateApi.getUser(userId);
-    
-    this.setState({ view: 'userDetail', userDetail: user });
-  }
 
-  render(){
-    if (!this.state.users || !this.state.questions){
-      return (<div>...Loading</div>);
+    this.setState({ view: "userDetail", userDetail: user });
+  };
+
+  render() {
+    if (!this.state.users || !this.state.questions) {
+      return <div>...Loading</div>;
     }
 
-    return(
+    return (
       <div className="admin-main">
         <div className="admin-panel">
-          { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
+          {mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button>}
           <h1 className="admin-h1">Admin Panel</h1>
-          { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
-          { this.state.view === 'users' || this.state.view === 'questions' ? 
-            <AdminTable tableObjs={ this.state[this.state.view] } 
-                        getUserDetail={ this.getUserDetail }
-                        view={ this.state.view } /> : null
-          }
-          {this.state.view === 'userDetail' && 
-                                <AdminUserView 
-                                  user={this.state.userDetail} 
-                                  updateUserState={this.updateUserState} 
-                                  changeView={this.changeView} /> 
-          }
+          {this.state.sideBarOpen && (
+            <AdminNavBar changeView={this.changeView} />
+          )}
+          {this.state.view === "users" || this.state.view === "questions" ? (
+            <AdminTable
+              tableObjs={this.state[this.state.view]}
+              getUserDetail={this.getUserDetail}
+              view={this.state.view}
+            />
+          ) : null}
+          {this.state.view === "userDetail" && (
+            <AdminUserView
+              user={this.state.userDetail}
+              updateUserState={this.updateUserState}
+              changeView={this.changeView}
+            />
+          )}
         </div>
-        
+
         <div className="admin-navbar">
-          <AdminNavBar changeView={this.changeView}/>
+          <AdminNavBar changeView={this.changeView} />
         </div>
       </div>
-    )
+    );
   }
 }
 
