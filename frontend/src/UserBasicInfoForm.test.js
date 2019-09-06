@@ -8,7 +8,14 @@ it("renders without crashing", function () {
 });
 
 it("matches snapshot", function () {
-  let wrapper = shallow(<UserBasicInfoForm />);
+  let currentUser = {
+    current_company: "Rithm",
+    email: "test@gmail.com",
+    first_name: "user",
+    hire_date: "2019-08-13",
+    last_name: "test"
+  };
+  let wrapper = shallow(<UserBasicInfoForm {...currentUser}/>);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
