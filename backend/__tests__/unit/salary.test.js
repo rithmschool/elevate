@@ -1,39 +1,32 @@
 process.env.NODE_ENV = "test";
 
 // app imports
-const db = require("../../db");
 const Salary = require("../../models/salary");
-const User = require("../../models/user");
-const { SEED_USER_SQL, SEED_SALARY_SQL } = require("../../config");
 
+// test data imports 
+const [ TEST_USER_DATA ] = require('../../seedData')
+const TEST_USER = TEST_USER_DATA[0]
+let USER = {}
+
+//test config  
+const {
+  afterAllHook,
+  beforeEachHook,
+  getUserToken
+} = require('../configTest');
+
+beforeEach(async () => {
+  await beforeEachHook()
+  await getUserToken(USER, TEST_USER)
+});
 
 describe("Test Salary model", function () {
-  beforeEach(async () => {
-    await db.query(`DELETE FROM users;`);
-    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`)
-    await db.query(`DELETE FROM salaries;`);
-    await db.query(`ALTER SEQUENCE salaries_id_seq RESTART WITH 1;`)
-    await db.query(SEED_USER_SQL);
-    await db.query(SEED_SALARY_SQL);
-  });
-
-  afterEach(async () => {
-    await db.query(`DELETE FROM users;`);
-    await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`)
-    await db.query(`DELETE FROM salaries;`);
-    await db.query(`ALTER SEQUENCE salaries_id_seq RESTART WITH 1;`)
-  });
-
-  afterAll(async () => {
-    await db.end();
-  });
-
   test("get all salaries", async function () {
     const response = await Salary.findAll();
     expect(response).toEqual([{
         id: expect.any(Number),
         user_id: 1,
-        salary: 150000.00,
+        salary: 170000.00,
         bonus: 25000.00,
         equity: .001,
       },
@@ -69,21 +62,8 @@ describe("Test Salary model", function () {
   });
 
   test("create a new salary", async function () {
-    const newUser = {
-      email: "john@doe.com",
-      password: "yeehaw",
-      is_admin: false,
-      first_name: "john",
-      last_name: "doe",
-      current_company: "john deer",
-      hire_date: "2016-05-01",
-      needs: "a new truck",
-      goals: "get a raise for new truck down payment"
-    };
-    const userResponse = await User.register(newUser);
-
     const newSalary = { 
-      user_id: userResponse.id,
+      user_id: USER.currentId,
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 
@@ -92,7 +72,7 @@ describe("Test Salary model", function () {
     const response = await Salary.create(newSalary);
     expect(response).toEqual({ 
       id: expect.any(Number),
-      user_id: expect.any(Number),
+      user_id: USER.currentId,
       salary: 105000.00, 
       bonus: 2000.00, 
       equity: 0.005 });
@@ -125,8 +105,19 @@ describe("Test Salary model", function () {
   });
 
   test("delete a salary", async function () {
-    const response = await Salary.remove(2);
-    expect(response).toEqual({ id: 2 });
+    const newSalary = { 
+      user_id: USER.currentId,
+      salary: 105000.00, 
+      bonus: 2000.00, 
+      equity: 0.005 
+    };
+
+    const responseCreate = await Salary.create(newSalary);
+    const salaryId = responseCreate.id
+    
+    const response = await Salary.remove(salaryId);
+    expect(response).toEqual({ id: salaryId});
+    expect("hello").toBe("hello")
   });
 
   test("throws error if trying to delete a salary that does not exist", async function () {
@@ -137,3 +128,8 @@ describe("Test Salary model", function () {
     }
   });
 });
+
+afterAll(async () => {
+  await afterAllHook()
+});
+
