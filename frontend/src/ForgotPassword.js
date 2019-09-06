@@ -1,9 +1,9 @@
 import React from 'react';
-import ElevateApi from './ElevateApi';
+import ElevateApi from './elevateApi';
 import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
-import Alert from "./Alert";
+import Alert from "./alert";
 import './ForgotPassword.css';
-import Spinner from './Spinner';
+import Spinner from './spinner';
 
 
 
@@ -96,7 +96,7 @@ class ForgotPassword extends React.Component {
             <Button size="sm"
             className="btn btn-info"
               > 
-               Send Password Reset Email</Button>
+               Send Password Recovery Email</Button>
           </Col>
           <br></br>
         </Form>

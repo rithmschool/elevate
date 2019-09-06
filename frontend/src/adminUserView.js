@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './AdminUserView.css';
-import ElevateApi from './ElevateApi';
+import ElevateApi from './elevateApi';
 
 class AdminUserView extends Component {
   handleClickDeleteUser = async () => {

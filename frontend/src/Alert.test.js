@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import Alert from "./Alert";
+import Alert from "./alert";
 
 it("renders without crashing", function() {
   shallow(<Alert />);

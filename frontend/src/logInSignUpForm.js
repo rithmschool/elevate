@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
-import ElevateApi from './ElevateApi';
+import ElevateApi from './elevateApi';
 import './LogInSignUpForm.css'
-import LoginError from "./LoginError";
-import Spinner from './Spinner';
+import LoginError from "./loginError";
+import Spinner from './spinner';
 
 
 class LoginSignUpForm extends Component {

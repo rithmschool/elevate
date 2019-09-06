@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
-import Logout from './Logout';
+import Logout from './logout';
 
 describe('Logout', function() {
   let wrapper;

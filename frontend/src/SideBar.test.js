@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import SideBar from "./SideBar";
+import SideBar from "./sideBar";
 
 const routes = [
   {

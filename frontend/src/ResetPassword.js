@@ -1,9 +1,10 @@
 import React from 'react';
-import ElevateApi from './ElevateApi';
+import ElevateApi from './elevateApi';
 import { Col, Button, Form, Label, Input, Row } from 'reactstrap';
-import Alert from "./Alert";
-import Spinner from './Spinner';
-import ResetLinkExpired from './ResetLinkExpired'
+import Alert from "./alert";
+import Spinner from './spinner';
+import ResetLinkExpired from './resetLinkExpired';
+import './ResetPassword.css'
 
 const BASE_URL = "http://localhost:3000";
 
@@ -28,7 +29,7 @@ class ResetPassword extends React.Component {
 		this.setState({ [evt.target.name]: evt.target.value });
   }
 
-/** send token to backend to check its validity
+/** send resetPasswordToken to backend to check its validity
  * if valid and not expired yet display the form to enter a new password
  * else display error and a link to try to get a new reset link
  *  */ 
@@ -72,8 +73,7 @@ class ResetPassword extends React.Component {
       return <Spinner/>;
       if (errors.length > 0 )  
         return (
-        <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
-          style={{backgroundColor:'#F4F6F8', marginTop: '10%',}}>
+        <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ResetPassword-container">
             <br></br>
             <ResetLinkExpired />
         </div>
@@ -129,7 +129,7 @@ class ResetPassword extends React.Component {
             <Col align="center" >
               <Button color="info" size="sm"
                 > 
-                Reset Password</Button>
+                Change Password</Button>
             </Col>
           <br></br>
         </Form>
