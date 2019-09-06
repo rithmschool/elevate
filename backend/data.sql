@@ -2,10 +2,14 @@ DROP DATABASE IF EXISTS "elevate";
 CREATE DATABASE "elevate";
 \c "elevate"
 
+ALTER DATABASE "elevate" SET timezone='US/Pacific';
+
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
   password TEXT NOT NULL,
+  reset_password_token TEXT,
+  reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
   first_name TEXT,
   last_name TEXT,
@@ -86,18 +90,20 @@ CREATE TABLE users_calendly_users (
 );
 
 
-
-
 -- Create test database with tables
 
 DROP DATABASE IF EXISTS "elevate-test";
 CREATE DATABASE "elevate-test";
 \c "elevate-test"
 
+ALTER DATABASE "elevate-test" SET timezone='US/Pacific';
+
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
   password TEXT NOT NULL,
+  reset_password_token TEXT,
+  reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
   first_name TEXT,
   last_name TEXT,

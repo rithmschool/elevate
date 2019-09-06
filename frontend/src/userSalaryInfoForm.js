@@ -36,7 +36,7 @@ class UserSalaryInfoForm extends React.Component {
    
     //update salary
     const salary = {
-      user_id: this.props.userId,
+      user_id: this.state.user_id,
       salary: this.state.salary,
       bonus: this.state.bonus,
       equity: this.state.equity

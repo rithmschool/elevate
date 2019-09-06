@@ -12,7 +12,6 @@ const Appointments = require('../../models/appointment');
 // helper function
 const { parseResponse } = require("../../helpers/helperWebhook");
 
-
 //test config  
 const {
   afterAllHook,

@@ -1,10 +1,10 @@
 process.env.NODE_ENV = "test";
 
 // npm packages
-const request = require('supertest');
+const request = require("supertest");
 
 // app imports
-const app = require('../../app');
+const app = require("../../app");
 
 // test data imports
 const [ TEST_USER_DATA ] = require('../../seedData')
@@ -64,6 +64,6 @@ describe('GET /appointments/:id', function () {
     });
 });
 
-afterAll(async function () {
-    await afterAllHook();
+afterAll(async function() {
+  await afterAllHook();
 });
