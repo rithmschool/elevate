@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import UserBasicInfoForm from "./UserBasicInfoForm";
+import UserBasicInfoForm from "./userBasicInfoForm";
 
 it("renders without crashing", function () {
   shallow(<UserBasicInfoForm />);

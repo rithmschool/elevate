@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
-import AdminNavBar from './AdminNavBar';
+import AdminNavBar from './adminNavBar';
 
 describe('AdminNavBar', function() {
   let wrapper;
