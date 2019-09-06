@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { shallow, mount } from 'enzyme';
 import toJson from "enzyme-to-json";
-import AdminPanel from './AdminPanel';
+import AdminPanel from './adminPanel';
 
 jest.mock('axios');
 const users = { data: 
