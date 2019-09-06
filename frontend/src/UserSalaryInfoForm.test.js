@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import UserSalaryInfoForm from "./UserSalaryInfoForm";
+import UserSalaryInfoForm from "./userSalaryInfoForm";
 
 it("renders without crashing", function () {
   shallow(<UserSalaryInfoForm />);
