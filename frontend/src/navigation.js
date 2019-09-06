@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import './Navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
-import { UserContext, AdminContext} from "./UserContext";
+import { UserContext, AdminContext} from "./userContext";
 
 
 class Navigation extends React.Component {
