@@ -3,7 +3,15 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+    className="
+          container
+          col-md-6
+          offset-md-3
+          col-lg-4
+          offset-lg-4
+          border 
+          rounded 
+          shadow"
     style={
       Object {
         "backgroundColor": "#F4F6F8",
@@ -22,6 +30,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           className=""
           onSubmit={[Function]}
         >
+           
           <div
             className="mb-3"
           >

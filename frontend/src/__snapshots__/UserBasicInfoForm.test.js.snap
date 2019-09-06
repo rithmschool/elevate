@@ -62,7 +62,6 @@ exports[`matches snapshot 1`] = `
       />
     </Col>
   </Row>
-  <hr />
   <Form
     onSubmit={[Function]}
     tag="form"
@@ -271,30 +270,29 @@ exports[`matches snapshot 1`] = `
           </span>
         </Label>
       </Col>
-    </Row>
-    <Col
-      align="left"
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <Button
-        color="info"
-        disabled={true}
-        size="sm"
-        tag="button"
+      <Col
+        align="left"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
       >
-        Save
-      </Button>
-    </Col>
-    <br />
+        <Button
+          color="info"
+          disabled={true}
+          size="sm"
+          tag="button"
+        >
+          Save
+        </Button>
+      </Col>
+    </Row>
   </Form>
 </div>
 `;
