@@ -80,45 +80,51 @@ axios.get.mockImplementation(reqUrl => {
 
 describe("AdminPanel", function() {
   let wrapper;
-  let users = [{
-    user_id: id,
-    email: "testadmin@test.com",
-    is_admin: true,
-    first_name: "admin",
-    last_name: "test",
-    current_company: "testcompany",
-    hire_date: "2018-06-23",
-    needs: "To test user data",
-    goals: "Test pass"
-  }]
-  let questions = [{
-    id: 1,
-    user_id: id,
-    question: "My employer didn't pay me",
-    resolved: false,
-    email: "user@test.com",
-    first_name: "user",
-    last_name: "test",
-    created_date: "2019-08-29"
-  }]
-  let appointments = [{
-    id: 1,
-    user_id: id,
-    first_name: "user",
-    last_name: "test",
-    email: "user@test.com",
-    created_at: "2019-11-11",
-    event_type: "One-on-One",
-    event_name: "30 Minute Meeting",
-    start_time_pretty: "2019-11-13",
-    location: "Zoom",
-    canceled: false
-  }]
+  let users = [
+    {
+      user_id: id,
+      email: "testadmin@test.com",
+      is_admin: true,
+      first_name: "admin",
+      last_name: "test",
+      current_company: "testcompany",
+      hire_date: "2018-06-23",
+      needs: "To test user data",
+      goals: "Test pass"
+    }
+  ];
+  let questions = [
+    {
+      id: 1,
+      user_id: id,
+      question: "My employer didn't pay me",
+      resolved: false,
+      email: "user@test.com",
+      first_name: "user",
+      last_name: "test",
+      created_date: "2019-08-29"
+    }
+  ];
+  let appointments = [
+    {
+      id: 1,
+      user_id: id,
+      first_name: "user",
+      last_name: "test",
+      email: "user@test.com",
+      created_at: "2019-11-11",
+      event_type: "One-on-One",
+      event_name: "30 Minute Meeting",
+      start_time_pretty: "2019-11-13",
+      location: "Zoom",
+      canceled: false
+    }
+  ];
 
   beforeEach(async () => {
     wrapper = mount(<AdminPanel />);
-    await wrapper.instance().componentDidMount()
-    wrapper.setState({ users, questions, appointments })
+    await wrapper.instance().componentDidMount();
+    wrapper.setState({ users, questions, appointments });
   });
 
   it("renders without crashing", function() {
@@ -145,23 +151,23 @@ describe("AdminPanel", function() {
     expect(wrapper.find("div.admin-main")).toHaveLength(1);
   });
 
-  it('changes view state on click', function () {
+  it("changes view state on click", function() {
     wrapper.find(".admin-main #users").simulate("click");
-    expect(wrapper.state('view')).toEqual('users');
+    expect(wrapper.state("view")).toEqual("users");
 
     wrapper.find(".admin-main #questions").simulate("click");
-    expect(wrapper.state('view')).toEqual('questions');
+    expect(wrapper.state("view")).toEqual("questions");
 
-    // NOTE: no table for invoices until charges branch gets merged 
+    // NOTE: no table for invoices until charges branch gets merged
     // wrapper.find('div[id="invoices"]').simulate('click');
     // expect(wrapper.state('view')).toEqual('invoices');
 
     wrapper.find(".admin-main #invoices").simulate("click");
-    expect(wrapper.state('view')).toEqual('invoices');
+    expect(wrapper.state("view")).toEqual("invoices");
   });
 
-  it('renders the users table when view state is users', function () {
-    wrapper.find("#users").simulate('click');
+  it("renders the users table when view state is users", function() {
+    wrapper.find("#users").simulate("click");
     wrapper.update();
 
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
@@ -169,7 +175,7 @@ describe("AdminPanel", function() {
 
   it("show expected user data in the table", function() {
     wrapper.setState({ users });
-    wrapper.find("#users").simulate('click')
+    wrapper.find("#users").simulate("click");
     wrapper.update();
 
     const rows = wrapper.find('table[id="users-table"]');
@@ -206,11 +212,14 @@ describe("AdminPanel", function() {
     const rows = wrapper.find('table[id="questions-table"]');
     expect(rows.length).toEqual(1);
 
-    const dataRow = rows.first().find('td').map(column => column.text());
+    const dataRow = rows
+      .first()
+      .find("td")
+      .map(column => column.text());
     expect(dataRow.length).toEqual(8);
     expect(dataRow[2]).toEqual("My employer didn't pay me");
     expect(dataRow[3]).toEqual("");
-    
+
     expect(dataRow[4]).toEqual("user@test.com");
     expect(dataRow[5]).toEqual("user");
     expect(dataRow[6]).toEqual("test");

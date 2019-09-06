@@ -16,24 +16,26 @@ class AdminTable extends Component {
 
     return (
       <tr>
-        {keys.map(key => {
-          // Remove underscore from key name
-          key = key.replace(/_/g, ' ');
+        {keys
+          .map(key => {
+            // Remove underscore from key name
+            key = key.replace(/_/g, " ");
 
-          return <th key={key}>{key}</th>
-        }).filter((key, idx) => idx < MAXCOLUMNCOUNT)}
+            return <th key={key}>{key}</th>;
+          })
+          .filter((key, idx) => idx < MAXCOLUMNCOUNT)}
       </tr>
     );
   }
 
-  /** For each array of objects it returns an array of itemKeys, itemValues 
+  /** For each array of objects it returns an array of itemKeys, itemValues
    * and accesses the user_id from each object record. The user_id is required
    * for createTableRows() to identify and display user details when clicking on any given table row */
   createTableBody() {
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
-      const userId= item.user_id
+      const userId = item.user_id;
 
       return this.createTableRows(itemKeys, itemValues, userId);
     });
@@ -42,7 +44,7 @@ class AdminTable extends Component {
 
   concatenateText(value) {
     // concatenate at 6 characters for small screen and 25 for large
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       if (MQL.matches) {
         // small screen
         if (value.slice(0, 2) === "19" || value.slice(0, 2) === "20") {
@@ -62,18 +64,18 @@ class AdminTable extends Component {
     return value;
   }
 
-  /** Accesses keys, values, and userId to populate each table in Admin panel. 
+  /** Accesses keys, values, and userId to populate each table in Admin panel.
    * Requires user_id to render user details when clicking on any given row */
   createTableRows(keys, values, userId) {
     return (
       <tr key={values[0]} onClick={this.handleClick} id={userId}>
-        {values.map((value, index) => {
-          value = this.concatenateText(value);
+        {values
+          .map((value, index) => {
+            value = this.concatenateText(value);
 
-          return (
-            <td key={`${values[0]}-${keys[index]}`} >{value}</td>
-          );
-        }).filter((value, idx) => idx < MAXCOLUMNCOUNT)}
+            return <td key={`${values[0]}-${keys[index]}`}>{value}</td>;
+          })
+          .filter((value, idx) => idx < MAXCOLUMNCOUNT)}
       </tr>
     );
   }
@@ -87,13 +89,10 @@ class AdminTable extends Component {
           hover
           size="sm"
           responsive
-          id={this.props.view + '-table'}>
-          <thead>
-            {this.createTableHeader()}
-          </thead>
-          <tbody>
-            {this.createTableBody()}
-          </tbody>
+          id={this.props.view + "-table"}
+        >
+          <thead>{this.createTableHeader()}</thead>
+          <tbody>{this.createTableBody()}</tbody>
         </Table>
       </div>
     );

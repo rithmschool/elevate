@@ -24,7 +24,7 @@ describe("AdminNavBar", function() {
     expect(wrapper.find("div.adminNavBar")).toHaveLength(1);
   });
 
-  it('has a div for users, invoices, questions, and calendars', function () {
+  it("has a div for users, invoices, questions, and calendars", function() {
     expect(wrapper.find(".adminNavBar #users")).toHaveLength(1);
     expect(wrapper.find(".adminNavBar #invoices")).toHaveLength(1);
     expect(wrapper.find(".adminNavBar #questions")).toHaveLength(1);

@@ -83,7 +83,7 @@ class ElevateApi {
 
   static async getQuestions() {
     let res = await this.request(`questions`);
-  
+
     // Format created_date for each question
     res.questions.forEach(question => {
       question.created_date = question.created_date.slice(0, 10);
@@ -93,7 +93,7 @@ class ElevateApi {
   }
 
   /*Getting all appointments from backend api */
-  static async getAppointments(){
+  static async getAppointments() {
     let res = await this.request(`appointments`);
     return res.appointments;
   }
