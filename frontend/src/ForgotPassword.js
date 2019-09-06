@@ -61,13 +61,12 @@ class ForgotPassword extends React.Component {
     const { email, errors, emailSent, isLoading} = this.state;
 
     if(isLoading ) return <Spinner />
-    
+
     return(
       <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ForgotPassword-container">
       <Form onSubmit={this.sendEmail}>
-        <br></br><br></br>
         <div style={{textAlign: 'center'}}>
-          <h3>Forgot Password</h3>
+          <h3 style={{marginTop: '2%'}}>Forgot Password</h3>
          <p>Please enter your email address and we'll send you instructions on how to reset your password</p>
         </div>
           <hr></hr><br></br>
