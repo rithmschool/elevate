@@ -35,6 +35,7 @@ class LoginSignUpForm extends Component {
   handleSubmit = async evt => {
     evt.preventDefault();
     let token;
+
     this.setState({ isLoading: true });
 
     try {
@@ -56,6 +57,7 @@ class LoginSignUpForm extends Component {
     } catch (errors) {
       return this.setState({ isLoading: false, errors });
     }
+
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
     this.props.history.push("/");
@@ -124,18 +126,27 @@ class LoginSignUpForm extends Component {
         </Form.Text>
       </div>
     );
+
     return (
       <div
-        className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow"
+        className={`
+          container
+          col-md-6
+          offset-md-3
+          col-lg-4
+          offset-lg-4
+          border 
+          rounded 
+          shadow`}
         style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
       >
         <div className="form-inside-container mt-5">
-          <Form onSubmit={this.handleSubmit}>
-            {/* handle login failure */}
+          <Form onSubmit={this.handleSubmit}> {/* handle login failure */}
             {this.state.errors.length > 0 && (
               <Alert type="danger" messages={[this.state.errors]} />
             )}
-            <div className="mb-3">{text}</div>
+            <div className="mb-3">{ text }</div>
+
             <Form.Group>
               <Form.Control
                 placeholder="Email"
@@ -147,6 +158,7 @@ class LoginSignUpForm extends Component {
                 value={this.state.email}
               />
             </Form.Group>
+
             <Form.Group>
               <Form.Control
                 placeholder="Password"
@@ -159,36 +171,38 @@ class LoginSignUpForm extends Component {
               />
             </Form.Group>
 
-            {loginState ? "" : signupForm}
+            {!loginState && signupForm}
+
             <div className="row justify-content-center">
               <Button
                 className="login-submit btn-block mr-3 ml-3"
                 type="submit"
-              >
-                Submit
+              >Submit
               </Button>
             </div>
-            {loginState ? (
-              loginWithSocial
-            ) : (
-              <Form.Text
-                id="signup"
-                className="text-muted"
-                style={{ textAlign: "center" }}
-              >
-                <button
-                  name="login"
-                  className="button-signin"
-                  onClick={this.loginOrSignup}
+
+            {loginState 
+              ? 
+                loginWithSocial
+              : 
+                <Form.Text
+                  id="signup"
+                  className="text-muted"
+                  style={{ textAlign: "center" }}
                 >
-                  Signin
-                </button>
-              </Form.Text>
-            )}
+                  <button
+                    name="login"
+                    className="button-signin"
+                    onClick={this.loginOrSignup}
+                  >Signin
+                  </button>
+                </Form.Text>
+            }
           </Form>
         </div>
       </div>
     );
   }
 }
+
 export default LoginSignUpForm;
