@@ -161,8 +161,9 @@ console.log("I am here at model user")
         RETURNING first_name, last_name`,
       [id]
     );
-
+      console.log("result is", result.rows)
     if (result.rows.length === 0) {
+      
       throw new Error(`There exists no user with that id`, 404);
     }
   }

@@ -61,6 +61,7 @@ router.delete('/:id', ensureCorrectUser, async function (req, res, next) {
     await User.remove(req.params.id);
     return res.json({ message: 'User deleted' });
   } catch (err) {
+    console.log("I am her at errro", err)
     return next(err);
   }
 });

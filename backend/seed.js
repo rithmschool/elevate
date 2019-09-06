@@ -40,14 +40,15 @@ async function seedData(){
   try {
     await cleanData()
     await createTestData()
+    console.log("ALL DONE!")
   } catch(err){
     console.log("something went wrong!", err)
   }
 }
 
-seedData().then(async function(){
-    console.log("ALL DONE!")
-    process.exit(0)
-})
+// seedData().then(async function(){
+//     console.log("ALL DONE!")
+//     process.exit(0)
+// })
 
 module.exports = seedData;

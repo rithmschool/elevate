@@ -12,9 +12,9 @@ const seedData = require("../seed")
 
 
 /** login a user, get a token, store the user ID and token*/
-async function getUserToken(userData) {
+async function getUserToken(userEmptyObj,userData) {
+  console.log("I run to token")
   try {
-    let user = {}
 
     const response = await request(app)
       .post("/login")
@@ -23,9 +23,8 @@ async function getUserToken(userData) {
         password: userData.password,
       });
 
-    user.userToken = response.body.token;
-    user.currentId = jwt.decode(user.userToken).user_id;
-    return user
+    userEmptyObj.userToken = response.body.token;
+    userEmptyObj.currentId = jwt.decode(userEmptyObj.userToken).user_id;
 
   } catch (error) {
     console.error(error);
