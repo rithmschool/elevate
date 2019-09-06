@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import moment from 'moment';
-import './UserBasicInfoForm.css';
+import './FormStyles.css';
 
 /** Update user basic info */
 class UserBasicInfoForm extends React.Component {
@@ -56,7 +56,7 @@ class UserBasicInfoForm extends React.Component {
 
         <div className="form-inside-container mt-5">
           <Form onSubmit={ this.handleSubmit }> 
-            <div className="user-basic-info-form_flex-space-between">
+            <div className="form-styles_flex-space-between">
               <h3>Basic info</h3>
 
               {!isEdit &&
@@ -140,7 +140,7 @@ class UserBasicInfoForm extends React.Component {
                   </Button>
 
                   <h6 
-                    className="mr-3 ml-3 user-basic-info-form_cancel"
+                    className="mr-3 ml-3 form-styles_cancel"
                     onClick={this.toggleEditForm}>
                     Cancel
                   </h6>

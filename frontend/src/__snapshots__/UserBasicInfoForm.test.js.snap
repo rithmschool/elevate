@@ -18,7 +18,7 @@ exports[`matches snapshot 1`] = `
       onSubmit={[Function]}
     >
       <div
-        className="user-basic-info-form_flex-space-between"
+        className="form-styles_flex-space-between"
       >
         <h3>
           Basic info

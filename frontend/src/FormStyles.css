@@ -1,10 +1,10 @@
-.user-basic-info-form_cancel {
+.form-styles_cancel {
   padding: 0.8em 0;
   color: #555;
   cursor: pointer;
 }
 
-.user-basic-info-form_flex-space-between {
+.form-styles_flex-space-between {
   display: flex;
   justify-content: space-between;
 }
