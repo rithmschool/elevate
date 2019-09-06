@@ -10,25 +10,21 @@ const app = require('../../app');
 const User = require('../../models/user');
 const Salary = require('../../models/salary');
 
-//test config  
-const { SEED_USER_SQL, SEED_SALARY_SQL } = require("../../config")
-const db = require("../../db");
+// test data imports
+const [ TEST_USER_DATA ] = require('../../seedData')
+const TEST_USER = TEST_USER_DATA[0]
+let USER ={}
 
+//test config  
 const {
-  TEST_DATA,
-  afterEachHook,
-  afterAllHook,
-  beforeEachHook,
-} = require('../config');
+    getUserToken,
+    afterAllHook,
+    beforeEachHook
+} = require("../configTest");
 
 beforeEach(async function () {
-  await beforeEachHook(TEST_DATA);
-  await db.query(SEED_USER_SQL);
-  await db.query(SEED_SALARY_SQL);
-});
-
-afterEach(async function () {
-  await afterEachHook();
+  await beforeEachHook();
+  await getUserToken(USER, TEST_USER)
 });
 
 describe('POST /salaries', function () {
@@ -40,7 +36,7 @@ describe('POST /salaries', function () {
         salary: 95000.00,
         bonus: 5000.00,
         equity: 0.003,
-        _token: `${TEST_DATA.userToken}`
+        _token: USER.userToken
       });
     expect(response.statusCode).toBe(201);
     expect(response.body.salary).toHaveProperty('bonus');
@@ -57,10 +53,10 @@ describe('GET /salaries', function () {
 
 describe('GET /salaries/:id', function () {
   test('Gets a single salary for a specific user', async function () {
-    const userId = TEST_DATA.currentId;
+   
     const response = await request(app)
-      .get(`/salaries/${userId}`)
-      .send({ _token: `${TEST_DATA.userToken}` });
+      .get(`/salaries/${USER.currentId}`)
+      .send({ _token: USER.userToken });
     
     expect(response.body.salaries).toHaveProperty('bonus');
     expect(response.body.salaries.bonus).toEqual(25000);
@@ -70,40 +66,18 @@ describe('GET /salaries/:id', function () {
     const userId = 6;
     const response = await request(app)
       .get(`/salaries/${userId}`)
-      .send({ _token: TEST_DATA.userToken });
+      .send({ _token: USER.userToken });
     expect(response.statusCode).toBe(500);
   });
 });
 
 describe('PATCH /salaries/:id', function () {
   test("Updates a single field for a salary record", async function () {
-    const newUser = {
-      email: "john_the_third@doe.com",
-      password: "yeehaw",
-      is_admin: false,
-      first_name: "john",
-      last_name: "doe",
-      current_company: "john deer",
-      hire_date: "2016-05-01",
-      needs: "a new truck",
-      goals: "get a raise for new truck down payment"
-    };
-    const userResponse = await User.register(newUser);
-
-    const newSalary = {
-      user_id: userResponse.id,
-      salary: 105000.00,
-      bonus: 2000.00,
-      equity: 0.005
-    };
-
-    const salaryResponse = await Salary.create(newSalary);
-
     const response = await request(app)
-      .patch(`/salaries/${userResponse.id}`)
+      .patch(`/salaries/${USER.currentId}`)
       .send({
         salary: 150000.00,
-        _token: TEST_DATA.userToken
+        _token: USER.userToken
       });
     expect(response.body.salary).toHaveProperty('salary');
     expect(response.body.salary.salary).toBe(150000.00);
@@ -127,34 +101,19 @@ describe('PATCH /salaries/:id', function () {
 
 describe('DELETE /salaries/:id', function () {
   test('Deletes a single salary', async function () {
-    const newUser = {
-      email: "john_the_second@doe.com",
-      password: "yeehaw",
-      is_admin: false,
-      first_name: "john",
-      last_name: "doe",
-      current_company: "john deer",
-      hire_date: "2016-05-01",
-      needs: "a new truck",
-      goals: "get a raise for new truck down payment"
-    };
-    
-    const userResponse = await User.register(newUser);
-
     const newSalary = {
-      user_id: userResponse.id,
+      user_id: USER.currentId,
       salary: 105000.00,
       bonus: 2000.00,
       equity: 0.005
     };
-
     const salaryResponse = await Salary.create(newSalary);
     const salaryId = salaryResponse.id
 
     const response = await request(app)
       .delete(`/salaries/${salaryId}`)
       .send({ 
-        _token: TEST_DATA.userToken });
+        _token: USER.userToken });
     expect(response.body).toEqual({ message: 'Salary deleted' });
   });
 
@@ -163,7 +122,7 @@ describe('DELETE /salaries/:id', function () {
     const response = await request(app)
       .delete(`/salaries/${salaryId}`)
       .send({
-        _token: TEST_DATA.userToken
+        _token: USER.userToken
       });
     expect(response.statusCode).toBe(404);
   });

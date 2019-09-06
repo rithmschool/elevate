@@ -8,7 +8,7 @@ const USER_DATA = [
 ]
 
 const SALARY_DATA = [
-  {user_id: 1, salary: 150000.00, bonus:25000.00,  equity: .001},
+  {user_id: 1, salary: 170000.00, bonus:25000.00,  equity: .001},
   {user_id: 2, salary: 100000.00, bonus:5000.00,  equity: .005},
   {user_id: 3, salary: 90000.00, bonus:2000.00,  equity: .0035},
   {user_id: 4, salary: 200000.00, bonus:5000.00,  equity: .33},

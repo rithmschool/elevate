@@ -6,9 +6,6 @@ const request = require('supertest');
 // app imports
 const app = require('../../app');
 
-// model imports
-const Appointments = require('../../models/appointment');
-
 // test data imports
 const [ TEST_USER_DATA ] = require('../../seedData')
 const TEST_USER = TEST_USER_DATA[0]
@@ -16,9 +13,7 @@ const TEST_ADMIN = TEST_USER_DATA[1]
 let USER ={}
 let ADMIN_USER = {}
 
-
 //test config  
-
 const {
     getUserToken,
     getAdminToken,
