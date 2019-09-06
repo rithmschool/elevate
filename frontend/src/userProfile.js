@@ -1,6 +1,6 @@
 import React from "react";
 import {UserContext} from "./UserContext"
-import UserBasicInfoForm from './UserBasicInfoForm';
+import UserBasicInfoForm from './userBasicInfoForm';
 import UserSalaryInfoForm from './UserSalaryInfoForm'
 import ElevateApi from './ElevateApi';
 import { Row, Col } from 'reactstrap';
