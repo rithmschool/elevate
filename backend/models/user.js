@@ -2,15 +2,12 @@ const db = require("../db");
 const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
 
-
 /** reduce bcrypc rounds in test environemnt **/
-let BCRYPT_WORK_FACTOR = process.env.NODE_ENV === 'test' ? 1 : 15;
-
+const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 15;
 
 /** Related functions for users. */
 
 class User {
-
   /** authenticate user with email, password. Returns user or throws err. */
 
   static async authenticate(data) {
@@ -32,14 +29,8 @@ class User {
       [data.email]
     );
 
-
-
-
-
     const user = result.rows[0];
     // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
-
-
 
     if (user) {
       // compare hashed password to a new hash from password from user input
@@ -55,8 +46,6 @@ class User {
     throw invalidPass;
   }
 
-
-
   /** Register user with data. Returns new user data. */
   /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
@@ -71,7 +60,8 @@ class User {
 
     if (duplicateCheck.rows[0]) {
       const err = new Error(
-        `There already exists a user with email '${data.email}`);
+        `There already exists a user with email '${data.email}`
+      );
       err.status = 401;
       throw err;
     }
@@ -82,15 +72,18 @@ class User {
             (email, password, first_name, last_name) 
             VALUES ($1, $2, $3, $4) 
             RETURNING id, is_admin, first_name, last_name`,
-      [data.email, hashedPassword, data.first_name, data.last_name]);
+      [data.email, hashedPassword, data.first_name, data.last_name]
+    );
     return result.rows[0];
   }
 
-  /** Find all users. */
+  /** Find all users. Front end logic requires id to be aliased as user_id.
+   * e.g., AdminTable component renders user details for each row in any table
+   * so it must have a consistent key "user_id"  */
 
   static async findAll() {
     const result = await db.query(
-      `SELECT id, 
+      `SELECT id AS user_id, 
               first_name, 
               last_name, 
               current_company AS company, 
@@ -120,7 +113,6 @@ class User {
     return user;
   }
 
-  
   /** Update user data with `data`.
    *
    * This is a "partial update" --- it's fine if data doesn't contain
@@ -131,27 +123,27 @@ class User {
    */
 
   static async update(id, data) {
+    // TODO: FIX THIS eslint disable
     if (data.password) {
+      // eslint-disable-next-line require-atomic-updates
       data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     }
-
-    let { query, values } = partialUpdate("users", data, "id", id);
+    const { query, values } = partialUpdate("users", data, "id", id);
 
     const result = await db.query(query, values);
     const user = result.rows[0];
-
     if (!user) {
- 
       throw new Error(`There exists no user with that id`, 404);
     }
 
     delete user.password;
     delete user.is_admin;
+    delete user.reset_password_token;
+    delete user.reset_password_expires;
 
     return result.rows[0];
   }
 
- 
   /** Delete given user from database; returns undefined. */
 
   static async remove(id) {
@@ -166,9 +158,42 @@ class User {
       throw new Error(`There exists no user with that id`, 404);
     }
   }
+
+  /** Given a user email, return data about user. */
+  static async findUserbyEmail(email) {
+    const result = await db.query(
+      `SELECT id, email, first_name, last_name
+        FROM users 
+        WHERE email = $1`,
+      [email]
+    );
+    const user = result.rows[0];
+
+    if (!user) {
+      throw {
+        message: `This user with this email ${email} doesn't exist!`,
+        status: 400
+      };
+    }
+    return user;
+  }
+
+  /** Given a reset password reset token and check if the token is valid and not expired yet. */
+  static async verifyPasswordToken(resetPasswordToken) {
+    const result = await db.query(
+      `SELECT id, first_name, reset_password_expires
+          FROM users 
+          WHERE reset_password_token = $1`,
+      [resetPasswordToken]
+    );
+    const user = result.rows[0];
+    if (!user) {
+      throw { message: `Password reset link is invalid`, status: 400 };
+    } else if (user.reset_password_expires < Date.now()) {
+      throw { message: `Password reset link has expired`, status: 400 };
+    }
+    return user;
+  }
 }
-
-
-
 
 module.exports = User;
