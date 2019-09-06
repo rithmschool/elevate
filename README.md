@@ -4,6 +4,8 @@
 
 Human resources for the employee. A full-stack application built in React and Express with a Postgres database.
 
+You can find a live version at https://elevate-main.herokuapp.com/
+
 ## Important Notes
 
 - Make sure to name all of your files starting with a lower cased letter. This is important for Travis CI, so be sure to name your components `likeThis` and not `LikeThis`.
