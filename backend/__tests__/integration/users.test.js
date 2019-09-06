@@ -8,13 +8,12 @@ const app = require('../../app');
 
 // test data imports 
 const [ TEST_USER_DATA ] = require('../../seedData')
-const TEST_USER_EMAIL = TEST_USER_DATA[0].email
-const TEST_USER_PASSWORD = TEST_USER_DATA[0].password
+const TEST_USER = TEST_USER_DATA[0]
 let USER = {}
 
 //test config  
 const {
-  afterEachHook,
+
   afterAllHook,
   beforeEachHook,
   getUserToken
@@ -23,12 +22,9 @@ const {
 
 beforeEach(async function () {
   await beforeEachHook();
-  await getUserToken(USER, TEST_USER_DATA[0])
+  await getUserToken(USER, TEST_USER)
 });
 
-// afterEach(async function () {
-//   await afterEachHook();
-// });
 
 describe('POST /users', function () {
   test('Creates a new user', async function () {
@@ -48,8 +44,8 @@ describe('POST /users', function () {
     const response = await request(app)
       .post('/users')
       .send({
-        email: TEST_USER_EMAIL,
-        password: TEST_USER_PASSWORD,
+        email: TEST_USER.email,
+        password: TEST_USER.email,
       });
     expect(response.statusCode).toBe(401);
   });

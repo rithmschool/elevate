@@ -141,7 +141,6 @@ console.log("I am here at model user")
     const user = result.rows[0];
 
     if (!user) {
- 
       throw new Error(`There exists no user with that id`, 404);
     }
 
@@ -161,12 +160,26 @@ console.log("I am here at model user")
         RETURNING first_name, last_name`,
       [id]
     );
-      console.log("result is", result.rows)
-    if (result.rows.length === 0) {
       
+    if (result.rows.length === 0) {
       throw new Error(`There exists no user with that id`, 404);
     }
   }
+
+  static async makeAdminUser(email, boolean) {
+    let result = await db.query(
+      `UPDATE users
+      SET  is_admin = $2
+      WHERE email = $1
+      RETURNING first_name, last_name`,
+      [email, boolean]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error(`There exists no user with that id`, 404);
+    }
+  }
+
 }
 
 

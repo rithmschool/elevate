@@ -9,6 +9,9 @@ const db = require("../db");
 // seed imports
 const seedData = require("../seed")
 
+// model imports
+const User= require("../models/user")
+
 
 
 /** login a user, get a token, store the user ID and token*/
@@ -28,6 +31,16 @@ async function getUserToken(userEmptyObj,userData) {
 
   } catch (error) {
     console.error(error);
+  }
+}
+
+async function getAdminToken(userEmptyObj, userData){
+
+  try{
+    await User.makeAdminUser(userData.email, true)
+    await getUserToken(userEmptyObj,userData)
+  }catch(error){
+    console.error(error)
   }
 }
 
@@ -61,5 +74,6 @@ module.exports = {
   afterAllHook,
   afterEachHook,
   getUserToken,
+  getAdminToken,
   beforeEachHook,
 };
