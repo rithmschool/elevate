@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
-import './AdminTable.css'
+import React, { Component } from "react";
+import { Table } from "react-bootstrap";
+import "./AdminTable.css";
 
 const MQL = window.matchMedia(`(max-width: 640px)`);
 // set the maximum number of table columns for smaller and larger screens
 const MAXCOLUMNCOUNT = MQL.matches ? 5 : 12;
 
 class AdminTable extends Component {
-  handleClick = (evt) => {
+  handleClick = evt => {
     const id = evt.target.parentElement.id;
     this.props.getUserDetail(id);
-  }
+  };
   createTableHeader() {
     const keys = Object.keys(this.props.tableObjs[0]);
 
@@ -45,17 +45,17 @@ class AdminTable extends Component {
     if (typeof value === 'string') {
       if (MQL.matches) {
         // small screen
-        if (value.slice(0, 2) === '19' || value.slice(0, 2) === '20') {
+        if (value.slice(0, 2) === "19" || value.slice(0, 2) === "20") {
           // only show year on small strings
           value = value.slice(0, 4);
         }
         if (value.length > 9) {
-          value = value.slice(0, 6) + '...';
+          value = value.slice(0, 6) + "...";
         }
       } else {
         // larger screen
         if (value.length > 30) {
-          value = value.slice(0, 25) + '...';
+          value = value.slice(0, 25) + "...";
         }
       }
     }

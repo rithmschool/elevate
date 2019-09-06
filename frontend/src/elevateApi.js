@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 class ElevateApi {
   static async request(endpoint, params = {}, verb = "get") {
@@ -10,18 +10,17 @@ class ElevateApi {
     let q;
 
     if (verb === "get") {
-      q = axios.get(
-        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } });
+      q = axios.get(`${BASE_URL}/${endpoint}`, {
+        params: { _token, ...params }
+      });
     } else if (verb === "post") {
-      q = axios.post(
-        `${BASE_URL}/${endpoint}`, { _token, ...params });
+      q = axios.post(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "patch") {
-      q = axios.patch(
-        `${BASE_URL}/${endpoint}`, { _token, ...params });
+      q = axios.patch(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "delete") {
-      q = axios.delete(
-        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } }
-      )
+      q = axios.delete(`${BASE_URL}/${endpoint}`, {
+        params: { _token, ...params }
+      });
     }
 
     try {
@@ -31,7 +30,6 @@ class ElevateApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-
 
   static async login(data) {
     let res = await this.request(`login`, data, "post");
@@ -51,7 +49,7 @@ class ElevateApi {
     return res.user;
   }
 
-  static async updateUser(userId, data){
+  static async updateUser(userId, data) {
     let res = await this.request(`users/${userId}`, data, "patch");
     return res.user;
   }
@@ -59,26 +57,26 @@ class ElevateApi {
   static async getUsers() {
     let res = await this.request(`users`);
     // Format hire_date for each user
-    if (res.users){
+    if (res.users) {
       res.users.forEach(user => {
         // check if the user has hire_date then format
-        user.hire_date = (user.hire_date && user.hire_date.slice(0, 10)); 
+        user.hire_date = user.hire_date && user.hire_date.slice(0, 10);
       });
     }
 
-    return res.users
+    return res.users;
   }
 
   static async getLatestSalary(userId) {
     let res = await this.request(`salaries/${userId}`);
-    return res.salaries
+    return res.salaries;
   }
 
   static async updateSalary(userId, data) {
     let res = await this.request(`salaries/${userId}`, data, "patch");
-    return res
+    return res;
   }
-  static async postSalary(data){
+  static async postSalary(data) {
     let res = await this.request(`salaries/`, data, "post");
     return res;
   }
@@ -91,7 +89,7 @@ class ElevateApi {
       question.created_date = question.created_date.slice(0, 10);
     });
 
-    return res.questions
+    return res.questions;
   }
 
   /*Getting all appointments from backend api */

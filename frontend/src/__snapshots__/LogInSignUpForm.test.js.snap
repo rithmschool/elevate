@@ -31,7 +31,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 name="email"
                 onChange={[Function]}
                 placeholder="Email"
-                type="text"
+                type="email"
                 value=""
               >
                 <input
@@ -40,7 +40,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   name="email"
                   onChange={[Function]}
                   placeholder="Email"
-                  type="text"
+                  type="email"
                   value=""
                 />
               </FormControl>

@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS "elevate";
 CREATE DATABASE "elevate";
 \c "elevate"
 
+ALTER DATABASE elevate SET timezone='US/Pacific';
+
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
@@ -129,6 +131,8 @@ INSERT INTO users_calendly_users (user_id, calendly_user_id) VALUES
 DROP DATABASE IF EXISTS "elevate-test";
 CREATE DATABASE "elevate-test";
 \c "elevate-test"
+
+ALTER DATABASE elevate-test SET timezone='US/Pacific';
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
