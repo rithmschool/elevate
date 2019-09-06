@@ -106,14 +106,16 @@ class Navigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar className="collapse.navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active " data-toggle="collapse" data-target=".in" >
-              <Link to="/link1" className="Nav-link Nav-link-ltr">Ask An Expert</Link>
+              <Link to="/ask-an-expert" className="Nav-link Nav-link-ltr">Ask An Expert</Link>
             </li>
-            {admin}
             </ul>
           <ul className="navbar-nav">
+            {/* 
             <li className="nav-item active">
               <Link to="/link3" className="Nav-link Nav-link-ltr">About</Link>
             </li>
+            */}
+            {admin}
             {login}
           </ul>   
         </Collapse>
