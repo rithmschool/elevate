@@ -10,10 +10,12 @@ const db = require("../db");
 // global auth variable to store things for all the tests
 const TEST_DATA = {};
 const TEST_ADMIN_DATA = {};
-const inputPassword = "test";
-const inputEmail = "test@gmail.com";
+const inputPassword = "password123";
+const inputEmail = "testuser@gmail.com";
 const inputAdminPassword = "admin123";
 const inputAdminEmail = "admin@gmail.com"
+const passwordToken = 't3ae9a322f541237af6890edc9b3a4f940f124566';
+const expireTime = 99999999999999;
 
 /**
  * Hooks to insert a user, company, and job, and to authenticate
@@ -57,10 +59,11 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
     // create new user with hashed password
     await db.query(
       `INSERT INTO users 
-                  (email, password, is_admin) 
-                  VALUES ($1, $2, $3) 
+                  (email, password, reset_password_token, reset_password_expires, is_admin) 
+                  VALUES ($1, $2, $3, $4, $5)
                   RETURNING id, is_admin`,
-      [inputAdminEmail, hashedPassword, true]);
+      [inputEmail, hashedPassword, passwordToken, expireTime,true]
+    );
 
     const response = await request(app)
       .post("/login")
@@ -68,9 +71,9 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
         email: inputAdminEmail,
         password: inputAdminPassword,
       });
-      
+    console.log("TOKEN!", response.body);
     TEST_ADMIN_DATA.userToken = response.body.token;
-    TEST_ADMIN_DATA.currentId = jwt.decode(TEST_ADMIN_DATA.userToken).user_id;
+    TEST_ADMIN_DATA.currentId = jwt.decode(TEST_ADMIN_DATA.userToken).id;
   } catch (error) {
     console.error(error);
   }
@@ -102,5 +105,6 @@ module.exports = {
   inputPassword,
   inputEmail,
   inputAdminPassword,
+  passwordToken,
   inputAdminEmail
 };

@@ -19,6 +19,8 @@ router.post("/", async function(req, res, next) {
   }
 });
 
+// TODO: FIX THIS - TAKE OUT ALL THESE ROUTES AND WRITE BETTER TESTS
+
 /**FAKE ROUTE!!! to test authRequired middleware */
 router.get("/test", authRequired,  function (req, res, next){
   try{

@@ -15,14 +15,14 @@ it("matches snapshot", function() {
 
 describe("UserSalaryInfoForm", function() {
   let wrapper;
-  let lastestSalary = {
+  let latestSalary = {
     user_id: 1,
     salary: 50000,
     bonus: 100,
     equity: 0.1
   };
   beforeEach(() => {
-    wrapper = mount(<UserSalaryInfoForm {...lastestSalary} />);
+    wrapper = mount(<UserSalaryInfoForm {...latestSalary} />);
   });
 
   it("has states", function() {

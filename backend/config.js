@@ -6,6 +6,12 @@ const SECRET = process.env.SECRET_KEY || 'test';
 
 const PORT = +process.env.PORT || 3001;
 
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS || `elevate2super@gmail.com`;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD || `elevate2super12345`;
+const FROM_EMAIL = `superAgent@gmail.com`
+const SERVICE = 'gmail';
+const EXPIRE_TIME = 3600000; // 1 hour 
+
 let DB_URI;
 
 if (process.env.NODE_ENV === "test") {
@@ -59,6 +65,11 @@ module.exports = {
   PORT,
   DB_URI,
   SEED_USER_SQL,
+  EMAIL_ADDRESS,
+  EMAIL_PASSWORD,
+  FROM_EMAIL,
+  EXPIRE_TIME,
+  SERVICE,
   SEED_SALARY_SQL,
   SEED_CHARGES_SQL,
   SEED_APPT_SQL,
