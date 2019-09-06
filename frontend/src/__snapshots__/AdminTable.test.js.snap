@@ -96,7 +96,6 @@ exports[`AdminTable matches snapshot 1`] = `
             </thead>
             <tbody>
               <tr
-                id={17}
                 key="17"
                 onClick={[Function]}
               >

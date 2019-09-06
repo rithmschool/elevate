@@ -53,9 +53,9 @@ class ElevateApi {
     let res = await this.request(`users/${userId}`, data, "patch");
     return res.user;
   }
+
   static async getUsers() {
     let res = await this.request(`users`);
-
     // Format hire_date for each user
     if (res.users) {
       res.users.forEach(user => {
@@ -90,6 +90,12 @@ class ElevateApi {
     });
 
     return res.questions;
+  }
+
+  /*Getting all appointments from backend api */
+  static async getAppointments() {
+    let res = await this.request(`appointments`);
+    return res.appointments;
   }
 
   static async deleteUser(id) {

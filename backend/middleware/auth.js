@@ -66,13 +66,12 @@ function adminRequired(req, res, next) {
 * If not, raises Unauthorized.
 *
 */
-function ensureCorrectUser(req, res, next) {
-  
+function ensureCorrectUser(req, res, next) { 
   try {
     const tokenStr = req.body._token || req.query._token;
     let token = jwt.verify(tokenStr, SECRET);
     req.user_id = token.user_id;
-
+   
     // changing params.id to integer to make correct comparison
     // checks if user is admin to allow admins to get individual user data
     if (token.user_id === Number(req.params.id) || token.is_admin === true) {
