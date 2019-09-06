@@ -1,5 +1,5 @@
 import React from "react";
-import {UserContext} from "./UserContext"
+import {UserContext} from "./userContext"
 import UserBasicInfoForm from './userBasicInfoForm';
 import UserSalaryInfoForm from './userSalaryInfoForm'
 import ElevateApi from './elevateApi';

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import {UserContext} from "./UserContext"
+import {UserContext} from "./userContext"
 
 class AdminPrivateRoute extends Component {
   static contextType = UserContext;
