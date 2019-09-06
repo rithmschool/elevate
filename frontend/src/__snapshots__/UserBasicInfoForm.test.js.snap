@@ -89,7 +89,7 @@ exports[`matches snapshot 1`] = `
           id="EditUser-hire_date"
           name="hire_date"
           onChange={[Function]}
-          type="text"
+          type="date"
           value="2019-08-13"
         />
       </FormGroup>
