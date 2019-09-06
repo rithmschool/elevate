@@ -4,7 +4,7 @@ import { Col, Button, Form, Label, Input, Row } from "reactstrap";
 import Alert from "./alert";
 import Spinner from "./spinner";
 import ResetLinkExpired from "./resetLinkExpired";
-import "./ResetPassword.css";
+import "./resetPassword.css";
 
 const BASE_URL = "http://localhost:3000";
 
