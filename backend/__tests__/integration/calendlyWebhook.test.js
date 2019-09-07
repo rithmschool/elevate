@@ -15,7 +15,7 @@ const { parseResponse } = require("../../helpers/helperWebhook");
 //test config  
 const {
   afterAllHook,
-  beforeEachHook
+  beforeAllHook
 } = require('../configTest');
 
 // mock calendly json
@@ -24,8 +24,8 @@ const mockCalendlyCancel = require("../mockCalendlyJson/mockCalendlyCancel.json"
 const mockCalendlyCreateBadEmail = require("../mockCalendlyJson/mockCalendlyCreateBadEmail.json");
 const mockCalendlyCreateBadData = require("../mockCalendlyJson/mockCalendlyCreateBadData.json");
 
-beforeEach(async function () {
-  await beforeEachHook()
+beforeAll(async function () {
+  await beforeAllHook()
 });
 
 describe('POST /webhook', function () {
