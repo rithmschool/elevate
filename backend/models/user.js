@@ -159,13 +159,13 @@ class User {
     }
   }
 
-  static async makeAdminUser(email, boolean) {
+  static async makeAdminUser(data, boolean) {
     let result = await db.query(
       `UPDATE users
       SET  is_admin = $2
       WHERE email = $1
       RETURNING first_name, last_name`,
-      [email, boolean]
+      [data.email, boolean]
     );
 
     if (result.rows.length === 0) {

@@ -17,6 +17,7 @@ async function makeUser(data, is_admin=false) {
   try {
     let newUser = {}
     if(is_admin) {
+      console.log("I am here at makesure")
       await User.makeAdminUser(data, is_admin)
     }
     
