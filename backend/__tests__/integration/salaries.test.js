@@ -9,21 +9,25 @@ const app = require('../../app');
 // model imports
 const Salary = require('../../models/salary');
 
-// test data imports
-const [ TEST_USER_DATA ] = require('../../seedData')
-const TEST_USER = TEST_USER_DATA[0]
-let USER ={}
+// test data imports 
+const [TEST_USER_DATA] = require('../../seedData')
+
+//individual user data
+const TEST_USER_DATA_ONE = TEST_USER_DATA[0]
+
+// create test user token and data
+let USER;
 
 //test config  
 const {
-    getUserToken,
-    afterAllHook,
-    beforeEachHook
-} = require("../configTest");
+  afterAllHook,
+  beforeAllHook,
+  makeUser,
+} = require('../configTest');
 
-beforeEach(async function () {
-  await beforeEachHook();
-  await getUserToken(USER, TEST_USER)
+beforeAll(async function () {
+  await beforeAllHook();
+  USER = await makeUser(TEST_USER_DATA_ONE)
 });
 
 describe('POST /salaries', function () {
@@ -55,7 +59,7 @@ describe('GET /salaries/:id', function () {
     const response = await request(app)
       .get(`/salaries/${USER.currentId}`)
       .send({ _token: USER.userToken });
-    
+
     expect(response.body.salaries).toHaveProperty('bonus');
     expect(response.body.salaries.bonus).toEqual(25000);
   });
@@ -86,11 +90,10 @@ describe('PATCH /salaries/:id', function () {
   // The current behavior creates a new record with all of the old fields copied over from
   // the original salary record and returns a 200
   xtest('Prevents a bad salary update', async function () {
-    const userId = TEST_DATA.currentId;
     const response = await request(app)
-      .patch(`/salaries/${userId}`)
+      .patch(`/salaries/${USER.currentId}`)
       .send({
-        _token: TEST_DATA.userToken,
+        _token: USER.userToken,
         cactus: false
       });
     expect(response.statusCode).toBe(400);
@@ -110,13 +113,14 @@ describe('DELETE /salaries/:id', function () {
 
     const response = await request(app)
       .delete(`/salaries/${salaryId}`)
-      .send({ 
-        _token: USER.userToken });
+      .send({
+        _token: USER.userToken
+      });
     expect(response.body).toEqual({ message: 'Salary deleted' });
   });
 
   test('Responds with a 404 if it cannot find the salary in question', async function () {
-    const salaryId = 666; 
+    const salaryId = 666;
     const response = await request(app)
       .delete(`/salaries/${salaryId}`)
       .send({
