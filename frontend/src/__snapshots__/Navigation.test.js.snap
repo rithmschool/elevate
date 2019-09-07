@@ -8,10 +8,10 @@ exports[`matches snapshot 1`] = `
   tag="nav"
 >
   <Link
-    className="navbar-brand Nav-text"
+    className="navbar-brand Nav-text Nav_brand-name"
     to="/"
   >
-    Super Agent
+    Elevate
   </Link>
   <NavbarToggler
     onClick={[Function]}

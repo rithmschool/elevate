@@ -1,4 +1,8 @@
 
+.Nav_brand-name {
+}
+
+
 .Nav-icon{
   font-weight: bold;
   font-size: 14px;
@@ -44,13 +48,14 @@
 }
 
 .navbar-brand{
+  font-family: 'Heebo', sans-serif;
   color: #394557;
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
 .navbar-brand:hover{
   color: #394557;
-  opacity: 1;
+  opacity: 0.85;
 }
 
 
