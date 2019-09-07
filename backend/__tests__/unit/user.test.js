@@ -49,7 +49,6 @@ describe("Test User Class register", function () {
 describe("Test User Class authenticate", function () {
   test("should return user object if correct password and email", async function () {
     let user = await User.authenticate({ "email": TEST_USER_DATA_ONE.email, "password": TEST_USER_DATA_ONE.password })
-
     expect(typeof user.id).toBe('number');
     expect(user.email).toBe(TEST_USER_DATA_ONE.email);
     expect(user.is_admin).toBe(false);

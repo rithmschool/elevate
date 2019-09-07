@@ -1,4 +1,6 @@
-const db = require("../db");
+const db = require("../db"); 
+
+/** Related functions for questions */
 
 class Question {
   // Create a question from input: {question, id}

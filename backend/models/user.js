@@ -8,8 +8,8 @@ const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 15;
 /** Related functions for users. */
 
 class User {
-  /** authenticate user with email, password. Returns user or throws err. */
 
+  /** authenticate user with email, password. Returns user or throws err. */
   static async authenticate(data) {
     // try to find the user first
 
@@ -30,11 +30,8 @@ class User {
     );
 
     const user = result.rows[0];
-    // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
-
+   
     if (user) {
-      // compare hashed password to a new hash from password from user input
-      // const hashedPassword = await bcrypt.hash(user.password, BCRYPT_WORK_FACTOR);
       const isValid = await bcrypt.compare(data.password, user.password);
       if (isValid) {
         return user;
@@ -47,7 +44,6 @@ class User {
   }
 
   /** Register user with data. Returns new user data. */
-  /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async create(data) {
     // check if email is taken or not
     const duplicateCheck = await db.query(
@@ -56,7 +52,7 @@ class User {
             WHERE email = $1`,
       [data.email]
     );
-      console.log("data", data)
+
     if (duplicateCheck.rows[0]) {
       const err = new Error(
         `There already exists a user with email '${data.email}`
@@ -96,7 +92,6 @@ class User {
   }
 
   /** Given a user id, return data about user. */
-
   static async findOne(id) {
     const result = await db.query(
       `SELECT id, email, is_admin, first_name, last_name, current_company, hire_date, needs, goals 
@@ -120,11 +115,8 @@ class User {
    * Return data for changed user.
    *
    */
-
   static async update(id, data) {
-    // TODO: FIX THIS eslint disable
     if (data.password) {
-      // eslint-disable-next-line require-atomic-updates
       data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     }
     const { query, values } = partialUpdate("users", data, "id", id);
@@ -144,28 +136,27 @@ class User {
   }
 
   /** Delete given user from database; returns undefined. */
-
   static async remove(id) {
-    
     let result = await db.query(
       `DELETE FROM users 
         WHERE id = $1
         RETURNING first_name, last_name`,
       [id]
     );
-    console.log("id is ", result)
+
     if (result.rows.length === 0) {
       throw new Error(`There exists no user with that id`, 404);
     }
   }
 
-  static async makeAdminUser(data, boolean) {
+  /**take user email, make user to admin. return user's first name and last mane*/
+  static async makeAdminUser(email, boolean) {
     let result = await db.query(
       `UPDATE users
       SET  is_admin = $2
       WHERE email = $1
       RETURNING first_name, last_name`,
-      [data.email, boolean]
+      [email, boolean]
     );
 
     if (result.rows.length === 0) {

@@ -1,5 +1,7 @@
 const db = require("../db");
 
+/** Related functions for appointments. */
+
 class Appointment {
   /** ALL methods need to check for existing user and retrieve user_id using email from calendly
    * If we can't find a user_id, then send an email saying that the meeting will be canceled

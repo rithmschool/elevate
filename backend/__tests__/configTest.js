@@ -10,17 +10,16 @@ const db = require("../db");
 const seedData = require("../seed")
 
 // model imports
-const User= require("../models/user")
+const User = require("../models/user")
 
-/** login a user, get a token, store the user ID and token*/
-async function makeUser(data, is_admin=false) {
+/** login a user, if is_admin is true, make the user admin. Get a token, store the user ID and token*/
+async function makeUser(data, is_admin = false) {
   try {
     let newUser = {}
-    if(is_admin) {
-      console.log("I am here at makesure")
-      await User.makeAdminUser(data, is_admin)
+    if (is_admin) {
+      await User.makeAdminUser(data.email, is_admin)
     }
-    
+
     const response = await request(app)
       .post("/login")
       .send({
@@ -46,7 +45,7 @@ async function beforeAllHook() {
   }
 }
 
-/** Close connection with database */
+/** close connection with database */
 async function afterAllHook() {
   try {
     await db.end();
