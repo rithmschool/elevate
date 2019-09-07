@@ -1,4 +1,4 @@
-
+/**Seed data for development and test */
 const USER_DATA = [
   {email: 'testuser@gmail.com', password: 'password123', first_name: 'Test', last_name: 'User'},
   {email: 'admin@gmail.com', password: 'admin123', first_name: 'Admin', last_name: 'User'},

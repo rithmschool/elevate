@@ -50,14 +50,13 @@ class User {
   /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async create(data) {
     // check if email is taken or not
-console.log("I am here at model user")
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
             WHERE email = $1`,
       [data.email]
     );
-
+      console.log("data", data)
     if (duplicateCheck.rows[0]) {
       const err = new Error(
         `There already exists a user with email '${data.email}`
@@ -147,13 +146,14 @@ console.log("I am here at model user")
   /** Delete given user from database; returns undefined. */
 
   static async remove(id) {
+    
     let result = await db.query(
       `DELETE FROM users 
         WHERE id = $1
         RETURNING first_name, last_name`,
       [id]
     );
-      
+    console.log("id is ", result)
     if (result.rows.length === 0) {
       throw new Error(`There exists no user with that id`, 404);
     }

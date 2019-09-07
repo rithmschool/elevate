@@ -15,7 +15,7 @@ const {
 } = require("../configTest");
 
 beforeEach(async function() {
-  beforeEachHook()
+  await beforeEachHook()
 });
 
 

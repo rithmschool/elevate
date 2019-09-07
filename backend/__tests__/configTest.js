@@ -12,30 +12,32 @@ const seedData = require("../seed")
 // model imports
 const User= require("../models/user")
 
-
-
 /** login a user, get a token, store the user ID and token*/
-async function getUserToken(userEmptyObj,userData) {
-  console.log("I run to token")
+async function makeUser(data, is_admin=false) {
   try {
-
+    let newUser = {}
+    if(is_admin) {
+      await User.makeAdminUser(data, is_admin)
+    }
+    
     const response = await request(app)
       .post("/login")
       .send({
-        email: userData.email,
-        password: userData.password,
+        email: data.email,
+        password: data.password,
       });
 
-    userEmptyObj.userToken = response.body.token;
-    userEmptyObj.currentId = jwt.decode(userEmptyObj.userToken).user_id;
+    newUser.userToken = response.body.token;
+    newUser.currentId = jwt.decode(newUser.userToken).user_id;
+    return newUser
 
   } catch (error) {
     console.error(error);
   }
 }
 
+/**change non admin user to admin user and get token */
 async function getAdminToken(userEmptyObj, userData){
-
   try{
     await User.makeAdminUser(userData.email, true)
     await getUserToken(userEmptyObj,userData)
@@ -44,7 +46,8 @@ async function getAdminToken(userEmptyObj, userData){
   }
 }
 
-async function beforeEachHook() {
+/**clean up database and seed data */
+async function beforeAllHook() {
   try {
     await seedData()
   } catch (error) {
@@ -71,9 +74,8 @@ async function afterAllHook() {
 }
 
 module.exports = {
+  makeUser,
   afterAllHook,
   afterEachHook,
-  getUserToken,
-  getAdminToken,
-  beforeEachHook,
+  beforeAllHook,
 };

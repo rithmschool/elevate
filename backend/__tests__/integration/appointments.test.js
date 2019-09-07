@@ -56,7 +56,7 @@ describe('GET /appointments/:id', function () {
     });
 
     test('Return 401 if user is not authorized', async function () {
-        let response = await request(app)
+        const response = await request(app)
             .get('/appointments/100')
             .send({ _token: USER.userToken });
         expect(response.statusCode).toBe(401);
