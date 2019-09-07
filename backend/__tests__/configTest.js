@@ -36,16 +36,6 @@ async function makeUser(data, is_admin=false) {
   }
 }
 
-/**change non admin user to admin user and get token */
-async function getAdminToken(userEmptyObj, userData){
-  try{
-    await User.makeAdminUser(userData.email, true)
-    await getUserToken(userEmptyObj,userData)
-  }catch(error){
-    console.error(error)
-  }
-}
-
 /**clean up database and seed data */
 async function beforeAllHook() {
   try {
@@ -55,16 +45,7 @@ async function beforeAllHook() {
   }
 }
 
-
-async function afterEachHook(table) {
-  try {
-    await db.query(`DELETE FROM ${table}`);
-    await db.query(`ALTER SEQUENCE ${table}_id_seq RESTART WITH 1;`)
-  } catch (error) {
-    console.error(error);
-  }
-}
-
+/** Close connection with database */
 async function afterAllHook() {
   try {
     await db.end();
@@ -76,6 +57,5 @@ async function afterAllHook() {
 module.exports = {
   makeUser,
   afterAllHook,
-  afterEachHook,
   beforeAllHook,
 };
