@@ -49,7 +49,7 @@ describe('POST /salaries', function () {
 describe('GET /salaries', function () {
   test('Gets a list of all salaries', async function () {
     const response = await request(app).get('/salaries');
-    expect(response.body.salaries).toHaveLength(5);
+    expect(response.body.salaries).toHaveLength(6);
     expect(response.body.salaries[0]).toHaveProperty('bonus');
   });
 });
@@ -61,7 +61,7 @@ describe('GET /salaries/:id', function () {
       .send({ _token: USER.userToken });
 
     expect(response.body.salaries).toHaveProperty('bonus');
-    expect(response.body.salaries.bonus).toEqual(25000);
+    expect(response.body.salaries.bonus).toEqual(5000);
   });
 
   test('Responds with a 500 if user has no salary data', async function () {
