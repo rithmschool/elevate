@@ -8,7 +8,7 @@ exports[`matches snapshot 1`] = `
   tag="nav"
 >
   <Link
-    className="navbar-brand Nav-text Nav_brand-name"
+    className="Nav_brand-name"
     to="/"
   >
     Elevate

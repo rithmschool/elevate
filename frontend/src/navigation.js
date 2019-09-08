@@ -103,7 +103,7 @@ class Navigation extends React.Component {
 
     return(
       <Navbar color="light" light expand="md">
-        <Link className="navbar-brand Nav-text Nav_brand-name" to="/">Elevate</Link>
+        <Link className="Nav_brand-name" to="/">Elevate</Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar className="collapse.navbar-collapse">
           <ul className="navbar-nav mr-auto">
