@@ -4,7 +4,7 @@ import ElevateApi from "./elevateApi";
 import "./LogInSignUpForm.css";
 import Spinner from "./spinner";
 import Alert from "./alert";
-import LoginError from "./loginError";
+import loginError from "./LoginError";
 
 
 class LoginSignUpForm extends Component {
@@ -134,7 +134,7 @@ class LoginSignUpForm extends Component {
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
             {/* handle login failure */}
-          {this.state.errors.length > 0 &&   <LoginError />}
+          {this.state.errors.length > 0 &&   <loginError />}
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
