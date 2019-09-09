@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
 import ElevateApi from './elevateApi';
 import './LogInSignUpForm.css'
-import Alert from "./alert";
 import Spinner from './spinner';
 import LoginError from "./loginError";
 
@@ -29,7 +28,7 @@ class LoginSignUpForm extends Component {
   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
   */
   onSignIn = async (googleUser) => {
-    const profile = googleUser.getBasicProfile();
+    // const profile = googleUser.getBasicProfile();
     // ID: profile.getId()
     // Name: profile.getName()
     // Email: profile.getEmail()
