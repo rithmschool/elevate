@@ -11,7 +11,7 @@ const {
 } = require("../middleware/auth");
 
 // Google API Client Libraries used to verify goole token (id_token)
-const {OAuth2Client} = require('google-auth-library');
+const { OAuth2Client } = require('google-auth-library');
 /**  CLIENT_ID from created a Google API Console project from
  *    https://developers.google.com/identity/sign-in/web/sign-in
 */
@@ -45,22 +45,19 @@ async function verify(token) {
   });
   const payload = ticket.getPayload();
   return payload
-  
-
 }
-router.post("/ggtokensignin", async function(req,res,next) {
+
+router.post("/ggtokensignin", async function(req, res, next) {
   try {
     const ggToken = req.body.token
     let payload = await verify(ggToken)
     const user = await User.googleLogin(payload)
     const token = createToken(user)
     return res.json({ token });
-  }
-  catch (error){
+  } catch (error){
     return next(error)
   }
-})
-
+});
 
 
 // TODO: FIX THIS - TAKE OUT ALL THESE ROUTES AND WRITE BETTER TESTS

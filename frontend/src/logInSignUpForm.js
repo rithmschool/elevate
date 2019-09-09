@@ -76,10 +76,8 @@ class LoginSignUpForm extends Component {
   /** auth2.signIn() gives back googleUser which can be used
    *  for argument in onSignIn method
    */
-  handleGoogleSignin = () => {
-    auth2.signIn().then(googleUser => {
-      this.onSignIn(googleUser);
-    });
+  handleGoogleSignin = async () => {
+    this.onSignIn(await auth2.signIn());
   }
 
   loginOrSignup = evt => {
