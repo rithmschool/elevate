@@ -66,9 +66,7 @@ class LoginSignUpForm extends Component {
   render() {
     let loginState = this.state.isLogin;
     let text = loginState ? "Sign In" : "Sign Up";
-    console.log('****************************************************************************************************', this.state.errors)
     if (this.state.isLoading) return <Spinner />;
-
 
     const signupForm = (
       <div>

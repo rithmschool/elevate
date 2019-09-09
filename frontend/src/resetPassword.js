@@ -140,9 +140,9 @@ class ResetPassword extends React.Component {
             />
           )}
           <Col align="center">
-            <Button color="info" size="sm">
+            {!this.state.updated && <Button color="info" size="sm">
               Change Password
-            </Button>
+            </Button>}
           </Col>
           <br></br>
         </Form>
