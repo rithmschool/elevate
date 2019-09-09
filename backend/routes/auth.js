@@ -31,8 +31,6 @@ router.post("/", async function(req, res, next) {
   }
 });
 
-<<<<<<< HEAD
-
 
 /**Validate Google ID token using Google API Client Libraries
  * need to ==> npm install google-auth-library --save
@@ -65,9 +63,7 @@ router.post("/ggtokensignin", async function(req,res,next) {
 
 
 
-=======
 // TODO: FIX THIS - TAKE OUT ALL THESE ROUTES AND WRITE BETTER TESTS
->>>>>>> master
 
 /**FAKE ROUTE!!! to test authRequired middleware */
 router.get("/test", authRequired, function(req, res, next) {
@@ -96,10 +92,4 @@ router.get("/:id", ensureCorrectUser, function(req, res, next) {
   }
 });
 
-<<<<<<< HEAD
-
-
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> master

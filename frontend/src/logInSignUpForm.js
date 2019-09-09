@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import { Button, Form } from 'react-bootstrap';
-import ElevateApi from './ElevateApi';
+import ElevateApi from './elevateApi';
 import './LogInSignUpForm.css'
-import Alert from "./Alert";
-import Spinner from './Spinner';
+import Alert from "./alert";
+import Spinner from './spinner';
 
 //created client_id from configure a project from google
 const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
