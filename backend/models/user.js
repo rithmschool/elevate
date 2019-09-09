@@ -50,35 +50,32 @@ class User {
     let user;
 
     let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]);
-    let user_id = existing_user.rows[0] && existing_user.rows[0].id;
-
     // Get user_id from google_users table
+    let userId = existing_user.rows[0] && existing_user.rows[0].id;
 
-    let google_user = await db.query(`SELECT * FROM google_users WHERE user_id=$1`, [user_id]);
-    let user_id_google = google_user.rows[0] && google_user.rows[0]
-
-    // Get user id with matching email from Google
+    let existingGoogleUser = await db.query(`SELECT * FROM google_users WHERE user_id=$1`, [userId]);
+    let userGoogleID = existingGoogleUser.rows && existingGoogleUser.rows[0]
 
     // Check if user_id exists in google_users table, 
     // false: add to google_users table, then return user
     // true: return user
-    if (!user_id_google && user_id) {
+    if (!userGoogleID && userId) {
       await db.query(
         `INSERT INTO google_users
                 (user_id, google_id)
                 VALUES ($1,$2)
                 RETURNING user_id, google_id`,
-        [user_id, data.sub]
+        [userId, data.sub]
       )
 
       // Return current user
-      user = await User.findOne(user_id);
+      user = await User.findOne(userId);
       return user;
 
-    } else if (user_id_google && user_id) {
-      user = await User.findOne(user_id);
+    } else if (userGoogleID && userId) {
+      user = await User.findOne(userId);
       return user;
-    } else if (!user_id && !user_id_google) {
+    } else if (!userId && !userGoogleID) {
       await db.query(
         `INSERT INTO users 
               (email, password, first_name, last_name) 
@@ -86,15 +83,15 @@ class User {
               RETURNING email, first_name, last_name`,
         [data.email, null, data.given_name, data.family_name]);
       let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]);
-      let user_id = existing_user.rows[0] && existing_user.rows[0].id;
+      let userId = existing_user.rows[0] && existing_user.rows[0].id;
 
       await db.query(
         `INSERT INTO google_users
                 (user_id, google_id)
                 VALUES ($1,$2)
                 RETURNING user_id, google_id`,
-        [user_id, data.sub]);
-      user = await User.findOne(user_id);
+        [userId, data.sub]);
+      user = await User.findOne(userId);
       return user;
     }
   }

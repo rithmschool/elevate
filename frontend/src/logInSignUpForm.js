@@ -23,6 +23,7 @@ class LoginSignUpForm extends Component {
     };
   }
 
+
   /** To get profile information 
   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
   */
