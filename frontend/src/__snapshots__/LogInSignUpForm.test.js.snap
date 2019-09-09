@@ -30,7 +30,6 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           className=""
           onSubmit={[Function]}
         >
-           
           <div
             className="mb-3"
           >
