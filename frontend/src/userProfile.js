@@ -26,132 +26,116 @@ class UserProfile extends React.Component {
     }
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleSalaryUpdate = this.handleSalaryUpdate.bind(this);
-    
-
   }
-
 
   /**
-   * check if the user has any salary records in salaries table
-   * if No set hasSalaryRecord to false and create latestSalary object with default values of 0
-   *  */
-  async componentDidMount(){
-    const userId = this.context.userId;
-    try{
+   check for user salary records in salaries table
+   set default to 0 if there are no salary records
+  **/
+  async componentDidMount() {
+    const userId = this.context.userId || 0;
+    try {
       let lastestSalary = await ElevateApi.getLatestSalary(userId);
-      this.setState({lastestSalary, isLoading: false});
-    } catch(err){
-      // if current user has not any salaries record create an empty salary entry to populate the display form
-        const lastestSalary = {
-          user_id: this.context.userId,
-          salary: 0,
-          bonus: 0,
-          equity: 0
-        }
-        this.setState({lastestSalary, isLoading: false, hasSalaryRecord: false});
+      this.setState({ lastestSalary, isLoading: false });
+    } catch(err) {
+      const lastestSalary = {
+        user_id: this.context.userId,
+        salary: 0,
+        bonus: 0,
+        equity: 0
       }
+      this.setState({
+        lastestSalary, 
+        isLoading: false, 
+        hasSalaryRecord: false
+      });
+    }
   }
 
-  async handleSalaryUpdate(salary){
-    if(!this.state.hasSalaryRecord){
-      try{
+  async handleSalaryUpdate(salary) {
+    if (!this.state.hasSalaryRecord) {
+      try {
         await ElevateApi.postSalary(salary);
-        this.setState(
-          {
+        this.setState({
             errors: [],
             saveConfirmed: true,
             isEdit: false,
           }, () => {
-            // after a short period, remove status message
             setTimeout(
               () => this.setState({ saveConfirmed: false }),
               MESSAGE_SHOW_PERIOD_IN_MSEC);
-          });
+          }); // remove status message after setTimeout
       } catch (errors) {
-          this.setState({ errors });
-        }
+        this.setState({ errors });
+      }
     }
     else {
-        try{
-          await ElevateApi.updateSalary(this.context.userId, salary);
-          this.setState(
-            {
-              errors: [],
-              saveConfirmed: true,
-              isEdit: false,
-            }, () => {
-              // after a short period, remove status message
-              setTimeout(
-                () => this.setState({ saveConfirmed: false }),
-                MESSAGE_SHOW_PERIOD_IN_MSEC);
-            });
-        } catch (errors) {
-            this.setState({ errors });
-          }
-        }
-}
-// update user infos
-  async handleUserUpdate(updateUser,userId){
+      try{
+        await ElevateApi.updateSalary(this.context.userId, salary);
+        this.setState({
+            errors: [],
+            saveConfirmed: true,
+            isEdit: false,
+          }, () => {
+            setTimeout(
+              () => this.setState({ saveConfirmed: false }),
+              MESSAGE_SHOW_PERIOD_IN_MSEC);
+          }); // remove status message after setTimeout
+      } catch (errors) {
+        this.setState({ errors });
+      }
+    }
+  }
+
+  async handleUserUpdate(updateUser,userId) {
     try{
       await ElevateApi.updateUser(userId, updateUser);
-
-      this.setState(
-        {
+      this.setState({
           saveConfirmed: true,
         }, () => {
-          // after a short period, remove status message
           setTimeout(
             () => this.setState({ saveConfirmed: false }),
             MESSAGE_SHOW_PERIOD_IN_MSEC);
-        });
+        }); // remove status message after setTimeout
     } catch (errors) {
-        this.setState({ errors });
-      }
+      this.setState({ errors });
+    }
   }
      
    
-  render(){
+  render() {
     const currentUser = this.context;
     const lastestSalary = this.state.lastestSalary;
-    if(this.state.isLoading)return <Spinner/>;
+    if (this.state.isLoading) return <Spinner/>;
 
     return (
       <div className="container">
         {this.state.errors.length > 0 &&
-              <Alert type="danger" messages={this.state.errors} />}
+          <Alert type="danger" messages={this.state.errors} />}
 
-            {this.state.saveConfirmed &&
-              <Alert type="success"
-                    messages={["Updated successfully."]} />}
-        <Row>
-         <Col md={6}>
-            <h3 className="text-info">User information</h3>
-          </Col>
-        </Row>
-        <br></br>
+        {this.state.saveConfirmed &&
+          <Alert type="success" messages={["Updated successfully."]} />}
         <Row>
           <Col md={6}>
-          <div >
-            <UserBasicInfoForm
-              handleUserUpdate={this.handleUserUpdate}
-              handleSalaryUpdate={this.handleSalaryUpdate}
-              {...currentUser}
-              />
-          </div>
+            <div >
+              <UserBasicInfoForm
+                handleUserUpdate={this.handleUserUpdate}
+                handleSalaryUpdate={this.handleSalaryUpdate}
+                {...currentUser}
+                />
+            </div>
           </Col>
         </Row>
-        <br></br>
+
         <Row>
           <Col md={6}>
-          <div >
-
-            <UserSalaryInfoForm
-              handleSalaryUpdate={this.handleSalaryUpdate}
-              {...lastestSalary}
-              />
-          </div>
+            <div style={{"marginBottom": "8em"}}>
+              <UserSalaryInfoForm
+                handleSalaryUpdate={this.handleSalaryUpdate}
+                {...lastestSalary} />
+            </div>
           </Col>
-          </Row>
+        </Row>
       </div>  
     )
   } 

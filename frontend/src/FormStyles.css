@@ -1,0 +1,10 @@
+.form-styles_cancel {
+  padding: 0.8em 0;
+  color: #555;
+  cursor: pointer;
+}
+
+.form-styles_flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
