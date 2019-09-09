@@ -1,10 +1,10 @@
 import React from "react";
 import {UserContext} from "./userContext"
-import UserBasicInfoForm from './userBasicInfoForm';
-import UserSalaryInfoForm from './userSalaryInfoForm'
-import ElevateApi from './elevateApi';
+import UserBasicInfoForm from "./userBasicInfoForm";
+import UserSalaryInfoForm from "./userSalaryInfoForm";
+import ElevateApi from "./elevateApi";
 import { Row, Col } from 'reactstrap';
-import Spinner from './spinner';
+import Spinner from "./spinner";
 import Alert from "./alert";
 
 
@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
    * if No set hasSalaryRecord to false and create latestSalary object with default values of 0
    *  */
   async componentDidMount(){
-    const userId = this.context.userId || 0;
+    const userId = this.context.userId;
     try{
       let lastestSalary = await ElevateApi.getLatestSalary(userId);
       this.setState({lastestSalary, isLoading: false});
@@ -156,4 +156,6 @@ class UserProfile extends React.Component {
     )
   } 
 }
+
+
 export default UserProfile;

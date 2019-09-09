@@ -4,6 +4,7 @@ import ElevateApi from './elevateApi';
 import './LogInSignUpForm.css'
 import Alert from "./alert";
 import Spinner from './spinner';
+import LoginError from "./loginError";
 
 //created client_id from configure a project from google
 const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
@@ -195,12 +196,18 @@ class LoginSignUpForm extends Component {
         style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
       >
         <div className="form-inside-container mt-5">
+<<<<<<< HEAD
           <Form onSubmit={this.handleSubmit} >
 
           {/* handle login failure */}
           {this.state.errors.length > 0 && 
             <Alert type="danger" messages={["Invalid Email or Password"]} />}
 
+=======
+          <Form onSubmit={this.handleSubmit}>
+            {/* handle login failure */}
+          {this.state.errors.length > 0 && <LoginError />}
+>>>>>>> f546a354ee2d97c73e6aece8f76e55c2f1ff661d
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
