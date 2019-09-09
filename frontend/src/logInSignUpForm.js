@@ -4,7 +4,7 @@ import ElevateApi from "./elevateApi";
 import "./LogInSignUpForm.css";
 import Spinner from "./spinner";
 import Alert from "./alert";
-import loginError from "./LoginError";
+import LoginError from "./loginError";
 
 
 class LoginSignUpForm extends Component {
@@ -66,7 +66,9 @@ class LoginSignUpForm extends Component {
   render() {
     let loginState = this.state.isLogin;
     let text = loginState ? "Sign In" : "Sign Up";
+    console.log('****************************************************************************************************', this.state.errors)
     if (this.state.isLoading) return <Spinner />;
+
 
     const signupForm = (
       <div>
@@ -134,7 +136,7 @@ class LoginSignUpForm extends Component {
         <div className="form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
             {/* handle login failure */}
-          {this.state.errors.length > 0 &&   <loginError />}
+          {this.state.errors.length > 0 && <LoginError />}
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
