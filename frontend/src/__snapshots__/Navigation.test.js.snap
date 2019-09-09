@@ -47,48 +47,18 @@ exports[`matches snapshot 1`] = `
       >
         <Link
           className="Nav-link Nav-link-ltr"
-          to="/link1"
+          to="/ask-an-expert"
         >
-          Get Started
+          Ask An Expert
         </Link>
       </li>
-      <li
-        className="nav-item active"
-      >
-        <Link
-          className="Nav-link Nav-link-ltr "
-          to="/link2"
-        >
-          How it Works
-        </Link>
-      </li>
-      <li
-        className="nav-item active"
-      >
-        <Link
-          className="Nav-text Nav-link Nav-link-ltr"
-          to="/link3"
-        >
-          About
-        </Link>
-      </li>
-      <ContextConsumer>
-        <Component />
-      </ContextConsumer>
     </ul>
     <ul
       className="navbar-nav"
     >
-      <li
-        className="nav-item active"
-      >
-        <Link
-          className="Nav-link Nav-link-ltr"
-          to="/link3"
-        >
-          Help
-        </Link>
-      </li>
+      <ContextConsumer>
+        <Component />
+      </ContextConsumer>
       <ContextConsumer>
         <Component />
       </ContextConsumer>

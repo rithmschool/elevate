@@ -1,10 +1,10 @@
 import React from "react";
 import {UserContext} from "./userContext"
-import UserBasicInfoForm from './userBasicInfoForm';
-import UserSalaryInfoForm from './userSalaryInfoForm'
-import ElevateApi from './elevateApi';
+import UserBasicInfoForm from "./userBasicInfoForm";
+import UserSalaryInfoForm from "./userSalaryInfoForm";
+import ElevateApi from "./elevateApi";
 import { Row, Col } from 'reactstrap';
-import Spinner from './spinner';
+import Spinner from "./spinner";
 import Alert from "./alert";
 
 
@@ -140,4 +140,6 @@ class UserProfile extends React.Component {
     )
   } 
 }
+
+
 export default UserProfile;

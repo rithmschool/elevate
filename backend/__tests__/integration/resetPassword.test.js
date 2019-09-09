@@ -14,7 +14,8 @@ const {
   afterAllHook,
   beforeEachHook,
   inputEmail,
-  passwordToken
+  passwordToken,
+  invalidPasswordToken
 } = require("../config");
 
 beforeEach(async function() {
@@ -26,7 +27,7 @@ afterEach(async function() {
 });
 
 // TODO: FIX THESE
-xdescribe("POST /reset-password", function() {
+describe("POST /reset-password", function() {
   test("Creates a new password token", async function() {
     let data = {
       email: inputEmail
@@ -42,22 +43,20 @@ xdescribe("POST /reset-password", function() {
     const response = await request(app)
       .post(`/password`)
       .send({
-        email: "bad@rmail.com"
+        email: "bademail@gmail.com"
       });
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({
-      message: "This user with this email bad@rmail.com doesn't exist!",
+      message: "This user with this email bademail@gmail.com doesn't exist!",
       status: 400
     });
   });
 });
 
-xdescribe("GET /reset-password/:token", function() {
-  const resetPasswordToken = "t3ae9a322f541237af6890edc9b3a4f940f124566";
-  const baddToken = "f3ae9a322f541237af6890edc9b3a4f940f124566";
+describe("GET /reset-password/:token", function() {
 
   test("verify token is valid", async function() {
-    const response = await request(app).get(`/password/${resetPasswordToken}`);
+    const response = await request(app).get(`/password/${passwordToken}`);
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("first_name");
@@ -66,7 +65,7 @@ xdescribe("GET /reset-password/:token", function() {
   });
 
   test("verify if token is not valid", async function() {
-    const response = await request(app).get(`/password/${baddToken}`);
+    const response = await request(app).get(`/password/${invalidPasswordToken}`);
 
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({
@@ -76,7 +75,7 @@ xdescribe("GET /reset-password/:token", function() {
   });
 });
 
-xdescribe("PATCH /password/", function() {
+describe("PATCH /password/", function() {
   test("Update a password", async function() {
     const id = 1;
     const response = await request(app)
@@ -90,7 +89,7 @@ xdescribe("PATCH /password/", function() {
     expect(response.body).toEqual({
       response: {
         id: 1,
-        email: "test@gmail.com",
+        email: "testuser@gmail.com",
         first_name: null,
         last_name: null,
         current_company: null,

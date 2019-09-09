@@ -1,8 +1,8 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const User = require('../models/User');
+const express = require("express");
+const nodemailer = require("nodemailer");
+const User = require("../models/User");
 const router = express.Router();
-const crypto = require('crypto');
+const crypto = require("crypto");
 const resetPasswordTemplate = require("../helpers/resetPasswordTemplate");
 const {EMAIL_ADDRESS, EMAIL_PASSWORD, FROM_EMAIL, SERVICE, EXPIRE_TIME} = require("../config");
 
@@ -66,12 +66,14 @@ router.get('/:token', async function (req, res, next) {
   const resetPasswordToken = req.params.token;
   try {
     const user = await User.verifyPasswordToken(resetPasswordToken);
-    return res.json({ id: user.id, first_name: user.first_name });
+    return res.json({ 
+      id: user.id, 
+      first_name: user.first_name,
+    });
   }
   catch (err) {
     return next(err);
   }
-
 });
 
 /** PATCH / {password} => {user} */
@@ -87,11 +89,9 @@ router.patch('/:id', async function (req, res, next) {
         return res.json({ response });
       }
     }
-  
   }
   catch (err) {
     return next(err);
   }
-
 });
 module.exports = router;
