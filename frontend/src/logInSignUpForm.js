@@ -196,18 +196,9 @@ class LoginSignUpForm extends Component {
         style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
       >
         <div className="form-inside-container mt-5">
-<<<<<<< HEAD
-          <Form onSubmit={this.handleSubmit} >
-
-          {/* handle login failure */}
-          {this.state.errors.length > 0 && 
-            <Alert type="danger" messages={["Invalid Email or Password"]} />}
-
-=======
           <Form onSubmit={this.handleSubmit}>
             {/* handle login failure */}
           {this.state.errors.length > 0 && <LoginError />}
->>>>>>> f546a354ee2d97c73e6aece8f76e55c2f1ff661d
             <div className="mb-3">{text}</div>
             <Form.Group>
               <Form.Control
