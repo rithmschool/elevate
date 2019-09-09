@@ -3,20 +3,38 @@ import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import UserProfile from "./userProfile";
 
+
+
 it("renders without crashing", function() {
   shallow(<UserProfile />);
 });
 
 it("matches snapshot", function() {
-  let wrapper = shallow(<UserProfile />);
+  const context = {
+    userId: 1,
+    first_name: "user",
+    last_name: "test",
+    email: "test@user.com",
+    current_company: "rithm",
+    hiring_date: '01-01-2019'
+  }
+  let wrapper = shallow(<UserProfile />, { context });
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
 
 describe("UserProfile", function() {
+  const context = {
+    userId: 1,
+    first_name: "user",
+    last_name: "test",
+    email: "test@user.com",
+    current_company: "rithm",
+    hiring_date: '01-01-2019'
+  }
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<UserProfile />);
+    wrapper = mount(<UserProfile/>,  { context });
   });
 
   it("has states", function() {

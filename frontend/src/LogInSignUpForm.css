@@ -5,8 +5,8 @@
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  }
-  .span-or {
+}
+.span-or {
   display: block;
   position: absolute;
   left: 50%;
@@ -15,39 +15,42 @@
   background-color: #fff;
   width: 50px;
   text-align: center;
-  }
+}
 
-  .hr-or {
-    height: 1px;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    }
+.hr-or {
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
   
-  .button-signup, .button-signin {
-      background: none!important;
-      border: none;
-      padding: 0!important;
-      /*optional*/
-      font-family: arial, sans-serif;
-      /*input has OS specific font-family*/
-      color: #069;
-      text-decoration: underline;
-      cursor: pointer;
-  }
+.button-signup, .button-signin {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-container {
+  width: 30%;
+  max-width: 450px;
+}
+
+.form-inside-container {
+  padding: 2em;
+}
+
+.green-background {
+  background-color:#98b398;
+}
+
+@media screen and (max-width: 750px) {
   .form-container {
-    width: 30%;
-    max-width: 450px;
+    width: 345px;
   }
+}
 
-  @media screen and (max-width: 750px) {
-    .form-container {
-      width: 345px;
-    }
-  }
-
-  .form-inside-container {
-    padding: 2em;
-   
-  }
-
-  .green-background {background-color:#98b398;}

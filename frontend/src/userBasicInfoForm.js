@@ -1,15 +1,13 @@
 import React from 'react';
-import { Col, Button, Form, Label, Input, Row} from 'reactstrap';
+import { Button, Form } from 'react-bootstrap';
 import moment from 'moment';
-
-
+import './FormStyles.css';
 
 /** Update user basic info */
-
 class UserBasicInfoForm extends React.Component {
-  
   constructor(props){
     super(props);
+
     this.state = {
       first_name: this.props.first_name,
       last_name: this.props.last_name,
@@ -18,23 +16,23 @@ class UserBasicInfoForm extends React.Component {
       hire_date: moment(this.props.hire_date).format('YYYY-MM-DD'),
       isEdit: false,
     }
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleEdit = this.toggleEdit.bind(this)
-  }
- // toggle edit form
- toggleEdit() {
-  this.setState(state => ({isEdit: !state.isEdit }));
-}
-
- // sync state values with inputs values
-  handleChange(evt){
-		this.setState({ [evt.target.name]: evt.target.value });
+    this.toggleEditForm = this.toggleEditForm.bind(this)
   }
   
+  toggleEditForm() {
+    this.setState(state => ({ isEdit: !state.isEdit }));
+  }
+
+  handleChange(evt){
+    this.setState({ [evt.target.name]: evt.target.value });
+  }
+
   handleSubmit(evt){
     evt.preventDefault()
-    //update user basic info
+
     const updatedUser = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
@@ -42,98 +40,118 @@ class UserBasicInfoForm extends React.Component {
       current_company: this.state.current_company,
       hire_date: this.state.hire_date
     }
+
     this.props.handleUserUpdate(updatedUser, this.props.userId);
     this.setState({isEdit: false})
-
   }
   
   render() {
     const isEdit = this.state.isEdit
+
     return (
-      <div className="EditPUserForm container border rounded"
-        style={{backgroundColor:'#F4F6F8'}}>
-        <Row>
-          <Col md={6}>
-            <p >Basic info</p>
-          </Col>
-          <Col align="right" md={6} sm={{ size: 8, offset: 0}}>
-          <i className="fas fa-edit text-info"
-            onClick={this.toggleEdit} 
-            style={{cursor: 'pointer', fontSize: '1.1em', marginTop: '1em' }}></i>
-          </Col>
-        </Row>
+      <div
+        className={`container borderrounded shadow`}
+        style={{ margin: "10% auto", backgroundColor: "#F4F6F8" }}
+      >
 
-        <hr></hr>        
-      <Form onSubmit={this.handleSubmit}> 
-        <Row form>
-          <Col md={4}>                  
-            <Label className="form-group has-float-label">
-              <Input onChange={this.handleChange}
-                    value={this.state.first_name}
-                    type="text"
-                    name="first_name"
-                    id="EditUser-first_name"
-                    disabled={!isEdit}  />
+        <div className="form-inside-container mt-5">
+          <Form onSubmit={ this.handleSubmit }> 
+            <div className="form-styles_flex-space-between">
+              <h3>Basic info</h3>
+
+              {!isEdit &&
+                <i className="m-3 fas fa-edit fa-1x"
+                  onClick={this.toggleEditForm}>
+                </i>}
+            </div>
+
+            <Form.Group>
               <span>First name</span>
-            </Label>
-            </Col>
-          <Col md={4}>
-            <Label className="form-group has-float-label">
-            <Input onChange={this.handleChange}
-                    value={this.state.last_name}
-                    type="text" name="last_name"
-                    id="EditUser-last_name" 
-                    disabled={!isEdit}/>
-            <span>Last name</span>
-            </Label>
-          </Col>
-          <Col md={4}>
-            <Label className="form-group has-float-label">
-            <Input onChange={this.handleChange}
-                    value={this.state.email}
-                    type="email" name="email"
-                    id="EditUser-email"
-                    disabled={!isEdit}/>
-            <span>Email</span>
-            </Label>
-          </Col>
-        </Row>
-        <Row form> 
-        <Col md={6}>
-            <Label className="form-group has-float-label">  
-            <Input onChange={this.handleChange}
-                    value={this.state.current_company}
-                    type="text" name="current_company"
-                    id="EditUser-current_company" 
-                    disabled={!isEdit}/>
-            <span>Current company</span>
-            </Label>
-          </Col> 
-          <Col md={6}>
-            <Label className="form-group has-float-label"> 
-            <Input onChange={this.handleChange}
-                    value={this.state.hire_date}
-                    type="date" name="hire_date"
-                    id="EditUser-hire_date"
-                    disabled={!isEdit}
-                    />
-            <span>Hire date</span>
-            </Label>
-          </Col>
-          </Row>
 
-        <Col align="left" >
-          <Button color="info" size="sm"
-            disabled={!isEdit}> 
-            Save</Button>
-        </Col>
-        <br/>     
-    </Form>
-    </div>
+              <Form.Control
+                onChange={this.handleChange}
+                id="EditUser-first_name"
+                name="first_name"
+                type="text"
+                disabled={!isEdit}  
+                value={this.state.first_name}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <span>Last name</span>
+
+              <Form.Control
+                onChange={this.handleChange}
+                id="EditUser-last_name"
+                name="last_name"
+                type="text"
+                disabled={!isEdit}  
+                value={this.state.last_name}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <span>Email</span>
+
+              <Form.Control
+                onChange={this.handleChange}
+                id="EditUser-email"
+                name="email"
+                type="text"
+                disabled={!isEdit}  
+                value={this.state.email}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <span>Current company</span>
+
+              <Form.Control
+                onChange={this.handleChange}
+                id="EditUser-current_company"
+                name="current_company"
+                type="text"
+                disabled={!isEdit}  
+                value={this.state.current_company}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <span>Hire date</span>
+
+              <Form.Control
+                onChange={this.handleChange}
+                id="EditUser-hire_date"
+                name="hire_date"
+                type="date"
+                disabled={!isEdit}  
+                value={this.state.hire_date}
+              />
+            </Form.Group>
+
+            <div className="row justify-content-center">
+              {isEdit &&
+                <div>
+                  <Button
+                    className="login-submit mr-3 ml-3"
+                    type="submit">
+                    Submit
+                  </Button>
+
+                  <h6 
+                    className="mr-3 ml-3 form-styles_cancel"
+                    onClick={this.toggleEditForm}>
+                    Cancel
+                  </h6>
+                </div>}
+            </div>
+
+          </Form>
+        </div>
+      </div>
     )
   }
 }
-
-
 
 export default UserBasicInfoForm;
