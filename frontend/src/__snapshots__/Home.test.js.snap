@@ -85,13 +85,16 @@ exports[`matches snapshot 1`] = `
     >
       Get Started Today
     </h2>
-    <br />
-    <Button
-      color="primary"
-      tag="button"
+    <Link
+      to="/ask-an-expert"
     >
-      Review My Offer
-    </Button>
+      <Button
+        color="primary"
+        tag="button"
+      >
+        Ask An Expert
+      </Button>
+    </Link>
   </div>
 </div>
 `;

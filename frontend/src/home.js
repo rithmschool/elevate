@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import { Button } from "reactstrap";
 import img1 from "./img/001.jpg";
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   render() {
@@ -43,8 +44,9 @@ class Home extends React.Component {
         </div>
         <div className="Home-get-started">
           <h2 className="">Get Started Today</h2>
-          <br></br>
-          <Button color="primary">Review My Offer</Button>
+          <Link to="/ask-an-expert">
+            <Button color="primary">Ask An Expert</Button>
+          </Link>
         </div>
       </div>
     );
