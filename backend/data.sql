@@ -7,7 +7,7 @@ ALTER DATABASE "elevate" SET timezone='US/Pacific';
 CREATE TABLE users (
   id serial PRIMARY KEY,
   email TEXT NOT NULL,
-  password TEXT NOT NULL,
+  password TEXT,
   reset_password_token TEXT,
   reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
@@ -17,6 +17,11 @@ CREATE TABLE users (
   hire_date DATE,
   needs TEXT,
   goals TEXT
+);
+
+CREATE TABLE google_users (
+  google_id TEXT PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE salaries (
@@ -91,10 +96,13 @@ CREATE TABLE users_calendly_users (
 
 INSERT INTO users ( email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals) VALUES
   ('testuser@gmail.com', 'password123', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
-  ('admin@gmail.com', 'admin123', true, 'Admin', 'User', '', '2019-06-23', '', ''),
+  ('admin@gmail.com', '$2b$15$JhwIcOCoqA4YRTIe6Ceh8OO4o8t9RCgr/mQ2TP0eL9JY8/si46HIW', true, 'Admin', 'User', '', '2019-06-23', '', ''),
   ('nate@gmail.com', 'nate123', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
   ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
   ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
+
+INSERT INTO google_users (user_id, google_id) VALUES
+  ('2','12345');
 
 INSERT INTO salaries (user_id, salary, bonus, equity) VALUES
   (1, 150000.00, 25000.00, .001),

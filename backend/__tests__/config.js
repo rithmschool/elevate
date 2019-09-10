@@ -15,6 +15,7 @@ const inputEmail = "testuser@gmail.com";
 const inputAdminPassword = "admin123";
 const inputAdminEmail = "admin@gmail.com";
 const passwordToken = "t3ae9a322f541237af6890edc9b3a4f940f124566";
+const invalidPasswordToken = "f3ae9a322f541237af6890edc9b3a4f940f124566";
 const expireTime = 99999999999999;
 /**
  * Hooks to insert a user, company, and job, and to authenticate
@@ -106,5 +107,6 @@ module.exports = {
   inputEmail,
   inputAdminPassword,
   inputAdminEmail,
-  passwordToken
+  passwordToken,
+  invalidPasswordToken
 };

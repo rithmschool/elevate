@@ -9,6 +9,7 @@ import LogInSignUpForm from "./logInSignUpForm";
 import AdminPanel from "./adminPanel";
 import AdminPrivateRoute from "./adminPrivateRoute";
 import UserPrivateRoute from "./userPrivateRoute";
+import AskAnExpert from "./AskAnExpert";
 
 class Routes extends React.Component {
   render() {
@@ -32,6 +33,8 @@ class Routes extends React.Component {
           path="/admin"
           render={props => <AdminPanel {...props} />}
         />
+
+        <Route exact path="/ask-an-expert" render={() => <AskAnExpert /> } />
 
         <UserPrivateRoute
           path="/users/:userId"

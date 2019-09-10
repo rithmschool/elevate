@@ -23,3 +23,8 @@ code {
 a {
   text-decoration: none !important;
 }
+
+i {
+  cursor: pointer;
+  color: #555;
+}

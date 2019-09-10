@@ -36,6 +36,18 @@ npm start
 
 This will run the app on http://localhost:3000
 
+## Accessig the admin panel
+
+To access the admin panel in development, login with the following credentials.
+
+```
+email
+  admin@gmail.com
+
+password
+  secret
+```
+
 ## Running Tests
 
 Backend tests are configured to run in band and silent. Run `jest --runInBand` to see all error messages printed to console.

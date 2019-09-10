@@ -5,13 +5,14 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.2/bootstrap-float-label.min.css"/>
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
+    <meta name="google-signin-client_id" content="98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com">
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -29,6 +30,8 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -43,5 +46,15 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- <script>
+        function onSignIn(googleUser) {
+          var profile = googleUser.getBasicProfile();
+          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+          console.log('Name: ' + profile.getName());
+          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log(id_token)
+        }
+      </script> -->
   </body>
 </html>
