@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './adminPanel.css'
 import AdminNavbar from '../AdminNavbar/adminNavbar';
-import AdminUserView from '../adminUserView';
+import AdminUserView from '../AdminUserView/adminUserView';
 import AdminTable from '../adminTable';
 import ElevateApi from '../elevateApi';
 
