@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
-import './Navigation.css'
+import './navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
-import { UserContext, AdminContext} from "./userContext";
+import { UserContext, AdminContext} from "./../userContext";
 
 
 class Navigation extends React.Component {

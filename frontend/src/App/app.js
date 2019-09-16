@@ -1,6 +1,6 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
-import Navigation from "../navigation";
+import Navigation from "../Navigation/navigation";
 import Routes from "../routes";
 import ElevateApi from "../elevateApi";
 import { UserContext, AdminContext } from "../userContext";
