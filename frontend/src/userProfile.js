@@ -4,7 +4,7 @@ import UserBasicInfoForm from "./userBasicInfoForm";
 import UserSalaryInfoForm from "./userSalaryInfoForm";
 import ElevateApi from "./elevateApi";
 import { Row, Col } from 'reactstrap';
-import Spinner from "./spinner";
+import Spinner from "./Spinner/spinner";
 import Alert from "./alert";
 
 

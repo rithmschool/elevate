@@ -4,7 +4,7 @@ import Navigation from "../Navigation/navigation";
 import Routes from "../routes";
 import ElevateApi from "../elevateApi";
 import { UserContext, AdminContext } from "../userContext";
-import Spinner from "../spinner";
+import Spinner from "../Spinner/spinner";
 
 class App extends React.Component {
   constructor(props) {
