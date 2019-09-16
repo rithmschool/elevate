@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { UserContext } from "./userContext";
+import { UserContext } from "../userContext";
 
-class AdminPrivateRoute extends Component {
+class UserPrivateRoute extends Component {
   static contextType = UserContext;
   render() {
     // this.context will be the entire currentUser object or null if we hard refresh
-    if (!this.context || !this.context.is_admin) {
+    if (!this.context || !this.context.userId) {
       return <Redirect to="/login" />;
     }
 
@@ -20,4 +20,4 @@ class AdminPrivateRoute extends Component {
   }
 }
 
-export default AdminPrivateRoute;
+export default UserPrivateRoute;

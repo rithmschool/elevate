@@ -1,15 +1,17 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+
 import ForgotPassword from "../ForgotPassword/forgotPassword";
 import ResetPassword from "../ResetPassword/resetPassword";
-import ForgotPassRoutes from "../forgotPassRoutes";
 import Home from "../Home/home";
 import UserProfile from "../UserProfile/userProfile";
 import LoginSignUpForm from "../LoginSignUpForm/loginSignUpForm";
 import AdminPanel from "../AdminPanel/adminPanel";
-import AdminPrivateRoute from "../adminPrivateRoute";
-import UserPrivateRoute from "../userPrivateRoute";
 import AskAnExpert from "../AskAnExpert/askAnExpert";
+
+import AdminPrivateRoute from "./adminPrivateRoute";
+import ForgotPassRoutes from "./forgotPassRoutes";
+import UserPrivateRoute from "./userPrivateRoute";
 
 
 class Routes extends React.Component {
