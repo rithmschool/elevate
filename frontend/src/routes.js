@@ -6,7 +6,7 @@ import ForgotPassRoutes from "./forgotPassRoutes";
 import Home from "./Home/home";
 import UserProfile from "./UserProfile/userProfile";
 import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
-import AdminPanel from "./adminPanel";
+import AdminPanel from "./AdminPanel/adminPanel";
 import AdminPrivateRoute from "./adminPrivateRoute";
 import UserPrivateRoute from "./userPrivateRoute";
 import AskAnExpert from "./AskAnExpert";

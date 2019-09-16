@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './AdminPanel.css'
-import AdminNavBar from './adminNavBar';
-import AdminUserView from './adminUserView';
-import AdminTable from './adminTable';
-import ElevateApi from './elevateApi';
+import './adminPanel.css'
+import AdminNavBar from '../adminNavBar';
+import AdminUserView from '../adminUserView';
+import AdminTable from '../adminTable';
+import ElevateApi from '../elevateApi';
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 
