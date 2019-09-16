@@ -4,7 +4,7 @@ import ForgotPassword from "./ForgotPassword/forgotPassword";
 import ResetPassword from "./ResetPassword/resetPassword";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import Home from "./Home/home";
-import UserProfile from "./userProfile";
+import UserProfile from "./UserProfile/userProfile";
 import LogInSignUpForm from "./logInSignUpForm";
 import AdminPanel from "./adminPanel";
 import AdminPrivateRoute from "./adminPrivateRoute";
