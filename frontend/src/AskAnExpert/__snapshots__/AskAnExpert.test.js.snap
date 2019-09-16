@@ -3,7 +3,7 @@
 exports[`AdminPanel matches snapshot 1`] = `
 <AskAnExpert>
   <div
-    className="ask_an_expert"
+    className="askAnExpert"
   >
     <h1>
       Ask an expert

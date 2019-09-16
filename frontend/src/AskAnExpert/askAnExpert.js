@@ -1,10 +1,10 @@
 import React from "react";
-import './askAnExpert.css';
+import "./askAnExpert.css";
 
 class AskAnExpert extends React.Component {
   render() {
     return (
-      <div className={'ask_an_expert'}>
+      <div className={"askAnExpert"}>
         <h1>
           Ask an expert
         </h1>
