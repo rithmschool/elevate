@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './adminPanel.css'
 import AdminNavbar from '../AdminNavbar/adminNavbar';
 import AdminUserView from '../AdminUserView/adminUserView';
-import AdminTable from '../adminTable';
+import AdminTable from '../AdminTable/adminTable';
 import ElevateApi from '../elevateApi';
 
 const mql = window.matchMedia(`(max-width: 640px)`);

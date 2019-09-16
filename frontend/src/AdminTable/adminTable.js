@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import './AdminTable.css'
+import './adminTable.css'
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 // set the maximum number of table colums for smaller and larger screens
