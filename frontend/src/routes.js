@@ -9,7 +9,7 @@ import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
 import AdminPanel from "./AdminPanel/adminPanel";
 import AdminPrivateRoute from "./adminPrivateRoute";
 import UserPrivateRoute from "./userPrivateRoute";
-import AskAnExpert from "./AskAnExpert";
+import AskAnExpert from "./AskAnExpert/askAnExpert";
 
 
 class Routes extends React.Component {

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import AskAnExpert from "./AskAnExpert";
+import AskAnExpert from "./askAnExpert";
 
 describe("AdminPanel", function() {
   let wrapper;
