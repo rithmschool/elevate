@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './adminPanel.css'
-import AdminNavBar from '../adminNavBar';
+import AdminNavbar from '../AdminNavbar/adminNavbar';
 import AdminUserView from '../adminUserView';
 import AdminTable from '../adminTable';
 import ElevateApi from '../elevateApi';
@@ -70,7 +70,7 @@ class AdminPanel extends Component {
         <div className="admin-panel">
           { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
           <h1 className="admin-h1">Admin Panel</h1>
-          { this.state.sideBarOpen && <AdminNavBar changeView={this.changeView} /> }
+          { this.state.sideBarOpen && <AdminNavbar changeView={this.changeView} /> }
           { this.state.view === 'users' || this.state.view === 'questions' ? 
             <AdminTable tableObjs={ this.state[this.state.view] } 
                         getUserDetail={ this.getUserDetail }
@@ -85,7 +85,7 @@ class AdminPanel extends Component {
         </div>
         
         <div className="admin-navbar">
-          <AdminNavBar changeView={this.changeView}/>
+          <AdminNavbar changeView={this.changeView}/>
         </div>
       </div>
     )

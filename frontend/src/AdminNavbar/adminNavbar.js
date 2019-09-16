@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AdminNavBar extends Component {
+class AdminNavbar extends Component {
   handleClick = (evt) => {
     evt.preventDefault();
     this.props.changeView(evt.target.id);
@@ -8,7 +8,7 @@ class AdminNavBar extends Component {
 
   render(){
     return (
-      <div className="adminNavBar">
+      <div className="adminNavbar">
         <div id="users" onClick={this.handleClick}>Users</div>
         <div id="questions" onClick={this.handleClick}>Questions</div>
         <div id="invoices" onClick={this.handleClick}>Invoices</div>
@@ -20,4 +20,4 @@ class AdminNavBar extends Component {
 
 
 
-export default AdminNavBar;
+export default AdminNavbar;

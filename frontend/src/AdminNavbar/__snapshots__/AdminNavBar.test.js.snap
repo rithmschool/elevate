@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdminNavBar matches snapshot 1`] = `
-<AdminNavBar>
+exports[`AdminNavbar matches snapshot 1`] = `
+<AdminNavbar>
   <div
-    className="adminNavBar"
+    className="adminNavbar"
   >
     <div
       id="users"
@@ -30,5 +30,5 @@ exports[`AdminNavBar matches snapshot 1`] = `
       Calendar
     </div>
   </div>
-</AdminNavBar>
+</AdminNavbar>
 `;

@@ -17,11 +17,11 @@ exports[`AdminPanel matches snapshot 1`] = `
     <div
       className="admin-navbar"
     >
-      <AdminNavBar
+      <AdminNavbar
         changeView={[Function]}
       >
         <div
-          className="adminNavBar"
+          className="adminNavbar"
         >
           <div
             id="users"
@@ -48,7 +48,7 @@ exports[`AdminPanel matches snapshot 1`] = `
             Calendar
           </div>
         </div>
-      </AdminNavBar>
+      </AdminNavbar>
     </div>
   </div>
 </AdminPanel>
