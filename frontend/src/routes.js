@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword/forgotPassword";
-import ResetPassword from "./resetPassword";
+import ResetPassword from "./ResetPassword/resetPassword";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import Home from "./home";
 import UserProfile from "./userProfile";
