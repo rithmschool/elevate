@@ -1,7 +1,7 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
 import Navigation from "../Navigation/navigation";
-import Routes from "../routes";
+import Routes from "../Routes/routes";
 import ElevateApi from "../elevateApi";
 import { UserContext, AdminContext } from "../userContext";
 import Spinner from "../Spinner/spinner";
