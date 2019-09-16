@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import moment from 'moment';
-import './FormStyles.css';
+import '../FormStyles.css';
 
 /** Update user basic info */
 class UserBasicInfoForm extends React.Component {
