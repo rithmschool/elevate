@@ -2,9 +2,11 @@ import React from "react";
 import axios from "axios";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
+
 import AdminPanel from "./adminPanel";
 
 jest.mock("axios");
+
 const users = {
   data: {
     users: [
@@ -27,6 +29,7 @@ const users = {
     ]
   }
 };
+
 const user = {
   data: {
     user: {
@@ -67,19 +70,14 @@ const questions = {
 
 const id = "17";
 axios.get.mockImplementation(reqUrl => {
-  if (reqUrl.includes(id)) {
-    return user;
-  }
-  if (reqUrl.includes("users")) {
-    return users;
-  }
-  if (reqUrl.includes("questions")) {
-    return questions;
-  }
+  if (reqUrl.includes(id)) return user;
+  if (reqUrl.includes("users")) return users;
+  if (reqUrl.includes("questions")) return questions;
 });
 
 describe("AdminPanel", function() {
   let wrapper;
+
   let users = [
     {
       user_id: id,
@@ -93,6 +91,7 @@ describe("AdminPanel", function() {
       goals: "Test pass"
     }
   ];
+
   let questions = [
     {
       id: 1,
@@ -105,6 +104,7 @@ describe("AdminPanel", function() {
       created_date: "2019-08-29"
     }
   ];
+
   let appointments = [
     {
       id: 1,
@@ -143,27 +143,20 @@ describe("AdminPanel", function() {
     expect(wrapper.state("sideBarOpen")).toEqual(false);
   });
 
-  it("has div with admin-main class", function() {
-    expect(wrapper.find("div.admin-main")).toHaveLength(1);
+  it("has div with adminPanel_main class", function() {
+    expect(wrapper.find("div.adminPanel_main")).toHaveLength(1);
   });
 
-  it("has div with admin-panel class", function() {
-    expect(wrapper.find("div.admin-main")).toHaveLength(1);
+  it("has div with adminPanel_panel class", function() {
+    expect(wrapper.find("div.adminPanel_main")).toHaveLength(1);
   });
 
   it("changes view state on click", function() {
-    wrapper.find(".admin-main #users").simulate("click");
+    wrapper.find(".adminPanel_main #users").simulate("click");
     expect(wrapper.state("view")).toEqual("users");
 
-    wrapper.find(".admin-main #questions").simulate("click");
+    wrapper.find(".adminPanel_main #questions").simulate("click");
     expect(wrapper.state("view")).toEqual("questions");
-
-    // NOTE: no table for invoices until charges branch gets merged
-    // wrapper.find('div[id="invoices"]').simulate('click');
-    // expect(wrapper.state('view')).toEqual('invoices');
-
-    wrapper.find(".admin-main #invoices").simulate("click");
-    expect(wrapper.state("view")).toEqual("invoices");
   });
 
   it("renders the users table when view state is users", function() {
@@ -179,12 +172,14 @@ describe("AdminPanel", function() {
     wrapper.update();
 
     const rows = wrapper.find('table[id="users-table"]');
+
     expect(rows.length).toEqual(1);
 
     const dataRow = rows
       .first()
       .find("td")
       .map(column => column.text());
+
     expect(dataRow.length).toEqual(9);
     expect(dataRow[0]).toEqual(id);
     expect(dataRow[1]).toEqual("testadmin@test.com");

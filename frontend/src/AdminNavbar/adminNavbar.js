@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class AdminNavbar extends Component {
+class AdminNavbar extends React.Component {
   handleClick = evt => {
     evt.preventDefault();
     this.props.changeView(evt.target.id);
