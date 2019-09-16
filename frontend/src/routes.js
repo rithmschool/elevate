@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword/forgotPassword";
 import ResetPassword from "./ResetPassword/resetPassword";
 import ForgotPassRoutes from "./forgotPassRoutes";
-import Home from "./home";
+import Home from "./Home/home";
 import UserProfile from "./userProfile";
 import LogInSignUpForm from "./logInSignUpForm";
 import AdminPanel from "./adminPanel";

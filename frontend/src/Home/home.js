@@ -1,7 +1,7 @@
 import React from "react";
-import "./Home.css";
+import "./home.css";
 import { Button } from "reactstrap";
-import img1 from "./img/001.jpg";
+import img1 from "../img/001.jpg";
 import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
