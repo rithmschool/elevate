@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import LoginSignUpForm from "./logInSignUpForm";
+import LoginSignUpForm from "./loginSignUpForm";
 
 describe("LoginSignUpForm", function() {
   let wrapper;

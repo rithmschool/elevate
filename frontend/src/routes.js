@@ -5,7 +5,7 @@ import ResetPassword from "./ResetPassword/resetPassword";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import Home from "./Home/home";
 import UserProfile from "./UserProfile/userProfile";
-import LogInSignUpForm from "./logInSignUpForm";
+import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
 import AdminPanel from "./adminPanel";
 import AdminPrivateRoute from "./adminPrivateRoute";
 import UserPrivateRoute from "./userPrivateRoute";
@@ -22,7 +22,7 @@ class Routes extends React.Component {
           exact
           path="/login"
           render={props => (
-            <LogInSignUpForm
+            <LoginSignUpForm
               {...props}
               getCurrentUser={this.props.getCurrentUser}
             />
