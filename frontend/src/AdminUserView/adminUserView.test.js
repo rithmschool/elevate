@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
+
 import AdminUserView from "./adminUserView";
 
 describe("AdminUserView", function() {
@@ -33,8 +34,8 @@ describe("AdminUserView", function() {
     expect(wrapper.prop("user")).toEqual(testData);
   });
 
-  it("has div with AdminUserView class", function() {
-    expect(wrapper.find("div.AdminUserView")).toHaveLength(1);
+  it("has div with adminUserView_div class", function() {
+    expect(wrapper.find("div.adminUserView_div")).toHaveLength(1);
   });
 
   it("has user info fields", function() {

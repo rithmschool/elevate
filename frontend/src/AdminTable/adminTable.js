@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
+
 import './adminTable.css'
 
 const mql = window.matchMedia(`(max-width: 640px)`);

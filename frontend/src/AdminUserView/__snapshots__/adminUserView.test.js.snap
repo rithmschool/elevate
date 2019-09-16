@@ -15,7 +15,7 @@ exports[`AdminUserView matches snapshot 1`] = `
   }
 >
   <div
-    className="AdminUserView"
+    className="adminUserView_div"
   >
     <div>
       <h4>
