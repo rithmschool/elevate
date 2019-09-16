@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class AdminNavbar extends Component {
-  handleClick = (evt) => {
+  handleClick = evt => {
     evt.preventDefault();
     this.props.changeView(evt.target.id);
   }
