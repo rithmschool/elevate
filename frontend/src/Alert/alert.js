@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Alert extends Component {
+class Alert extends React.Component {
   static defaultProps = {
     type: "danger",
     messages: []
@@ -8,15 +8,17 @@ class Alert extends Component {
 
   render() {
     const { messages, type, link, text } = this.props;
+
     return (
       <div className={`alert alert-${type}`} role="alert" align="center">
-        {messages.map(error => (
-          <p className="mb-0 small" key={error}>
-            {error}
-          </p>
-          
-        ))}
-        <a href={link}>{text}</a>
+        { messages.map(error => (
+            <p className="mb-0 small" key={ error }>
+              { error }
+            </p>
+          ))}
+
+        <a href={ link }>{ text }</a>
+
       </div>
     );
   }
