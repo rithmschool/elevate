@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
-import "./FormStyles.css";
+import "../FormStyles.css";
 
 /** Update user salary */
 class UserSalaryInfoForm extends React.Component {
