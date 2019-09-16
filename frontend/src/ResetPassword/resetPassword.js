@@ -1,7 +1,7 @@
 import React from "react";
 import ElevateApi from "../elevateApi";
 import { Col, Button, Form, Label, Input, Row } from "reactstrap";
-import Alert from "../alert";
+import Alert from "../Alert/alert";
 import Spinner from "../Spinner/spinner";
 import ResetLinkExpired from "../resetLinkExpired";
 import "./resetPassword.css";
