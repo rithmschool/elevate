@@ -10,19 +10,22 @@ it("renders without crashing", function() {
 it("matches snapshot", function() {
   let wrapper = shallow(<UserSalaryInfoForm />);
   let serialized = toJson(wrapper);
+
   expect(serialized).toMatchSnapshot();
 });
 
 describe("UserSalaryInfoForm", function() {
   let wrapper;
+
   let latestSalary = {
     user_id: 1,
     salary: 50000,
     bonus: 100,
     equity: 0.1
   };
+
   beforeEach(() => {
-    wrapper = mount(<UserSalaryInfoForm {...latestSalary} />);
+    wrapper = mount(<UserSalaryInfoForm { ...latestSalary } />);
   });
 
   it("has states", function() {
