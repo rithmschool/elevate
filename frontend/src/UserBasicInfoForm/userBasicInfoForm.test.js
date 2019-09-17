@@ -15,13 +15,17 @@ it("matches snapshot", function() {
     hire_date: "2019-08-13",
     last_name: "test"
   };
+
   let wrapper = shallow(<UserBasicInfoForm {...currentUser} />);
+
   let serialized = toJson(wrapper);
+
   expect(serialized).toMatchSnapshot();
 });
 
 describe("UserSalaryInfoForm", function() {
   let wrapper;
+
   let currentUser = {
     current_company: "Rithm",
     email: "test@gmail.com",
@@ -29,6 +33,7 @@ describe("UserSalaryInfoForm", function() {
     hire_date: "2019-08-13",
     last_name: "test"
   };
+
   beforeEach(() => {
     wrapper = mount(<UserBasicInfoForm {...currentUser} />);
   });

@@ -1,13 +1,15 @@
 import React from "react";
-import ElevateApi from "../elevateApi";
 import { Col, Button, Form, Label, Input, Row } from "reactstrap";
-import Alert from "../Alert/alert";
+
 import "./forgotPassword.css";
+import ElevateApi from "../elevateApi";
+import Alert from "../Alert/alert";
 import Spinner from "../Spinner/spinner";
 
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: "",
       errors: [],
@@ -15,11 +17,11 @@ class ForgotPassword extends React.Component {
       emailSent: false,
       isLoading: false
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
   }
 
-  // handle input change
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
@@ -28,23 +30,26 @@ class ForgotPassword extends React.Component {
     });
   }
 
-  // verify if user entred its email and send  it to backend and then handle response
   async sendEmail(evt) {
     evt.preventDefault();
+
     if (this.state.email === "") {
       this.setState({ errors: ["Please enter your email address!"] });
     } else {
       try {
         this.setState({ isLoading: true });
+
         let response = await ElevateApi.forgotPassword({
           email: this.state.email
         });
+
         this.setState({
           errors: [],
           emailSent: true,
           msgFromServer: [response.message],
           isLoading: false
         });
+
       } catch (errors) {
         this.setState({ errors, isLoading: false });
       }
@@ -57,7 +62,18 @@ class ForgotPassword extends React.Component {
     if (isLoading) return <Spinner />;
 
     return (
-      <div className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border rounded shadow ForgotPassword-container">
+      <div 
+        className={`
+          container
+          col-md-6
+          offset-md-3
+          col-lg-4
+          offset-lg-4
+          border
+          rounded
+          shadow
+          forgotPassword_container`}>
+
         <Form onSubmit={this.sendEmail}>
           <div style={{ textAlign: "center" }}>
             <h3 style={{ marginTop: "2%" }}>Forgot Password</h3>
@@ -66,8 +82,7 @@ class ForgotPassword extends React.Component {
               how to reset your password
             </p>
           </div>
-          <hr></hr>
-          <br></br>
+
           <Row form>
             <Col md={12}>
               <Label className="form-group has-float-label">
@@ -82,23 +97,23 @@ class ForgotPassword extends React.Component {
               </Label>
             </Col>
           </Row>
-          <hr></hr>
 
-          {errors.length > 0 && <Alert type="danger" messages={errors} />}
+          { errors.length > 0 
+              && <Alert type="danger" messages={errors} /> }
 
-          {emailSent && (
-            <Alert type="success" messages={this.state.msgFromServer} />
-          )}
+          { emailSent 
+              && <Alert type="success" messages={this.state.msgFromServer} />}
 
           <Col align="center">
             <Button size="sm" className="btn btn-info">
               Send Password Recovery Email
             </Button>
           </Col>
-          <br></br>
+
         </Form>
       </div>
     );
   }
 }
+
 export default ForgotPassword;

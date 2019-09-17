@@ -1,9 +1,10 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
+
+import { UserContext, AdminContext } from "../userContext";
 import Navigation from "../Navigation/navigation";
 import Routes from "../Routes/routes";
 import ElevateApi from "../elevateApi";
-import { UserContext, AdminContext } from "../userContext";
 import Spinner from "../Spinner/spinner";
 
 class App extends React.Component {
@@ -15,9 +16,11 @@ class App extends React.Component {
       isLoading: true,
       isAdmin: false
     };
+
     this.handleLogOut = this.handleLogOut.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
   }
+
   handleLogOut() {
     localStorage.removeItem("token");
     this.setState({ currentUser: null, isAdmin: false });
@@ -26,6 +29,7 @@ class App extends React.Component {
   async componentDidMount() {
     await this.getCurrentUser();
   }
+
   async getCurrentUser() {
     const token = localStorage.getItem("token");
 
@@ -44,10 +48,10 @@ class App extends React.Component {
     if (this.state.isLoading) return <Spinner />;
 
     return (
-      <UserContext.Provider value={this.state.currentUser}>
-        <AdminContext.Provider value={this.state.isAdmin}>
-          <Navigation logout={this.handleLogOut} />
-          <Routes getCurrentUser={this.getCurrentUser} />
+      <UserContext.Provider value={ this.state.currentUser }>
+        <AdminContext.Provider value={ this.state.isAdmin }>
+          <Navigation logout={ this.handleLogOut } />
+          <Routes getCurrentUser={ this.getCurrentUser } />
         </AdminContext.Provider>
       </UserContext.Provider>
     );

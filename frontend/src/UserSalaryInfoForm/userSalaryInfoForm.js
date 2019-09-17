@@ -4,7 +4,6 @@ import "../FormStyles.css";
 
 /** Update user salary */
 class UserSalaryInfoForm extends React.Component {
-  
   constructor(props){
     super(props);
 
@@ -22,14 +21,14 @@ class UserSalaryInfoForm extends React.Component {
   }
 
   toggleEditForm() {
-    this.setState(state => ({isEdit: !state.isEdit }));
+    this.setState(state => ({ isEdit: !state.isEdit }));
   }
 
-  handleChange(evt){
+  handleChange(evt) {
 		this.setState({ [evt.target.name]: evt.target.value });
   }
   
-  handleSubmit(evt){
+  handleSubmit(evt) {
     evt.preventDefault()
    
     const salary = {
@@ -40,7 +39,7 @@ class UserSalaryInfoForm extends React.Component {
     };
 
     this.props.handleSalaryUpdate(salary);
-    this.setState({isEdit: false})
+    this.setState({ isEdit: false })
   }
   
   render() {
@@ -49,17 +48,16 @@ class UserSalaryInfoForm extends React.Component {
     return (
       <div 
         className="EditPUserForm container border rounded"
-        style={{backgroundColor:'#F4F6F8'}}
-      >
+        style={{ backgroundColor:'#F4F6F8' }} >
 
         <div className="form-inside-container mt-5">
           <Form onSubmit={ this.handleSubmit }> 
             <div className="form-styles_flex-space-between">
               <h3>Salary info</h3>
 
-              {!isEdit &&
+              { !isEdit &&
                 <i className="m-3 fas fa-edit fa-1x"
-                  onClick={this.toggleEditForm}>
+                  onClick={ this.toggleEditForm }>
                 </i>}
             </div>
 
@@ -67,46 +65,43 @@ class UserSalaryInfoForm extends React.Component {
               <span>First name</span>
 
               <Form.Control
-                onChange={this.handleChange}
+                onChange={ this.handleChange }
                 id="EditUser-salary"
                 name="salary"
                 type="number"
                 step="5000"
-                disabled={!isEdit}  
-                value={this.state.salary}
-              />
+                disabled={ !isEdit }
+                value={ this.state.salary } />
             </Form.Group>
 
             <Form.Group>
               <span>Equity</span>
 
               <Form.Control
-                onChange={this.handleChange}
+                onChange={ this.handleChange }
                 id="EditUser-equity"
                 name="equity"
                 type="number"
                 step="0.001"
-                disabled={!isEdit}  
-                value={this.state.equity}
-              />
+                disabled={ !isEdit }
+                value={ this.state.equity } />
             </Form.Group>
 
             <Form.Group>
               <span>Bonus</span>
 
               <Form.Control
-                onChange={this.handleChange}
+                onChange={ this.handleChange }
                 id="EditUser-bonus"
                 name="bonus"
                 type="number"
                 step="500"
                 disabled={!isEdit}  
-                value={this.state.bonus}
-              />
+                value={ this.state.bonus } />
             </Form.Group>
 
             <div className="row justify-content-center">
-              {isEdit &&
+              { isEdit &&
                 <div>
                   <Button
                     className="login-submit mr-3 ml-3"
@@ -116,10 +111,10 @@ class UserSalaryInfoForm extends React.Component {
 
                   <h6 
                     className="mr-3 ml-3 form-styles_cancel"
-                    onClick={this.toggleEditForm}>
+                    onClick={ this.toggleEditForm }>
                     Cancel
                   </h6>
-                </div>}
+                </div> }
             </div>
           </Form>
         </div>

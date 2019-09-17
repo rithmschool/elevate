@@ -1,7 +1,8 @@
-import React, { Component } from "react"
+import React from "react"
 import { Button, Form } from 'react-bootstrap';
-import ElevateApi from '../elevateApi';
+
 import './loginSignUpForm.css'
+import ElevateApi from '../elevateApi';
 import Spinner from "../Spinner/spinner";
 import LoginError from "../LoginError/loginError";
 
@@ -9,9 +10,10 @@ import LoginError from "../LoginError/loginError";
 const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
 let auth2;
 
-class LoginSignUpForm extends Component {
+class LoginSignUpForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isLogin: true,
       email: "",
@@ -23,11 +25,10 @@ class LoginSignUpForm extends Component {
     };
   }
 
-
   /** To get profile information 
   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
   */
-  onSignIn = async (googleUser) => {
+  onSignIn = async googleUser => {
     // const profile = googleUser.getBasicProfile();
     // ID: profile.getId()
     // Name: profile.getName()
@@ -68,7 +69,7 @@ class LoginSignUpForm extends Component {
           scope: 'profile email openid' 
         });
       });
-    } catch (errors){
+    } catch (errors) {
       return this.setState({ errors })
     }
   }
@@ -104,6 +105,7 @@ class LoginSignUpForm extends Component {
           email: this.state.email,
           password: this.state.password
         };
+
         token = await ElevateApi.login(data);
       } else {
         const data = {
@@ -112,6 +114,7 @@ class LoginSignUpForm extends Component {
           first_name: this.state.firstName,
           last_name: this.state.lastName
         };
+
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
@@ -119,6 +122,7 @@ class LoginSignUpForm extends Component {
     }
 
     localStorage.setItem("token", token);
+
     await this.props.getCurrentUser();
 
     this.props.history.push("/");
@@ -138,10 +142,10 @@ class LoginSignUpForm extends Component {
             id="firstName"
             name="firstName"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.firstName}
-          />
+            onChange={ this.handleChange }
+            value={ this.state.firstName } />
         </Form.Group>
+
         <Form.Group>
           <Form.Control
             placeholder="Last Name"
@@ -149,43 +153,43 @@ class LoginSignUpForm extends Component {
             id="lastName"
             name="lastName"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.lastName}
-          />
+            onChange={ this.handleChange }
+            value={ this.state.lastName } />
         </Form.Group>
       </div>
     );
 
     const loginWithSocial = (
       <div>
-        <div className="login-or">
-          <hr className="hr-or" />
-          <span className="span-or">or</span>
+        <div className="LoginSignUpForm_login-or">
+          <hr className="LoginSignUpForm_hr-or" />
+          <span className="LoginSignUpForm_span-or">or</span>
         </div>
 
-        {/* Google Sign In Button */}
+        { /* Google Sign In Button */ }
         <div className="row justify-content-center">
-          <Button className="btn-block mr-3 ml-3"
-                  onClick={this.handleGoogleSignin}>
-                  <i className="fab fa-google"></i>
-                  {` Sign in with Google`}
-          </Button></div>
+          <Button 
+            className="btn-block mr-3 ml-3"
+            onClick={ this.handleGoogleSignin }>
+            
+            <i className="fab fa-google"></i>
+            { `Sign in with Google` }
+          </Button>
+        </div>
 
-        {/* Facebook Sign In Button */}
-        <div className="row justify-content-center mt-2">
-          <Button className="fb-login btn-block mr-3 ml-3">
-               <i className="fab fa-facebook"></i>
-               {` Sign in with Facebook`}
-          </Button></div>
+        <Form.Text 
+          id="signup" 
+          className="text-muted mt-3" 
+          style={{ "textAlign": "center" }}>
+          
+          { `Don't have an account?` }
 
-        <Form.Text id="signup" 
-                   className="text-muted mt-3" 
-                   style={{ "textAlign": "center" }}>
-                   {`Don't have an account? `}
-          <button className="button-signup" 
-                  onClick={this.loginOrSignup}>
-                  Create One
+          <button 
+            className="LoginSignUpForm_link-signup" 
+            onClick={ this.loginOrSignup }>
+            Create One
           </button>
+
         </Form.Text>
       </div>
     );
@@ -201,44 +205,40 @@ class LoginSignUpForm extends Component {
           border 
           rounded 
           shadow`}
-        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
-      >
-        <div className="form-inside-container mt-5">
+        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}>
+
+        <div className="LoginSignUpForm_form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
-            {/* handle login failure */}
-          {this.state.errors.length > 0 && <LoginError />}
+            { /* handle login failure */ }
+            { this.state.errors.length > 0 && <LoginError /> }
             <div className="mb-3">{text}</div>
-            <Form.Group>
-              <Form.Control
-                placeholder="Email"
-                className="logInInput"
-                id="email"
-                name="email"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.email}
-              />
-            </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  placeholder="Email"
+                  id="email"
+                  name="email"
+                  type="text"
+                  onChange={ this.handleChange }
+                  value={ this.state.email } />
+              </Form.Group>
 
-            <Form.Group>
-              <Form.Control
-                placeholder="Password"
-                className="logInInput"
-                id="password"
-                name="password"
-                type="password"
-                onChange={this.handleChange}
-                value={this.state.password}
-              />
-            </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={ this.handleChange }
+                  value={ this.state.password } />
+              </Form.Group>
 
-            {!loginState && signupForm}
+            { !loginState && signupForm }
 
             <div className="row justify-content-center">
               <Button
                 className="login-submit btn-block mr-3 ml-3"
-                type="submit"
-              >Submit
+                type="submit">
+                Submit
               </Button>
             </div>
 
@@ -249,16 +249,16 @@ class LoginSignUpForm extends Component {
                 <Form.Text
                   id="signup"
                   className="text-muted"
-                  style={{ textAlign: "center" }}
-                >
+                  style={{ textAlign: "center" }}>
+
                   <button
                     name="login"
-                    className="button-signin"
-                    onClick={this.loginOrSignup}
-                  >Signin
+                    className="LoginSignUpForm_link-signin"
+                    onClick={this.loginOrSignup}>
+                    Signin
                   </button>
-                </Form.Text>
-            }
+
+                </Form.Text>}
           </Form>
         </div>
       </div>

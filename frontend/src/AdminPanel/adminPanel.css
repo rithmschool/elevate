@@ -1,8 +1,8 @@
-.admin-h1 {
+.adminPanel_h1 {
   font-size: 2em;
 }
 
-.admin-main {
+.adminPanel_main {
   display: grid;
   grid-template-areas: "content side";
   grid-template-columns: 75% 25%;
@@ -10,14 +10,14 @@
   background: #ECF0F5;
 }
 
-.admin-panel {
+.adminPanel_panel {
   grid-area: content;
   font-size: 0.75rem;
   text-transform: capitalize;
   padding: 1.2em;
 }
 
-.admin-navbar {
+.adminPanel_navbar {
   grid-area: side;
   background: #222D32;
   color: lightgrey;
@@ -25,11 +25,11 @@
 }
 
 @media only screen and (max-width: 640px)  {
-  .admin-main{
+  .adminPanel_main{
     grid-template-columns: 100%;
   }
 
-  .admin-navbar {
+  .adminPanel_navbar {
     display: none;
   }
 }

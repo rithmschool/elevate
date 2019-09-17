@@ -3,21 +3,21 @@
 exports[`matches snapshot 1`] = `
 <div>
   <div
-    className="Home-container"
+    className="Home_container"
   >
     <img
       alt="image1"
-      className="Home-image1"
+      className="Home_image1"
       src="001.jpg"
     />
     <h1
-      className="Home-h1"
+      className="Home_h1"
     >
        Are You paid what you deserve?
     </h1>
   </div>
   <div
-    className="Home-template"
+    className="Home_template"
   >
     <p>
       Templates and professionals available 24/7
@@ -27,7 +27,7 @@ exports[`matches snapshot 1`] = `
     />
   </div>
   <div
-    className="Home-database"
+    className="Home_database"
   >
     <i
       className="fas fa-chart-bar"
@@ -37,7 +37,7 @@ exports[`matches snapshot 1`] = `
     </p>
   </div>
   <div
-    className="Home-stats"
+    className="Home_stats"
   >
     <div
       className="row"
@@ -46,7 +46,7 @@ exports[`matches snapshot 1`] = `
         className="col-sm-4"
       >
         <div
-          className="Home-circle "
+          className="Home_circle "
         >
           <p>
             75% increase offer
@@ -57,7 +57,7 @@ exports[`matches snapshot 1`] = `
         className="col-sm-4"
       >
         <div
-          className="Home-circle "
+          className="Home_circle "
         >
           <p>
             20% average increase in salary
@@ -68,7 +68,7 @@ exports[`matches snapshot 1`] = `
         className="col-sm-4"
       >
         <div
-          className="Home-circle "
+          className="Home_circle "
         >
           <p>
             90% better understand comp
@@ -78,7 +78,7 @@ exports[`matches snapshot 1`] = `
     </div>
   </div>
   <div
-    className="Home-get-started"
+    className="Home_get-started"
   >
     <h2
       className=""

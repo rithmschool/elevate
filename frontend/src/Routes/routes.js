@@ -23,38 +23,33 @@ class Routes extends React.Component {
         <Route
           exact
           path="/login"
-          render={props => (
-            <LoginSignUpForm
-              {...props}
-              getCurrentUser={this.props.getCurrentUser}
-            />
-          )}
-        />
+          render={ props => <LoginSignUpForm 
+            { ...props }
+            getCurrentUser={ this.props.getCurrentUser } /> } />
 
         <AdminPrivateRoute
           exact
           path="/admin"
-          render={props => <AdminPanel {...props} />}
-        />
+          render={ props => <AdminPanel { ...props } /> } />
 
-        <Route exact path="/ask-an-expert" render={() => <AskAnExpert /> } />
+        <Route 
+          exact
+          path="/ask-an-expert" 
+          render={ () => <AskAnExpert /> } />
 
         <UserPrivateRoute
           path="/users/:userId"
-          render={props => <UserProfile {...props} />}
-        />
+          render={ props => <UserProfile { ...props } /> } />
 
         <ForgotPassRoutes
           exact
           path="/reset-password/forgot"
-          render={() => <ForgotPassword />}
-        />
+          render={ () => <ForgotPassword /> } />
 
         <ForgotPassRoutes
           exact
           path="/reset-password/:token"
-          render={props => <ResetPassword {...props} />}
-        />
+          render={ props => <ResetPassword { ...props } /> } />
 
         <Redirect to="/" />
       </Switch>

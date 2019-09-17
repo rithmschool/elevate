@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import './adminPanel.css'
-import AdminNavbar from '../AdminNavbar/adminNavbar';
-import AdminUserView from '../AdminUserView/adminUserView';
-import AdminTable from '../AdminTable/adminTable';
-import ElevateApi from '../elevateApi';
+import React from "react";
+import "./adminPanel.css";
+
+import AdminNavbar from "../AdminNavbar/adminNavbar";
+import AdminUserView from "../AdminUserView/adminUserView";
+import AdminTable from "../AdminTable/adminTable";
+import ElevateApi from "../elevateApi";
+import Spinner from "../Spinner/spinner";
+
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 
-class AdminPanel extends Component {
+class AdminPanel extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      view: '',
+      view: "",
       sidebarDocked: mql.matches,
       sideBarOpen: false,
       users: null,
@@ -38,11 +41,11 @@ class AdminPanel extends Component {
   }
 
   // get update users after delete a user in AdminUserView
-  updateUserState = (users) => {
-    this.setState({users})
+  updateUserState = users => {
+    this.setState({ users })
   }
 
-  changeView = (view) => {
+  changeView = view => {
     this.setState({ view })
   }
 
@@ -51,42 +54,50 @@ class AdminPanel extends Component {
   }
 
   toggleSidebar = () => {
-    this.setState({ sideBarOpen: !this.state.sideBarOpen });
+    this.setState(st => ({ sideBarOpen: !st.sideBarOpen }));
   }
 
-  getUserDetail = async (userId) => {
+  getUserDetail = async userId => {
     const user = await ElevateApi.getUser(userId);
     
-    this.setState({ view: 'userDetail', userDetail: user });
+    this.setState({ view: "userDetail", userDetail: user });
   }
 
   render(){
     if (!this.state.users || !this.state.questions){
-      return (<div>...Loading</div>);
+      return <Spinner />;
     }
 
-    return(
-      <div className="admin-main">
-        <div className="admin-panel">
-          { mql.matches && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
-          <h1 className="admin-h1">Admin Panel</h1>
-          { this.state.sideBarOpen && <AdminNavbar changeView={this.changeView} /> }
-          { this.state.view === 'users' || this.state.view === 'questions' ? 
-            <AdminTable tableObjs={ this.state[this.state.view] } 
-                        getUserDetail={ this.getUserDetail }
-                        view={ this.state.view } /> : null
-          }
-          {this.state.view === 'userDetail' && 
-                                <AdminUserView 
-                                  user={this.state.userDetail} 
-                                  updateUserState={this.updateUserState} 
-                                  changeView={this.changeView} /> 
-          }
+    return (
+      <div className="adminPanel_main">
+
+        <div className="adminPanel_panel">
+
+          { mql.matches 
+              && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
+
+          <h1 className="adminPanel_h1">Admin Panel</h1>
+
+          { this.state.sideBarOpen 
+              && <AdminNavbar changeView={this.changeView} /> }
+
+          { ["users", "questions"].includes(this.state.view)
+              && <AdminTable 
+                   tableObjs={ this.state[this.state.view] } 
+                   getUserDetail={ this.getUserDetail }
+                   view={ this.state.view } /> }
+
+          { this.state.view === "userDetail" 
+              && <AdminUserView 
+                   user={ this.state.userDetail }
+                   updateUserState={ this.updateUserState }
+                   changeView={ this.changeView } /> }
         </div>
         
-        <div className="admin-navbar">
-          <AdminNavbar changeView={this.changeView}/>
+        <div className="adminPanel_navbar">
+          <AdminNavbar changeView={ this.changeView } />
         </div>
+
       </div>
     )
   }

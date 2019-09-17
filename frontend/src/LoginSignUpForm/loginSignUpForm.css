@@ -1,4 +1,4 @@
-.login-or {
+.LoginSignUpForm_login-or {
   position: relative;
   color: #aaa;
   margin-top: 10px;
@@ -6,7 +6,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.span-or {
+.LoginSignUpForm_span-or {
   display: block;
   position: absolute;
   left: 50%;
@@ -17,40 +17,34 @@
   text-align: center;
 }
 
-.hr-or {
+.LoginSignUpForm_hr-or {
   height: 1px;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
   
-.button-signup, .button-signin {
-  background: none!important;
+.LoginSignUpForm_link-signin,
+.LoginSignUpForm_link-signup {
+  background: none;
   border: none;
-  padding: 0!important;
-  /*optional*/
+  padding: 0;
   font-family: arial, sans-serif;
-  /*input has OS specific font-family*/
   color: #069;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.form-container {
+.LoginSignUpForm_form-container {
   width: 30%;
   max-width: 450px;
 }
 
-.form-inside-container {
+.LoginSignUpForm_form-inside-container {
   padding: 2em;
 }
 
-.green-background {
-  background-color:#98b398;
-}
-
 @media screen and (max-width: 750px) {
-  .form-container {
+  .LoginSignUpForm_form-container {
     width: 345px;
   }
 }
-

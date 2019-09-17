@@ -1,5 +1,5 @@
 
-.loader {
+.Spinner_loader {
   margin: 200px auto;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -9,8 +9,6 @@
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
-
-
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

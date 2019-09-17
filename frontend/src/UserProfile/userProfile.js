@@ -13,11 +13,14 @@ const MESSAGE_SHOW_PERIOD_IN_MSEC = 3000;
 
 class UserProfile extends React.Component {
   static contextType = UserContext;
+
   static defaultProps = {
     match: { params: {} },
   };
+
   constructor(props) {
     super(props);
+
     this.state = {
       lastestSalary: null,
       isLoading: true,
@@ -25,6 +28,7 @@ class UserProfile extends React.Component {
       saveConfirmed: false,
       hasSalaryRecord: true,
     }
+
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleSalaryUpdate = this.handleSalaryUpdate.bind(this);
   }
@@ -37,14 +41,18 @@ class UserProfile extends React.Component {
     const userId = this.context.userId || 0;
     try {
       let lastestSalary = await ElevateApi.getLatestSalary(userId);
+
       this.setState({ lastestSalary, isLoading: false });
+
     } catch(err) {
+
       const lastestSalary = {
         user_id: this.context.userId,
         salary: 0,
         bonus: 0,
         equity: 0
       }
+
       this.setState({
         lastestSalary, 
         isLoading: false, 
@@ -112,18 +120,17 @@ class UserProfile extends React.Component {
     return (
       <div className="container">
         {this.state.errors.length > 0 &&
-          <Alert type="danger" messages={this.state.errors} />}
+          <Alert type="danger" messages={ this.state.errors } />}
 
         {this.state.saveConfirmed &&
-          <Alert type="success" messages={["Updated successfully."]} />}
+          <Alert type="success" messages={ ["Updated successfully."] } />}
         <Row>
           <Col md={6}>
             <div >
-              <UserBasicInfoForm
-                handleUserUpdate={this.handleUserUpdate}
-                handleSalaryUpdate={this.handleSalaryUpdate}
-                {...currentUser}
-                />
+              <UserBasicInfoForm 
+                handleUserUpdate={ this.handleUserUpdate }
+                handleSalaryUpdate={ this.handleSalaryUpdate }
+                { ...currentUser } />
             </div>
           </Col>
         </Row>
@@ -132,8 +139,8 @@ class UserProfile extends React.Component {
           <Col md={6}>
             <div style={{"marginBottom": "8em"}}>
               <UserSalaryInfoForm
-                handleSalaryUpdate={this.handleSalaryUpdate}
-                {...lastestSalary} />
+                handleSalaryUpdate={ this.handleSalaryUpdate }
+                { ...lastestSalary } />
             </div>
           </Col>
         </Row>

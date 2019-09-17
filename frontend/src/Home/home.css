@@ -1,9 +1,9 @@
-.Home-container {
+.Home_container {
   position: relative;
   background-color: black;
 }
 
-.Home-h1 {
+.Home_h1 {
   position: absolute;
   left: 0;
   top: 50%;
@@ -13,7 +13,7 @@
   color: white;
 }
 
-.Home-image1 {
+.Home_image1 {
   width: 100%;
   height: auto;
   background-position: center center;
@@ -22,8 +22,8 @@
   opacity: .5;
 }
 
-.Home-template,
-.Home-database {
+.Home_template,
+.Home_database {
   border: 1px #dcd9d5 solid;
   position: relative;
   display: flex;
@@ -34,11 +34,10 @@
   height: 50vh;
   text-align: center;
 }
-.Home-database {
+
+.Home_database {
   background-color: #DFE7ED;
-
 }
-
 
 .fa-user-tie, .fa-chart-bar{
   padding: 3% 3%;
@@ -48,8 +47,7 @@
   margin: 5%;
 }
 
-
-.Home-get-started{
+.Home_get-started{
   background-color: #DFE7ED;
   border: 1px #dcd9d5 solid;
   align-items: center;
@@ -61,7 +59,7 @@
   padding: 8% 0;
 }
 
-.Home-stats{
+.Home_stats{
   border: 1px #dcd9d5 solid;
   position: relative;
   align-items: center;
@@ -70,7 +68,7 @@
   text-align: center;
 }
 
-.Home-circle {
+.Home_circle {
   margin: 5%;
   display: inline-block;
   padding: 20px;
@@ -80,34 +78,21 @@
   border: 1px solid black;
 }
 
-.Home-circle  p {
+.Home_circle  p {
   font-size: 1.5rem;
   line-height: 30px;
 }
 
 
-
-
 @media only screen and (max-width: 767px) {
-  .Home-image1 {
+  .Home_image1 {
     object-fit: cover;
     width: 100vw;
     height: 767px;
   }
-  .Home-h1 {
+  .Home_h1 {
     font-size: 6vw;
   }
-
-  /* .Home-database .Home-template {
-    height: 10vh;
-  }
-  .Home-h4-template{
-    font-size: 3vw;
-  }
-  .fa-chart-bar{
-    margin-left: 20px;
-  } */
-
 }
 
 
