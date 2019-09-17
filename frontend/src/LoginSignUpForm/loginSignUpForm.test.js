@@ -53,7 +53,7 @@ describe("LoginSignUpForm", function() {
     expect(wrapper.state().isLoading).toEqual(false);
     const submit = wrapper.find("form").at(0);
     submit.simulate("submit");
-    expect(wrapper.html()).toEqual('<div class="loader"></div>');
+    expect(wrapper.html()).toEqual('<div class="Spinner_loader"></div>');
     expect(wrapper.state().isLoading).toEqual(true);
   });
 });
