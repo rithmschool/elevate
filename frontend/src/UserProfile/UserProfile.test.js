@@ -3,8 +3,6 @@ import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import UserProfile from "./userProfile";
 
-
-
 it("renders without crashing", function() {
   shallow(<UserProfile />);
 });
@@ -18,12 +16,17 @@ it("matches snapshot", function() {
     current_company: "rithm",
     hiring_date: '01-01-2019'
   }
+
   let wrapper = shallow(<UserProfile />, { context });
+
   let serialized = toJson(wrapper);
+
   expect(serialized).toMatchSnapshot();
 });
 
 describe("UserProfile", function() {
+  let wrapper;
+
   const context = {
     userId: 1,
     first_name: "user",
@@ -32,7 +35,7 @@ describe("UserProfile", function() {
     current_company: "rithm",
     hiring_date: '01-01-2019'
   }
-  let wrapper;
+
   beforeEach(() => {
     wrapper = mount(<UserProfile/>,  { context });
   });
