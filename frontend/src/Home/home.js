@@ -11,8 +11,8 @@ class Home extends React.Component {
     return (
       <div>
         <div className="Home_container">
-          <img src={ img1 } className="Home-image1" alt="image1" />
-          <h1 className="Home-h1"> Are You paid what you deserve?</h1>
+          <img src={ img1 } className="Home_image1" alt="image1" />
+          <h1 className="Home_h1"> Are You paid what you deserve?</h1>
         </div>
 
         <div className="Home_template">

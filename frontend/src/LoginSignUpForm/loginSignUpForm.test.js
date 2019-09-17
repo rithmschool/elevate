@@ -36,7 +36,7 @@ describe("LoginSignUpForm", function() {
     expect(wrapper.find('input[id="firstName"]')).toHaveLength(0);
     expect(wrapper.find('input[id="lastName"]')).toHaveLength(0);
 
-    wrapper.find("button.button-signup").simulate("click");
+    wrapper.find("button.LoginSignUpForm_link-signup").simulate("click");
     expect(wrapper.state("isLogin")).toEqual(false);
 
     wrapper.update();

@@ -20,7 +20,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
     }
   >
     <div
-      className="form-inside-container mt-5"
+      className="LoginSignUpForm_form-inside-container mt-5"
     >
       <Form
         inline={false}
@@ -40,7 +40,6 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
               className="form-group"
             >
               <FormControl
-                className="logInInput"
                 id="email"
                 name="email"
                 onChange={[Function]}
@@ -49,7 +48,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 value=""
               >
                 <input
-                  className="logInInput form-control"
+                  className="form-control"
                   id="email"
                   name="email"
                   onChange={[Function]}
@@ -65,7 +64,6 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
               className="form-group"
             >
               <FormControl
-                className="logInInput"
                 id="password"
                 name="password"
                 onChange={[Function]}
@@ -74,7 +72,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 value=""
               >
                 <input
-                  className="logInInput form-control"
+                  className="form-control"
                   id="password"
                   name="password"
                   onChange={[Function]}
@@ -106,13 +104,13 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           </div>
           <div>
             <div
-              className="login-or"
+              className="LoginSignUpForm_login-or"
             >
               <hr
-                className="hr-or"
+                className="LoginSignUpForm_hr-or"
               />
               <span
-                className="span-or"
+                className="LoginSignUpForm_span-or"
               >
                 or
               </span>
@@ -137,29 +135,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   <i
                     className="fab fa-google"
                   />
-                   Sign in with Google
-                </button>
-              </Button>
-            </div>
-            <div
-              className="row justify-content-center mt-2"
-            >
-              <Button
-                active={false}
-                className="fb-login btn-block mr-3 ml-3"
-                disabled={false}
-                type="button"
-                variant="primary"
-              >
-                <button
-                  className="fb-login btn-block mr-3 ml-3 btn btn-primary"
-                  disabled={false}
-                  type="button"
-                >
-                  <i
-                    className="fab fa-facebook"
-                  />
-                   Sign in with Facebook
+                  Sign in with Google
                 </button>
               </Button>
             </div>
@@ -181,9 +157,9 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   }
                 }
               >
-                Don't have an account? 
+                Don't have an account?
                 <button
-                  className="button-signup"
+                  className="LoginSignUpForm_link-signup"
                   onClick={[Function]}
                 >
                   Create One

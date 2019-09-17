@@ -7,11 +7,11 @@ exports[`matches snapshot 1`] = `
   >
     <img
       alt="image1"
-      className="Home-image1"
+      className="Home_image1"
       src="001.jpg"
     />
     <h1
-      className="Home-h1"
+      className="Home_h1"
     >
        Are You paid what you deserve?
     </h1>
