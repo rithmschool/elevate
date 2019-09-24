@@ -11,9 +11,9 @@ CREATE TABLE users (
   reset_password_token TEXT,
   reset_password_expires TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
-  first_name TEXT,
-  last_name TEXT,
-  current_company TEXT,
+  first_name TEXT DEFAULT '',
+  last_name TEXT DEFAULT '',
+  current_company TEXT DEFAULT '',
   hire_date DATE,
   needs TEXT,
   goals TEXT
@@ -27,9 +27,9 @@ CREATE TABLE google_users (
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-  salary FLOAT,
-  bonus FLOAT,
-  equity FLOAT,
+  salary FLOAT DEFAULT 0.00,
+  bonus FLOAT DEFAULT 0.00,
+  equity FLOAT DEFAULT 0.00,
   created_at TIMESTAMP DEFAULT current_timestamp,
   last_modified TIMESTAMP DEFAULT current_timestamp
 );

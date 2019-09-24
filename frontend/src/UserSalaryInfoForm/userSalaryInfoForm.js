@@ -44,6 +44,7 @@ class UserSalaryInfoForm extends React.Component {
   
   render() {
     const isEdit = this.state.isEdit
+    console.log(this.state)
 
     return (
       <div 
@@ -62,7 +63,7 @@ class UserSalaryInfoForm extends React.Component {
             </div>
 
             <Form.Group>
-              <span>First name</span>
+              <span>Salary</span>
 
               <Form.Control
                 onChange={ this.handleChange }
