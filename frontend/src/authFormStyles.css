@@ -1,0 +1,47 @@
+.form-styles_cancel {
+  padding: 0.8em 0;
+  color: #555;
+  cursor: pointer;
+}
+
+.form-styles_flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+.authFormStyles_container {
+  background-color: #F4F6F8;
+  margin-top: 10%;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  margin: 15% 5%;
+  padding: 3% 10%;
+}
+
+.authFormStyles_message {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.authFormStyles_input > label {
+  display: block;
+}
+
+.authFormStyles_input > label > input {
+  width: 100%;
+}
+
+.authFormStyles_button {
+  width: 100%;
+}
+
+@media (min-width: 750px) {
+  .authFormStyles_container{
+    margin: 10% 25%;
+  }
+}
