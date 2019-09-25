@@ -1,4 +1,7 @@
 import React from "react";
+import "./adminNavbar.css";
+
+import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
 
 class AdminNavbar extends React.Component {
   handleClick = evt => {
@@ -6,15 +9,26 @@ class AdminNavbar extends React.Component {
     this.props.changeView(evt.target.id);
   }
 
+  toggle = evt => {
+    evt.preventDefault();
+    this.props.toggleSidebar();
+  }
+
   render(){
-    return (
-      <div className="adminNavbar">
-        <div id="users" onClick={this.handleClick}>Users</div>
-        <div id="questions" onClick={this.handleClick}>Questions</div>
-        <div id="invoices" onClick={this.handleClick}>Invoices</div>
-        <div id="calendar" onClick={this.handleClick}>Calendar</div>
-      </div>
-    )
+    let view = this.props.position 
+      ? (<div className="adminNavbar">
+           <p id="users" onClick={ this.handleClick }>Users</p>
+           <p id="questions" onClick={ this.handleClick }>Questions</p>
+           <p id="invoices" onClick={ this.handleClick }>Invoices</p>
+           <p id="calendar" onClick={ this.handleClick }>Calendar</p>
+         </div>) 
+      : (<div onClick={ this.toggle } className="adminNavbar">
+           <PanelToggleBtn 
+             toggleSidebar={this.toggleSidebar}
+             direction={'toggleLeft'} />
+         </div>)
+
+    return view;
   }
 }
 

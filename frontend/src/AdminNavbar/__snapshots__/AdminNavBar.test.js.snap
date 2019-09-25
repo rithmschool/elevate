@@ -4,31 +4,21 @@ exports[`AdminNavbar matches snapshot 1`] = `
 <AdminNavbar>
   <div
     className="adminNavbar"
+    onClick={[Function]}
   >
-    <div
-      id="users"
-      onClick={[Function]}
+    <PanelToggleBtn
+      direction="toggleLeft"
     >
-      Users
-    </div>
-    <div
-      id="questions"
-      onClick={[Function]}
-    >
-      Questions
-    </div>
-    <div
-      id="invoices"
-      onClick={[Function]}
-    >
-      Invoices
-    </div>
-    <div
-      id="calendar"
-      onClick={[Function]}
-    >
-      Calendar
-    </div>
+      <div
+        className="panelToggleBtn"
+      >
+        <span
+          id="adminPanel_toggleBtn"
+        >
+          &lt;
+        </span>
+      </div>
+    </PanelToggleBtn>
   </div>
 </AdminNavbar>
 `;

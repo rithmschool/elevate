@@ -6,6 +6,8 @@ import AdminUserView from "../AdminUserView/adminUserView";
 import AdminTable from "../AdminTable/adminTable";
 import ElevateApi from "../elevateApi";
 import Spinner from "../Spinner/spinner";
+import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
+
 
 
 const mql = window.matchMedia(`(max-width: 640px)`);
@@ -17,7 +19,7 @@ class AdminPanel extends React.Component {
     this.state = {
       view: "",
       sidebarDocked: mql.matches,
-      sideBarOpen: false,
+      sideBarOpen: true,
       users: null,
       questions:null,
       userDetail: null
@@ -68,18 +70,14 @@ class AdminPanel extends React.Component {
       return <Spinner />;
     }
 
+    const position = this.state.sideBarOpen ? "showing" : "docked";
+
     return (
-      <div className="adminPanel_main">
+      <div className={ `adminPanel_main adminPanel_main_${ position }` }>
 
         <div className="adminPanel_panel">
 
-          { mql.matches 
-              && <button onClick={this.toggleSidebar}>SIDEBAR</button> }
-
           <h1 className="adminPanel_h1">Admin Panel</h1>
-
-          { this.state.sideBarOpen 
-              && <AdminNavbar changeView={this.changeView} /> }
 
           { ["users", "questions"].includes(this.state.view)
               && <AdminTable 
@@ -94,8 +92,18 @@ class AdminPanel extends React.Component {
                    changeView={ this.changeView } /> }
         </div>
         
-        <div className="adminPanel_navbar">
-          <AdminNavbar changeView={ this.changeView } />
+        <div className={`adminPanel_navbar adminPanel_navbar_${ position }` }>
+        { this.state.sideBarOpen && 
+            <div>
+              <PanelToggleBtn 
+                toggleSidebar={this.toggleSidebar}
+                direction={'toggleRight'}/>
+            </div>}
+
+          <AdminNavbar 
+            position={ this.state.sideBarOpen }
+            toggleSidebar={ this.toggleSidebar }
+            changeView={ this.changeView } />
         </div>
 
       </div>
