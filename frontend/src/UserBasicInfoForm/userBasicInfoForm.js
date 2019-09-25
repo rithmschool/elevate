@@ -17,13 +17,14 @@ class UserBasicInfoForm extends React.Component {
       last_name: this.props.last_name,
       email: this.props.email,
       current_company: this.props.current_company,
-      hire_date: moment(this.props.hire_date).format('YYYY-MM-DD'),
+      hire_date: this.props.hire_date,
       isEdit: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleEditForm = this.toggleEditForm.bind(this)
+    this.formatHireDate = this.formatHireDate.bind(this)
   }
   
   toggleEditForm() {
@@ -34,6 +35,14 @@ class UserBasicInfoForm extends React.Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
+  formatHireDate() {
+    if (this.state.hire_date === null) {
+      return null;
+    } else {
+      return moment(this.state.hire_date).format('YYYY-MM-DD');
+    }
+  }
+
   handleSubmit(evt){
     evt.preventDefault()
 
@@ -42,7 +51,7 @@ class UserBasicInfoForm extends React.Component {
       last_name: this.state.last_name,
       email: this.state.email,
       current_company: this.state.current_company,
-      hire_date: this.state.hire_date
+      hire_date: this.formatHireDate(), 
     }
 
     this.props.handleUserUpdate(updatedUser, this.props.userId);
@@ -125,7 +134,7 @@ class UserBasicInfoForm extends React.Component {
                 name="hire_date"
                 type="date"
                 disabled={ !isEdit }
-                value={ this.state.hire_date } />
+                value={ this.formatHireDate() || '' } />
             </Form.Group>
 
             <div className="row justify-content-center">

@@ -29,7 +29,7 @@ exports[`matches snapshot 1`] = `
       </div>
       <FormGroup>
         <span>
-          First name
+          Salary
         </span>
         <FormControl
           disabled={true}

@@ -62,7 +62,7 @@ class UserSalaryInfoForm extends React.Component {
             </div>
 
             <Form.Group>
-              <span>First name</span>
+              <span>Salary</span>
 
               <Form.Control
                 onChange={ this.handleChange }
