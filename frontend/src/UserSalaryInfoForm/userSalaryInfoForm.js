@@ -44,7 +44,6 @@ class UserSalaryInfoForm extends React.Component {
   
   render() {
     const isEdit = this.state.isEdit
-    console.log(this.state)
 
     return (
       <div 
