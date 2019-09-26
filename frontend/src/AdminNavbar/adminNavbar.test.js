@@ -24,18 +24,23 @@ describe("AdminNavbar", function() {
     expect(wrapper.find("div.adminNavbar")).toHaveLength(1);
   });
 
-  // it("has a div for users, invoices, questions, and calendars", function() {
-  //   expect(wrapper.find(".adminNavbar #users")).toHaveLength(1);
-  //   expect(wrapper.find(".adminNavbar #invoices")).toHaveLength(1);
-  //   expect(wrapper.find(".adminNavbar #questions")).toHaveLength(1);
-  //   expect(wrapper.find(".adminNavbar #calendar")).toHaveLength(1);
-  // });
+  it("should be able to call toggle method when position is false", function() {
+    const spy = jest.spyOn(wrapper.instance(), "toggle");
 
-  // it("calls handleClick", function() {
-  //   const spy = jest.spyOn(wrapper.instance(), "handleClick");
-  //   wrapper.setProps({ changeView: function changeView() {} });
-  //   wrapper.find('div[id="users"]').simulate("click");
+    wrapper.setProps({ 
+      toggleSidebar: function toggleSidebar() {},
+      position: false
+    });
 
-  //   expect(spy).toHaveBeenCalled();
-  // });
+    wrapper.find(".adminNavbar").simulate("click");
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("should display 'users' and 'questions' when position is true", function() {
+    wrapper.setProps({ position: true });
+
+    expect(wrapper.find(".adminNavbar #users")).toHaveLength(1);
+    expect(wrapper.find(".adminNavbar #questions")).toHaveLength(1);
+  });
 });

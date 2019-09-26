@@ -24,7 +24,7 @@ class AdminNavbar extends React.Component {
          </div>) 
       : (<div onClick={ this.toggle } className="adminNavbar">
            <PanelToggleBtn 
-             toggleSidebar={this.toggleSidebar}
+             toggleSidebar={this.props.toggleSidebar}
              direction={'toggleLeft'} />
          </div>)
 
