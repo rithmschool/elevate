@@ -3,7 +3,7 @@
 exports[`AdminPanel matches snapshot 1`] = `
 <AdminPanel>
   <div
-    className="adminPanel_main"
+    className="adminPanel_main adminPanel_main_showing"
   >
     <div
       className="adminPanel_panel"
@@ -15,38 +15,57 @@ exports[`AdminPanel matches snapshot 1`] = `
       </h1>
     </div>
     <div
-      className="adminPanel_navbar"
+      className="adminPanel_navbar adminPanel_navbar_showing"
     >
+      <div>
+        <PanelToggleBtn
+          direction="toggleRight"
+          toggleSidebar={[Function]}
+        >
+          <div
+            className="panelToggleBtn"
+          >
+            <span
+              id="adminPanel_toggleBtn"
+              onClick={[Function]}
+            >
+              &gt;
+            </span>
+          </div>
+        </PanelToggleBtn>
+      </div>
       <AdminNavbar
         changeView={[Function]}
+        position={true}
+        toggleSidebar={[Function]}
       >
         <div
           className="adminNavbar"
         >
-          <div
+          <p
             id="users"
             onClick={[Function]}
           >
             Users
-          </div>
-          <div
+          </p>
+          <p
             id="questions"
             onClick={[Function]}
           >
             Questions
-          </div>
-          <div
+          </p>
+          <p
             id="invoices"
             onClick={[Function]}
           >
             Invoices
-          </div>
-          <div
+          </p>
+          <p
             id="calendar"
             onClick={[Function]}
           >
             Calendar
-          </div>
+          </p>
         </div>
       </AdminNavbar>
     </div>

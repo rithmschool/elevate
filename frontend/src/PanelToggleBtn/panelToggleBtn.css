@@ -1,0 +1,10 @@
+#adminPanel_toggleBtn {
+  border: 2px solid #ECF0F5;
+  border-radius: 100%;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.panelToggleBtn {
+  margin: 20px 6px 4px 8px;
+}
