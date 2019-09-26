@@ -1,10 +1,9 @@
 /** Routes for users. */
-
 const express = require("express");
 const { ensureCorrectUser, authRequired } = require("../middleware/auth");
 const User = require("../models/user");
 const createToken = require("../helpers/createToken");
-
+const { signupFormValidator } = require("../helpers/formValidation");
 const router = express.Router();
 
 /** GET / => {users: [user, ...]} */
@@ -20,11 +19,7 @@ router.get("/", authRequired, async function(req, res, next) {
 
 /** GET / a specific user => {user: user} */
 
-router.get("/:id", authRequired, ensureCorrectUser, async function(
-  req,
-  res,
-  next
-) {
+router.get("/:id", authRequired, ensureCorrectUser, async function(req, res, next) {
   try {
     const user = await User.findOne(req.params.id);
     return res.json({ user });
@@ -34,8 +29,9 @@ router.get("/:id", authRequired, ensureCorrectUser, async function(
 });
 
 /** POST / a new user {email, password}  => {token: token} */
-
-router.post("/", async function(req, res, next) {
+// TODO: Form validation - need to add password confirm field
+// TODO: Add sanitize email to User.register
+router.post("/", signupFormValidator, async function(req, res, next) {
   try {
     const newUser = await User.register(req.body);
     const token = createToken(newUser);
