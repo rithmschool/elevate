@@ -84,12 +84,13 @@ class AdminPanel extends React.Component {
         </div>
         
         <div className={`adminPanel_navbar adminPanel_navbar_${ position }` }>
-        { this.state.sideBarOpen && 
-            <div>
-              <PanelToggleBtn 
-                toggleSidebar={this.toggleSidebar}
-                direction={'toggleRight'}/>
-            </div>}
+          <div>
+            <PanelToggleBtn 
+              toggleSidebar={this.toggleSidebar}
+              direction={ this.state.sideBarOpen 
+                ? 'toggleRight' 
+                : 'toggleLeft' } />
+          </div>
 
           <AdminNavbar 
             position={ this.state.sideBarOpen }

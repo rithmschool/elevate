@@ -71,8 +71,6 @@ describe("AdminPanel", function() {
   });
 
 
-
-
   it("has div with adminPanel_main class", function() {
     expect(wrapper.find("div.adminPanel_main")).toHaveLength(1);
   });
@@ -88,9 +86,13 @@ describe("AdminPanel", function() {
 
     expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
   });
+});
+
+
+
 
   
-  // appointments have been removed until necessary
+  // appointments have been removed from the admin panel for now.
 
   // let appointments = [
   //   {
@@ -136,4 +138,3 @@ describe("AdminPanel", function() {
   //   expect(dataRow[6]).toEqual("test");
   //   expect(dataRow[7]).toEqual("2019-08-29");
   // });
-});

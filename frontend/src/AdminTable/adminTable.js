@@ -8,11 +8,12 @@ const mql = window.matchMedia(`(max-width: 640px)`);
 const maxColumCount = mql.matches ? 5 : 12;
 
 class AdminTable extends Component {
-  handleClick = (evt) => {
+  handleChange = evt => {
     const id = evt.target.parentElement.id;
 
     this.props.getUserDetail(id);
   }
+
   createTableHeader() {
     const keys = Object.keys(this.props.tableObjs[0]);
 
@@ -64,7 +65,7 @@ class AdminTable extends Component {
 
   createTableRows(keys, values) {
     return (
-      <tr key={values[0]} onClick={this.handleClick} id={values[0]}>
+      <tr key={values[0]} onClick={ this.handleChange } id={values[0] }>
         {values.map((value, index) => {
           value = this.concantinateText(value);
 
