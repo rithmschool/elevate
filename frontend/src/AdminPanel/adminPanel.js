@@ -9,16 +9,12 @@ import Spinner from "../Spinner/spinner";
 import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
 
 
-
-const mql = window.matchMedia(`(max-width: 640px)`);
-
 class AdminPanel extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
       view: "",
-      sidebarDocked: mql.matches,
       sideBarOpen: true,
       users: null,
       questions:null,
@@ -27,7 +23,6 @@ class AdminPanel extends React.Component {
   }
 
   componentDidMount = async () => {
-    mql.addListener(this.mediaQueryChanged);
     let users;
     let questions;
 
@@ -49,10 +44,6 @@ class AdminPanel extends React.Component {
 
   changeView = view => {
     this.setState({ view })
-  }
-
-  mediaQueryChanged = () => {
-    this.setState({ sidebarDocked: mql.matches });
   }
 
   toggleSidebar = () => {
