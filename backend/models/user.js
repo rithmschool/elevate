@@ -1,6 +1,7 @@
 const db = require("../db");
 const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
+const { normalizeEmail } = require("validator");
 
 /** reduce bcrypc rounds in test environemnt **/
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 15;
@@ -100,13 +101,16 @@ class User {
   /** Register user with data. Returns new user data. */
   /**NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
+    // Normalize email for insert
+    const sanitizedEmail = normalizeEmail(data.email);
+
     // check if email is taken or not
 
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
             WHERE email = $1`,
-      [data.email]
+      [sanitizedEmail]
     );
 
     if (duplicateCheck.rows[0]) {
