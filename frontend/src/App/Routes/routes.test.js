@@ -4,57 +4,53 @@ import toJson from "enzyme-to-json";
 import Routes from "./routes";
 import { MemoryRouter } from "react-router-dom";
 
-import Home from "../Home/home";
-import LoginSignupForm from "../LoginSignUpForm/loginSignUpForm";
-import AdminPrivateRoute from "./adminPrivateRoute";
-import AdminPanel from "../AdminPanel/adminPanel";
-import AskAnExpert from "../AskAnExpert/askAnExpert";
+import Home from "./Home/home";
+import LoginSignupForm from "./LoginSignUpForm/loginSignUpForm";
+import AskAnExpert from "./AskAnExpert/askAnExpert";
 
-const routeMatch = { params: {} };
 
-it("renders without crashing", function() {
-  shallow(<Routes match={routeMatch} />);
+it("renders without crashing", function () {
+  shallow(<Routes />);
 });
 
-it("matches snapshot", function() {
-  let wrapper = shallow(<Routes match={routeMatch} />);
+it("matches snapshot", function () {
+  let wrapper = shallow(<Routes />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
 
-it("invalid path should redirect to 404", function() {
+it("invalid path should redirect to /", function () {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/invalidendpoint"]}>
-      <Routes match={routeMatch} />
-    </MemoryRouter>
-  );
-  console.log(wrapper.find(Home));
-  expect(wrapper.find(Home)).toHaveLength(0);
-});
-
-it("should show Home component for / router (using memory router)", function() {
-  const wrapper = mount(
-    <MemoryRouter initialEntries={["/"]}>
-      <Routes match={routeMatch} />
+      <Routes />
     </MemoryRouter>
   );
   expect(wrapper.find(Home)).toHaveLength(1);
 });
 
-it("should show LoginSignupForm component for /login router (using memory router)", function() {
+it("should show Home component for / route (using memory router)", function () {
+  const wrapper = mount(
+    <MemoryRouter initialEntries={["/"]}>
+      <Routes />
+    </MemoryRouter>
+  );
+  expect(wrapper.find(Home)).toHaveLength(1);
+});
+
+it("should show LoginSignupForm component for /login route (using memory router)", function () {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/login"]}>
-      <Routes match={routeMatch} />
+      <Routes />
     </MemoryRouter>
   );
   expect(wrapper.find(LoginSignupForm)).toHaveLength(1);
 });
 
-it("should show AdminPrivateRoute component for /admin router (using memory router)", function() {
+it("should show AskAnExpert component for /ask-an-expert route (using memory router)", function () {
   const wrapper = mount(
-    <MemoryRouter initialEntries={["/admin"]}>
-      <AdminPrivateRoute render={props => <div {...props} />} />
+    <MemoryRouter initialEntries={["/ask-an-expert"]}>
+      <Routes />
     </MemoryRouter>
   );
-  expect(wrapper.find(AdminPanel)).toHaveLength(1);
+  expect(wrapper.find(AskAnExpert)).toHaveLength(1);
 });
