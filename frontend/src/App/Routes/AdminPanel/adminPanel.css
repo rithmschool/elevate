@@ -6,7 +6,7 @@
   display: grid;
   grid-template-areas: "content side";
   height: 100vh;
-  background: #ECF0F5;
+  background: #ecf0f5;
 }
 
 .adminPanel_main_showing {
@@ -18,9 +18,9 @@
 }
 
 .adminPanel_navbar {
-  position: relative; 
+  position: relative;
   overflow: hidden;
-  background: #222D32;
+  background: #222d32;
   color: lightgrey;
 }
 
@@ -38,7 +38,7 @@
   padding: 1.2em;
 }
 
-@media only screen and (max-width: 640px)  {
+@media only screen and (max-width: 640px) {
   .adminPanel_main_showing {
     grid-template-columns: 30% 70%;
   }
@@ -47,7 +47,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px)  {
+@media only screen and (min-width: 1200px) {
   .adminPanel_main_showing {
     grid-template-columns: 80% 20%;
   }

@@ -14,8 +14,8 @@ it("matches snapshot", function() {
     last_name: "test",
     email: "test@user.com",
     current_company: "rithm",
-    hiring_date: '01-01-2019'
-  }
+    hiring_date: "01-01-2019"
+  };
 
   let wrapper = shallow(<UserProfile />, { context });
 
@@ -33,11 +33,11 @@ describe("UserProfile", function() {
     last_name: "test",
     email: "test@user.com",
     current_company: "rithm",
-    hiring_date: '01-01-2019'
-  }
+    hiring_date: "01-01-2019"
+  };
 
   beforeEach(() => {
-    wrapper = mount(<UserProfile/>,  { context });
+    wrapper = mount(<UserProfile />, { context });
   });
 
   it("has states", function() {

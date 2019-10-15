@@ -3,7 +3,7 @@
   font-size: 1em;
 }
 
-@media only screen and (max-width: 640px)  {
+@media only screen and (max-width: 640px) {
   .admin-table > thead th {
     max-width: 0.5em;
     background: green;

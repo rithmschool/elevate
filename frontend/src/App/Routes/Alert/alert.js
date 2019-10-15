@@ -11,14 +11,13 @@ class Alert extends React.Component {
 
     return (
       <div className={`alert alert-${type}`} role="alert" align="center">
-        { messages.map(error => (
-            <p className="mb-0 small" key={ error }>
-              { error }
-            </p>
-          ))}
+        {messages.map(error => (
+          <p className="mb-0 small" key={error}>
+            {error}
+          </p>
+        ))}
 
-        <a href={ link }>{ text }</a>
-
+        <a href={link}>{text}</a>
       </div>
     );
   }

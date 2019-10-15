@@ -49,7 +49,6 @@ class ForgotPassword extends React.Component {
           msgFromServer: [response.message],
           isLoading: false
         });
-
       } catch (errors) {
         this.setState({ errors, isLoading: false });
       }
@@ -62,7 +61,7 @@ class ForgotPassword extends React.Component {
     if (isLoading) return <Spinner />;
 
     return (
-      <div 
+      <div
         className={`
           container
           col-md-6
@@ -72,8 +71,8 @@ class ForgotPassword extends React.Component {
           border
           rounded
           shadow
-          forgotPassword_container`}>
-
+          forgotPassword_container`}
+      >
         <Form onSubmit={this.sendEmail}>
           <div style={{ textAlign: "center" }}>
             <h3 style={{ marginTop: "2%" }}>Forgot Password</h3>
@@ -98,18 +97,17 @@ class ForgotPassword extends React.Component {
             </Col>
           </Row>
 
-          { errors.length > 0 
-              && <Alert type="danger" messages={errors} /> }
+          {errors.length > 0 && <Alert type="danger" messages={errors} />}
 
-          { emailSent 
-              && <Alert type="success" messages={this.state.msgFromServer} />}
+          {emailSent && (
+            <Alert type="success" messages={this.state.msgFromServer} />
+          )}
 
           <Col align="center">
             <Button size="sm" className="btn btn-info">
               Send Password Recovery Email
             </Button>
           </Col>
-
         </Form>
       </div>
     );

@@ -6,4 +6,3 @@ import PrivateRoute from "./adminPrivateRoute";
 it("renders without crashing", function() {
   shallow(<PrivateRoute />);
 });
-

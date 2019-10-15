@@ -48,7 +48,6 @@ class ResetPassword extends React.Component {
         first_name: response.first_name,
         isLoading: false
       });
-
     } catch (errors) {
       this.setState({ errors, isLoading: false });
     }
@@ -83,7 +82,8 @@ class ResetPassword extends React.Component {
     if (isLoading) return <Spinner />;
     if (errors.length > 0)
       return (
-        <div className={`
+        <div
+          className={`
           container 
           col-md-6
           offset-md-3
@@ -92,14 +92,15 @@ class ResetPassword extends React.Component {
           border 
           rounded 
           shadow
-          ResetPassword_container`}>
-
+          ResetPassword_container`}
+        >
           <ResetLinkExpired />
         </div>
       );
 
     return (
-      <div className={`
+      <div
+        className={`
         container
         col-md-6
         offset-md-3
@@ -108,8 +109,8 @@ class ResetPassword extends React.Component {
         border
         rounded
         shadow`}
-        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}>
-
+        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+      >
         <Form onSubmit={this.updatePassword}>
           <h4 style={{ textAlign: "center" }}>Hello {first_name}</h4>
 
@@ -125,7 +126,8 @@ class ResetPassword extends React.Component {
                   value={password}
                   type="password"
                   name="password"
-                  id="reset-password" />
+                  id="reset-password"
+                />
                 <span>Password</span>
               </Label>
             </Col>
@@ -139,29 +141,32 @@ class ResetPassword extends React.Component {
                   value={confirmPassword}
                   type="password"
                   name="confirmPassword"
-                  id="reset-confirmPassword" />
+                  id="reset-confirmPassword"
+                />
 
                 <span>Confirm password</span>
               </Label>
             </Col>
           </Row>
 
-          { errors.length > 0 && <Alert type="danger" messages={ errors } /> }
+          {errors.length > 0 && <Alert type="danger" messages={errors} />}
 
-          { updated 
-              && <Alert
-                   type="success"
-                   messages={ ["Password updated successfully!"] }
-                   text={ `Try to login again` }
-                   link={ `${BASE_URL}/login` } /> }
+          {updated && (
+            <Alert
+              type="success"
+              messages={["Password updated successfully!"]}
+              text={`Try to login again`}
+              link={`${BASE_URL}/login`}
+            />
+          )}
 
           <Col align="center">
-            {!this.state.updated 
-                && <Button color="info" size="sm">
-                     Change Password
-                   </Button>}
+            {!this.state.updated && (
+              <Button color="info" size="sm">
+                Change Password
+              </Button>
+            )}
           </Col>
-
         </Form>
       </div>
     );

@@ -27,7 +27,7 @@ describe("AdminNavbar", function() {
   it("should be able to call toggle method when position is false", function() {
     const spy = jest.spyOn(wrapper.instance(), "toggle");
 
-    wrapper.setProps({ 
+    wrapper.setProps({
       toggleSidebar: function toggleSidebar() {},
       position: false
     });

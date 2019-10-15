@@ -1,13 +1,14 @@
-import React from "react"
-import { Button, Form } from 'react-bootstrap';
+import React from "react";
+import { Button, Form } from "react-bootstrap";
 
-import './loginSignUpForm.css'
-import ElevateApi from '../../../elevateApi';
+import "./loginSignUpForm.css";
+import ElevateApi from "../../../elevateApi";
 import Spinner from "../../../Spinner/spinner";
 import LoginError from "./LoginError/loginError";
 
 //created client_id from configure a project from google
-const client_id = '98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com';
+const client_id =
+  "98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com";
 let auth2;
 
 class LoginSignUpForm extends React.Component {
@@ -25,15 +26,15 @@ class LoginSignUpForm extends React.Component {
     };
   }
 
-  /** To get profile information 
-  *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
-  */
+  /** To get profile information
+   *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
+   */
   onSignIn = async googleUser => {
     // const profile = googleUser.getBasicProfile();
     // ID: profile.getId()
     // Name: profile.getName()
     // Email: profile.getEmail()
-    
+
     /** this ID token will be sent to the server with HTTP post request
      *  in ElevateApi to get verify from google
      */
@@ -46,31 +47,31 @@ class LoginSignUpForm extends React.Component {
     let token;
 
     try {
-      token = await ElevateApi.signinGoogle(id_token)
-    } catch(errors) {
-      return this.setState({ errors })
+      token = await ElevateApi.signinGoogle(id_token);
+    } catch (errors) {
+      return this.setState({ errors });
     }
 
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
 
     this.props.history.push("/");
-  }
-  
+  };
+
   componentDidMount() {
     /** Initialize the auth2 library and we use this auth2 with
      *  handleGoogleSignin below
      */
     try {
-      window.gapi.load('auth2', () => {
+      window.gapi.load("auth2", () => {
         auth2 = window.gapi.auth2.init({
           client_id: client_id,
           fetch_basic_profile: false,
-          scope: 'profile email openid' 
+          scope: "profile email openid"
         });
       });
     } catch (errors) {
-      return this.setState({ errors })
+      return this.setState({ errors });
     }
   }
 
@@ -79,7 +80,7 @@ class LoginSignUpForm extends React.Component {
    */
   handleGoogleSignin = async () => {
     this.onSignIn(await auth2.signIn());
-  }
+  };
 
   loginOrSignup = evt => {
     if (evt.target.name === "login") {
@@ -142,8 +143,9 @@ class LoginSignUpForm extends React.Component {
             id="firstName"
             name="firstName"
             type="text"
-            onChange={ this.handleChange }
-            value={ this.state.firstName } />
+            onChange={this.handleChange}
+            value={this.state.firstName}
+          />
         </Form.Group>
 
         <Form.Group>
@@ -153,8 +155,9 @@ class LoginSignUpForm extends React.Component {
             id="lastName"
             name="lastName"
             type="text"
-            onChange={ this.handleChange }
-            value={ this.state.lastName } />
+            onChange={this.handleChange}
+            value={this.state.lastName}
+          />
         </Form.Group>
       </div>
     );
@@ -166,30 +169,30 @@ class LoginSignUpForm extends React.Component {
           <span className="LoginSignUpForm_span-or">or</span>
         </div>
 
-        { /* Google Sign In Button */ }
+        {/* Google Sign In Button */}
         <div className="row justify-content-center">
-          <Button 
+          <Button
             className="btn-block mr-3 ml-3"
-            onClick={ this.handleGoogleSignin }>
-            
+            onClick={this.handleGoogleSignin}
+          >
             <i className="fab fa-google"></i>
-            { `Sign in with Google` }
+            {`Sign in with Google`}
           </Button>
         </div>
 
-        <Form.Text 
-          id="signup" 
-          className="text-muted mt-3" 
-          style={{ "textAlign": "center" }}>
-          
-          { `Don't have an account?` }
+        <Form.Text
+          id="signup"
+          className="text-muted mt-3"
+          style={{ textAlign: "center" }}
+        >
+          {`Don't have an account?`}
 
-          <button 
-            className="LoginSignUpForm_link-signup" 
-            onClick={ this.loginOrSignup }>
+          <button
+            className="LoginSignUpForm_link-signup"
+            onClick={this.loginOrSignup}
+          >
             Create One
           </button>
-
         </Form.Text>
       </div>
     );
@@ -205,60 +208,63 @@ class LoginSignUpForm extends React.Component {
           border 
           rounded 
           shadow`}
-        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}>
-
+        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+      >
         <div className="LoginSignUpForm_form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
-            { /* handle login failure */ }
-            { this.state.errors.length > 0 && <LoginError /> }
+            {/* handle login failure */}
+            {this.state.errors.length > 0 && <LoginError />}
             <div className="mb-3">{text}</div>
-              <Form.Group>
-                <Form.Control
-                  placeholder="Email"
-                  id="email"
-                  name="email"
-                  type="text"
-                  onChange={ this.handleChange }
-                  value={ this.state.email } />
-              </Form.Group>
+            <Form.Group>
+              <Form.Control
+                placeholder="Email"
+                id="email"
+                name="email"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+            </Form.Group>
 
-              <Form.Group>
-                <Form.Control
-                  placeholder="Password"
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={ this.handleChange }
-                  value={ this.state.password } />
-              </Form.Group>
+            <Form.Group>
+              <Form.Control
+                placeholder="Password"
+                id="password"
+                name="password"
+                type="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+            </Form.Group>
 
-            { !loginState && signupForm }
+            {!loginState && signupForm}
 
             <div className="row justify-content-center">
               <Button
                 className="login-submit btn-block mr-3 ml-3"
-                type="submit">
+                type="submit"
+              >
                 Submit
               </Button>
             </div>
 
-            {loginState 
-              ? 
-                loginWithSocial
-              : 
-                <Form.Text
-                  id="signup"
-                  className="text-muted"
-                  style={{ textAlign: "center" }}>
-
-                  <button
-                    name="login"
-                    className="LoginSignUpForm_link-signin"
-                    onClick={this.loginOrSignup}>
-                    Signin
-                  </button>
-
-                </Form.Text>}
+            {loginState ? (
+              loginWithSocial
+            ) : (
+              <Form.Text
+                id="signup"
+                className="text-muted"
+                style={{ textAlign: "center" }}
+              >
+                <button
+                  name="login"
+                  className="LoginSignUpForm_link-signin"
+                  onClick={this.loginOrSignup}
+                >
+                  Signin
+                </button>
+              </Form.Text>
+            )}
           </Form>
         </div>
       </div>

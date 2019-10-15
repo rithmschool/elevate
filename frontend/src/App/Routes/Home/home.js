@@ -1,17 +1,16 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import img1 from "./img/001.jpg";
 import "./home.css";
 
 class Home extends React.Component {
-
   render() {
     return (
       <div>
         <div className="Home_container">
-          <img src={ img1 } className="Home_image1" alt="image1" />
+          <img src={img1} className="Home_image1" alt="image1" />
           <h1 className="Home_h1"> Are You paid what you deserve?</h1>
         </div>
 
@@ -27,7 +26,6 @@ class Home extends React.Component {
 
         <div className="Home_stats">
           <div className="row">
-
             <div className="col-sm-4">
               <div className="Home_circle ">
                 <p>75% increase offer</p>
@@ -45,7 +43,6 @@ class Home extends React.Component {
                 <p>90% better understand comp</p>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -55,9 +52,7 @@ class Home extends React.Component {
           <Link to="/ask-an-expert">
             <Button color="primary">Ask An Expert</Button>
           </Link>
-
         </div>
-
       </div>
     );
   }

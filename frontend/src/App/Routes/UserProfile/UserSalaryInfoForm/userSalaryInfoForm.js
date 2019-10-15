@@ -4,20 +4,20 @@ import "../FormStyles.css";
 
 /** Update user salary */
 class UserSalaryInfoForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       user_id: this.props.user_id,
-      salary: this.props.salary, 
+      salary: this.props.salary,
       bonus: this.props.bonus,
       equity: this.props.equity,
-      isEdit: false,
-    }
+      isEdit: false
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleEditForm = this.toggleEditForm.bind(this)
+    this.toggleEditForm = this.toggleEditForm.bind(this);
   }
 
   toggleEditForm() {
@@ -25,12 +25,12 @@ class UserSalaryInfoForm extends React.Component {
   }
 
   handleChange(evt) {
-		this.setState({ [evt.target.name]: evt.target.value });
+    this.setState({ [evt.target.name]: evt.target.value });
   }
-  
+
   handleSubmit(evt) {
-    evt.preventDefault()
-   
+    evt.preventDefault();
+
     const salary = {
       user_id: this.state.user_id,
       salary: this.state.salary,
@@ -39,87 +39,92 @@ class UserSalaryInfoForm extends React.Component {
     };
 
     this.props.handleSalaryUpdate(salary);
-    this.setState({ isEdit: false })
+    this.setState({ isEdit: false });
   }
-  
+
   render() {
-    const isEdit = this.state.isEdit
+    const isEdit = this.state.isEdit;
 
     return (
-      <div 
+      <div
         className="EditPUserForm container border rounded"
-        style={{ backgroundColor:'#F4F6F8' }} >
-
+        style={{ backgroundColor: "#F4F6F8" }}
+      >
         <div className="form-inside-container mt-5">
-          <Form onSubmit={ this.handleSubmit }> 
+          <Form onSubmit={this.handleSubmit}>
             <div className="form-styles_flex-space-between">
               <h3>Salary info</h3>
 
-              { !isEdit &&
-                <i className="m-3 fas fa-edit fa-1x"
-                  onClick={ this.toggleEditForm }>
-                </i>}
+              {!isEdit && (
+                <i
+                  className="m-3 fas fa-edit fa-1x"
+                  onClick={this.toggleEditForm}
+                ></i>
+              )}
             </div>
 
             <Form.Group>
               <span>Salary</span>
 
               <Form.Control
-                onChange={ this.handleChange }
+                onChange={this.handleChange}
                 id="EditUser-salary"
                 name="salary"
                 type="number"
                 step="5000"
-                disabled={ !isEdit }
-                value={ this.state.salary } />
+                disabled={!isEdit}
+                value={this.state.salary}
+              />
             </Form.Group>
 
             <Form.Group>
               <span>Equity</span>
 
               <Form.Control
-                onChange={ this.handleChange }
+                onChange={this.handleChange}
                 id="EditUser-equity"
                 name="equity"
                 type="number"
                 step="0.001"
-                disabled={ !isEdit }
-                value={ this.state.equity } />
+                disabled={!isEdit}
+                value={this.state.equity}
+              />
             </Form.Group>
 
             <Form.Group>
               <span>Bonus</span>
 
               <Form.Control
-                onChange={ this.handleChange }
+                onChange={this.handleChange}
                 id="EditUser-bonus"
                 name="bonus"
                 type="number"
                 step="500"
-                disabled={!isEdit}  
-                value={ this.state.bonus } />
+                disabled={!isEdit}
+                value={this.state.bonus}
+              />
             </Form.Group>
 
             <div className="row justify-content-center">
-              { isEdit &&
+              {isEdit && (
                 <div>
-                  <Button
-                    className="login-submit mr-3 ml-3"
-                    type="submit">
+                  <Button className="login-submit mr-3 ml-3" type="submit">
                     Submit
                   </Button>
 
-                  <h6 
+                  <h6
                     className="mr-3 ml-3 form-styles_cancel"
-                    onClick={ this.toggleEditForm }>
+                    onClick={this.toggleEditForm}
+                  >
                     Cancel
                   </h6>
-                </div> }
+                </div>
+              )}
             </div>
           </Form>
         </div>
       </div>
-    )
+    );
   }
 }
 

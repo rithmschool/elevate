@@ -4,7 +4,6 @@ import { shallow, mount } from "enzyme";
 
 import Alert from "./alert";
 
-
 it("renders without crashing", function() {
   shallow(<Alert />);
 });
@@ -19,7 +18,7 @@ it("matches snapshot for danger", function() {
 
 it("matches snapshot for success", function() {
   let messages = ["Everything is awesome!"];
-  let wrapper = shallow(<Alert type="success" messages={ messages } />);
+  let wrapper = shallow(<Alert type="success" messages={messages} />);
   let serialized = toJson(wrapper);
 
   expect(serialized).toMatchSnapshot();
@@ -30,7 +29,7 @@ describe("Test error messages", function() {
   let messages = ["Everything is broken"];
 
   beforeEach(() => {
-    wrapper = mount(<Alert type="danger" messages={ messages } />);
+    wrapper = mount(<Alert type="danger" messages={messages} />);
   });
 
   it("render the props", function() {
@@ -45,7 +44,7 @@ describe("Test success messages", function() {
   let messages = ["Everything is awesome!"];
 
   beforeEach(() => {
-    wrapper = mount(<Alert type="success" messages={ messages } />);
+    wrapper = mount(<Alert type="success" messages={messages} />);
   });
 
   it("render the props", function() {

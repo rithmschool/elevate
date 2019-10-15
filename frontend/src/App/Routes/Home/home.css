@@ -19,7 +19,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .Home_template,
@@ -36,10 +36,11 @@
 }
 
 .Home_database {
-  background-color: #DFE7ED;
+  background-color: #dfe7ed;
 }
 
-.fa-user-tie, .fa-chart-bar{
+.fa-user-tie,
+.fa-chart-bar {
   padding: 3% 3%;
   border: 2px solid black;
   font-size: 5em;
@@ -47,8 +48,8 @@
   margin: 5%;
 }
 
-.Home_get-started{
-  background-color: #DFE7ED;
+.Home_get-started {
+  background-color: #dfe7ed;
   border: 1px #dcd9d5 solid;
   align-items: center;
   justify-content: center;
@@ -59,7 +60,7 @@
   padding: 8% 0;
 }
 
-.Home_stats{
+.Home_stats {
   border: 1px #dcd9d5 solid;
   position: relative;
   align-items: center;
@@ -78,11 +79,10 @@
   border: 1px solid black;
 }
 
-.Home_circle  p {
+.Home_circle p {
   font-size: 1.5rem;
   line-height: 30px;
 }
-
 
 @media only screen and (max-width: 767px) {
   .Home_image1 {
@@ -94,5 +94,3 @@
     font-size: 6vw;
   }
 }
-
-

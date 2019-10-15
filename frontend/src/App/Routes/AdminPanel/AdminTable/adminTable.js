@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Table } from "react-bootstrap";
 
-import './adminTable.css'
+import "./adminTable.css";
 
 const mql = window.matchMedia(`(max-width: 640px)`);
 // set the maximum number of table colums for smaller and larger screens
@@ -12,19 +12,21 @@ class AdminTable extends Component {
     const id = evt.target.parentElement.id;
 
     this.props.getUserDetail(id);
-  }
+  };
 
   createTableHeader() {
     const keys = Object.keys(this.props.tableObjs[0]);
 
     return (
       <tr>
-        { keys.map(key => {
-          // Remove underscore from key name
-          key = key.replace(/_/g, ' ');
-          
-          return <th key={ key }>{ key }</th> 
-        }).filter((key, idx) => idx < maxColumCount)}
+        {keys
+          .map(key => {
+            // Remove underscore from key name
+            key = key.replace(/_/g, " ");
+
+            return <th key={key}>{key}</th>;
+          })
+          .filter((key, idx) => idx < maxColumCount)}
       </tr>
     );
   }
@@ -42,20 +44,20 @@ class AdminTable extends Component {
 
   concantinateText(value) {
     // concatinate at 6 characters for small screen and 25 for large
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       if (mql.matches) {
         // small screen
-        if (value.slice(0, 2) === '19' || value.slice(0, 2) === '20') {
+        if (value.slice(0, 2) === "19" || value.slice(0, 2) === "20") {
           // only show year on small strings
           value = value.slice(0, 4);
         }
         if (value.length > 9) {
-          value = value.slice(0, 6) + '...';
+          value = value.slice(0, 6) + "...";
         }
       } else {
         // larger screen
         if (value.length > 30) {
-          value = value.slice(0, 25) + '...';
+          value = value.slice(0, 25) + "...";
         }
       }
     }
@@ -65,34 +67,31 @@ class AdminTable extends Component {
 
   createTableRows(keys, values) {
     return (
-      <tr key={values[0]} onClick={ this.handleChange } id={values[0] }>
-        {values.map((value, index) => {
-          value = this.concantinateText(value);
+      <tr key={values[0]} onClick={this.handleChange} id={values[0]}>
+        {values
+          .map((value, index) => {
+            value = this.concantinateText(value);
 
-          return (
-            <td key={`${values[0]}-${keys[index]}`} >{ value }</td>
-          );
-        }).filter((value, idx) => idx < maxColumCount)}
+            return <td key={`${values[0]}-${keys[index]}`}>{value}</td>;
+          })
+          .filter((value, idx) => idx < maxColumCount)}
       </tr>
     );
   }
 
-  render(){
+  render() {
     return (
       <div className="admin-table">
-        <Table 
+        <Table
           striped
           bordered
-          hover 
-          size="sm" 
-          responsive 
-          id={this.props.view + '-table'}>
-          <thead>
-            { this.createTableHeader() }
-          </thead>
-          <tbody>
-            { this.createTableBody() }
-          </tbody>
+          hover
+          size="sm"
+          responsive
+          id={this.props.view + "-table"}
+        >
+          <thead>{this.createTableHeader()}</thead>
+          <tbody>{this.createTableBody()}</tbody>
         </Table>
       </div>
     );

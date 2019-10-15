@@ -10,9 +10,10 @@ class ForgotPassRoutes extends React.Component {
 
     return (
       <Route
-        exact={ this.props.exact }
-        path={ this.props.path }
-        render={ this.props.render } />
+        exact={this.props.exact}
+        path={this.props.path}
+        render={this.props.render}
+      />
     );
   }
 }

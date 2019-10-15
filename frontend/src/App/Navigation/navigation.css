@@ -1,8 +1,8 @@
-.Nav-icon{
+.Nav-icon {
   font-weight: bold;
   font-size: 14px;
   color: #394557;
-  background-color: #DFE7ED;
+  background-color: #dfe7ed;
   border-radius: 50%;
   padding: 10px 10px;
   margin: 10px 30px;
@@ -44,7 +44,7 @@
 
 .Nav_brand-name {
   font-size: 1.5em;
-  font-family: 'Exo 2', sans-serif;
+  font-family: "Exo 2", sans-serif;
   color: #394557;
   opacity: 0.65;
   letter-spacing: 3px;
@@ -55,15 +55,14 @@
   opacity: 0.85;
 }
 
-.sidebar a{
+.sidebar a {
   font-weight: bold;
   font-size: 14px;
   color: #394557;
   display: inline-block;
   position: relative;
   opacity: 0.75;
-
-} 
+}
 
 .Menu-link {
   font-weight: bold;
@@ -85,19 +84,18 @@
   margin-top: 8px;
   right: 0;
   visibility: hidden;
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
 }
 
 .userMenu.is-open {
   visibility: visible;
-} 
+}
 
 @media only screen and (max-width: 500px) {
-.fa-user{
-  display: none;
-}
+  .fa-user {
+    display: none;
+  }
   .userMenu.is-open {
     min-width: 100%;
   }
-
 }

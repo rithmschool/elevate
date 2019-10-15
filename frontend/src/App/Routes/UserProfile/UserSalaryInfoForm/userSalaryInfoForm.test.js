@@ -25,7 +25,7 @@ describe("UserSalaryInfoForm", function() {
   };
 
   beforeEach(() => {
-    wrapper = mount(<UserSalaryInfoForm { ...latestSalary } />);
+    wrapper = mount(<UserSalaryInfoForm {...latestSalary} />);
   });
 
   it("has states", function() {
