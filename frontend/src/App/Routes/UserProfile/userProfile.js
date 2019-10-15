@@ -1,12 +1,12 @@
 import React from "react";
 import { Row, Col } from 'reactstrap';
 
-import { UserContext } from "../userContext"
-import ElevateApi from "../elevateApi";
-import UserSalaryInfoForm from "../UserSalaryInfoForm/userSalaryInfoForm";
-import Spinner from "../Spinner/spinner";
+import { UserContext } from "../../../userContext"
+import ElevateApi from "../../../elevateApi";
+import UserSalaryInfoForm from "./UserSalaryInfoForm/userSalaryInfoForm";
+import Spinner from "../../../Spinner/spinner";
 import Alert from "../Alert/alert";
-import UserBasicInfoForm from "../UserBasicInfoForm/userBasicInfoForm";
+import UserBasicInfoForm from "./UserBasicInfoForm/userBasicInfoForm";
 
 
 const MESSAGE_SHOW_PERIOD_IN_MSEC = 3000;

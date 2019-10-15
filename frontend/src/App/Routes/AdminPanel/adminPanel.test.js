@@ -2,11 +2,11 @@ import React from "react";
 import axios from "axios";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import mockData from "../../../mock_data";
+import mockData from "../../../../../mock_data";
+import AdminPanel from "./adminPanel";
 
 const { USERS: users, QUESTIONS: questions } = mockData; 
 
-import AdminPanel from "./adminPanel";
 
 jest.mock("axios");
 

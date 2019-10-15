@@ -2,9 +2,9 @@ import React from "react";
 import { Col, Button, Form, Label, Input, Row } from "reactstrap";
 
 import "./forgotPassword.css";
-import ElevateApi from "../elevateApi";
+import ElevateApi from "../../../elevateApi";
 import Alert from "../Alert/alert";
-import Spinner from "../Spinner/spinner";
+import Spinner from "../../../Spinner/spinner";
 
 class ForgotPassword extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./adminUserView.css";
-import ElevateApi from "../elevateApi";
+import ElevateApi from "../../../../elevateApi";
 
 
 class AdminUserView extends React.Component {
