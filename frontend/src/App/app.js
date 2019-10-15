@@ -39,6 +39,8 @@ class App extends React.Component {
       currentUser = { ...currentUser, userId: user_id };
 
       this.setState({ currentUser, isLoading: false, isAdmin: is_admin });
+      console.log("Checking for admin", this.state)
+      console.log("user info from db", currentUser)
     } catch (err) {
       this.setState({ currentUser: null, isLoading: false });
     }
@@ -48,9 +50,9 @@ class App extends React.Component {
     if (this.state.isLoading) return <Spinner />;
 
     return (
-      <UserContext.Provider value={ this.state.currentUser }>
-          <Navigation logout={ this.handleLogOut } />
-          <Routes getCurrentUser={ this.getCurrentUser } />
+      <UserContext.Provider value={this.state.currentUser}>
+        <Navigation logout={this.handleLogOut} />
+        <Routes getCurrentUser={this.getCurrentUser} />
       </UserContext.Provider>
     );
   }
