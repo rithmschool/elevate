@@ -14,7 +14,17 @@ class Home extends React.Component {
           <h1 className="Home_h1"> Are You paid what you deserve?</h1>
         </div>
 
-        <div className="Home_template">
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">Fluid jumbotron</h1>
+            <p className="lead">
+              This is a modified jumbotron that occupies the entire horizontal
+              space of its parent.
+            </p>
+          </div>
+        </div>
+
+        {/* <div className="Home_template">
           <p>Templates and professionals available 24/7</p>
           <i className="fas fa-user-tie"></i>
         </div>
@@ -52,7 +62,7 @@ class Home extends React.Component {
           <Link to="/ask-an-expert">
             <Button color="primary">Ask An Expert</Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     );
   }
