@@ -7,28 +7,28 @@ import { MemoryRouter } from "react-router-dom";
 import Home from "./Home/home";
 import LoginSignupForm from "./LoginSignUpForm/loginSignUpForm";
 import AskAnExpert from "./AskAnExpert/askAnExpert";
+import App from "../app";
 
-
-it("renders without crashing", function () {
+it("renders without crashing", function() {
   shallow(<Routes />);
 });
 
-it("matches snapshot", function () {
+it("matches snapshot", function() {
   let wrapper = shallow(<Routes />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
 
-it("invalid path should redirect to /", function () {
+it("invalid path should redirect to /", function() {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/invalidendpoint"]}>
-      <Routes />
+      <App />
     </MemoryRouter>
   );
   expect(wrapper.find(Home)).toHaveLength(1);
 });
 
-it("should show Home component for / route (using memory router)", function () {
+it("should show Home component for / route (using memory router)", function() {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/"]}>
       <Routes />
@@ -37,7 +37,7 @@ it("should show Home component for / route (using memory router)", function () {
   expect(wrapper.find(Home)).toHaveLength(1);
 });
 
-it("should show LoginSignupForm component for /login route (using memory router)", function () {
+it("should show LoginSignupForm component for /login route (using memory router)", function() {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/login"]}>
       <Routes />
@@ -46,7 +46,7 @@ it("should show LoginSignupForm component for /login route (using memory router)
   expect(wrapper.find(LoginSignupForm)).toHaveLength(1);
 });
 
-it("should show AskAnExpert component for /ask-an-expert route (using memory router)", function () {
+it("should show AskAnExpert component for /ask-an-expert route (using memory router)", function() {
   const wrapper = mount(
     <MemoryRouter initialEntries={["/ask-an-expert"]}>
       <Routes />
@@ -54,3 +54,5 @@ it("should show AskAnExpert component for /ask-an-expert route (using memory rou
   );
   expect(wrapper.find(AskAnExpert)).toHaveLength(1);
 });
+
+
