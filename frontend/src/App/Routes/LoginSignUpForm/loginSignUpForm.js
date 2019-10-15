@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 
 import "./loginSignUpForm.css";
 import ElevateApi from "../../../elevateApi";
-import Spinner from "../../../Spinner/spinner";
+import Spinner from "../../Spinner/spinner";
 import LoginError from "./LoginError/loginError";
 
 //created client_id from configure a project from google

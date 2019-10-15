@@ -5,7 +5,7 @@ import AdminNavbar from "./AdminNavbar/adminNavbar";
 import AdminUserView from "./AdminUserView/adminUserView";
 import AdminTable from "./AdminTable/adminTable";
 import ElevateApi from "../../../elevateApi";
-import Spinner from "../../../Spinner/spinner";
+import Spinner from "../../Spinner/spinner";
 import PanelToggleBtn from "./PanelToggleBtn/panelToggleBtn";
 
 class AdminPanel extends React.Component {
