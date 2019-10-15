@@ -12,12 +12,11 @@ import AskAnExpert from "../AskAnExpert/askAnExpert";
 
 const routeMatch = { params: {} };
 
-
-it("renders without crashing", function () {
+it("renders without crashing", function() {
   shallow(<Routes match={routeMatch} />);
 });
 
-it("matches snapshot", function () {
+it("matches snapshot", function() {
   let wrapper = shallow(<Routes match={routeMatch} />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
@@ -25,7 +24,7 @@ it("matches snapshot", function () {
 
 it("invalid path should redirect to 404", function() {
   const wrapper = mount(
-    <MemoryRouter initialEntries={['/invalidendpoint']} >
+    <MemoryRouter initialEntries={["/invalidendpoint"]}>
       <Routes match={routeMatch} />
     </MemoryRouter>
   );
@@ -35,7 +34,7 @@ it("invalid path should redirect to 404", function() {
 
 it("should show Home component for / router (using memory router)", function() {
   const wrapper = mount(
-    <MemoryRouter initialEntries={['/']} >
+    <MemoryRouter initialEntries={["/"]}>
       <Routes match={routeMatch} />
     </MemoryRouter>
   );
@@ -44,7 +43,7 @@ it("should show Home component for / router (using memory router)", function() {
 
 it("should show LoginSignupForm component for /login router (using memory router)", function() {
   const wrapper = mount(
-    <MemoryRouter initialEntries={['/login']} >
+    <MemoryRouter initialEntries={["/login"]}>
       <Routes match={routeMatch} />
     </MemoryRouter>
   );
@@ -53,8 +52,8 @@ it("should show LoginSignupForm component for /login router (using memory router
 
 it("should show AdminPrivateRoute component for /admin router (using memory router)", function() {
   const wrapper = mount(
-    <MemoryRouter initialEntries={['/admin']} >
-      <AdminPrivateRoute render={ props => <div { ...props } /> } />
+    <MemoryRouter initialEntries={["/admin"]}>
+      <AdminPrivateRoute render={props => <div {...props} />} />
     </MemoryRouter>
   );
   expect(wrapper.find(AdminPanel)).toHaveLength(1);
