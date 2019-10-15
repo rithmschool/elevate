@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import './navigation.css'
 import { Collapse, Navbar, NavbarToggler} from 'reactstrap';
-import { UserContext, AdminContext} from "./../userContext";
+import { UserContext } from "./../userContext";
 
 
 class Navigation extends React.Component {
@@ -45,7 +45,7 @@ class Navigation extends React.Component {
   }
 
   render() {
-    // check if user is connected to display wether sign in or logout on navbar
+    // check if user is connected to display whether sign in or logout on navbar
     const userIsLoggedIn = (
       <UserContext.Consumer>
         {currentUser => (
@@ -96,7 +96,7 @@ class Navigation extends React.Component {
     );
     
     const userIsAdmin = (
-      <AdminContext.Consumer>
+      <UserContext.Consumer>
         {isAdmin => (
           isAdmin && 
             <li className="nav-item adminStyle danger active">
@@ -106,7 +106,7 @@ class Navigation extends React.Component {
               </Link>
             </li>
         )}
-      </AdminContext.Consumer>
+      </UserContext.Consumer>
     );
 
     return(

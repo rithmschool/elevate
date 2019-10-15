@@ -1,7 +1,7 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
 
-import { UserContext, AdminContext } from "../userContext";
+import { UserContext } from "../userContext";
 import Navigation from "../Navigation/navigation";
 import Routes from "../Routes/routes";
 import ElevateApi from "../elevateApi";
@@ -49,10 +49,8 @@ class App extends React.Component {
 
     return (
       <UserContext.Provider value={ this.state.currentUser }>
-        <AdminContext.Provider value={ this.state.isAdmin }>
           <Navigation logout={ this.handleLogOut } />
           <Routes getCurrentUser={ this.getCurrentUser } />
-        </AdminContext.Provider>
       </UserContext.Provider>
     );
   }
