@@ -2,10 +2,10 @@ import React from "react";
 import { decode } from "jsonwebtoken";
 
 import { UserContext, AdminContext } from "../userContext";
-import Navigation from "../Navigation/navigation";
-import Routes from "../Routes/routes";
+import Navigation from "./Navigation/navigation";
+import Routes from "./Routes/routes";
 import ElevateApi from "../elevateApi";
-import Spinner from "../Spinner/spinner";
+import Spinner from "./Spinner/spinner";
 
 class App extends React.Component {
   constructor(props) {
@@ -48,10 +48,10 @@ class App extends React.Component {
     if (this.state.isLoading) return <Spinner />;
 
     return (
-      <UserContext.Provider value={ this.state.currentUser }>
-        <AdminContext.Provider value={ this.state.isAdmin }>
-          <Navigation logout={ this.handleLogOut } />
-          <Routes getCurrentUser={ this.getCurrentUser } />
+      <UserContext.Provider value={this.state.currentUser}>
+        <AdminContext.Provider value={this.state.isAdmin}>
+          <Navigation logout={this.handleLogOut} />
+          <Routes getCurrentUser={this.getCurrentUser} />
         </AdminContext.Provider>
       </UserContext.Provider>
     );
