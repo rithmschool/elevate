@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "reactstrap";
 import { Link } from 'react-router-dom';
 
-import img1 from "../img/001.jpg";
 import "./home.css";
 
 class Home extends React.Component {
@@ -11,8 +10,13 @@ class Home extends React.Component {
     return (
       <div>
         <div className="Home_container">
-          <img src={ img1 } className="Home_image1" alt="image1" />
-          <h1 className="Home_h1"> Are You paid what you deserve?</h1>
+          <h1><b>Your Personal HR Team</b></h1>
+          <p>With your best interest in mind</p>
+          <div className="Home_get_started">
+          <Link to="/login">
+            <Button className="btn btn-lg">Get Started</Button>
+          </Link>
+          </div>
         </div>
 
         <div className="Home_template">
