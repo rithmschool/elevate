@@ -1,8 +1,11 @@
 .Home_container {
-  position: relative;
-  text-align: center;
-  font-family: 'Franklin Gothic';
-  margin: 10vh 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Franklin Gothic";
+  width: 100vw;
+  height: 75vh;
 }
 
 .Home_container h1 {
@@ -13,9 +16,15 @@
 .Home_container button {
   background-color: #6558f5;
   color: white;
-  margin: 5vh 0 10vh 0 ;
+  font-weight: bold;
+  font-size: x-large;
+  width: 25vw;
 }
 
+.Home_container button:hover{
+  background:#31168B ;
+  color: white;
+}
 
 .Home_template,
 .Home_database {
