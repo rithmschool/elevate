@@ -27,7 +27,7 @@ describe("routes using memory router", () => {
   it("should show Dashboard component for /dashboard router (using memory router)", () => {
     const component = mount(
       <MemoryRouter initialEntries={["/dashboard"]}>
-        <Routes />
+        <DashboardRoutes />
       </MemoryRouter>
     );
     console.log("this is it ********", DashboardRoutes);
