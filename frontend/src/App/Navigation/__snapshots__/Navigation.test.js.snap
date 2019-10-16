@@ -2,22 +2,25 @@
 
 exports[`matches snapshot 1`] = `
 <Navbar
-  color="light"
+  color="purple"
   expand="md"
   light={true}
   tag="nav"
 >
+          
   <Link
     className="Nav_brand-name"
     to="/"
   >
-    Elevate
+              Brella         
   </Link>
+          
   <NavbarToggler
     onClick={[Function]}
     tag="button"
     type="button"
   />
+          
   <Collapse
     appear={false}
     className="collapse.navbar-collapse"
@@ -37,32 +40,83 @@ exports[`matches snapshot 1`] = `
     timeout={350}
     unmountOnExit={false}
   >
+              
     <ul
-      className="navbar-nav mr-auto"
+      className="navbar-nav mr-auto"
     >
+                  
       <li
-        className="nav-item active"
+        className="nav-item active"
         data-target=".in"
         data-toggle="collapse"
       >
+                      
         <Link
-          className="Nav-link Nav-link-ltr"
-          to="/ask-an-expert"
+          className="Nav-link Nav-link-ltr"
+          to="/"
         >
-          Ask An Expert
+                          How it works               
         </Link>
+                    
       </li>
+                  
+      <li
+        className="nav-item active"
+        data-target=".in"
+        data-toggle="collapse"
+      >
+                      
+        <Link
+          className="Nav-link Nav-link-ltr"
+          to="/"
+        >
+                          About               
+        </Link>
+                    
+      </li>
+                
     </ul>
+              
+    <ul
+      className="navbar-nav ml-auto"
+    >
+                  
+      <li
+        className="nav-item active"
+        data-target=".in"
+        data-toggle="collapse"
+      >
+                      
+        <Link
+          className="Nav-link Nav-link-ltr"
+          to="/"
+        >
+                          For Employeers               
+        </Link>
+                    
+      </li>
+                
+    </ul>
+              
     <ul
       className="navbar-nav"
     >
+                  
       <ContextConsumer>
+                
         <Component />
+              
       </ContextConsumer>
+                  
       <ContextConsumer>
+                
         <Component />
+              
       </ContextConsumer>
+                
     </ul>
+            
   </Collapse>
+        
 </Navbar>
 `;
