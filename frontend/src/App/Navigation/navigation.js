@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import "./navigation.css";
 import { Collapse, Navbar, NavbarToggler } from "reactstrap";
-import { UserContext, AdminContext } from "../../userContext";
+import { UserContext } from "../../userContext";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -44,7 +44,6 @@ class Navigation extends React.Component {
   }
 
   render() {
-    // check if user is connected to display wether sign in or logout on navbar
     const userIsLoggedIn = (
       <UserContext.Consumer>
         {currentUser => (
@@ -100,9 +99,9 @@ class Navigation extends React.Component {
     );
 
     const userIsAdmin = (
-      <AdminContext.Consumer>
-        {isAdmin =>
-          isAdmin && (
+      <UserContext.Consumer>
+        {currentUser =>
+          currentUser && currentUser.is_admin (
             <li className="nav-item adminStyle danger active">
               <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
                 **Admin**
@@ -110,7 +109,7 @@ class Navigation extends React.Component {
             </li>
           )
         }
-      </AdminContext.Consumer>
+      </UserContext.Consumer>
     );
 
     return (
