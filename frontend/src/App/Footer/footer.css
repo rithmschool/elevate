@@ -1,0 +1,56 @@
+.footer-brand-name {
+  font-size: 1.5em;
+  font-family: "Exo 2", sans-serif;
+  color: #394557;
+  opacity: 0.65;
+  letter-spacing: 3px;
+}
+
+.footer-brand-name:hover {
+  color: #394557;
+  opacity: 0.85;
+}
+
+.link {
+  font-weight: bold;
+  font-size: 14px;
+  color: #394557;
+  padding: 0px 0px;
+  margin: 0px 0px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
+}
+
+.link:hover {
+  opacity: 1;
+  color: #394557;
+}
+
+.link::before {
+  transition: 300ms;
+  height: 2px;
+  content: "";
+  position: absolute;
+  background-color: #394557;
+}
+
+.link-ltr::before {
+  width: 0%;
+  bottom: 0px;
+}
+
+.link-ltr:hover::before {
+  width: 100%;
+}
+
+.footer-container {
+    background-color: #dfe7ed;
+    border: 1px #dcd9d5 solid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    width: 100vw;
+    height: 40vh;
+    padding: 8% 0;
+}
