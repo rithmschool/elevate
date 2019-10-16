@@ -15,8 +15,11 @@ class Home extends React.Component {
         </div>
 
         <div className="Home_template">
-          <p>Templates and professionals available 24/7</p>
           <img src={img1} alt="working"/>
+          <div>
+          <h1><b>Why Bella?</b></h1>
+          <p>Mission statement goes here, sell a story to the user.</p>
+          </div>     
         </div>
 
         <div className="Home_database">
