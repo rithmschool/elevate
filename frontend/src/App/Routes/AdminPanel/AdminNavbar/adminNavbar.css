@@ -1,0 +1,9 @@
+.adminNavbar > p {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.adminNavbar {
+  height: 100vh;
+  margin: 18px 6px;
+}
