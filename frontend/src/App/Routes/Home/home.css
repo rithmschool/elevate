@@ -24,7 +24,6 @@
 
 .Home_template,
 .Home_database {
-  border: 1px #dcd9d5 solid;
   position: relative;
   display: flex;
   align-items: center;
@@ -33,6 +32,11 @@
   width: 100vw;
   height: 50vh;
   text-align: center;
+}
+
+.Home_template img {
+  height: 50vh;
+  width: 50vw;
 }
 
 .Home_database {
