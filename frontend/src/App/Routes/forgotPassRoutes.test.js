@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import Routes from "./routes";
-import App from "./../app"
+import App from "./../app";
 import { MemoryRouter } from "react-router-dom";
 
 it("renders without crashing", function() {
