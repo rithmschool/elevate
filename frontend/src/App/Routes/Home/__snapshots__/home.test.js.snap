@@ -5,21 +5,19 @@ exports[`matches snapshot 1`] = `
   <div
     className="Home_container"
   >
-    <h1>
+    <h1
+      className="text-center"
+    >
       Your Personal HR Team
     </h1>
     <h5>
       A team with your best interest in mind
     </h5>
     <Link
+      className="btn btn-primary"
       to="/login"
     >
-      <Button
-        color="secondary"
-        tag="button"
-      >
-        Get Started
-      </Button>
+      Get Started
     </Link>
   </div>
   <div
