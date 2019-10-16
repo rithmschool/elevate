@@ -4,22 +4,18 @@ import { Link } from "react-router-dom";
 
 import "./home.css";
 
+
 class Home extends React.Component {
   render() {
+    const routeStr = localStorage.token ? "/ask-an-expert" : "/login";
     return (
       <div>
         <div className="Home_container">
           <h1>Your Personal HR Team</h1>
           <h5>A team with your best interest in mind</h5>
-          {localStorage.token ? (
-            <Link to="/ask-an-expert">
-              <Button color="btn btn-lg">Get Started</Button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Button color="btn btn-lg">Get Started</Button>
-            </Link>
-          )}
+          <Link to={routeStr}>
+            <Button>Get Started</Button>
+          </Link>
         </div>
 
         <div className="Home_template">
