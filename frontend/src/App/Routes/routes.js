@@ -22,11 +22,11 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' render={props => <Home {...props} />} />
+        <Route exact path="/" render={props => <Home {...props} />} />
 
         <Route
           exact
-          path='/login'
+          path="/login"
           render={props => (
             <LoginSignUpForm
               {...props}
@@ -37,47 +37,50 @@ class Routes extends React.Component {
 
         <AdminPrivateRoute
           exact
-          path='/admin'
+          path="/admin"
           render={props => <AdminPanel {...props} />}
         />
 
-        <Route exact path='/ask-an-expert' render={() => <AskAnExpert />} />
+        <Route exact path="/ask-an-expert" render={() => <AskAnExpert />} />
 
         <UserPrivateRoute
-          path='/users/:userId'
+          path="/users/:userId"
           render={props => <UserProfile {...props} />}
         />
 
-        <DashboardRoutes exact path='/dashboard' render={() => <Dashboard />} />
+        <DashboardRoutes exact path="/dashboard" render={() => <Dashboard />} />
+
         <DashboardRoutes
           exact
-          path='/dashboard/manage'
+          path="/dashboard/manage"
           render={() => <DashboardManage />}
         />
+
         <DashboardRoutes
           exact
-          path='/dashboard/appointments'
+          path="/dashboard/appointments"
           render={() => <DashboardAppointments />}
         />
+        
         <DashboardRoutes
           exact
-          path='/dashboard/templates'
+          path="/dashboard/templates"
           render={() => <DashboardTemplates />}
         />
 
         <ForgotPassRoutes
           exact
-          path='/reset-password/forgot'
+          path="/reset-password/forgot"
           render={() => <ForgotPassword />}
         />
 
         <ForgotPassRoutes
           exact
-          path='/reset-password/:token'
+          path="/reset-password/:token"
           render={props => <ResetPassword {...props} />}
         />
 
-        <Redirect to='/' />
+        <Redirect to="/" />
       </Switch>
     );
   }

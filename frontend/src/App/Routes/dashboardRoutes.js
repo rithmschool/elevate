@@ -6,7 +6,7 @@ class DashboardRoutes extends React.Component {
   render() {
     const token = localStorage.getItem("token");
 
-    if (!token) return <Redirect to='/login' />;
+    if (!token) return <Redirect to="/login" />;
 
     return (
       <Route
