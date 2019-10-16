@@ -134,7 +134,7 @@ class LoginSignUpForm extends React.Component {
     let text = loginState ? "Sign In" : "Sign Up";
     if (this.state.isLoading) return <Spinner />;
 
-    const signupForm = (
+    const firstLastNameInputs = (
       <div>
         <Form.Group>
           <Form.Control
@@ -162,6 +162,32 @@ class LoginSignUpForm extends React.Component {
       </div>
     );
 
+    const emailPasswordInputs = (
+      <div>
+        <Form.Group>
+          <Form.Control
+            placeholder="Email"
+            id="email"
+            name="email"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.email}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Control
+            placeholder="Password"
+            id="password"
+            name="password"
+            type="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+        </Form.Group>
+      </div>
+    );
+
     const loginWithSocial = (
       <div>
         <div className="LoginSignUpForm_login-or">
@@ -176,10 +202,46 @@ class LoginSignUpForm extends React.Component {
             onClick={this.handleGoogleSignin}
           >
             <i className="fab fa-google"></i>
-            {`Sign in with Google`}
+            <span>{`Sign in with Google`}</span>
           </Button>
         </div>
+      </div>
+    );
 
+    const signUpButton = (
+      <div className="row justify-content-center">
+        <Button className="login-submit btn-block mr-3 ml-3" type="submit">
+          Create an account
+        </Button>
+      </div>
+    );
+
+    const signInButton = (
+      <div className="row justify-content-center">
+        <Button className="login-submit btn-block mr-3 ml-3" type="submit">
+          SIGN IN
+        </Button>
+      </div>
+    );
+
+    const directToSignIn = (
+      <Form.Text
+        id="signup"
+        className="text-muted"
+        style={{ textAlign: "center" }}
+      >
+        <button
+          name="login"
+          className="LoginSignUpForm_link-signin"
+          onClick={this.loginOrSignup}
+        >
+          Sign in
+        </button>
+      </Form.Text>
+    );
+
+    const directToSignUp = (
+      <div>
         <Form.Text
           id="signup"
           className="text-muted mt-3"
@@ -193,6 +255,19 @@ class LoginSignUpForm extends React.Component {
           >
             Create One
           </button>
+        </Form.Text>
+      </div>
+    );
+
+    const forgotPasswordLink = (
+      <div>
+        <Form.Text
+          className="LoginSignUpForm_link-signup"
+          style={{ textAlign: "center" }}
+        >
+          <a href="http://localhost:3000/reset-password/forgot">
+            Forgot password?
+          </a>
         </Form.Text>
       </div>
     );
@@ -215,56 +290,18 @@ class LoginSignUpForm extends React.Component {
             {/* handle login failure */}
             {this.state.errors.length > 0 && <LoginError />}
             <div className="mb-3">{text}</div>
-            <Form.Group>
-              <Form.Control
-                placeholder="Email"
-                id="email"
-                name="email"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.email}
-              />
-            </Form.Group>
 
-            <Form.Group>
-              <Form.Control
-                placeholder="Password"
-                id="password"
-                name="password"
-                type="password"
-                onChange={this.handleChange}
-                value={this.state.password}
-              />
-            </Form.Group>
+            {emailPasswordInputs}
 
-            {!loginState && signupForm}
+            {loginState && signInButton}
+            {loginState && loginWithSocial}
+            {loginState && directToSignUp}
+            {loginState && forgotPasswordLink}
 
-            <div className="row justify-content-center">
-              <Button
-                className="login-submit btn-block mr-3 ml-3"
-                type="submit"
-              >
-                Submit
-              </Button>
-            </div>
-
-            {loginState ? (
-              loginWithSocial
-            ) : (
-              <Form.Text
-                id="signup"
-                className="text-muted"
-                style={{ textAlign: "center" }}
-              >
-                <button
-                  name="login"
-                  className="LoginSignUpForm_link-signin"
-                  onClick={this.loginOrSignup}
-                >
-                  Signin
-                </button>
-              </Form.Text>
-            )}
+            {!loginState && firstLastNameInputs}
+            {!loginState && signUpButton}
+            {!loginState && loginWithSocial}
+            {!loginState && directToSignIn}
           </Form>
         </div>
       </div>
