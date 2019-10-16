@@ -11,10 +11,10 @@ class Home extends React.Component {
     return (
       <div>
         <div className="Home_container">
-          <h1>Your Personal HR Team</h1>
+          <h1 className="text-center">Your Personal HR Team</h1>
           <h5>A team with your best interest in mind</h5>
-          <Link to={routeStr}>
-            <Button>Get Started</Button>
+          <Link to={routeStr} className="btn btn-primary">
+            Get Started
           </Link>
         </div>
 
