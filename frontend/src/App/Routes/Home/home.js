@@ -9,7 +9,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-
         <div className="Home_container">
           <img src={img1} className="Home_image1" alt="image1" />
           <h1 className="Home_h1"> Are You paid what you deserve?</h1>
@@ -17,24 +16,65 @@ class Home extends React.Component {
 
         <div className="Home_template">
           <div className="Home_template_child">
-          <img src={img1} alt="working"/>
+            <img className="card-img" src={img1} alt="working" />
           </div>
           <div className="Home_template_child">
-          <h1><b>Why Brella?</b></h1>
-          <p>Mission statement goes here, sell a story to the user.
-          Mission statement goes here, sell a story to the user.
-          Mission statement goes here, sell a story to the user.
-          Mission statement goes here, sell a story to the user.
-          Mission statement goes here, sell a story to the user.
-          Mission statement goes here, sell a story to the user.
-          </p>
-          </div>     
+            <h1>
+              <b>Why Brella?</b>
+            </h1>
+            <p>
+              Mission statement goes here, sell a story to the user. Mission
+              statement goes here, sell a story to the user. Mission statement
+              goes here, sell a story to the user. Mission statement goes here,
+              sell a story to the user. Mission statement goes here, sell a
+              story to the user. Mission statement goes here, sell a story to
+              the user.
+            </p>
+          </div>
         </div>
 
         <div className="Home_database">
-        <div class="card border-dark mb-3" style={{maxWidth: 18}}>
+          <div className="card mb-3">
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img className="card-img" src={img1} alt="working" />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
+                This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        </div>
+          <div className="card mb-3">
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img className="card-img" src={img1} alt="working" />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
+                This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="card mb-3">
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img className="card-img" src={img1} alt="working" />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
+                This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="Home_stats">
