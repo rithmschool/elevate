@@ -12,5 +12,3 @@ it("matches snapshot", function() {
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
-
-//TODO: make test for `Get Started` button routes  
