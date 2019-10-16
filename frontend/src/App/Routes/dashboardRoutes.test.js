@@ -9,13 +9,11 @@ it("renders without crashing", function() {
   shallow(<DashboardRoutes />);
 });
 
-
 it("matches snapshot", function() {
   let wrapper = shallow(<DashboardRoutes />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
-
 
 it("mounts without crashing", function() {
   mount(
@@ -32,7 +30,7 @@ describe("routes using memory router", () => {
         <Routes />
       </MemoryRouter>
     );
-    console.log("this is it ********", DashboardRoutes)
+    console.log("this is it ********", DashboardRoutes);
     expect(component.find(DashboardRoutes)).toHaveLength(1);
   });
 });

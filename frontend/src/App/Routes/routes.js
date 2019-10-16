@@ -61,7 +61,7 @@ class Routes extends React.Component {
           path="/dashboard/appointments"
           render={() => <DashboardAppointments />}
         />
-        
+
         <DashboardRoutes
           exact
           path="/dashboard/templates"

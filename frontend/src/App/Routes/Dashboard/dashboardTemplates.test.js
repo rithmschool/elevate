@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import DashboardTemplates from "./dashboardTemplates"
+import DashboardTemplates from "./dashboardTemplates";
 
 it("renders without crashing", function() {
-  shallow(<DashboardTemplates/>);
+  shallow(<DashboardTemplates />);
 });
 
 it("matches snapshot", function() {
