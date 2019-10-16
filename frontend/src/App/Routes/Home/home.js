@@ -9,7 +9,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        
+
         <div className="Home_container">
           <img src={img1} className="Home_image1" alt="image1" />
           <h1 className="Home_h1"> Are You paid what you deserve?</h1>
@@ -32,8 +32,9 @@ class Home extends React.Component {
         </div>
 
         <div className="Home_database">
-          <i className="fas fa-chart-bar"></i>
-          <p>Get yout comp verified by our proprietary database</p>
+        <div class="card border-dark mb-3" style={{maxWidth: 18}}>
+
+        </div>
         </div>
 
         <div className="Home_stats">
