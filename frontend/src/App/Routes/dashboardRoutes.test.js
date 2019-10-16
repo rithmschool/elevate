@@ -30,7 +30,6 @@ describe("routes using memory router", () => {
         <DashboardRoutes />
       </MemoryRouter>
     );
-    console.log("this is it ********", DashboardRoutes);
     expect(component.find(DashboardRoutes)).toHaveLength(1);
   });
 });
