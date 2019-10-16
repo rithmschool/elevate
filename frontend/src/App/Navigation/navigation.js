@@ -101,7 +101,8 @@ class Navigation extends React.Component {
     const userIsAdmin = (
       <UserContext.Consumer>
         {currentUser =>
-          currentUser && currentUser.is_admin (
+          currentUser &&
+          currentUser.is_admin(
             <li className="nav-item adminStyle danger active">
               <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
                 **Admin**
