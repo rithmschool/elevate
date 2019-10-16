@@ -30,10 +30,10 @@
 .Home_template {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 50vh;
   text-align: center;
-  margin-bottom: 5%;
 }
 
 .Home_template_child {
@@ -50,12 +50,14 @@
 .Home_database {
   display: flex;
   align-items: center;
-  justify-content: center;
+  height: 50vh;
 }
 
 .Home_database img {
-  width: 50%;
+  width: 25%;
 }
+
+
 
 .fa-user-tie,
 .fa-chart-bar {
