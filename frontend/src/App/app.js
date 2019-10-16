@@ -1,7 +1,7 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
 
-import { UserContext, AdminContext } from "../userContext";
+import { UserContext } from "../userContext";
 import Navigation from "./Navigation/navigation";
 import Routes from "./Routes/routes";
 import ElevateApi from "../elevateApi";
@@ -13,8 +13,7 @@ class App extends React.Component {
 
     this.state = {
       currentUser: null,
-      isLoading: true,
-      isAdmin: false
+      isLoading: true
     };
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -23,7 +22,7 @@ class App extends React.Component {
 
   handleLogOut() {
     localStorage.removeItem("token");
-    this.setState({ currentUser: null, isAdmin: false });
+    this.setState({ currentUser: null });
   }
 
   async componentDidMount() {
@@ -34,11 +33,11 @@ class App extends React.Component {
     const token = localStorage.getItem("token");
 
     try {
-      let { user_id, is_admin } = decode(token);
+      let { user_id } = decode(token);
       let currentUser = await ElevateApi.getUser(user_id);
       currentUser = { ...currentUser, userId: user_id };
 
-      this.setState({ currentUser, isLoading: false, isAdmin: is_admin });
+      this.setState({ currentUser, isLoading: false });
     } catch (err) {
       this.setState({ currentUser: null, isLoading: false });
     }
@@ -49,10 +48,8 @@ class App extends React.Component {
 
     return (
       <UserContext.Provider value={this.state.currentUser}>
-        <AdminContext.Provider value={this.state.isAdmin}>
-          <Navigation logout={this.handleLogOut} />
-          <Routes getCurrentUser={this.getCurrentUser} />
-        </AdminContext.Provider>
+        <Navigation logout={this.handleLogOut} />
+        <Routes getCurrentUser={this.getCurrentUser} />
       </UserContext.Provider>
     );
   }
