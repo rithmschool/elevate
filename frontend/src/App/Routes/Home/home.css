@@ -1,25 +1,30 @@
 .Home_container {
-  position: relative;
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway', 'Lucida Sans';
+  width: 100vw;
+  height: 80vh;
 }
 
-.Home_h1 {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  font-size: 5vw;
-  color: white;
+.Home_container h1 {
+  font-weight: bold;
+  color: #6558f5;
 }
 
-.Home_image1 {
-  width: 100%;
-  height: auto;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.5;
+.Home_container .btn {
+  background-color: #6558f5;
+  border-color: #6558f5;
+  font-weight: bold;
+  font-size: 1.25em;
+  width: 250px;
+}
+
+.Home_container .btn:hover,
+.Home_container .btn:active:focus {
+  cursor: pointer;
+  background-color: #31168B !important;
 }
 
 .Home_template,
