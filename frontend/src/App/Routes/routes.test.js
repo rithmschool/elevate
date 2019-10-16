@@ -55,40 +55,4 @@ describe("main routes file", function() {
     );
     expect(wrapper.find(AskAnExpert)).toHaveLength(1);
   });
-
-  it("should show Route component for /admin route (using memory router)", function() {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={["/admin"]}>
-        <Routes />
-      </MemoryRouter>
-    );
-    expect(wrapper.find(Route)).toHaveLength(1);
-  });
-
-  it("should show Route component for /users/:userId route (using memory router)", function() {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={["/users/1"]}>
-        <Routes />
-      </MemoryRouter>
-    );
-    expect(wrapper.find(Route)).toHaveLength(1);
-  });
-
-  it("should show Route component for /reset-password/forgot route (using memory router)", function() {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={["/reset-password/forgot"]}>
-        <Routes />
-      </MemoryRouter>
-    );
-    expect(wrapper.find(Route)).toHaveLength(1);
-  });
-
-  it("should show Route component for /reset-password/:token route (using memory router)", function() {
-    const wrapper = mount(
-      <MemoryRouter initialEntries={["/reset-password/:token"]}>
-        <Routes />
-      </MemoryRouter>
-    );
-    expect(wrapper.find(Route)).toHaveLength(1);
-  });
 });
