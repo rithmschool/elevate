@@ -88,12 +88,12 @@ class Navigation extends React.Component {
                 </div>
               </div>
             ) : (
-                <div ref={this.myRef}>
-                  <Link to="/login" className="Nav-link Nav-link-ltr">
-                    Sign In
+              <div ref={this.myRef}>
+                <Link to="/login" className="Nav-link Nav-link-ltr">
+                  Sign In
                 </Link>
-                </div>
-              )}
+              </div>
+            )}
           </li>
         )}
       </UserContext.Consumer>
