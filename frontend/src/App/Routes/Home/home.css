@@ -47,8 +47,13 @@
 }
 
 .Home_database {
-  display: inline-flex;
-  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Home_database img {
+  width: 50%;
 }
 
 .fa-user-tie,

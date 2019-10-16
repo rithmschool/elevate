@@ -38,50 +38,22 @@ class Home extends React.Component {
         </div>
 
         <div className="Home_database">
-          <div className="card mb-3">
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img className="card-img" src={img1} alt="working" />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
-                This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
+          <div className="col-sm-4">
+            <img className="center-block img-thumbnail" src={img1} alt="image1"  />
+            <h3 className="text-center">Step 1</h3>
+            <p className="text"></p>
           </div>
-
-          <div className="card mb-3">
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img className="card-img" src={img1} alt="working" />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
-                This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
+          <div className="col-sm-4">
+            <img className="img-thumbnail" src={img1} alt="image1" />
+            <h3>Step 2</h3>
           </div>
-
-          <div className="card mb-3">
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img className="card-img" src={img1} alt="working" />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. 
-                This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
+          <div className="col-sm-4">
+            <img className="img-thumbnail" src={img1} alt="image1" />
+            <h3>Step 3</h3>
           </div>
         </div>
 
-        <div className="Home_stats">
+        {/* <div className="Home_stats">
           <div className="row">
             <div className="col-sm-4">
               <div className="Home_circle ">
@@ -101,7 +73,7 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+    </div> */}
 
         <div className="Home_get-started">
           <h2 className="">Get Started Today</h2>
