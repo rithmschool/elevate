@@ -100,9 +100,9 @@ class Navigation extends React.Component {
     );
 
     const userIsAdmin = (
-      <AdminContext.Consumer>
-        {isAdmin =>
-          isAdmin && (
+      <UserContext.Consumer>
+        {currentUser =>
+          currentUser && currentUser.is_admin (
             <li className="nav-item adminStyle danger active">
               <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
                 **Admin**
@@ -110,7 +110,7 @@ class Navigation extends React.Component {
             </li>
           )
         }
-      </AdminContext.Consumer>
+      </UserContext.Consumer>
     );
 
     return (

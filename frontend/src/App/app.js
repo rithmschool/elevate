@@ -2,10 +2,10 @@ import React from "react";
 import { decode } from "jsonwebtoken";
 
 import { UserContext } from "../userContext";
-import Navigation from "../Navigation/navigation";
-import Routes from "../Routes/routes";
+import Navigation from "./Navigation/navigation";
+import Routes from "./Routes/routes";
 import ElevateApi from "../elevateApi";
-import Spinner from "../Spinner/spinner";
+import Spinner from "./Spinner/spinner";
 
 class App extends React.Component {
   constructor(props) {
