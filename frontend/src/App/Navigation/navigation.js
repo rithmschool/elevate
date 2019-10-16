@@ -88,12 +88,12 @@ class Navigation extends React.Component {
                 </div>
               </div>
             ) : (
-              <div ref={this.myRef}>
-                <Link to="/login" className="Nav-link Nav-link-ltr">
-                  Sign In
+                <div ref={this.myRef}>
+                  <Link to="/login" className="Nav-link Nav-link-ltr">
+                    Sign In
                 </Link>
-              </div>
-            )}
+                </div>
+              )}
           </li>
         )}
       </UserContext.Consumer>
@@ -116,7 +116,7 @@ class Navigation extends React.Component {
     return (
       <Navbar color="light" light expand="md">
         <Link className="Nav_brand-name" to="/">
-          Elevate
+          Brella
         </Link>
 
         <NavbarToggler onClick={this.toggle} />
@@ -132,8 +132,28 @@ class Navigation extends React.Component {
               data-toggle="collapse"
               data-target=".in"
             >
-              <Link to="/ask-an-expert" className="Nav-link Nav-link-ltr">
-                Ask An Expert
+              <Link to="/" className="Nav-link Nav-link-ltr">
+                How it works
+              </Link>
+            </li>
+            <li
+              className="nav-item active"
+              data-toggle="collapse"
+              data-target=".in"
+            >
+              <Link to="/" className="Nav-link Nav-link-ltr">
+                About
+              </Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li
+              className="nav-item active"
+              data-toggle="collapse"
+              data-target=".in"
+            >
+              <Link to="/" className="Nav-link Nav-link-ltr">
+                For Employeers
               </Link>
             </li>
           </ul>
