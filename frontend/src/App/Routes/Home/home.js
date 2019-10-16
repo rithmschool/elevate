@@ -3,7 +3,10 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import "./home.css";
-
+import img1 from "./img/001.jpg"
+import file from "./img/files.png"
+import person from "./img/person.png"
+import completed from "./img/completed.png"
 
 class Home extends React.Component {
   render() {
@@ -39,18 +42,35 @@ class Home extends React.Component {
 
         <div className="Home_database">
           <div className="col-sm-4">
-            <img className="center-block img-thumbnail" src={img1} alt="image1"  />
+            <img className="img-thumbnail mx-auto d-block" src={file} alt="image1"  />
             <h3 className="text-center">Step 1</h3>
-            <p className="text"></p>
+            <p className="text">
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+            </p>
           </div>
+       
           <div className="col-sm-4">
-            <img className="img-thumbnail" src={img1} alt="image1" />
-            <h3>Step 2</h3>
+            <img className="img-thumbnail mx-auto d-block" src={person} alt="image1"  />
+            <h3 className="text-center">Step 2</h3>
+            <p className="text">
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+            </p>
           </div>
+       
           <div className="col-sm-4">
-            <img className="img-thumbnail" src={img1} alt="image1" />
-            <h3>Step 3</h3>
+            <img className="img-thumbnail mx-auto d-block" src={completed} alt="image1"  />
+            <h3 className="text-center">Step 3</h3>
+            <p className="text">
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+              Upload your documents to Brella.
+            </p>
           </div>
+       
         </div>
 
         {/* <div className="Home_stats">
