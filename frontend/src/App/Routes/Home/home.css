@@ -5,7 +5,7 @@
   align-items: center;
   font-family: 'Raleway', 'Lucida Sans';
   width: 100vw;
-  height: 100vh;
+  height: 60vh;
 }
 
 .Home_container h1 {
@@ -33,6 +33,7 @@
   width: 100vw;
   height: 50vh;
   text-align: center;
+  margin-bottom: 5%;
 }
 
 .Home_template_child {
