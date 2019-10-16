@@ -25,17 +25,20 @@
 .Home_template,
 .Home_database {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
   width: 100vw;
-  height: 50vh;
+  height: 40vh;
   text-align: center;
 }
 
+.Home_template_child {
+  padding: 3.5vw;
+  justify-content: space-evenly;
+}
+
 .Home_template img {
-  height: 40vh;
-  width: 40vw;
+  height: 35vh;
+  width: 35vw;
   border-radius: 10px;
 }
 
