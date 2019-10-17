@@ -50,13 +50,13 @@
   font-weight: bold;
 }
 
-.Home_database-img {
+.Home_database-img-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Home_database-img img {
+.Home_database-img-container img {
   min-width: 20%;
   max-width: 20%;
   min-height: 10%;
