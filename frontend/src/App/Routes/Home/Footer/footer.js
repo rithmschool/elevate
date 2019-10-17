@@ -1,68 +1,17 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./footer.css";
-import ElevateApi from "../../../../elevateApi";
+import NewsletterSignUpForm from "./NewsletterSignUpForm/newsletterSignUpForm";
 
 class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      signedUp: false
-    };
-  }
-
-  handleChange = evt => {
-    this.setState({ [evt.target.name]: evt.target.value });
-  };
-
-  handleSubmit = async evt => {
-    evt.preventDefault();
-    await ElevateApi.postNewsletterSignUp(this.state);
-    this.setState({
-      email: "",
-      signedUp: true
-    });
-  };
-
   render() {
     return (
       <div className="Footer">
         <Container>
           <Row>
             <Col className="d-flex flex-column justify-content-center">
-              {this.state.signedUp ? (
-                <h6>Thanks for signing up!</h6>
-              ) : (
-                <div>
-                  <h6>Stay up to date with Brella</h6>
-                  <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                      <Label for="email" hidden>
-                        newsletter email
-                      </Label>
-                      <Input
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="Email Address"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                    </FormGroup>
-                  </Form>
-                </div>
-              )}
+              <NewsletterSignUpForm />
             </Col>
             <Col>
               <Link to="/ask-an-expert">Blog</Link>

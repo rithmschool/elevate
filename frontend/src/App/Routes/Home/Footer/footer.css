@@ -6,7 +6,7 @@
 .Footer a {
   font-weight: bold;
   font-size: 14px;
-  color: rgba(57, 69, 87, .75);
+  color: rgba(57, 69, 87, 0.75);
 }
 
 .Footer a:hover {
@@ -26,13 +26,13 @@
   font-weight: normal;
   font-size: 1.5em;
   font-family: "Exo 2", sans-serif;
-  color: #394557;
+  color: #6558f5;
   opacity: 0.65;
   letter-spacing: 3px;
 }
 
 .Footer a.brand-logo:hover {
-  color: #394557;
+  color: #6558f5;
   opacity: 0.85;
 }
 
