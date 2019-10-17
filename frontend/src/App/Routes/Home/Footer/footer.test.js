@@ -13,11 +13,11 @@ it("renders without crashing", function() {
 });
 
 it("matches snapshot", function() {
-  let wrapper = shallow(
+  let wrapper = mount(
     <MemoryRouter>
       <Footer />
     </MemoryRouter>
   );
-  let serialized = toJson(wrapper);
+  let serialized = toJson(wrapper.find(Footer));
   expect(serialized).toMatchSnapshot();
 });
