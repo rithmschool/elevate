@@ -1,12 +1,13 @@
 import React from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
 
 import "./home.css";
-import img1 from "./img/001.jpg"
-import file from "./img/files.png"
-import person from "./img/person.png"
-import completed from "./img/completed.png"
+import img1 from "./img/001.jpg";
+import file from "./img/files.png";
+import person from "./img/person.png";
+import completed from "./img/completed.png";
 
 class Home extends React.Component {
   render() {
@@ -21,26 +22,32 @@ class Home extends React.Component {
           </Link>
         </div>
 
-        <div className="Home_template">
-          <div className="Home_template_child">
-            <img className="card-img" src={img1} alt="working" />
-          </div>
-          <div className="Home_template_child">
-            <h1>
-              <b>Why Brella?</b>
-            </h1>
-            <p>
-              Mission statement goes here, sell a story to the user. Mission
-              statement goes here, sell a story to the user. Mission statement
-              goes here, sell a story to the user. Mission statement goes here,
-              sell a story to the user. Mission statement goes here, sell a
-              story to the user. Mission statement goes here, sell a story to
-              the user.
-            </p>
-          </div>
-        </div>
+        <Container className="Home_template">
+          <Row>
+            <Col md={6}>
+              <div className="Home_template_child">
+                <img className="card-img" src={img1} alt="working" />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="Home_template_child">
+                <h1>
+                  <b>Why Brella?</b>
+                </h1>
+                <p>
+                  Mission statement goes here, sell a story to the user. Mission
+                  statement goes here, sell a story to the user. Mission
+                  statement goes here, sell a story to the user. Mission
+                  statement goes here, sell a story to the user. Mission
+                  statement goes here, sell a story to the user. Mission
+                  statement goes here, sell a story to the user.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
 
-        <div className="Home_database">
+        {/* <div className="Home_database">
           <div className="col-sm-4">
             <img className="img-thumbnail mx-auto d-block" src={file} alt="image1"  />
             <h3 className="text-center">Step 1</h3>
@@ -71,7 +78,7 @@ class Home extends React.Component {
             </p>
           </div>
        
-        </div>
+        </div> */}
 
         {/* <div className="Home_stats">
           <div className="row">
@@ -95,13 +102,13 @@ class Home extends React.Component {
           </div>
     </div> */}
 
-        <div className="Home_get-started">
+        {/* <div className="Home_get-started">
           <h2 className="">Get Started Today</h2>
 
           <Link to="/ask-an-expert">
             <Button color="primary">Ask An Expert</Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     );
   }
