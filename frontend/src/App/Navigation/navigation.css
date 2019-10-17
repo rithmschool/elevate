@@ -9,6 +9,7 @@
   opacity: 1;
   cursor: pointer;
 }
+
 .Nav-link {
   font-weight: bold;
   font-size: 14px;
@@ -95,7 +96,16 @@
   .fa-user {
     display: none;
   }
+
   .userMenu.is-open {
     min-width: 100%;
   }
+}
+
+.Nav-link-ltr {
+  margin-bottom: -8px;
+}
+
+.Nav_brand-name {
+  color: #6558f5;
 }
