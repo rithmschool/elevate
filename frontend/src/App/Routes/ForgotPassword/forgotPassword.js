@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Button, Form, Label, Input, Row } from "reactstrap";
+import { Button, Form } from "react-bootstrap";
 
 import "./forgotPassword.css";
 import ElevateApi from "../../../elevateApi";
@@ -73,42 +73,40 @@ class ForgotPassword extends React.Component {
           shadow
           forgotPassword_container`}
       >
-        <Form onSubmit={this.sendEmail}>
-          <div style={{ textAlign: "center" }}>
-            <h3 style={{ marginTop: "2%" }}>Forgot Password</h3>
-            <p>
-              Please enter your email address and we'll send you instructions on
-              how to reset your password
-            </p>
-          </div>
+        <div>
+          <Form onSubmit={this.sendEmail}>
+            <div className="text">
+              <h3 className="title">Reset Password</h3>
+              <p>
+                Please enter your email address and we'll send you instructions
+                on how to reset your password
+              </p>
+            </div>
 
-          <Row form>
-            <Col md={12}>
-              <Label className="form-group has-float-label">
-                <Input
-                  onChange={this.handleChange}
-                  value={email}
-                  type="email"
-                  name="email"
-                  id="forgt-email"
-                />
-                <span>Email</span>
-              </Label>
-            </Col>
-          </Row>
+            <Form.Group>
+              <Form.Control
+                className="form-group has-float-label"
+                onChange={this.handleChange}
+                value={email}
+                type="email"
+                name="email"
+                id="forgt-email"
+                placeholder="email"
+              />
+            </Form.Group>
 
-          {errors.length > 0 && <Alert type="danger" messages={errors} />}
+            {errors.length > 0 && <Alert type="danger" messages={errors} />}
 
-          {emailSent && (
-            <Alert type="success" messages={this.state.msgFromServer} />
-          )}
-
-          <Col align="center">
-            <Button size="sm" className="btn btn-info">
-              Send Password Recovery Email
-            </Button>
-          </Col>
-        </Form>
+            {emailSent && (
+              <Alert type="success" messages={this.state.msgFromServer} />
+            )}
+            <div className="button">
+              <Button size="sm" className="btn btn-info">
+                Send Password Recovery Email
+              </Button>
+            </div>
+          </Form>
+        </div>
       </div>
     );
   }
