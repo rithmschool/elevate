@@ -25,7 +25,6 @@ class Navigation extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
-
   myRef = React.createRef();
 
   // Hide user menu when click outside dropdown
