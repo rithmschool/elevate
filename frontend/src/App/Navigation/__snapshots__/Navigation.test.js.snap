@@ -11,7 +11,7 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
     className="Nav_brand-name"
     to="/"
   >
-    Elevate
+    Brella
   </Link>
   <NavbarToggler
     onClick={[Function]}
@@ -38,7 +38,7 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
     unmountOnExit={false}
   >
     <ul
-      className="navbar-nav mr-auto"
+      className="navbar-nav ml-auto"
     >
       <li
         className="nav-item active"
@@ -47,9 +47,21 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
       >
         <Link
           className="Nav-link Nav-link-ltr"
-          to="/ask-an-expert"
+          to="/"
         >
-          Ask An Expert
+          About
+        </Link>
+      </li>
+      <li
+        className="nav-item active"
+        data-target=".in"
+        data-toggle="collapse"
+      >
+        <Link
+          className="Nav-link Nav-link-ltr"
+          to="/"
+        >
+          For Employers
         </Link>
       </li>
     </ul>
