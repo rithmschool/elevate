@@ -11,7 +11,7 @@ exports[`matches snapshot 1`] = `
     className="Nav_brand-name"
     to="/"
   >
-    Brella
+    Elevate
   </Link>
   <NavbarToggler
     onClick={[Function]}
@@ -38,7 +38,7 @@ exports[`matches snapshot 1`] = `
     unmountOnExit={false}
   >
     <ul
-      className="navbar-nav ml-auto"
+      className="navbar-nav mr-auto"
     >
       <li
         className="nav-item active"
@@ -47,21 +47,9 @@ exports[`matches snapshot 1`] = `
       >
         <Link
           className="Nav-link Nav-link-ltr"
-          to="/"
+          to="/ask-an-expert"
         >
-          About
-        </Link>
-      </li>
-      <li
-        className="nav-item active"
-        data-target=".in"
-        data-toggle="collapse"
-      >
-        <Link
-          className="Nav-link Nav-link-ltr"
-          to="/"
-        >
-          For Employers
+          Ask An Expert
         </Link>
       </li>
     </ul>

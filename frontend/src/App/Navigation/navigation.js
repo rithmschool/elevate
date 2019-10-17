@@ -25,6 +25,7 @@ class Navigation extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
+
   myRef = React.createRef();
 
   // Hide user menu when click outside dropdown
@@ -115,7 +116,7 @@ class Navigation extends React.Component {
     return (
       <Navbar color="light" light expand="md">
         <Link className="Nav_brand-name" to="/">
-          Brella
+          Elevate
         </Link>
 
         <NavbarToggler onClick={this.toggle} />
@@ -125,23 +126,14 @@ class Navigation extends React.Component {
           navbar
           className="collapse.navbar-collapse"
         >
-          <ul className="navbar-nav ml-auto">
+          <ul className="navbar-nav mr-auto">
             <li
               className="nav-item active"
               data-toggle="collapse"
               data-target=".in"
             >
-              <Link to="/" className="Nav-link Nav-link-ltr">
-                About
-              </Link>
-            </li>
-            <li
-              className="nav-item active"
-              data-toggle="collapse"
-              data-target=".in"
-            >
-              <Link to="/" className="Nav-link Nav-link-ltr">
-                For Employers
+              <Link to="/ask-an-expert" className="Nav-link Nav-link-ltr">
+                Ask An Expert
               </Link>
             </li>
           </ul>
