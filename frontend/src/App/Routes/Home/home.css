@@ -33,7 +33,7 @@
 }
 
 
-.Home_template h1 {
+.Home_template-intro h1 {
   text-align: center;
 }
 
@@ -47,7 +47,7 @@
 
 .Home_database-title {
   text-align: center;
-  margin-bottom: 1vh;
+  margin-bottom: 1%;
   font-weight: bold;
 }
 
@@ -88,29 +88,3 @@
   margin-top: 5px;
   text-align: center;
 }
-
-.Home_circle {
-  margin: 5%;
-  display: inline-block;
-  padding: 20px;
-  width: 10em;
-  height: 10em;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-
-.Home_circle p {
-  font-size: 1.5rem;
-  line-height: 30px;
-}
-
-/* @media only screen and (max-width: 767px) {
-  .Home_image1 {
-    object-fit: cover;
-    width: 100vw;
-    height: 767px;
-  }
-  .Home_h1 {
-    font-size: 6vw;
-  }
-} */
