@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
+import Image from "react-bootstrap/Image";
 
 import "./home.css";
 import img1 from "./img/001.jpg";
@@ -22,7 +23,7 @@ class Home extends React.Component {
           </Link>
         </div>
 
-        <Container className="Home_template">
+        <Container fluid className="Home_template">
           <Row>
             <Col md={6}>
               <div className="Home_template_child">
@@ -47,6 +48,33 @@ class Home extends React.Component {
           </Row>
         </Container>
 
+        <Container fluid className="Home_database">
+          <Row>
+            <Col>
+            <h1 className="Home_database-title">How it works</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} md={4}>
+              <p>
+                Upload your documents to Brella. Upload your documents to
+                Brella. Upload your documents to Brella.
+              </p>
+            </Col>
+            <Col xs={6} md={4}>
+              <p>
+                Upload your documents to Brella. Upload your documents to
+                Brella. Upload your documents to Brella.
+              </p>
+            </Col>
+            <Col xs={6} md={4}>
+              <p>
+                Upload your documents to Brella. Upload your documents to
+                Brella. Upload your documents to Brella.
+              </p>
+            </Col>
+          </Row>
+        </Container>
         {/* <div className="Home_database">
           <div className="col-sm-4">
             <img className="img-thumbnail mx-auto d-block" src={file} alt="image1"  />
