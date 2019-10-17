@@ -126,16 +126,7 @@ class Navigation extends React.Component {
           navbar
           className="collapse.navbar-collapse"
         >
-          <ul className="navbar-nav mr-auto">
-            <li
-              className="nav-item active"
-              data-toggle="collapse"
-              data-target=".in"
-            >
-              <Link to="/" className="Nav-link Nav-link-ltr">
-                How it works
-              </Link>
-            </li>
+          <ul className="navbar-nav ml-auto">
             <li
               className="nav-item active"
               data-toggle="collapse"
@@ -145,15 +136,13 @@ class Navigation extends React.Component {
                 About
               </Link>
             </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
             <li
               className="nav-item active"
               data-toggle="collapse"
               data-target=".in"
             >
               <Link to="/" className="Nav-link Nav-link-ltr">
-                For Employeers
+                For Employers
               </Link>
             </li>
           </ul>
