@@ -24,8 +24,9 @@ function UserBasicInfoForm(props) {
 
             {!isEdit && (
               <i
+                data-testid="turnEditOn"
                 className="m-3 fas fa-edit fa-1x"
-                onClick={() => setIsEdit(!isEdit)}
+                onClick={() => setIsEdit(true)}
               ></i>
             )}
           </div>
@@ -36,6 +37,7 @@ function UserBasicInfoForm(props) {
             <Form.Control
               onChange={e => setFirstName(e.target.value)}
               id="EditUser-first_name"
+              data-testid="firstName"
               name="first_name"
               type="text"
               disabled={!isEdit}
@@ -49,6 +51,7 @@ function UserBasicInfoForm(props) {
             <Form.Control
               onChange={e => setLastName(e.target.value)}
               id="EditUser-last_name"
+              data-testid="lastName"
               name="last_name"
               type="text"
               disabled={!isEdit}
@@ -62,6 +65,7 @@ function UserBasicInfoForm(props) {
             <Form.Control
               onChange={e => setEmail(e.target.value)}
               id="EditUser-email"
+              data-testid="email"
               name="email"
               type="text"
               disabled={!isEdit}
@@ -75,6 +79,7 @@ function UserBasicInfoForm(props) {
             <Form.Control
               onChange={e => setCurrentCompany(e.target.value)}
               id="EditUser-current_company"
+              data-testid="currentCompany"
               name="current_company"
               type="text"
               disabled={!isEdit}
@@ -88,6 +93,7 @@ function UserBasicInfoForm(props) {
             <Form.Control
               onChange={e => setHireDate(e.target.value)}
               id="EditUser-hire_date"
+              data-testid="hireDate"
               name="hire_date"
               type="date"
               disabled={!isEdit}
