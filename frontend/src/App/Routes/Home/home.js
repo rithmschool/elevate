@@ -29,7 +29,7 @@ class Home extends React.Component {
                 <img className="card-img" src={img1} alt="working" />
               </div>
             </Col>
-            <Col md={6}>
+            <Col md={6} style={{display:'flex', alignItems: 'center'}}>
               <div className="Home_template-intro">
                 <h1>
                   <b>Why Brella?</b>
@@ -57,6 +57,7 @@ class Home extends React.Component {
             <Col md={4}>
               <div className="Home_database-img">
                 <img src={file} alt="startFile" />
+                <h4>Step 1</h4>
               </div>
               <div>
                 <p className="Home_database-text">
@@ -70,6 +71,7 @@ class Home extends React.Component {
             <Col md={4}>
               <div className="Home_database-img">
                 <img src={person} alt="person" />
+                <h4>Step 2</h4>
               </div>
               <p className="Home_database-text">
                 Upload your documents to Brella. Upload your documents to
@@ -79,6 +81,7 @@ class Home extends React.Component {
             <Col md={4}>
               <div className="Home_database-img">
                 <img src={completed} alt="completed" />
+                <h4>Step 3</h4>
               </div>
               <p className="Home_database-text">
                 Upload your documents to Brella. Upload your documents to
@@ -89,7 +92,7 @@ class Home extends React.Component {
         </Container>
 
         <div className="Home_get-started">
-          <h1 className="">Make Use Of Brella Today</h1>
+          <h1 className="">Connect with Brella today</h1>
           <Link to={routeStr} className="btn btn-primary">
             Get Started
           </Link>
