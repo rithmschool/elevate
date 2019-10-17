@@ -101,7 +101,7 @@ class LoginSignUpForm extends React.Component {
     this.setState({ isLoading: true });
 
     try {
-      if (this.state.login) {
+      if (this.state.loginView) {
         const data = {
           email: this.state.email,
           password: this.state.password
@@ -274,13 +274,11 @@ class LoginSignUpForm extends React.Component {
       >
         <div className="LoginSignUpForm_form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
-            {/* handle login failure */}
-            {this.state.errors.length > 0 && <LoginError />}
-
             <div className="mb-3">{loginView ? "Sign In" : "Sign Up"}</div>
 
             {emailPasswordInputs}
             {!loginView && firstLastNameInputs}
+            {this.state.errors.length > 0 && <LoginError />}
             {loginView ? signInButton : signUpButton}
             {loginView ? loginWithSocial : loginWithSocial}
             {loginView && directToSignUp}
