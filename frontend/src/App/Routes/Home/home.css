@@ -73,18 +73,8 @@
 .Home_get-started {
   align-items: center;
   justify-content: center;
+  text-align: center; 
   margin-top: 5px;
-  width: 100vw;
-  height: 40vh;
-  text-align: center;
+  height: 20vh;
   padding: 8% 0;
-}
-
-.Home_stats {
-  border: 1px #dcd9d5 solid;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  text-align: center;
 }
