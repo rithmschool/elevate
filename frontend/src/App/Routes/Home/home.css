@@ -32,16 +32,14 @@
 }
 
 .Home_database {
-  display: flex;
-  align-items: center;
-  height: 50vh;
+  margin-top: 10vh;
 }
 
-.Home_database img {
-  width: 25%;
+.Home_database-title {
+  text-align: center;
+  margin-bottom: 3vh;
+  font-weight: bold;
 }
-
-
 
 .fa-user-tie,
 .fa-chart-bar {
