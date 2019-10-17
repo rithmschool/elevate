@@ -53,9 +53,10 @@ class Home extends React.Component {
               <h1 className="Home_database-title">How it works</h1>
             </Col>
           </Row>
+
           <Row>
             <Col md={4}>
-              <div className="Home_database-img">
+              <div className="Home_database-img-container">
                 <img src={file} alt="startFile" />
                 <h4>Step 1</h4>
               </div>
@@ -69,7 +70,7 @@ class Home extends React.Component {
               </div>
             </Col>
             <Col md={4}>
-              <div className="Home_database-img">
+              <div className="Home_database-img-container">
                 <img src={person} alt="person" />
                 <h4>Step 2</h4>
               </div>
@@ -79,7 +80,7 @@ class Home extends React.Component {
               </p>
             </Col>
             <Col md={4}>
-              <div className="Home_database-img">
+              <div className="Home_database-img-container">
                 <img src={completed} alt="completed" />
                 <h4>Step 3</h4>
               </div>
