@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsletterSignUpForm matches snapshot 1`] = `
+<newsletterSignUpForm>
+  <div>
+    <div>
+      <h6>
+        Stay up to date with Brella
+      </h6>
+      <Form
+        onSubmit={[Function]}
+        tag="form"
+      >
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <FormGroup
+            tag="div"
+          >
+            <div
+              className="form-group"
+            >
+              <Label
+                for="email"
+                hidden={true}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <label
+                  className="sr-only"
+                  htmlFor="email"
+                >
+                  newsletter email
+                </label>
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                onChange={[Function]}
+                placeholder="Email Address"
+                type="text"
+                value=""
+              >
+                <input
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email Address"
+                  type="text"
+                  value=""
+                />
+              </Input>
+            </div>
+          </FormGroup>
+        </form>
+      </Form>
+    </div>
+  </div>
+</newsletterSignUpForm>
+`;
