@@ -115,8 +115,14 @@ class ElevateApi {
     );
     return res;
   }
+
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
+  }
+
+  static async postNewsletterSignUp(data) {
+    let res = await this.request(`newsletter/`, data, "post");
+    return res;
   }
 }
 

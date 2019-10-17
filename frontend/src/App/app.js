@@ -6,7 +6,6 @@ import Navigation from "./Navigation/navigation";
 import Routes from "./Routes/routes";
 import ElevateApi from "../elevateApi";
 import Spinner from "./Spinner/spinner";
-import Footer from "./Footer/footer";
 
 class App extends React.Component {
   constructor(props) {
@@ -53,7 +52,6 @@ class App extends React.Component {
         <AdminContext.Provider value={this.state.isAdmin}>
           <Navigation logout={this.handleLogOut} />
           <Routes getCurrentUser={this.getCurrentUser} />
-          <Footer />
         </AdminContext.Provider>
       </UserContext.Provider>
     );

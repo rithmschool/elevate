@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import img1 from "./img/001.jpg";
 import "./home.css";
+import Footer from "./Footer/footer";
 
 class Home extends React.Component {
   render() {
@@ -53,6 +54,7 @@ class Home extends React.Component {
             <Button color="primary">Ask An Expert</Button>
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
