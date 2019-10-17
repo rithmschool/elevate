@@ -27,23 +27,7 @@
   background-color: #31168B !important;
 }
 
-.Home_template {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 50vh;
-  text-align: center;
-}
-
-.Home_template_child {
-  padding: 3.5vw;
-  justify-content: space-evenly;
-}
-
 .Home_template img {
-  height: 35vh;
-  width: 35vw;
   border-radius: 10px;
 }
 
