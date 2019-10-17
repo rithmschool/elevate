@@ -127,7 +127,7 @@ exports[`matches snapshot 1`] = `
         }
       >
         <div
-          className="Home_database-img"
+          className="Home_database-img-container"
         >
           <img
             alt="startFile"
@@ -159,7 +159,7 @@ exports[`matches snapshot 1`] = `
         }
       >
         <div
-          className="Home_database-img"
+          className="Home_database-img-container"
         >
           <img
             alt="person"
@@ -189,7 +189,7 @@ exports[`matches snapshot 1`] = `
         }
       >
         <div
-          className="Home_database-img"
+          className="Home_database-img-container"
         >
           <img
             alt="completed"
