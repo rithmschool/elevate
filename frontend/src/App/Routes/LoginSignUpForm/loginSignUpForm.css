@@ -1,3 +1,8 @@
+.container {
+  margin-top: 10%;
+  background-color: #f4f6f8;
+}
+
 .LoginSignUpForm_login-or {
   position: relative;
   color: #aaa;
@@ -41,6 +46,10 @@
 
 .LoginSignUpForm_form-inside-container {
   padding: 2em;
+}
+
+#signup {
+  text-align: center;
 }
 
 @media screen and (max-width: 750px) {

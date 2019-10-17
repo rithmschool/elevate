@@ -16,7 +16,7 @@ class LoginSignUpForm extends React.Component {
     super(props);
 
     this.state = {
-      isLogin: true,
+      loginView: true,
       email: "",
       password: "",
       firstName: "",
@@ -84,9 +84,9 @@ class LoginSignUpForm extends React.Component {
 
   loginOrSignup = evt => {
     if (evt.target.name === "login") {
-      this.setState({ isLogin: true });
+      this.setState({ loginView: true });
     } else {
-      this.setState({ isLogin: false });
+      this.setState({ loginView: false });
     }
   };
 
@@ -101,7 +101,7 @@ class LoginSignUpForm extends React.Component {
     this.setState({ isLoading: true });
 
     try {
-      if (this.state.isLogin) {
+      if (this.state.login) {
         const data = {
           email: this.state.email,
           password: this.state.password
@@ -130,8 +130,8 @@ class LoginSignUpForm extends React.Component {
   };
 
   render() {
-    let loginState = this.state.isLogin;
-    let text = loginState ? "Sign In" : "Sign Up";
+    let loginView = this.state.loginView;
+
     if (this.state.isLoading) return <Spinner />;
 
     const firstLastNameInputs = (
@@ -202,7 +202,7 @@ class LoginSignUpForm extends React.Component {
             onClick={this.handleGoogleSignin}
           >
             <i className="fab fa-google"></i>
-            <span>{`Sign in with Google`}</span>
+            <span>Sign in with Google</span>
           </Button>
         </div>
       </div>
@@ -225,11 +225,7 @@ class LoginSignUpForm extends React.Component {
     );
 
     const directToSignIn = (
-      <Form.Text
-        id="signup"
-        className="text-muted"
-        style={{ textAlign: "center" }}
-      >
+      <Form.Text id="signup" className="text-muted">
         <button
           name="login"
           className="LoginSignUpForm_link-signin"
@@ -242,13 +238,8 @@ class LoginSignUpForm extends React.Component {
 
     const directToSignUp = (
       <div>
-        <Form.Text
-          id="signup"
-          className="text-muted mt-3"
-          style={{ textAlign: "center" }}
-        >
-          {`Don't have an account?`}
-
+        <Form.Text id="signup" className="text-muted mt-3">
+          Don't have an account?
           <button
             className="LoginSignUpForm_link-signup"
             onClick={this.loginOrSignup}
@@ -261,10 +252,7 @@ class LoginSignUpForm extends React.Component {
 
     const forgotPasswordLink = (
       <div>
-        <Form.Text
-          className="LoginSignUpForm_link-signup"
-          style={{ textAlign: "center" }}
-        >
+        <Form.Text id="signup" className="LoginSignUpForm_link-signup">
           <a href="http://localhost:3000/reset-password/forgot">
             Forgot password?
           </a>
@@ -274,7 +262,7 @@ class LoginSignUpForm extends React.Component {
 
     return (
       <div
-        className={`
+        className="
           container
           col-md-6
           offset-md-3
@@ -282,26 +270,21 @@ class LoginSignUpForm extends React.Component {
           offset-lg-4
           border 
           rounded 
-          shadow`}
-        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+          shadow"
       >
         <div className="LoginSignUpForm_form-inside-container mt-5">
           <Form onSubmit={this.handleSubmit}>
             {/* handle login failure */}
             {this.state.errors.length > 0 && <LoginError />}
-            <div className="mb-3">{text}</div>
+
+            <div className="mb-3">{loginView ? "Sign In" : "Sign Up"}</div>
 
             {emailPasswordInputs}
-
-            {loginState && signInButton}
-            {loginState && loginWithSocial}
-            {loginState && directToSignUp}
-            {loginState && forgotPasswordLink}
-
-            {!loginState && firstLastNameInputs}
-            {!loginState && signUpButton}
-            {!loginState && loginWithSocial}
-            {!loginState && directToSignIn}
+            {!loginView && firstLastNameInputs}
+            {loginView ? signInButton : signUpButton}
+            {loginView ? loginWithSocial : loginWithSocial}
+            {loginView && directToSignUp}
+            {loginView ? forgotPasswordLink : directToSignIn}
           </Form>
         </div>
       </div>
