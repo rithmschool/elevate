@@ -3,21 +3,7 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className="
-          container
-          col-md-6
-          offset-md-3
-          col-lg-4
-          offset-lg-4
-          border 
-          rounded 
-          shadow"
-    style={
-      Object {
-        "backgroundColor": "#F4F6F8",
-        "marginTop": "10%",
-      }
-    }
+    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border  rounded  shadow"
   >
     <div
       className="LoginSignUpForm_form-inside-container mt-5"
@@ -148,20 +134,10 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
             <FormText
               className="text-muted mt-3"
               id="signup"
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
             >
               <small
                 className="text-muted mt-3 form-text"
                 id="signup"
-                style={
-                  Object {
-                    "textAlign": "center",
-                  }
-                }
               >
                 Don't have an account?
                 <button
@@ -176,19 +152,11 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           <div>
             <FormText
               className="LoginSignUpForm_link-signup"
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
+              id="signup"
             >
               <small
                 className="LoginSignUpForm_link-signup form-text"
-                style={
-                  Object {
-                    "textAlign": "center",
-                  }
-                }
+                id="signup"
               >
                 <a
                   href="http://localhost:3000/reset-password/forgot"
