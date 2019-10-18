@@ -110,6 +110,7 @@ function UserBasicInfoForm(props) {
 
                 <h6
                   className="mr-3 ml-3 form-styles_cancel"
+                  data-testid="cancel"
                   onClick={() => setIsEdit(false)}
                 >
                   Cancel

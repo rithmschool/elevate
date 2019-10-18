@@ -73,6 +73,20 @@ describe("UserBasicInfoForm", function() {
     expect(input.disabled).toBeTruthy();
   });
 
+  it("disables the form inputs upon clicking cancel", function() {
+    const handleUserUpdate = jest.fn();
+    const { getByTestId } = render(
+      <UserBasicInfoForm {...currentUser} handleUserUpdate={handleUserUpdate} />
+    );
+    const toggle = getByTestId("turnEditOn");
+    const input = getByTestId("firstName");
+    fireEvent.click(toggle);
+    expect(input.disabled).toBeFalsy();
+    const cancel = getByTestId("cancel");
+    fireEvent.click(cancel);
+    expect(input.disabled).toBeTruthy();
+  });
+
   it("calls handleUserUpdate on submission", function() {
     const handleUserUpdate = jest.fn();
     const { getByTestId } = render(
