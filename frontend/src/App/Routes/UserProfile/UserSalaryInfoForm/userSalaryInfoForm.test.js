@@ -34,7 +34,7 @@ describe("UserSalaryInfoForm", function() {
     expect(serialized).toMatchSnapshot();
   });
 
-  it("renders all inputs", function(){
+  it("renders all inputs", function() {
     expect(wrapper.find(Form.Control)).toHaveLength(3);
-  })
+  });
 });
