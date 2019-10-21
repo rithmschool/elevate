@@ -82,7 +82,10 @@ describe("UserSalaryInfoForm", function() {
   it("disables the form inputs upon clicking cancel", function() {
     const handleSalaryUpdate = jest.fn();
     const { getByTestId } = render(
-      <UserSalaryInfoForm {...latestSalary} handleSalaryUpdate={handleSalaryUpdate} />
+      <UserSalaryInfoForm
+        {...latestSalary}
+        handleSalaryUpdate={handleSalaryUpdate}
+      />
     );
     const toggle = getByTestId("turnEditOn");
     const input = getByTestId("salary");
@@ -93,16 +96,16 @@ describe("UserSalaryInfoForm", function() {
     expect(input.disabled).toBeTruthy();
   });
 
-    it("calls handleSalaryUpdate on submission", function() {
-      const handleSalaryUpdate = jest.fn();
-      const { getByTestId } = render(
-        <UserSalaryInfoForm
-          {...latestSalary}
-          handleSalaryUpdate={handleSalaryUpdate}
-        />
-      );
-      const input = getByTestId("salary");
-      fireEvent.submit(input);
-      expect(handleSalaryUpdate).toBeCalledTimes(1);
-    });
+  it("calls handleSalaryUpdate on submission", function() {
+    const handleSalaryUpdate = jest.fn();
+    const { getByTestId } = render(
+      <UserSalaryInfoForm
+        {...latestSalary}
+        handleSalaryUpdate={handleSalaryUpdate}
+      />
+    );
+    const input = getByTestId("salary");
+    fireEvent.submit(input);
+    expect(handleSalaryUpdate).toBeCalledTimes(1);
+  });
 });
