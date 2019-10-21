@@ -20,7 +20,7 @@ class newsletterSignUpForm extends React.Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    
+
     try {
       const email = await ElevateApi.postNewsletterSignUp(this.state);
       console.log("email........", email);
@@ -63,7 +63,9 @@ class newsletterSignUpForm extends React.Component {
             </Form>
           </div>
         )}
-        {this.state.emailExists ? <p className="text-danger">This email is already signed up</p> : null}
+        {this.state.emailExists ? (
+          <p className="text-danger">This email is already signed up</p>
+        ) : null}
       </div>
     );
   }

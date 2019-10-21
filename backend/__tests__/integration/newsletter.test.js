@@ -9,9 +9,7 @@ const app = require("../../app");
 //test config
 const db = require("../../db");
 
-const {
-  afterAllHook
-} = require("../config");
+const { afterAllHook } = require("../config");
 
 beforeEach(async function() {
   await db.query("DELETE FROM newsletter_emails");
