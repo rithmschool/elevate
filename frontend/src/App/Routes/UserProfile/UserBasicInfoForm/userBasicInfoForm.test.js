@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import { render, fireEvent } from "@testing-library/react";
 import { Form } from "react-bootstrap";
@@ -20,7 +20,7 @@ describe("UserBasicInfoForm", function() {
   });
 
   it("renders without crashing", function() {
-    shallow(<UserBasicInfoForm {...currentUser} />);
+    render(<UserBasicInfoForm {...currentUser} />);
   });
 
   it("matches snapshot", function() {

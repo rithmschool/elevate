@@ -1,6 +1,5 @@
 import React from "react";
-import Enzyme from "enzyme";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import UserSalaryInfoForm from "./userSalaryInfoForm";
 import { Form } from "react-bootstrap";
@@ -21,7 +20,7 @@ describe("UserSalaryInfoForm", function() {
   });
 
   it("renders without crashing", function() {
-    shallow(<UserSalaryInfoForm {...latestSalary} />);
+    render(<UserSalaryInfoForm {...latestSalary} />);
   });
 
   it("shows my default text", () => {
@@ -29,7 +28,6 @@ describe("UserSalaryInfoForm", function() {
   });
 
   it("matches snapshot", function() {
-    let wrapper = shallow(<UserSalaryInfoForm />);
     let serialized = toJson(wrapper);
     expect(serialized).toMatchSnapshot();
   });
