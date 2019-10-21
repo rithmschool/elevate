@@ -26,6 +26,26 @@ exports[`main routes file matches snapshot 1`] = `
     path="/users/:userId"
     render={[Function]}
   />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/manage"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/appointments"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/templates"
+    render={[Function]}
+  />
   <ForgotPassRoutes
     exact={true}
     path="/reset-password/forgot"
