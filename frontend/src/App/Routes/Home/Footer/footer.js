@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./footer.css";
 import NewsletterSignUpForm from "./NewsletterSignUpForm/newsletterSignUpForm";

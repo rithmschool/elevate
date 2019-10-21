@@ -122,6 +122,7 @@ class ElevateApi {
 
   static async postNewsletterSignUp(data) {
     let res = await this.request(`newsletter/`, data, "post");
+    console.log(res)
     return res;
   }
 }

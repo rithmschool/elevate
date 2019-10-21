@@ -9,7 +9,8 @@ class newsletterSignUpForm extends React.Component {
 
     this.state = {
       email: "",
-      signedUp: false
+      signedUp: false,
+      emailExists: false
     };
   }
 
@@ -19,11 +20,22 @@ class newsletterSignUpForm extends React.Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    await ElevateApi.postNewsletterSignUp(this.state);
-    this.setState({
-      email: "",
-      signedUp: true
-    });
+    
+    try {
+      const email = await ElevateApi.postNewsletterSignUp(this.state);
+      console.log("email........", email);
+      if (email) {
+        this.setState({
+          email: "",
+          signedUp: true
+        });
+      }
+    } catch (err) {
+      this.setState({
+        email: "",
+        emailExists: true
+      });
+    }
   };
 
   render() {
@@ -51,6 +63,7 @@ class newsletterSignUpForm extends React.Component {
             </Form>
           </div>
         )}
+        {this.state.emailExists ? <p className="text-danger">This email is already signed up</p> : null}
       </div>
     );
   }
