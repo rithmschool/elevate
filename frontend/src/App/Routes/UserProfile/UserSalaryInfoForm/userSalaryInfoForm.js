@@ -11,19 +11,18 @@ function UserSalaryInfoForm(props) {
 
   return (
     <div
-      className="EditPUserForm container border rounded"
-      style={{ backgroundColor: "#F4F6F8" }}
-    >
-      <div className="form-inside-container mt-5">
+      className='EditPUserForm container border rounded'
+      style={{ backgroundColor: "#F4F6F8" }}>
+      <div className='form-inside-container mt-5'>
         <Form onSubmit={handleSubmit}>
-          <div className="form-styles_flex-space-between">
+          <div className='form-styles_flex-space-between'>
             <h3>Salary info</h3>
 
             {!isEdit && (
               <i
-                className="m-3 fas fa-edit fa-1x"
-                onClick={() => setIsEdit(true)}
-              ></i>
+                data-testid='turnEditOn'
+                className='m-3 fas fa-edit fa-1x'
+                onClick={() => setIsEdit(true)}></i>
             )}
           </div>
 
@@ -31,11 +30,12 @@ function UserSalaryInfoForm(props) {
             <span>Salary</span>
 
             <Form.Control
+              data-testid='salary'
               onChange={e => setSalary(e.target.value)}
-              id="EditUser-salary"
-              name="salary"
-              type="number"
-              step="5000"
+              id='EditUser-salary'
+              name='salary'
+              type='number'
+              step='5000'
               disabled={!isEdit}
               value={salary}
             />
@@ -45,11 +45,12 @@ function UserSalaryInfoForm(props) {
             <span>Equity</span>
 
             <Form.Control
+              data-testid='equity'
               onChange={e => setEquity(e.target.value)}
-              id="EditUser-equity"
-              name="equity"
-              type="number"
-              step="0.001"
+              id='EditUser-equity'
+              name='equity'
+              type='number'
+              step='0.001'
               disabled={!isEdit}
               value={equity}
             />
@@ -59,31 +60,31 @@ function UserSalaryInfoForm(props) {
             <span>Bonus</span>
 
             <Form.Control
+              data-testid='bonus'
               onChange={e => setBonus(e.target.value)}
-              id="EditUser-bonus"
-              name="bonus"
-              type="number"
-              step="500"
+              id='EditUser-bonus'
+              name='bonus'
+              type='number'
+              step='500'
               disabled={!isEdit}
               value={bonus}
             />
           </Form.Group>
 
-          <div className="row justify-content-center">
+          <div className='row justify-content-center'>
             {isEdit && (
               <div>
                 <Button
-                  id="userSalaryBtn"
-                  className="login-submit mr-3 ml-3"
-                  type="submit"
-                >
+                  id='userSalaryBtn'
+                  className='login-submit mr-3 ml-3'
+                  type='submit'>
                   Submit
                 </Button>
 
                 <h6
-                  className="mr-3 ml-3 form-styles_cancel"
-                  onClick={() => setIsEdit(false)}
-                >
+                  data-testid='cancel'
+                  className='mr-3 ml-3 form-styles_cancel'
+                  onClick={() => setIsEdit(false)}>
                   Cancel
                 </h6>
               </div>
