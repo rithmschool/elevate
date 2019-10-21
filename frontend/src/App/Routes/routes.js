@@ -10,7 +10,7 @@ import AdminPanel from "./AdminPanel/adminPanel";
 import AskAnExpert from "./AskAnExpert/askAnExpert";
 import Dashboard from "./../Routes/Dashboard/dashboard";
 import DashboardAppointments from "./../Routes/Dashboard/dashboardAppointments";
-import DashboardManage from "./../Routes/Dashboard/dashboardManage";
+import DashboardManage from "./../Routes/Dashboard/dashboardManage/dashboardManage";
 import DashboardTemplates from "./../Routes/Dashboard/dashboardTemplates";
 
 import AdminPrivateRoute from "./adminPrivateRoute";
