@@ -1,18 +1,10 @@
 import React from "react";
+import Enzyme from "enzyme";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import UserSalaryInfoForm from "./userSalaryInfoForm";
-
-it("renders without crashing", function() {
-  shallow(<UserSalaryInfoForm />);
-});
-
-it("matches snapshot", function() {
-  let wrapper = shallow(<UserSalaryInfoForm />);
-  let serialized = toJson(wrapper);
-
-  expect(serialized).toMatchSnapshot();
-});
+import { Form } from "react-bootstrap";
+import { render, fireEvent } from "@testing-library/dom";
 
 describe("UserSalaryInfoForm", function() {
   let wrapper;
@@ -28,16 +20,21 @@ describe("UserSalaryInfoForm", function() {
     wrapper = mount(<UserSalaryInfoForm {...latestSalary} />);
   });
 
-  it("has states", function() {
-    expect(wrapper.state("user_id")).toEqual(1);
-    expect(wrapper.state("salary")).toEqual(50000);
-    expect(wrapper.state("bonus")).toEqual(100);
-    expect(wrapper.state("equity")).toEqual(0.1);
-    expect(wrapper.state("isEdit")).toEqual(false);
+  it("renders without crashing", function() {
+    shallow(<UserSalaryInfoForm {...latestSalary} />);
   });
 
-  it("changes isEdit state to true whem click on edit", function() {
-    wrapper.find("i.fa-edit").simulate("click");
-    expect(wrapper.state("isEdit")).toEqual(true);
+  it("shows my default text", () => {
+    expect(wrapper.find("h3").text()).toEqual("Salary info");
   });
+
+  it("matches snapshot", function() {
+    let wrapper = shallow(<UserSalaryInfoForm />);
+    let serialized = toJson(wrapper);
+    expect(serialized).toMatchSnapshot();
+  });
+
+  it("renders all inputs", function(){
+    expect(wrapper.find(Form.Control)).toHaveLength(3);
+  })
 });
