@@ -32,7 +32,7 @@ describe("UserBasicInfoForm", function() {
     expect(wrapper.find(Form.Control)).toHaveLength(5);
   });
 
-  it("has correct initial state", function() {
+  it("renders correct initial state in form", function() {
     const { getByTestId } = render(<UserBasicInfoForm {...currentUser} />);
     const firstNameInput = getByTestId("firstName");
     const lastNameInput = getByTestId("lastName");
