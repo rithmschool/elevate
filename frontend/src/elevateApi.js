@@ -98,7 +98,7 @@ class ElevateApi {
   }
 
   static async signinGoogle(token){
-    let res = await this.request('login/ggtokensignin',{ token }, "post")
+    let res = await this.request("login/ggtokensignin", { token }, "post")
     return res.token;
   }
   
@@ -115,8 +115,15 @@ class ElevateApi {
     );
     return res;
   }
+
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
+  }
+
+  static async uploadDoc(doc){
+    console.log("doc", doc)
+    let res = await this.request("upload", doc, "post");
+    return res;
   }
 }
 
