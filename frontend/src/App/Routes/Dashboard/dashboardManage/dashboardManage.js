@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import UserDocsDataTable from "./UserDocsDataTable";
 // import { UserContext } from "../../../../userContext";
-import axios from "axios";
 import ElevateApi from "../../../../elevateApi";
-
-const BASE_URL = "http://localhost:3001";
 
 class DashboardManage extends Component {
   constructor(props) {
