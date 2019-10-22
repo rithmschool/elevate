@@ -6,10 +6,11 @@ exports[`matches snapshot 1`] = `
     className="Footer"
   >
     <Container
+      fluid={true}
       tag="div"
     >
       <div
-        className="container"
+        className="container-fluid"
       >
         <Row
           tag="div"
@@ -102,6 +103,12 @@ exports[`matches snapshot 1`] = `
               </div>
             </Col>
             <Col
+              style={
+                Object {
+                  "display": "flex",
+                  "flexDirection": "column",
+                }
+              }
               tag="div"
               widths={
                 Array [
@@ -115,6 +122,12 @@ exports[`matches snapshot 1`] = `
             >
               <div
                 className="col"
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "column",
+                  }
+                }
               >
                 <Link
                   to="/ask-an-expert"
@@ -131,7 +144,6 @@ exports[`matches snapshot 1`] = `
                     </a>
                   </LinkAnchor>
                 </Link>
-                <br />
                 <Link
                   to="/ask-an-expert"
                 >
@@ -147,7 +159,6 @@ exports[`matches snapshot 1`] = `
                     </a>
                   </LinkAnchor>
                 </Link>
-                <br />
                 <Link
                   to="/ask-an-expert"
                 >
@@ -163,7 +174,6 @@ exports[`matches snapshot 1`] = `
                     </a>
                   </LinkAnchor>
                 </Link>
-                <br />
                 <Link
                   to="/ask-an-expert"
                 >
@@ -179,7 +189,6 @@ exports[`matches snapshot 1`] = `
                     </a>
                   </LinkAnchor>
                 </Link>
-                <br />
                 <Link
                   to="/ask-an-expert"
                 >
@@ -195,7 +204,6 @@ exports[`matches snapshot 1`] = `
                     </a>
                   </LinkAnchor>
                 </Link>
-                <br />
               </div>
             </Col>
             <Col

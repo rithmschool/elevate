@@ -16,4 +16,15 @@ router.post("/", async function(req, res, next) {
   }
 });
 
+/** GET / a specific email  =>  {email: email} */
+
+router.get("/", async function(req, res, next) {
+  try {
+    const email = await Newsletter.findOne(req.query);
+    return res.status(200).json({ email });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;

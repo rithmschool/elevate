@@ -13,4 +13,12 @@ describe("NewsletterSignUpForm", function() {
     const serialized = toJson(wrapper);
     expect(serialized).toMatchSnapshot();
   });
+
+  it('calls onSubmit prop function when form is submitted', () => {
+    const onSubmitFn = jest.fn();
+    const wrapper = mount(<NewsletterSignUpForm onSubmit={onSubmitFn}/>);
+    const form = wrapper.find('form');
+    form.simulate('submit');
+    expect(onSubmitFn).toHaveBeenCalledTimes(1);
+  });
 });

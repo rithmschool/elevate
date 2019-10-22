@@ -4,6 +4,7 @@
 }
 
 .Footer a {
+  display: inline-block;
   font-weight: bold;
   font-size: 14px;
   color: rgba(57, 69, 87, 0.75);

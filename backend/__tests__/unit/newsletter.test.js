@@ -33,6 +33,6 @@ describe("Test Salary model", function() {
     await Newsletter.register(newSignUp);
 
     const response = await Newsletter.findOne({ email: "john@doe.com" });
-    expect(response).toEqual("Email already exists");
+    expect(response).toEqual({ email: "john@doe.com" });
   });
 });

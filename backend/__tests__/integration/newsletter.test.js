@@ -13,6 +13,7 @@ const { afterAllHook } = require("../config");
 
 beforeEach(async function() {
   await db.query("DELETE FROM newsletter_emails");
+  await db.query("INSERT INTO newsletter_emails (email) VALUES ('test@yahoo.com')")
 });
 
 afterAll(async () => {
@@ -28,5 +29,16 @@ describe("POST /newsletter", function() {
       });
     expect(response.statusCode).toBe(201);
     expect(response.body.newSignUp).toHaveProperty("email");
+  });
+});
+
+describe("GET /newsletter", function() {
+  test("Finds an email if that email has signed up", async function() {
+    const response = await request(app)
+      .get("/newsletter")
+      .query({ email: "test@yahoo.com" });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.email.email).toEqual("test@yahoo.com");
   });
 });

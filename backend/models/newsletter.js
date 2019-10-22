@@ -10,9 +10,6 @@ class Newsletter {
         WHERE email = $1`,
       [email]
     );
-    if (result.rows[0]) {
-      return `Email already exists`;
-    }
     return result.rows[0];
   }
 
