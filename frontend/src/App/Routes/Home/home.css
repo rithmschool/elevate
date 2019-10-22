@@ -5,7 +5,7 @@
   align-items: center;
   font-family: 'Raleway', 'Lucida Sans';
   width: 100vw;
-  height: 80vh;
+  height: 60vh;
 }
 
 .Home_container h1 {
@@ -13,89 +13,68 @@
   color: #6558f5;
 }
 
-.Home_container .btn {
+.Home_container .btn,
+.Home_get-started .btn {
   background-color: #6558f5;
   border-color: #6558f5;
   font-weight: bold;
   font-size: 1.25em;
   width: 250px;
+  margin: 15px;
 }
 
 .Home_container .btn:hover,
-.Home_container .btn:active:focus {
+.Home_container .btn:active:focus,
+.Home_get-started .btn:hover,
+.Home_get-started .btn:active:focus
+ {
   cursor: pointer;
   background-color: #31168B !important;
 }
 
-.Home_template,
+.Home_template-intro h1 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.Home_template img {
+  border-radius: 10px;
+}
+
 .Home_database {
-  border: 1px #dcd9d5 solid;
-  position: relative;
+  margin-top: 10vh;
+}
+
+.Home_database-title {
+  text-align: center;
+  margin-bottom: 1%;
+  font-weight: bold;
+}
+
+.Home_database-img-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  width: 100vw;
-  height: 50vh;
-  text-align: center;
 }
 
-.Home_database {
-  background-color: #dfe7ed;
+.Home_database-img-container img {
+  min-width: 20%;
+  max-width: 20%;
+  min-height: 10%;
+  max-height: 10%;
+  padding: 10px;
 }
 
-.fa-user-tie,
-.fa-chart-bar {
-  padding: 3% 3%;
-  border: 2px solid black;
-  font-size: 5em;
-  text-align: center;
-  margin: 5%;
+.Home_database-text {
+  margin-bottom: 1vh;
 }
+
 
 .Home_get-started {
-  background-color: #dfe7ed;
-  border: 1px #dcd9d5 solid;
   align-items: center;
   justify-content: center;
+  text-align: center; 
   margin-top: 5px;
-  width: 100vw;
-  height: 40vh;
-  text-align: center;
+  height: 20vh;
   padding: 8% 0;
-}
-
-.Home_stats {
-  border: 1px #dcd9d5 solid;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  text-align: center;
-}
-
-.Home_circle {
-  margin: 5%;
-  display: inline-block;
-  padding: 20px;
-  width: 10em;
-  height: 10em;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-
-.Home_circle p {
-  font-size: 1.5rem;
-  line-height: 30px;
-}
-
-@media only screen and (max-width: 767px) {
-  .Home_image1 {
-    object-fit: cover;
-    width: 100vw;
-    height: 767px;
-  }
-  .Home_h1 {
-    font-size: 6vw;
-  }
 }
