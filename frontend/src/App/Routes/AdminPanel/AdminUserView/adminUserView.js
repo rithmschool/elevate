@@ -1,9 +1,22 @@
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 import "./adminUserView.css";
 import ElevateApi from "../../../../elevateApi";
 
 class AdminUserView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    };
+    this.getUserDetail = this.getUserDetail.bind(this);
+  }
+
+  async componentDidMount() {
+    const user = await this.getUserDetail();
+    this.setState({ user });
+  }
+
   handleClickDeleteUser = async () => {
     await ElevateApi.deleteUser(this.props.user.id);
     let users;
@@ -18,6 +31,12 @@ class AdminUserView extends React.Component {
     this.props.changeView("users");
   };
 
+  async getUserDetail() {
+    const userId = this.props.match.params.userId;
+    const user = await ElevateApi.getUser(userId);
+    return user;
+  }
+
   render() {
     const {
       first_name,
@@ -27,7 +46,7 @@ class AdminUserView extends React.Component {
       hire_date,
       needs,
       goals
-    } = this.props.user;
+    } = this.state.user;
 
     return (
       <div className="adminUserView_div">
@@ -93,4 +112,4 @@ class AdminUserView extends React.Component {
   }
 }
 
-export default AdminUserView;
+export default withRouter(AdminUserView);
