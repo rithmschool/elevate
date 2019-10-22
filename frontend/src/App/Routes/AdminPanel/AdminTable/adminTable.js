@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
 import "./adminTable.css";
@@ -10,8 +11,8 @@ const maxColumCount = mql.matches ? 5 : 12;
 class AdminTable extends Component {
   handleChange = evt => {
     const id = evt.target.parentElement.id;
-
     this.props.getUserDetail(id);
+    this.props.history.push(`/admin/users/${id}`);
   };
 
   createTableHeader() {
@@ -35,7 +36,6 @@ class AdminTable extends Component {
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
-
       return this.createTableRows(itemKeys, itemValues);
     });
 
@@ -98,4 +98,4 @@ class AdminTable extends Component {
   }
 }
 
-export default AdminTable;
+export default withRouter(AdminTable);

@@ -103,7 +103,10 @@ class Navigation extends React.Component {
           currentUser &&
           currentUser.is_admin && (
             <li className="nav-item adminStyle danger active">
-              <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
+              <Link
+                className="Nav-text Nav-link Nav-link-ltr"
+                to="/admin/users"
+              >
                 **Admin**
               </Link>
             </li>

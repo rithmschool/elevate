@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./adminNavbar.css";
 
 import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
@@ -16,11 +17,15 @@ class AdminNavbar extends React.Component {
   render() {
     let view = this.props.position ? (
       <div className="adminNavbar">
-        <p id="users" onClick={this.handleChangeView}>
-          Users
+        <p>
+          <Link id="users" to="/admin/users">
+            Users
+          </Link>
         </p>
-        <p id="questions" onClick={this.handleChangeView}>
-          Questions
+        <p>
+          <Link id="questions" to="/admin/questions">
+            Questions
+          </Link>
         </p>
         <p id="invoices" onClick={this.handleChangeView}>
           Invoices

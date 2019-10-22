@@ -56,6 +56,30 @@ class AdminPanel extends React.Component {
   };
 
   render() {
+    const usersTable = (
+      <AdminTable
+        tableObjs={this.state.users}
+        getUserDetail={this.getUserDetail}
+        view={this.state.view}
+      />
+    );
+
+    const questionsTable = (
+      <AdminTable
+        tableObjs={this.state.questions}
+        getUserDetail={this.getUserDetail}
+        view={this.state.view}
+      />
+    );
+
+    const userView = (
+      <AdminUserView
+        user={this.state.userDetail}
+        updateUserState={this.updateUserState}
+        changeView={this.changeView}
+      />
+    );
+
     if (!this.state.users || !this.state.questions) {
       return <Spinner />;
     }
@@ -67,21 +91,16 @@ class AdminPanel extends React.Component {
         <div className="adminPanel_panel">
           <h1 className="adminPanel_h1">Admin Panel</h1>
 
-          {["users", "questions"].includes(this.state.view) && (
-            <AdminTable
-              tableObjs={this.state[this.state.view]}
-              getUserDetail={this.getUserDetail}
-              view={this.state.view}
-            />
-          )}
+          {this.props.history.location.pathname === "/admin/users" &&
+            usersTable}
 
-          {this.state.view === "userDetail" && (
-            <AdminUserView
-              user={this.state.userDetail}
-              updateUserState={this.updateUserState}
-              changeView={this.changeView}
-            />
-          )}
+          {this.props.history.location.pathname === "/admin/questions" &&
+            questionsTable}
+
+          {this.state.userDetail &&
+            this.props.history.location.pathname ===
+              `/admin/users/${this.state.userDetail.id}` &&
+            userView}
         </div>
 
         <div className={`adminPanel_navbar adminPanel_navbar_${position}`}>

@@ -3,6 +3,12 @@
   padding: 5px;
 }
 
+.adminNavbar > p > #questions,
+#users {
+  text-decoration: none;
+  color: lightgrey;
+}
+
 .adminNavbar {
   height: 100vh;
   margin: 18px 6px;
