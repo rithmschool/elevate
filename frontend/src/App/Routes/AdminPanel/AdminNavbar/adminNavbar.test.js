@@ -1,4 +1,5 @@
 import React from "react";
+import MemoryRouter from "react-router-dom";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import AdminNavbar from "./adminNavbar";
@@ -7,7 +8,12 @@ describe("AdminNavbar", function() {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<AdminNavbar />);
+    wrapper = mount(
+      <MemoryRouter initialEntries={["/admin/users"]}>
+        <AdminNavbar />
+        );
+      </MemoryRouter>
+    );
   });
 
   it("renders without crashing", function() {
@@ -40,7 +46,7 @@ describe("AdminNavbar", function() {
   it("should display 'users' and 'questions' when position is true", function() {
     wrapper.setProps({ position: true });
 
-    expect(wrapper.find(".adminNavbar #users")).toHaveLength(1);
-    expect(wrapper.find(".adminNavbar #questions")).toHaveLength(1);
+    expect(wrapper.find(".adminNavbar > p > #users")).toHaveLength(1);
+    expect(wrapper.find(".adminNavbar > p > #questions")).toHaveLength(1);
   });
 });

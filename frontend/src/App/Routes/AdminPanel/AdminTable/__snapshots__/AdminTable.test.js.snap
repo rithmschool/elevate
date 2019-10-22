@@ -12,7 +12,7 @@ exports[`AdminTable matches snapshot 1`] = `
         "entries": Array [
           Object {
             "hash": "",
-            "key": "xkctku",
+            "key": "7qmsh6",
             "pathname": "/",
             "search": "",
             "state": undefined,
@@ -26,7 +26,7 @@ exports[`AdminTable matches snapshot 1`] = `
         "listen": [Function],
         "location": Object {
           "hash": "",
-          "key": "xkctku",
+          "key": "7qmsh6",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -63,7 +63,7 @@ exports[`AdminTable matches snapshot 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "xkctku",
+                "key": "7qmsh6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -77,7 +77,7 @@ exports[`AdminTable matches snapshot 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "xkctku",
+              "key": "7qmsh6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -89,7 +89,7 @@ exports[`AdminTable matches snapshot 1`] = `
         location={
           Object {
             "hash": "",
-            "key": "xkctku",
+            "key": "7qmsh6",
             "pathname": "/",
             "search": "",
             "state": undefined,

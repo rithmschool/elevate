@@ -1,7 +1,6 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { shallow, mount } from "enzyme";
-import toJson from "enzyme-to-json";
 import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
 import AdminTable from "./AdminTable/adminTable";
@@ -16,48 +15,34 @@ describe("AdminPanel", function() {
   beforeEach(async () => {
     wrapper = mount(
       <MemoryRouter initialEntries={["/admin/users"]}>
-        <AdminPanel />
+        <AdminPanel
+          history={{ location: { pathname: "/admin/users" } }}
+          match={{ params: {} }}
+        />
       </MemoryRouter>
     );
-    await wrapper.instance().componentDidMount();
-    wrapper.setState({ users, questions });
+    wrapper.find(AdminPanel).setState({ users, questions });
   });
 
   it("renders without crashing", function() {
     shallow(<AdminPanel />);
   });
 
-  it("matches snapshot", function() {
-    const serialized = toJson(wrapper);
-
-    expect(serialized).toMatchSnapshot();
-  });
-
   it("has states", function() {
     let panel = wrapper.find(AdminPanel);
     expect(panel.state("sideBarOpen")).toEqual(true);
-    expect(wrapper.state("users")).toEqual(users);
-    expect(wrapper.state("questions")).toEqual(questions);
+    expect(panel.state("users")).toEqual(users);
+    expect(panel.state("questions")).toEqual(questions);
   });
 
   it("renders AdminPanel and AdminTable components", function() {
+    wrapper.find(AdminPanel).setState({ users, questions });
     expect(wrapper.find(AdminPanel)).toHaveLength(1);
     expect(wrapper.find(AdminTable)).toHaveLength(1);
   });
 
-  it("renders new component on click", function() {
-    wrapper.find("#users").simulate("click");
-    expect(wrapper.state("view")).toEqual("users");
-
-    wrapper.find(".adminPanel_main #questions").simulate("click");
-    expect(wrapper.state("view")).toEqual("questions");
-  });
-
-  it("show expected user data in the table", function() {
-    wrapper.find("#users").simulate("click");
-    wrapper.update();
-
-    const rows = wrapper.find('table[id="users-table"]');
+  it("shows expected user data in the table", function() {
+    const rows = wrapper.find(".table").last();
 
     expect(rows.length).toEqual(1);
 
@@ -78,19 +63,17 @@ describe("AdminPanel", function() {
     expect(dataRow[7]).toEqual("goals1");
   });
 
+  // it("renders new component on click", function() {
+  //   wrapper.find("td").first().simulate("click");
+  //   expect(wrapper.find("td").first().onClick()).toBeCalledTimes(1);
+  // });
+
   it("has div with adminPanel_main class", function() {
     expect(wrapper.find("div.adminPanel_main")).toHaveLength(1);
   });
 
   it("has div with adminPanel_panel class", function() {
     expect(wrapper.find("div.adminPanel_main")).toHaveLength(1);
-  });
-
-  it("renders the users table when view state is users", function() {
-    wrapper.find("#users").simulate("click");
-    wrapper.update();
-
-    expect(wrapper.find('table[id="users-table"]')).toHaveLength(1);
   });
 });
 

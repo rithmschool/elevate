@@ -1,75 +1,142 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<div
-  className="EditPUserForm container border rounded"
-  style={
-    Object {
-      "backgroundColor": "#F4F6F8",
-    }
-  }
+exports[`UserSalaryInfoForm matches snapshot 1`] = `
+<UserSalaryInfoForm
+  bonus={100}
+  equity={0.1}
+  salary={50000}
+  user_id={1}
 >
   <div
-    className="form-inside-container mt-5"
+    className="EditPUserForm container border rounded"
+    style={
+      Object {
+        "backgroundColor": "#F4F6F8",
+      }
+    }
   >
-    <Form
-      inline={false}
-      onSubmit={[Function]}
+    <div
+      className="form-inside-container mt-5"
     >
-      <div
-        className="form-styles_flex-space-between"
+      <Form
+        inline={false}
+        onSubmit={[Function]}
       >
-        <h3>
-          Salary info
-        </h3>
-        <i
-          className="m-3 fas fa-edit fa-1x"
-          onClick={[Function]}
-        />
-      </div>
-      <FormGroup>
-        <span>
-          Salary
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-salary"
-          name="salary"
-          onChange={[Function]}
-          step="5000"
-          type="number"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Equity
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-equity"
-          name="equity"
-          onChange={[Function]}
-          step="0.001"
-          type="number"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Bonus
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-bonus"
-          name="bonus"
-          onChange={[Function]}
-          step="500"
-          type="number"
-        />
-      </FormGroup>
-      <div
-        className="row justify-content-center"
-      />
-    </Form>
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <div
+            className="form-styles_flex-space-between"
+          >
+            <h3>
+              Salary info
+            </h3>
+            <i
+              className="m-3 fas fa-edit fa-1x"
+              data-testid="turnEditOn"
+              onClick={[Function]}
+            />
+          </div>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Salary
+              </span>
+              <FormControl
+                data-testid="salary"
+                disabled={true}
+                id="EditUser-salary"
+                name="salary"
+                onChange={[Function]}
+                step="5000"
+                type="number"
+                value={50000}
+              >
+                <input
+                  className="form-control"
+                  data-testid="salary"
+                  disabled={true}
+                  id="EditUser-salary"
+                  name="salary"
+                  onChange={[Function]}
+                  step="5000"
+                  type="number"
+                  value={50000}
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Equity
+              </span>
+              <FormControl
+                data-testid="equity"
+                disabled={true}
+                id="EditUser-equity"
+                name="equity"
+                onChange={[Function]}
+                step="0.001"
+                type="number"
+                value={0.1}
+              >
+                <input
+                  className="form-control"
+                  data-testid="equity"
+                  disabled={true}
+                  id="EditUser-equity"
+                  name="equity"
+                  onChange={[Function]}
+                  step="0.001"
+                  type="number"
+                  value={0.1}
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Bonus
+              </span>
+              <FormControl
+                data-testid="bonus"
+                disabled={true}
+                id="EditUser-bonus"
+                name="bonus"
+                onChange={[Function]}
+                step="500"
+                type="number"
+                value={100}
+              >
+                <input
+                  className="form-control"
+                  data-testid="bonus"
+                  disabled={true}
+                  id="EditUser-bonus"
+                  name="bonus"
+                  onChange={[Function]}
+                  step="500"
+                  type="number"
+                  value={100}
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <div
+            className="row justify-content-center"
+          />
+        </form>
+      </Form>
+    </div>
   </div>
-</div>
+</UserSalaryInfoForm>
 `;
