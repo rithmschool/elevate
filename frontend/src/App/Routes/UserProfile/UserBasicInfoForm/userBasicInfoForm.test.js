@@ -15,7 +15,7 @@ describe("UserBasicInfoForm", function() {
     last_name: "test"
   };
 
-  beforeEach(() => {
+  beforeEach(function() {
     wrapper = mount(<UserBasicInfoForm {...currentUser} />);
   });
 

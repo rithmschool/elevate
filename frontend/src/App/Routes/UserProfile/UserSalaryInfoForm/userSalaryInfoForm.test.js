@@ -15,7 +15,7 @@ describe("UserSalaryInfoForm", function() {
     equity: 0.1
   };
 
-  beforeEach(() => {
+  beforeEach(function() {
     wrapper = mount(<UserSalaryInfoForm {...latestSalary} />);
   });
 
@@ -23,7 +23,7 @@ describe("UserSalaryInfoForm", function() {
     render(<UserSalaryInfoForm {...latestSalary} />);
   });
 
-  it("shows my default text", () => {
+  it("shows my default text", function() {
     expect(wrapper.find("h3").text()).toEqual("Salary info");
   });
 
