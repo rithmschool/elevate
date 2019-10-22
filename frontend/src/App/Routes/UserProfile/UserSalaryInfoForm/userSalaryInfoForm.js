@@ -1,130 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "../FormStyles.css";
 
 /** Update user salary */
-class UserSalaryInfoForm extends React.Component {
-  constructor(props) {
-    super(props);
+function UserSalaryInfoForm(props) {
+  const [salary, setSalary] = useState(props.salary);
+  const [bonus, setBonus] = useState(props.bonus);
+  const [equity, setEquity] = useState(props.equity);
+  const [isEdit, setIsEdit] = useState(false);
 
-    this.state = {
-      user_id: this.props.user_id,
-      salary: this.props.salary,
-      bonus: this.props.bonus,
-      equity: this.props.equity,
-      isEdit: false
-    };
+  return (
+    <div
+      className="EditPUserForm container border rounded"
+      style={{ backgroundColor: "#F4F6F8" }}
+    >
+      <div className="form-inside-container mt-5">
+        <Form onSubmit={handleSubmit}>
+          <div className="form-styles_flex-space-between">
+            <h3>Salary info</h3>
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleEditForm = this.toggleEditForm.bind(this);
-  }
+            {!isEdit && (
+              <i
+                data-testid="turnEditOn"
+                className="m-3 fas fa-edit fa-1x"
+                onClick={() => setIsEdit(true)}
+              ></i>
+            )}
+          </div>
 
-  toggleEditForm() {
-    this.setState(state => ({ isEdit: !state.isEdit }));
-  }
+          <Form.Group>
+            <span>Salary</span>
 
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
-  }
+            <Form.Control
+              data-testid="salary"
+              onChange={e => setSalary(e.target.value)}
+              id="EditUser-salary"
+              name="salary"
+              type="number"
+              step="5000"
+              disabled={!isEdit}
+              value={salary}
+            />
+          </Form.Group>
 
-  handleSubmit(evt) {
+          <Form.Group>
+            <span>Equity</span>
+
+            <Form.Control
+              data-testid="equity"
+              onChange={e => setEquity(e.target.value)}
+              id="EditUser-equity"
+              name="equity"
+              type="number"
+              step="0.001"
+              disabled={!isEdit}
+              value={equity}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <span>Bonus</span>
+
+            <Form.Control
+              data-testid="bonus"
+              onChange={e => setBonus(e.target.value)}
+              id="EditUser-bonus"
+              name="bonus"
+              type="number"
+              step="500"
+              disabled={!isEdit}
+              value={bonus}
+            />
+          </Form.Group>
+
+          <div className="row justify-content-center">
+            {isEdit && (
+              <div>
+                <Button
+                  id="userSalaryBtn"
+                  className="login-submit mr-3 ml-3"
+                  type="submit"
+                >
+                  Submit
+                </Button>
+
+                <h6
+                  data-testid="cancel"
+                  className="mr-3 ml-3 form-styles_cancel"
+                  onClick={() => setIsEdit(false)}
+                >
+                  Cancel
+                </h6>
+              </div>
+            )}
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+
+  function handleSubmit(evt) {
     evt.preventDefault();
 
-    const salary = {
-      user_id: this.state.user_id,
-      salary: this.state.salary,
-      bonus: this.state.bonus,
-      equity: this.state.equity
+    const updatedSalary = {
+      user_id: props.user_id,
+      salary,
+      bonus,
+      equity
     };
 
-    this.props.handleSalaryUpdate(salary);
-    this.setState({ isEdit: false });
-  }
-
-  render() {
-    const isEdit = this.state.isEdit;
-
-    return (
-      <div
-        className="EditPUserForm container border rounded"
-        style={{ backgroundColor: "#F4F6F8" }}
-      >
-        <div className="form-inside-container mt-5">
-          <Form onSubmit={this.handleSubmit}>
-            <div className="form-styles_flex-space-between">
-              <h3>Salary info</h3>
-
-              {!isEdit && (
-                <i
-                  className="m-3 fas fa-edit fa-1x"
-                  onClick={this.toggleEditForm}
-                ></i>
-              )}
-            </div>
-
-            <Form.Group>
-              <span>Salary</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-salary"
-                name="salary"
-                type="number"
-                step="5000"
-                disabled={!isEdit}
-                value={this.state.salary}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Equity</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-equity"
-                name="equity"
-                type="number"
-                step="0.001"
-                disabled={!isEdit}
-                value={this.state.equity}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Bonus</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-bonus"
-                name="bonus"
-                type="number"
-                step="500"
-                disabled={!isEdit}
-                value={this.state.bonus}
-              />
-            </Form.Group>
-
-            <div className="row justify-content-center">
-              {isEdit && (
-                <div>
-                  <Button className="login-submit mr-3 ml-3" type="submit">
-                    Submit
-                  </Button>
-
-                  <h6
-                    className="mr-3 ml-3 form-styles_cancel"
-                    onClick={this.toggleEditForm}
-                  >
-                    Cancel
-                  </h6>
-                </div>
-              )}
-            </div>
-          </Form>
-        </div>
-      </div>
-    );
+    props.handleSalaryUpdate(updatedSalary);
+    setIsEdit(false);
   }
 }
 
