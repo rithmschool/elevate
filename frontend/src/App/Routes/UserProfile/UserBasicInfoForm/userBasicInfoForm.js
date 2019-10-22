@@ -1,169 +1,149 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import moment from "moment";
 import "../FormStyles.css";
 
 /** Update user basic info */
-class UserBasicInfoForm extends React.Component {
-  static defaultProps = {
-    current_company: ""
-  };
+function UserBasicInfoForm(props) {
+  const [first_name, setFirstName] = useState(props.first_name);
+  const [last_name, setLastName] = useState(props.last_name);
+  const [email, setEmail] = useState(props.email);
+  const [current_company, setCurrentCompany] = useState(props.current_company);
+  const [hire_date, setHireDate] = useState(props.hire_date);
+  const [isEdit, setIsEdit] = useState(false);
 
-  constructor(props) {
-    super(props);
+  return (
+    <div
+      className={`container borderrounded shadow`}
+      style={{ margin: "10% auto", backgroundColor: "#F4F6F8" }}
+    >
+      <div className="form-inside-container mt-5">
+        <Form onSubmit={handleSubmit}>
+          <div className="form-styles_flex-space-between">
+            <h3>Basic info</h3>
 
-    this.state = {
-      first_name: this.props.first_name,
-      last_name: this.props.last_name,
-      email: this.props.email,
-      current_company: this.props.current_company,
-      hire_date: this.props.hire_date,
-      isEdit: false
-    };
+            {!isEdit && (
+              <i
+                data-testid="turnEditOn"
+                className="m-3 fas fa-edit fa-1x"
+                onClick={() => setIsEdit(true)}
+              ></i>
+            )}
+          </div>
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleEditForm = this.toggleEditForm.bind(this);
-    this.formatHireDate = this.formatHireDate.bind(this);
-  }
+          <Form.Group>
+            <span>First name</span>
 
-  toggleEditForm() {
-    this.setState(state => ({ isEdit: !state.isEdit }));
-  }
+            <Form.Control
+              onChange={e => setFirstName(e.target.value)}
+              id="EditUser-first_name"
+              data-testid="firstName"
+              name="first_name"
+              type="text"
+              disabled={!isEdit}
+              value={first_name}
+            />
+          </Form.Group>
 
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
-  }
+          <Form.Group>
+            <span>Last name</span>
 
-  formatHireDate() {
-    if (this.state.hire_date === null) {
+            <Form.Control
+              onChange={e => setLastName(e.target.value)}
+              id="EditUser-last_name"
+              data-testid="lastName"
+              name="last_name"
+              type="text"
+              disabled={!isEdit}
+              value={last_name}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <span>Email</span>
+
+            <Form.Control
+              onChange={e => setEmail(e.target.value)}
+              id="EditUser-email"
+              data-testid="email"
+              name="email"
+              type="text"
+              disabled={!isEdit}
+              value={email}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <span>Current company</span>
+
+            <Form.Control
+              onChange={e => setCurrentCompany(e.target.value)}
+              id="EditUser-current_company"
+              data-testid="currentCompany"
+              name="current_company"
+              type="text"
+              disabled={!isEdit}
+              value={current_company}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <span>Hire date</span>
+
+            <Form.Control
+              onChange={e => setHireDate(e.target.value)}
+              id="EditUser-hire_date"
+              data-testid="hireDate"
+              name="hire_date"
+              type="date"
+              disabled={!isEdit}
+              value={formatHireDate() || ""}
+            />
+          </Form.Group>
+
+          <div className="row justify-content-center">
+            {isEdit && (
+              <div>
+                <Button className="login-submit mr-3 ml-3" type="submit">
+                  Submit
+                </Button>
+
+                <h6
+                  className="mr-3 ml-3 form-styles_cancel"
+                  data-testid="cancel"
+                  onClick={() => setIsEdit(false)}
+                >
+                  Cancel
+                </h6>
+              </div>
+            )}
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+
+  function formatHireDate() {
+    if (hire_date === null) {
       return null;
     } else {
-      return moment(this.state.hire_date).format("YYYY-MM-DD");
+      return moment(hire_date).format("YYYY-MM-DD");
     }
   }
 
-  handleSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
 
     const updatedUser = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      email: this.state.email,
-      current_company: this.state.current_company,
-      hire_date: this.formatHireDate()
+      first_name,
+      last_name,
+      email,
+      current_company,
+      hire_date: formatHireDate()
     };
 
-    this.props.handleUserUpdate(updatedUser, this.props.userId);
-    this.setState({ isEdit: false });
-  }
-
-  render() {
-    const isEdit = this.state.isEdit;
-
-    return (
-      <div
-        className={`container borderrounded shadow`}
-        style={{ margin: "10% auto", backgroundColor: "#F4F6F8" }}
-      >
-        <div className="form-inside-container mt-5">
-          <Form onSubmit={this.handleSubmit}>
-            <div className="form-styles_flex-space-between">
-              <h3>Basic info</h3>
-
-              {!isEdit && (
-                <i
-                  className="m-3 fas fa-edit fa-1x"
-                  onClick={this.toggleEditForm}
-                ></i>
-              )}
-            </div>
-
-            <Form.Group>
-              <span>First name</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-first_name"
-                name="first_name"
-                type="text"
-                disabled={!isEdit}
-                value={this.state.first_name}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Last name</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-last_name"
-                name="last_name"
-                type="text"
-                disabled={!isEdit}
-                value={this.state.last_name}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Email</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-email"
-                name="email"
-                type="text"
-                disabled={!isEdit}
-                value={this.state.email}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Current company</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-current_company"
-                name="current_company"
-                type="text"
-                disabled={!isEdit}
-                value={this.state.current_company}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <span>Hire date</span>
-
-              <Form.Control
-                onChange={this.handleChange}
-                id="EditUser-hire_date"
-                name="hire_date"
-                type="date"
-                disabled={!isEdit}
-                value={this.formatHireDate() || ""}
-              />
-            </Form.Group>
-
-            <div className="row justify-content-center">
-              {isEdit && (
-                <div>
-                  <Button className="login-submit mr-3 ml-3" type="submit">
-                    Submit
-                  </Button>
-
-                  <h6
-                    className="mr-3 ml-3 form-styles_cancel"
-                    onClick={this.toggleEditForm}
-                  >
-                    Cancel
-                  </h6>
-                </div>
-              )}
-            </div>
-          </Form>
-        </div>
-      </div>
-    );
+    props.handleUserUpdate(updatedUser, props.userId);
+    setIsEdit(false);
   }
 }
 
