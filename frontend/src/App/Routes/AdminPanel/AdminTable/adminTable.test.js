@@ -1,4 +1,5 @@
 import React from "react";
+import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import AdminTable from "./adminTable";
@@ -20,7 +21,12 @@ describe("AdminTable", function() {
   ];
 
   beforeEach(() => {
-    wrapper = mount(<AdminTable tableObjs={users} />);
+    wrapper = mount(
+      <MemoryRouter>
+        <AdminTable tableObjs={users} />
+        );
+      </MemoryRouter>
+    );
   });
 
   it("renders without crashing", function() {
@@ -34,7 +40,7 @@ describe("AdminTable", function() {
   });
 
   it("has props", function() {
-    expect(wrapper.props("tableObjs")).toEqual({
+    expect(wrapper.find(AdminTable).props("tableObjs")).toEqual({
       tableObjs: [
         {
           current_company: "testcompany",

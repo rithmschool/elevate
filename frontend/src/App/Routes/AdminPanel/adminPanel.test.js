@@ -1,9 +1,10 @@
 import React from "react";
-import axios from "axios";
+import { MemoryRouter } from "react-router-dom";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
+import AdminTable from "./AdminTable/adminTable";
 
 const { USERS: users, QUESTIONS: questions } = mockData;
 
@@ -13,7 +14,11 @@ describe("AdminPanel", function() {
   let wrapper;
 
   beforeEach(async () => {
-    wrapper = mount(<AdminPanel />);
+    wrapper = mount(
+      <MemoryRouter initialEntries={["/admin/users"]}>
+        <AdminPanel />
+      </MemoryRouter>
+    );
     await wrapper.instance().componentDidMount();
     wrapper.setState({ users, questions });
   });
@@ -29,15 +34,19 @@ describe("AdminPanel", function() {
   });
 
   it("has states", function() {
-    expect(wrapper.state("view")).toEqual("");
-    expect(wrapper.state("sideBarOpen")).toEqual(true);
+    let panel = wrapper.find(AdminPanel);
+    expect(panel.state("sideBarOpen")).toEqual(true);
     expect(wrapper.state("users")).toEqual(users);
     expect(wrapper.state("questions")).toEqual(questions);
-    expect(wrapper.state("userDetail")).toEqual(null);
   });
 
-  it("changes view state on click", function() {
-    wrapper.find(".adminPanel_main #users").simulate("click");
+  it("renders AdminPanel and AdminTable components", function() {
+    expect(wrapper.find(AdminPanel)).toHaveLength(1);
+    expect(wrapper.find(AdminTable)).toHaveLength(1);
+  });
+
+  it("renders new component on click", function() {
+    wrapper.find("#users").simulate("click");
     expect(wrapper.state("view")).toEqual("users");
 
     wrapper.find(".adminPanel_main #questions").simulate("click");

@@ -32,6 +32,11 @@ exports[`main routes file matches snapshot 1`] = `
     path="/admin/invoices"
     render={[Function]}
   />
+  <AdminPrivateRoute
+    exact={true}
+    path="/admin/calendar"
+    render={[Function]}
+  />
   <Route
     exact={true}
     path="/ask-an-expert"

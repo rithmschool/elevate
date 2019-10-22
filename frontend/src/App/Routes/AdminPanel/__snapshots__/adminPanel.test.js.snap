@@ -1,11 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdminPanel matches snapshot 1`] = `
-<AdminPanel>
-  <Spinner>
-    <div
-      className="Spinner_loader"
-    />
-  </Spinner>
-</AdminPanel>
+<MemoryRouter
+  initialEntries={
+    Array [
+      "/admin/users",
+    ]
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "xw1ad1",
+            "pathname": "/admin/users",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "xw1ad1",
+          "pathname": "/admin/users",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <AdminPanel>
+      <Spinner>
+        <div
+          className="Spinner_loader"
+        />
+      </Spinner>
+    </AdminPanel>
+  </Router>
+</MemoryRouter>
 `;
