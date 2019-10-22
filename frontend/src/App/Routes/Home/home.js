@@ -28,7 +28,7 @@ class Home extends React.Component {
                 <img className="card-img" src={img1} alt="working" />
               </div>
             </Col>
-            <Col md={6} style={{display:'flex', alignItems: 'center'}}>
+            <Col md={6} className="second-col">
               <div className="Home_template-intro">
                 <h1>
                   <b>Why Brella?</b>

@@ -1,10 +1,9 @@
 import React from "react";
 import { Col, Button, Form, Label, Input, Row } from "reactstrap";
-
-import "./forgotPassword.css";
 import ElevateApi from "../../../elevateApi";
 import Alert from "../Alert/alert";
 import Spinner from "../../Spinner/spinner";
+import "./forgotPassword.css";
 
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -74,8 +73,8 @@ class ForgotPassword extends React.Component {
           forgotPassword_container`}
       >
         <Form onSubmit={this.sendEmail}>
-          <div style={{ textAlign: "center" }}>
-            <h3 style={{ marginTop: "2%" }}>Forgot Password</h3>
+          <div className="form-div">
+            <h3 className="form-title">Forgot Password</h3>
             <p>
               Please enter your email address and we'll send you instructions on
               how to reset your password
