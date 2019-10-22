@@ -49,10 +49,33 @@ class Navigation extends React.Component {
           <li className="nav-item active">
             {currentUser ? (
               <div>
-                <i
-                  className="fas fa-user Nav-icon"
-                  onClick={this.userMenuToggle}
-                ></i>
+                <ul className="navbar-nav">
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/dashboard/manage" className="Nav-link Nav-link-ltr" >
+                      Manage
+              </Link>
+                  </li>
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/dashboard/appointments" className="Nav-link Nav-link-ltr">
+                      Appointments
+              </Link>
+                    <Link to="/dashboard/templates" className="Nav-link Nav-link-ltr">
+                      Templates
+                </Link>
+                    <i
+                      className="fas fa-user Nav-icon right-content"
+                      onClick={this.userMenuToggle}
+                    ></i>
+                  </li>
+                </ul>
 
                 <div
                   ref={this.myRef}
@@ -86,12 +109,34 @@ class Navigation extends React.Component {
                 </div>
               </div>
             ) : (
-              <div ref={this.myRef}>
-                <Link to="/login" className="Nav-link Nav-link-ltr">
-                  Sign In
+                <div ref={this.myRef}>
+                  <ul className="navbar-nav ml-auto">
+                    <li
+                      className="nav-item active"
+                      data-toggle="collapse"
+                      data-target=".in"
+                    >
+                      <Link to="/" className="Nav-link Nav-link-ltr" >
+                        About
+              </Link>
+                    </li>
+                    <li
+                      className="nav-item active"
+                      data-toggle="collapse"
+                      data-target=".in"
+                    >
+                      <Link to="/" className="Nav-link Nav-link-ltr">
+                        For Employers
+              </Link>
+
+
+                      <Link to="/login" className="Nav-link Nav-link-ltr">
+                        Sign In
                 </Link>
-              </div>
-            )}
+                    </li>
+                  </ul>
+                </div>
+              )}
           </li>
         )}
       </UserContext.Consumer>
@@ -103,7 +148,7 @@ class Navigation extends React.Component {
           currentUser &&
           currentUser.is_admin && (
             <li className="nav-item adminStyle danger active">
-              <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
+              <Link className="Nav-text Nav-link Nav-link-ltr middlecontent" to="/admin">
                 **Admin**
               </Link>
             </li>
@@ -111,6 +156,7 @@ class Navigation extends React.Component {
         }
       </UserContext.Consumer>
     );
+
 
     return (
       <Navbar color="light" light expand="md">
@@ -126,26 +172,6 @@ class Navigation extends React.Component {
           className="collapse.navbar-collapse"
         >
           <ul className="navbar-nav ml-auto">
-            <li
-              className="nav-item active"
-              data-toggle="collapse"
-              data-target=".in"
-            >
-              <Link to="/" className="Nav-link Nav-link-ltr">
-                About
-              </Link>
-            </li>
-            <li
-              className="nav-item active"
-              data-toggle="collapse"
-              data-target=".in"
-            >
-              <Link to="/" className="Nav-link Nav-link-ltr">
-                For Employers
-              </Link>
-            </li>
-          </ul>
-          <ul className="navbar-nav">
             {userIsAdmin}
 
             {userIsLoggedIn}
