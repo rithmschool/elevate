@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import "./adminUserView.css";
 import ElevateApi from "../../../../elevateApi";
 import Spinner from "../../../Spinner/spinner";
@@ -8,7 +8,8 @@ class AdminUserView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      redirect: false
     };
   }
 
@@ -19,6 +20,7 @@ class AdminUserView extends React.Component {
       this.setState({ user });
     } catch (err) {
       console.log(err);
+      this.setState({ redirect: true });
       return err;
     }
   }
@@ -50,6 +52,11 @@ class AdminUserView extends React.Component {
 
     if (!this.state.user) {
       return <Spinner />;
+    }
+
+    if (this.state.redirect) {
+      console.log("should be redirecting...");
+      return <Redirect to="/admin/users" />;
     }
 
     return (
