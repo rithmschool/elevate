@@ -60,7 +60,6 @@ class AdminPanel extends React.Component {
     }
 
     const position = this.state.sideBarOpen ? "showing" : "docked";
-    console.log(this.props.match.params.hasOwnProperty("userId"));
     return (
       <div className={`adminPanel_main adminPanel_main_${position}`}>
         <div className="adminPanel_panel">

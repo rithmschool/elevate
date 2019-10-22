@@ -48,9 +48,12 @@ class AdminUserView extends React.Component {
       goals
     } = this.state.user;
 
+    if (!this.state.user) {
+      return <Spinner />;
+    }
+
     return (
       <div className="adminUserView_div">
-        {!this.state.user && <Spinner />}
         <div>
           <h4>
             {first_name} {last_name}
