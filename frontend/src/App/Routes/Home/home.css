@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Raleway', 'Lucida Sans';
+  font-family: "Raleway", "Lucida Sans";
   width: 100vw;
   height: 60vh;
 }
@@ -28,7 +28,7 @@
 .Home_get-started .btn:hover,
 .Home_get-started .btn:active:focus {
   cursor: pointer;
-  background-color: #31168B !important;
+  background-color: #31168b !important;
 }
 
 .Home_template-intro h1 {
@@ -67,7 +67,6 @@
 .Home_database-text {
   margin-bottom: 1vh;
 }
-
 
 .Home_get-started {
   align-items: center;

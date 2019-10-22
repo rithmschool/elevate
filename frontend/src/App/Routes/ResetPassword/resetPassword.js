@@ -114,9 +114,7 @@ class ResetPassword extends React.Component {
         <Form onSubmit={this.updatePassword}>
           <h4 className="first-name">Hello {first_name}</h4>
 
-          <h4 className="new-pass">
-            Choose a new password
-          </h4>
+          <h4 className="new-pass">Choose a new password</h4>
 
           <Row>
             <Col md={12}>
