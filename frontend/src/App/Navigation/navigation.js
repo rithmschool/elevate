@@ -55,21 +55,30 @@ class Navigation extends React.Component {
                     data-toggle="collapse"
                     data-target=".in"
                   >
-                    <Link to="/dashboard/manage" className="Nav-link Nav-link-ltr" >
+                    <Link
+                      to="/dashboard/manage"
+                      className="Nav-link Nav-link-ltr"
+                    >
                       Manage
-              </Link>
+                    </Link>
                   </li>
                   <li
                     className="nav-item active"
                     data-toggle="collapse"
                     data-target=".in"
                   >
-                    <Link to="/dashboard/appointments" className="Nav-link Nav-link-ltr">
+                    <Link
+                      to="/dashboard/appointments"
+                      className="Nav-link Nav-link-ltr"
+                    >
                       Appointments
-              </Link>
-                    <Link to="/dashboard/templates" className="Nav-link Nav-link-ltr">
+                    </Link>
+                    <Link
+                      to="/dashboard/templates"
+                      className="Nav-link Nav-link-ltr"
+                    >
                       Templates
-                </Link>
+                    </Link>
                     <i
                       className="fas fa-user Nav-icon right-content"
                       onClick={this.userMenuToggle}
@@ -109,34 +118,33 @@ class Navigation extends React.Component {
                 </div>
               </div>
             ) : (
-                <div ref={this.myRef}>
-                  <ul className="navbar-nav ml-auto">
-                    <li
-                      className="nav-item active"
-                      data-toggle="collapse"
-                      data-target=".in"
-                    >
-                      <Link to="/" className="Nav-link Nav-link-ltr" >
-                        About
-              </Link>
-                    </li>
-                    <li
-                      className="nav-item active"
-                      data-toggle="collapse"
-                      data-target=".in"
-                    >
-                      <Link to="/" className="Nav-link Nav-link-ltr">
-                        For Employers
-              </Link>
+              <div ref={this.myRef}>
+                <ul className="navbar-nav ml-auto">
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/" className="Nav-link Nav-link-ltr">
+                      About
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/" className="Nav-link Nav-link-ltr">
+                      For Employers
+                    </Link>
 
-
-                      <Link to="/login" className="Nav-link Nav-link-ltr">
-                        Sign In
-                </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
+                    <Link to="/login" className="Nav-link Nav-link-ltr">
+                      Sign In
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </li>
         )}
       </UserContext.Consumer>
@@ -148,7 +156,10 @@ class Navigation extends React.Component {
           currentUser &&
           currentUser.is_admin && (
             <li className="nav-item adminStyle danger active">
-              <Link className="Nav-text Nav-link Nav-link-ltr middlecontent" to="/admin">
+              <Link
+                className="Nav-text Nav-link Nav-link-ltr middlecontent"
+                to="/admin"
+              >
                 **Admin**
               </Link>
             </li>
@@ -156,7 +167,6 @@ class Navigation extends React.Component {
         }
       </UserContext.Consumer>
     );
-
 
     return (
       <Navbar color="light" light expand="md">
