@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import UserDocsDataTable from "./UserDocsDataTable";
 // import { UserContext } from "../../../../userContext";
 import axios from "axios";
+import ElevateApi from "../../../../elevateApi";
 
 const BASE_URL = "http://localhost:3001";
 
@@ -15,10 +16,8 @@ class DashboardManage extends Component {
     let documents;
     try {
       let _token = localStorage.token;
-      let response = await axios.get(`${BASE_URL}/documents/manage`, {
-        params: { _token }
-      });
-      documents = response.data.documents;
+      let response = await ElevateApi.getDocuments(_token);
+      documents = response.documents;
     } catch (err) {
       console.log(err);
       return err;

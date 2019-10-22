@@ -4,7 +4,6 @@ import { Table } from "reactstrap";
 class UserDocsDataTable extends Component {
   renderUserDocsData() {
     let { documents } = this.props;
-    console.log("THIS IS DOCUMENTS", documents);
     return documents.map(doc => {
       const { id, title, counterparty, status, date_reviewed } = doc;
       return (

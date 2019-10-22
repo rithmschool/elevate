@@ -100,8 +100,8 @@ CREATE TABLE documents
   user_id INTEGER,
   title TEXT NOT NULL,
   counterparty TEXT NOT NULL,
-  date_submitted DATE,
-  date_reviewed DATE,
+  date_submitted TIMESTAMP DEFAULT current_timestamp,
+  date_reviewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status TEXT
 );
 
