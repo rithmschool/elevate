@@ -8,7 +8,7 @@ import {
   Card
 } from "react-bootstrap";
 import ElevateApi from "../../../elevateApi";
-import "./UserDocUploads.css"
+import "./UserDocUploads.css";
 
 class UserDocUploads extends Component {
   constructor(props) {
@@ -70,7 +70,9 @@ class UserDocUploads extends Component {
               <div>
                 {this.state.uploaded ? (
                   <Alert variant="success">File uploaded</Alert>
-                ) : <i className="fas fa-upload fa-2x mt-3"></i>}
+                ) : (
+                  <i className="fas fa-upload fa-2x mt-3"></i>
+                )}
               </div>
             </div>
           </Card.Body>
