@@ -11,7 +11,6 @@ const maxColumCount = mql.matches ? 5 : 12;
 class AdminTable extends Component {
   handleChange = evt => {
     const id = evt.target.parentElement.id;
-    this.props.getUserDetail(id);
     this.props.history.push(`/admin/users/${id}`);
   };
 
@@ -80,6 +79,9 @@ class AdminTable extends Component {
   }
 
   render() {
+    const tableType = this.props.tableObjs[0].hasOwnProperty("company")
+      ? "users"
+      : "questions";
     return (
       <div className="admin-table">
         <Table
@@ -88,7 +90,7 @@ class AdminTable extends Component {
           hover
           size="sm"
           responsive
-          id={this.props.view + "-table"}
+          id={tableType + "-table"}
         >
           <thead>{this.createTableHeader()}</thead>
           <tbody>{this.createTableBody()}</tbody>

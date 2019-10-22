@@ -13,11 +13,9 @@ class AdminPanel extends React.Component {
     super(props);
 
     this.state = {
-      view: "",
       sideBarOpen: true,
       users: null,
-      questions: null,
-      userDetail: null
+      questions: null
     };
   }
 
@@ -41,40 +39,17 @@ class AdminPanel extends React.Component {
     this.setState({ users });
   };
 
-  changeView = view => {
-    this.setState({ view });
-  };
-
   toggleSidebar = () => {
     this.setState(st => ({ sideBarOpen: !st.sideBarOpen }));
   };
 
-  getUserDetail = async userId => {
-    const user = await ElevateApi.getUser(userId);
-
-    this.setState({ view: "userDetail", userDetail: user });
-  };
-
   render() {
-    const usersTable = (
-      <AdminTable
-        tableObjs={this.state.users}
-        getUserDetail={this.getUserDetail}
-        view={this.state.view}
-      />
-    );
+    const usersTable = <AdminTable tableObjs={this.state.users} />;
 
-    const questionsTable = (
-      <AdminTable
-        tableObjs={this.state.questions}
-        getUserDetail={this.getUserDetail}
-        view={this.state.view}
-      />
-    );
+    const questionsTable = <AdminTable tableObjs={this.state.questions} />;
 
     const userView = (
       <AdminUserView
-        user={this.state.userDetail}
         updateUserState={this.updateUserState}
         changeView={this.changeView}
       />
@@ -85,7 +60,7 @@ class AdminPanel extends React.Component {
     }
 
     const position = this.state.sideBarOpen ? "showing" : "docked";
-
+    console.log(this.props.match.params.hasOwnProperty("userId"));
     return (
       <div className={`adminPanel_main adminPanel_main_${position}`}>
         <div className="adminPanel_panel">
@@ -97,10 +72,7 @@ class AdminPanel extends React.Component {
           {this.props.history.location.pathname === "/admin/questions" &&
             questionsTable}
 
-          {this.state.userDetail &&
-            this.props.history.location.pathname ===
-              `/admin/users/${this.state.userDetail.id}` &&
-            userView}
+          {this.props.match.params.hasOwnProperty("userId") && userView}
         </div>
 
         <div className={`adminPanel_navbar adminPanel_navbar_${position}`}>

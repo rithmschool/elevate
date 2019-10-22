@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import "./adminUserView.css";
 import ElevateApi from "../../../../elevateApi";
+import Spinner from "../../../Spinner/spinner";
 
 class AdminUserView extends React.Component {
   constructor(props) {
@@ -9,12 +10,17 @@ class AdminUserView extends React.Component {
     this.state = {
       user: {}
     };
-    this.getUserDetail = this.getUserDetail.bind(this);
   }
 
   async componentDidMount() {
-    const user = await this.getUserDetail();
-    this.setState({ user });
+    try {
+      const userId = this.props.match.params.userId;
+      const user = await ElevateApi.getUser(userId);
+      this.setState({ user });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
 
   handleClickDeleteUser = async () => {
@@ -31,12 +37,6 @@ class AdminUserView extends React.Component {
     this.props.changeView("users");
   };
 
-  async getUserDetail() {
-    const userId = this.props.match.params.userId;
-    const user = await ElevateApi.getUser(userId);
-    return user;
-  }
-
   render() {
     const {
       first_name,
@@ -50,6 +50,7 @@ class AdminUserView extends React.Component {
 
     return (
       <div className="adminUserView_div">
+        {!this.state.user && <Spinner />}
         <div>
           <h4>
             {first_name} {last_name}
