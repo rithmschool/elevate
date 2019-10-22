@@ -14,7 +14,22 @@ exports[`main routes file matches snapshot 1`] = `
   />
   <AdminPrivateRoute
     exact={true}
-    path="/admin"
+    path="/admin/users"
+    render={[Function]}
+  />
+  <AdminPrivateRoute
+    exact={true}
+    path="/admin/users/:userId"
+    render={[Function]}
+  />
+  <AdminPrivateRoute
+    exact={true}
+    path="/admin/questions"
+    render={[Function]}
+  />
+  <AdminPrivateRoute
+    exact={true}
+    path="/admin/invoices"
     render={[Function]}
   />
   <Route
