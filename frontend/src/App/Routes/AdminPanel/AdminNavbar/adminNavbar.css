@@ -3,10 +3,7 @@
   padding: 5px;
 }
 
-.adminNavbar > p > #questions,
-#users,
-#invoices,
-#calendar {
+.adminNavbar > p > .admin-link {
   text-decoration: none;
   color: lightgrey;
 }
