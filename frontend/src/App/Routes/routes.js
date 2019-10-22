@@ -59,6 +59,12 @@ class Routes extends React.Component {
           render={props => <AdminPanel {...props} />}
         />
 
+        <AdminPrivateRoute
+          exact
+          path="/admin/calendar"
+          render={props => <AdminPanel {...props} />}
+        />
+
         <Route exact path="/ask-an-expert" render={() => <AskAnExpert />} />
 
         <UserPrivateRoute
