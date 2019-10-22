@@ -4,7 +4,9 @@
 }
 
 .adminNavbar > p > #questions,
-#users {
+#users,
+#invoices,
+#calendar {
   text-decoration: none;
   color: lightgrey;
 }

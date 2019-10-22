@@ -5,11 +5,6 @@ import "./adminNavbar.css";
 import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
 
 class AdminNavbar extends React.Component {
-  handleChangeView = evt => {
-    evt.preventDefault();
-    this.props.changeView(evt.target.id);
-  };
-
   toggle = () => {
     this.props.toggleSidebar();
   };
@@ -27,11 +22,15 @@ class AdminNavbar extends React.Component {
             Questions
           </Link>
         </p>
-        <p id="invoices" onClick={this.handleChangeView}>
-          Invoices
+        <p>
+          <Link id="invoices" to="/admin/invoices">
+            Invoices
+          </Link>
         </p>
-        <p id="calendar" onClick={this.handleChangeView}>
-          Calendar
+        <p>
+          <Link id="calendar" to="/admin/calendar">
+            Calendar
+          </Link>
         </p>
       </div>
     ) : (
