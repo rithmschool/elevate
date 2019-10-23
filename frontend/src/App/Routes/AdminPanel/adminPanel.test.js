@@ -3,16 +3,21 @@ import { MemoryRouter } from "react-router-dom";
 import { shallow, mount } from "enzyme";
 import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
-import AdminTable from "./AdminTable/adminTable";
+import AdminTable, { toggleSidebar } from "./AdminTable/adminTable";
+import { onClick } from "./PanelToggleBtn/panelToggleBtn";
+import ElevateApi from "../../../elevateApi";
+import { returnStatement } from "@babel/types";
 
-const { USERS: users, QUESTIONS: questions } = mockData;
-
-jest.mock("axios");
+const { USERS, QUESTIONS } = mockData;
+const users = USERS;
+const questions = QUESTIONS;
 
 describe("AdminPanel", function() {
   let wrapper;
 
   beforeEach(async () => {
+    ElevateApi.getUsers = jest.fn(() => users);
+    ElevateApi.getQuestions = jest.fn(() => questions);
     wrapper = mount(
       <MemoryRouter initialEntries={["/admin/users"]}>
         <AdminPanel
@@ -26,6 +31,19 @@ describe("AdminPanel", function() {
 
   it("renders without crashing", function() {
     shallow(<AdminPanel />);
+  });
+
+  it("makes API calls upon mounting", function() {
+    expect(ElevateApi.getUsers).toHaveBeenCalled();
+    expect(ElevateApi.getQuestions).toHaveBeenCalled();
+  });
+
+  it("toggles admin navbar on clicking toggle button", function() {
+    const toggleBtn = wrapper.find("#adminPanel_toggleBtn");
+    toggleBtn.simulate("click");
+    expect(wrapper.find(AdminPanel).state("sideBarOpen")).toBe(false);
+    toggleBtn.simulate("click");
+    expect(wrapper.find(AdminPanel).state("sideBarOpen")).toBe(true);
   });
 
   it("has states", function() {

@@ -22,9 +22,7 @@ exports[`AdminUserView matches snapshot 1`] = `
   >
     <div>
       <h4>
-        Han
          
-        Solo
       </h4>
       <table>
         <tbody>
@@ -34,9 +32,7 @@ exports[`AdminUserView matches snapshot 1`] = `
                 Email:
               </b>
             </td>
-            <td>
-              han@solo.com
-            </td>
+            <td />
           </tr>
           <tr>
             <td>
@@ -44,9 +40,7 @@ exports[`AdminUserView matches snapshot 1`] = `
                 Company:
               </b>
             </td>
-            <td>
-              SpaceX
-            </td>
+            <td />
           </tr>
           <tr>
             <td>
@@ -54,9 +48,7 @@ exports[`AdminUserView matches snapshot 1`] = `
                 Hire Date:
               </b>
             </td>
-            <td>
-              2018-09-01
-            </td>
+            <td />
           </tr>
           <tr>
             <td>
@@ -64,9 +56,7 @@ exports[`AdminUserView matches snapshot 1`] = `
                 Needs:
               </b>
             </td>
-            <td>
-              Negotiate a raise during annual review
-            </td>
+            <td />
           </tr>
           <tr>
             <td>
@@ -74,9 +64,7 @@ exports[`AdminUserView matches snapshot 1`] = `
                 Goals:
               </b>
             </td>
-            <td>
-              Increase salary by 15k
-            </td>
+            <td />
           </tr>
           <tr>
             <td>

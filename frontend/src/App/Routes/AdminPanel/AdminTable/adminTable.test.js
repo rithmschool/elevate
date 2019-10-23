@@ -1,7 +1,6 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
-import toJson from "enzyme-to-json";
 import AdminTable from "./adminTable";
 
 describe("AdminTable", function() {
@@ -31,12 +30,6 @@ describe("AdminTable", function() {
 
   it("renders without crashing", function() {
     // Mounted in beforeEach above
-  });
-
-  it("matches snapshot", function() {
-    const serialized = toJson(wrapper);
-
-    expect(serialized).toMatchSnapshot();
   });
 
   it("has props", function() {

@@ -48,12 +48,7 @@ class AdminPanel extends React.Component {
 
     const questionsTable = <AdminTable tableObjs={this.state.questions} />;
 
-    const userView = (
-      <AdminUserView
-        updateUserState={this.updateUserState}
-        changeView={this.changeView}
-      />
-    );
+    const userView = <AdminUserView updateUserState={this.updateUserState} />;
 
     if (!this.state.users || !this.state.questions) {
       return <Spinner />;
@@ -85,7 +80,6 @@ class AdminPanel extends React.Component {
           <AdminNavbar
             position={this.state.sideBarOpen}
             toggleSidebar={this.toggleSidebar}
-            changeView={this.changeView}
           />
         </div>
       </div>

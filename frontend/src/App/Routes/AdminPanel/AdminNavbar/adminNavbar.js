@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./adminNavbar.css";
 
-import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
-
 class AdminNavbar extends React.Component {
   toggle = () => {
     this.props.toggleSidebar();

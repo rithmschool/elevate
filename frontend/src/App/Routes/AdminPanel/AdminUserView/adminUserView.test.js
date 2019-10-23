@@ -2,6 +2,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import AdminUserView from "./adminUserView";
+import ElevateApi from "../../../../elevateApi";
 
 describe("AdminUserView", function() {
   let wrapper;
@@ -17,16 +18,13 @@ describe("AdminUserView", function() {
   };
 
   beforeEach(function() {
+    ElevateApi.getUser = jest.fn(() => testData);
     wrapper = mount(
       <AdminUserView.WrappedComponent
         history={{ location: { pathname: "/admin/users/1" } }}
         match={{ params: { userId: 1 } }}
       />
     );
-    wrapper
-      .find(AdminUserView.WrappedComponent)
-      .first()
-      .setState({ user: testData });
   });
 
   it("renders without crashing", function() {
@@ -39,13 +37,12 @@ describe("AdminUserView", function() {
     expect(serialized).toMatchSnapshot();
   });
 
+  it("makes API call upon mounting", function() {
+    expect(ElevateApi.getUser).toHaveBeenCalled();
+  });
+
   it("has user state", function() {
-    expect(
-      wrapper
-        .find(AdminUserView.WrappedComponent)
-        .first()
-        .state("user")
-    ).toEqual(testData);
+    expect(wrapper.state("user")).toEqual(testData);
   });
 
   it("has div with adminUserView_div class", function() {
@@ -59,5 +56,12 @@ describe("AdminUserView", function() {
     expect(wrapper.html()).toContain("Needs");
     expect(wrapper.html()).toContain("Goals");
     expect(wrapper.html()).toContain("Questions");
+  });
+
+  it("renders confirmation when clicking delete button", function() {
+    window.confirm = jest.fn(() => true);
+    const deleteBtn = wrapper.find("#delete-click").first();
+    deleteBtn.simulate("click");
+    expect(window.confirm).toHaveBeenCalled();
   });
 });
