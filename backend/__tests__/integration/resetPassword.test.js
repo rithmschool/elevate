@@ -57,7 +57,6 @@ describe("GET /reset-password/:token", function() {
 
   test("verify token is valid", async function() {
     const response = await request(app).get(`/password/${passwordToken}`);
-
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("first_name");
     expect(response.body).toHaveProperty("id");
