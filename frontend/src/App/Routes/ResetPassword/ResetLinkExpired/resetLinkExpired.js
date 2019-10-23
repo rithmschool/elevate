@@ -1,5 +1,5 @@
 import React from "react";
-import './resetLinkExpired.css'
+import "./resetLinkExpired.css";
 
 class ResetLinkExpired extends React.Component {
   render() {

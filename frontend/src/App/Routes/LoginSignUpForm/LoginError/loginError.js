@@ -1,5 +1,5 @@
 import React from "react";
-import './loginError'
+import "./loginError";
 
 class LoginError extends React.Component {
   render() {
