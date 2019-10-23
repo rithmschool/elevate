@@ -18,6 +18,7 @@ class UserDocUploads extends Component {
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDragIn = this.handleDragIn.bind(this);
     this.handleDragOut = this.handleDragOut.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleUpload(e) {
@@ -82,8 +83,7 @@ class UserDocUploads extends Component {
     }
 
     let files = e.dataTransfer.files[0];
-    console.log("files", files);
-
+    
     if (files) {
       this.setState({
         ...this.state,
@@ -92,7 +92,11 @@ class UserDocUploads extends Component {
       });
     }
 
-    console.log("STATE", this.state);
+    console.log("files", files);
+  }
+
+  handleDelete(e) {
+    console.log(e.target);
   }
 
   componentDidMount() {
@@ -112,7 +116,6 @@ class UserDocUploads extends Component {
   }
 
   render() {
-    console.log("files", this.state.files);
     return (
       <div ref={this.dropRef}>
         <Card className="card text-center p-5">
@@ -123,17 +126,32 @@ class UserDocUploads extends Component {
             <div>
               <div>
                 {this.state.files
-                  ? this.state.files.map(file => <div>{file.name}</div>)
+                  ? this.state.files.map(file => (
+                      <div key={file.lastModified} className="mt-3">
+                        {file.name}
+                        <button onClick={this.handleDelete} className="delete">
+                          X
+                        </button>
+                      </div>
+                    ))
                   : null}
               </div>
               <Form onSubmit={this.handleSubmit}>
-                <Button type="submit">Upload a document</Button>
+                <label className="custom-file-upload mt-4">
+                  <input type="file" onChange={this.handleUpload} />
+                  Upload documents
+                </label>
+                <Button type="submit" className="btn btn-successmt-4">
+                  Submit
+                </Button>
               </Form>
               <div>
                 {this.state.uploaded ? (
-                  <Alert variant="success">File uploaded</Alert>
+                  <Alert variant="success" className="mt-4">
+                    Files uploaded
+                  </Alert>
                 ) : (
-                  <i className="fas fa-upload fa-2x mt-3"></i>
+                  <i className="fas fa-upload fa-2x mt-2"></i>
                 )}
               </div>
             </div>
