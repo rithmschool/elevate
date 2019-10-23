@@ -54,7 +54,6 @@ describe("POST /reset-password", function() {
 });
 
 describe("GET /reset-password/:token", function() {
-
   test("verify token is valid", async function() {
     const response = await request(app).get(`/password/${passwordToken}`);
     expect(response.statusCode).toBe(200);
@@ -64,7 +63,9 @@ describe("GET /reset-password/:token", function() {
   });
 
   test("verify if token is not valid", async function() {
-    const response = await request(app).get(`/password/${invalidPasswordToken}`);
+    const response = await request(app).get(
+      `/password/${invalidPasswordToken}`
+    );
 
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({
