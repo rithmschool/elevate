@@ -21,29 +21,13 @@ class UserDocUploads extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  //handle drag and drop feature & upload
   handleUpload(e) {
     let files = e.target.files[0];
 
     if (files) {
       this.setState({ ...this.state, files: [...this.state.files, files] });
     }
-  }
-
-  async handleSubmit(e) {
-    e.preventDefault();
-    this.setState({ ...this.state, uploaded: true });
-
-    const token = localStorage.getItem("token");
-
-    const formData = {
-      _token: token,
-      title: this.state.files[0].name,
-      counterparty: "Alex",
-      status: "unreviewed",
-      date_reviewed: null
-    };
-
-    await ElevateApi.uploadDoc(formData);
   }
 
   dropRef = React.createRef();
@@ -83,7 +67,7 @@ class UserDocUploads extends Component {
     }
 
     let files = e.dataTransfer.files[0];
-    
+
     if (files) {
       this.setState({
         ...this.state,
@@ -91,12 +75,6 @@ class UserDocUploads extends Component {
         drag: false
       });
     }
-
-    console.log("files", files);
-  }
-
-  handleDelete(e) {
-    console.log(e.target);
   }
 
   componentDidMount() {
@@ -113,6 +91,45 @@ class UserDocUploads extends Component {
     div.removeEventListener("dragleave", this.handleDragOut);
     div.removeEventListener("dragover", this.handleDrag);
     div.removeEventListener("drop", this.handleDrop);
+  }
+
+  handleDelete(e) {
+    console.log("I wanna remove this upload");
+  }
+
+  //handle submit upload to AWS and send to db
+  async handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ ...this.state, uploaded: true });
+
+    const token = localStorage.getItem("token");
+
+    let mapSendToDb = this.state.files.map(async file => {
+      const sendToDb = {
+        _token: token,
+        title: file.name,
+        counterparty: "Alex",
+        status: "unreviewed",
+        date_reviewed: null
+      };
+
+      let res = await ElevateApi.uploadDoc(sendToDb);
+      return res;
+    });
+
+    Promise.all(mapSendToDb);
+
+    let mapSendToAws = this.state.files.map(async file => {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      let res = await ElevateApi.uploadToAws(formData);
+      return res;
+    });
+
+    mapSendToAws
+      ? console.log("truthy", mapSendToAws)
+      : console.log("shoot, this no work yet");
   }
 
   render() {

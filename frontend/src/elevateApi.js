@@ -121,8 +121,12 @@ class ElevateApi {
   }
 
   static async uploadDoc(doc) {
-    console.log("doc", doc);
     let res = await this.request("upload", doc, "post");
+    return res;
+  }
+
+  static async uploadToAws(doc) {
+    let res = await this.request("upload/aws", doc, "post");
     return res;
   }
 }
