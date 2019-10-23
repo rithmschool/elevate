@@ -22,11 +22,12 @@ class UserDocUploads extends Component {
   }
 
   handleUpload(e) {
-    let files = e.target.files[0];
+    let file = e.target.files[0];
 
-    if (files) {
-      this.setState({ ...this.state, files: [...this.state.files, files] });
+    if (file) {
+      this.setState({ ...this.state, files: [...this.state.files, file] });
     }
+    console.log("only upload state", this.state);
   }
 
   async handleSubmit(e) {
@@ -35,15 +36,40 @@ class UserDocUploads extends Component {
 
     const token = localStorage.getItem("token");
 
-    const formData = {
-      _token: token,
-      title: this.state.files[0].name,
-      counterparty: "Alex",
-      status: "unreviewed",
-      date_reviewed: null
-    };
+    // const formData = {
+    //   _token: token,
+    //   title: this.state.files[0].name,
+    //   counterparty: "Alex",
+    //   status: "unreviewed",
+    //   date_reviewed: null,
+    // };
 
-    await ElevateApi.uploadDoc(formData);
+    const formData = new FormData();
+    formData.append("_token", token);
+    formData.append("counterparty", "Alex");
+    formData.append("status", "unreviewed");
+    formData.append("date_reviewed", null);
+
+    // let fileMapForDB = this.state.files.map(async file => {
+    //   formData.append('title', file.name);
+    //   // console.log(file)
+    //   // formData.file = file;
+    //   let res = await ElevateApi.addToDB(formData);
+    //   return res;
+    // })
+
+    let fileMap = this.state.files.map(async file => {
+      console.log("in map:", file);
+      formData.append("file", file);
+      let res = await ElevateApi.uploadFile(file);
+      return res;
+    });
+
+    // let resolvedMapForDB = await Promise.all(fileMapForDB)
+
+    console.log("This is our MAP of FILES", fileMap);
+    let resolvedMap = await Promise.all(fileMap);
+    console.log("This is our MAP of RESOLVED FILES", resolvedMap);
   }
 
   dropRef = React.createRef();

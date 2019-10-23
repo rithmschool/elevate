@@ -14,7 +14,15 @@ class ElevateApi {
         params: { _token, ...params }
       });
     } else if (verb === "post") {
-      q = axios.post(`${BASE_URL}/${endpoint}`, { _token, ...params });
+      debugger;
+      q =
+        endpoint === "upload"
+          ? axios.post(
+              `${BASE_URL}/upload`,
+              { _token, ...params }
+              // { headers: { "Content-Type": "multipart/form-data" } }
+            )
+          : axios.post(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "patch") {
       q = axios.patch(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "delete") {
@@ -120,11 +128,24 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete");
   }
 
-  static async uploadDoc(doc) {
+  static async addToDB(doc) {
+    // console.log("doc", doc);
+    let res = await this.request("upload/db", doc, "post");
+    return res;
+  }
+
+  static async uploadFile(doc) {
     console.log("doc", doc);
     let res = await this.request("upload", doc, "post");
     return res;
   }
+
+  // static async uploadFile(doc) {
+  //   console.log("doc", doc);
+  //   let _token = localStorage.getItem("token");
+  //   let res = await axios.post(`${BASE_URL}/upload`, { _token, ...doc }, { headers: { 'Content-Type': 'multipart/form-data'}});
+  //   return res;
+  // }
 }
 
 export default ElevateApi;
