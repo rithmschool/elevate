@@ -158,7 +158,7 @@ class Navigation extends React.Component {
             <li className="nav-item adminStyle danger active">
               <Link
                 className="Nav-text Nav-link Nav-link-ltr middlecontent"
-                to="/admin"
+                to="/admin/users"
               >
                 **Admin**
               </Link>
