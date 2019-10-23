@@ -3,10 +3,8 @@ import { MemoryRouter } from "react-router-dom";
 import { shallow, mount } from "enzyme";
 import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
-import AdminTable, { toggleSidebar } from "./AdminTable/adminTable";
-import { onClick } from "./PanelToggleBtn/panelToggleBtn";
+import AdminTable from "./AdminTable/adminTable";
 import ElevateApi from "../../../elevateApi";
-import { returnStatement } from "@babel/types";
 
 const { USERS, QUESTIONS } = mockData;
 const users = USERS;
