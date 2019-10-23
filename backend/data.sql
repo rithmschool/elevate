@@ -24,6 +24,16 @@ CREATE TABLE google_users (
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE documents
+(
+ id serial PRIMARY KEY,
+ title TEXT NOT NULL,
+ counterparty TEXT NOT NULL,
+ date_submitted TIMESTAMP DEFAULT current_timestamp,
+ date_reviewed DATE,
+ status TEXT
+);
+
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -157,6 +167,16 @@ CREATE TABLE users (
   hire_date DATE,
   needs TEXT,
   goals TEXT
+);
+
+CREATE TABLE documents
+(
+ id serial PRIMARY KEY,
+ title TEXT NOT NULL,
+ counterparty TEXT NOT NULL,
+ date_submitted TIMESTAMP DEFAULT current_timestamp,
+ date_reviewed DATE,
+ status TEXT
 );
 
 CREATE TABLE salaries (
