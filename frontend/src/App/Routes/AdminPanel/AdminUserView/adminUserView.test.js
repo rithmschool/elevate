@@ -1,7 +1,6 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
-
 import AdminUserView from "./adminUserView";
 
 describe("AdminUserView", function() {
@@ -13,15 +12,25 @@ describe("AdminUserView", function() {
     current_company: "SpaceX",
     hire_date: "2018-09-01",
     needs: "Negotiate a raise during annual review",
-    goals: "Increase salary by 15k"
+    goals: "Increase salary by 15k",
+    id: 1
   };
 
-  beforeEach(() => {
-    wrapper = mount(<AdminUserView user={testData} />);
+  beforeEach(function() {
+    wrapper = mount(
+      <AdminUserView.WrappedComponent
+        history={{ location: { pathname: "/admin/users/1" } }}
+        match={{ params: { userId: 1 } }}
+      />
+    );
+    wrapper
+      .find(AdminUserView.WrappedComponent)
+      .first()
+      .setState({ user: testData });
   });
 
   it("renders without crashing", function() {
-    // Mounted in beforeEach above
+    shallow(<AdminUserView.WrappedComponent />);
   });
 
   it("matches snapshot", function() {
@@ -30,8 +39,13 @@ describe("AdminUserView", function() {
     expect(serialized).toMatchSnapshot();
   });
 
-  it("has a user prop", function() {
-    expect(wrapper.prop("user")).toEqual(testData);
+  it("has user state", function() {
+    expect(
+      wrapper
+        .find(AdminUserView.WrappedComponent)
+        .first()
+        .state("user")
+    ).toEqual(testData);
   });
 
   it("has div with adminUserView_div class", function() {

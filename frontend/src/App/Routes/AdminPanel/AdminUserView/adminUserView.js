@@ -55,7 +55,6 @@ class AdminUserView extends React.Component {
     }
 
     if (this.state.redirect) {
-      console.log("should be redirecting...");
       return <Redirect to="/admin/users" />;
     }
 
