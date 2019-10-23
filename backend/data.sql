@@ -100,6 +100,7 @@ CREATE TABLE documents
   user_id INTEGER,
   title TEXT NOT NULL,
   counterparty TEXT NOT NULL,
+  url TEXT NOT NULL,
   date_submitted TIMESTAMP DEFAULT current_timestamp,
   date_reviewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status TEXT
@@ -124,9 +125,9 @@ VALUES
   ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
 
 INSERT INTO documents
-  ( id, user_id, title, counterparty, date_submitted, date_reviewed, status )
+  ( id, user_id, title, url, counterparty, date_submitted, date_reviewed, status )
 VALUES
-  (1, 123, 'tinkerbell', 'wendy', '2018-06-23', '2018-7-3', 'received');
+  (1, 2, 'tinkerbell', 'www.google.com', 'wendy', '2018-06-23', '2018-7-3', 'received');
 
 
 INSERT INTO google_users
