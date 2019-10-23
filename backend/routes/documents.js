@@ -8,8 +8,9 @@ const router = express.Router();
 
 // GET--- endpoint for getting all documents
 router.get("/manage", ensureCorrectUser, async function(req, res, next) {
+  
   try {
-    let documents = await Document.getAll(2);
+    let documents = await Document.getAll(req.user_id);
     return res.json({ documents });
   } catch (err) {
     return next(err);
