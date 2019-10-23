@@ -4,7 +4,8 @@ import "./resetLinkExpired.css";
 class ResetLinkExpired extends React.Component {
   render() {
     return (
-      <div className="reset-pass-exp">
+      <div className="text-center">
+        
         <h1>Ooops!</h1>
         <h2> That link isn’t working.</h2>
         <p> Password reset links expire after 60 minutes if unused.</p>

@@ -50,7 +50,7 @@ exports[`matches snapshot 1`] = `
         </div>
       </Col>
       <Col
-        className="second-col"
+        className="d-flex align-items-center"
         md={6}
         tag="div"
         widths={

@@ -4,7 +4,7 @@ import "./loginError.css";
 class LoginError extends React.Component {
   render() {
     return (
-      <div className="login-div">
+      <div className="text-center">
         <h5>
           Invalid Email or Password
           <p>Forgot your password?</p>

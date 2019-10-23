@@ -70,11 +70,11 @@ class ForgotPassword extends React.Component {
           border
           rounded
           shadow
-          forgotPassword_container`}
+          forgotPassword-container`}
       >
         <Form onSubmit={this.sendEmail}>
-          <div className="form-div">
-            <h3 className="form-title">Forgot Password</h3>
+          <div className="text-center">
+            <h3 className="m-2">Forgot Password</h3>
             <p>
               Please enter your email address and we'll send you instructions on
               how to reset your password
