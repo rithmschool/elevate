@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  Alert,
-  Card
-} from "react-bootstrap";
+import { Form, Button, Alert, Card } from "react-bootstrap";
 import ElevateApi from "../../../elevateApi";
 import "./UserDocUploads.css";
 
