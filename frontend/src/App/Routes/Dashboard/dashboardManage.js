@@ -1,6 +1,5 @@
 import React from "react";
 import UserDocUploads from "./UserDocUploads";
-import DragAndDrop from "./DragAndDrop";
 
 class DashboardManage extends React.Component {
   constructor(props) {
@@ -29,16 +28,7 @@ class DashboardManage extends React.Component {
   render() {
     return (
       <div>
-        <UserDocUploads />
-
-        <div>below is a test</div>
-        <DragAndDrop handleDrop={this.handleDrop}>
-          <div style={{ height: 300, width: 500 }}>
-            {this.state.files.map(file => (
-              <div>{file}</div>
-            ))}
-          </div>
-        </DragAndDrop>
+        <UserDocUploads handleDrop={this.handleDrop} />
       </div>
     );
   }

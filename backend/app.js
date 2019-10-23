@@ -12,7 +12,8 @@ const authRoutes = require("./routes/auth");
 const questionsRoutes = require("./routes/questions");
 const appointmentsRoutes = require("./routes/appointments");
 const calendlyWebhook = require("./routes/calendlyWebhook");
-const passwordResetRoutes = require('./routes/resetPassword');
+const passwordResetRoutes = require("./routes/resetPassword");
+const docUploadsRoutes = require("./routes/docUploads");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,8 @@ app.use("/salaries", salariesRoutes);
 app.use("/questions", questionsRoutes);
 app.use("/appointments", appointmentsRoutes);
 app.use("/webhook", calendlyWebhook);
-app.use('/password', passwordResetRoutes);
+app.use("/password", passwordResetRoutes);
+app.use("/upload", docUploadsRoutes);
 
 /** 404 handler */
 
