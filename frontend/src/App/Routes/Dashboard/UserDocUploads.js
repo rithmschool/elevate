@@ -83,7 +83,7 @@ class UserDocUploads extends Component {
     }
 
     let files = e.dataTransfer.files[0];
-    
+
     if (files) {
       this.setState({
         ...this.state,
