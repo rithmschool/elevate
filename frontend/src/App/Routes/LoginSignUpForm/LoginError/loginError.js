@@ -1,9 +1,10 @@
 import React from "react";
+import './loginError'
 
 class LoginError extends React.Component {
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div className="login-div">
         <h5>
           Invalid Email or Password
           <p>Forgot your password?</p>

@@ -50,13 +50,8 @@ exports[`matches snapshot 1`] = `
         </div>
       </Col>
       <Col
+        className="second-col"
         md={6}
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-          }
-        }
         tag="div"
         widths={
           Array [

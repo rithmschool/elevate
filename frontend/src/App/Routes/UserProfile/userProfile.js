@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
-
+import './userProfile.css'
 import { UserContext } from "../../../userContext";
 import ElevateApi from "../../../elevateApi";
 import UserSalaryInfoForm from "./UserSalaryInfoForm/userSalaryInfoForm";
@@ -147,7 +147,7 @@ class UserProfile extends React.Component {
 
         <Row>
           <Col md={6}>
-            <div style={{ marginBottom: "8em" }}>
+            <div className="user-salary-form-div">
               <UserSalaryInfoForm
                 handleSalaryUpdate={this.handleSalaryUpdate}
                 {...lastestSalary}
