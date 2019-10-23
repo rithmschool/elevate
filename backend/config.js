@@ -38,6 +38,13 @@ const SEED_SALARY_SQL = `
     (4, 200000.00, 5000.00, .33),
     (5, 200000.00, 5000.00, .10);`;
 
+const SEED_DOCUMENTS_SQL = `
+INSERT INTO documents (user_id, title, counterparty, url, date_submitted, date_reviewed, status ) VALUES 
+(1, 'Burger Flipper', 'Squidward', 'www.spongebob.com', '2020-08-29', '2019-11-13', 'Completed'),
+(2, 'Burger Consumer', 'Patrick Star', 'www.spongebob.com', '2019-09-02', '2019-09-02', 'Received'),
+(1, 'Burger Flipper Manager', 'Squidward', 'www.spongebob.com', '2020-08-29', '2019-11-13', 'In Progress');
+`;
+
 const SEED_CHARGES_SQL = `
   INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid) VALUES
     (1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false),
@@ -71,6 +78,7 @@ module.exports = {
   SERVICE,
   SEED_SALARY_SQL,
   SEED_CHARGES_SQL,
+  SEED_DOCUMENTS_SQL,
   SEED_APPT_SQL,
   SEED_USERS_CALENDLY_USERS_SQL
 };
