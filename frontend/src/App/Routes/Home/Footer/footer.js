@@ -13,7 +13,7 @@ class Footer extends React.Component {
             <Col className="d-flex flex-column justify-content-center">
               <NewsletterSignUpForm />
             </Col>
-            <Col style = {{ display: "flex", flexDirection: "column" }}>
+            <Col style={{ display: "flex", flexDirection: "column" }}>
               <Link to="/ask-an-expert">Blog</Link>
               <Link to="/ask-an-expert">Contact</Link>
               <Link to="/ask-an-expert">Facebook</Link>

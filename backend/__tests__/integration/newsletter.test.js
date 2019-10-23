@@ -13,7 +13,9 @@ const { afterAllHook } = require("../config");
 
 beforeEach(async function() {
   await db.query("DELETE FROM newsletter_emails");
-  await db.query("INSERT INTO newsletter_emails (email) VALUES ('test@yahoo.com')")
+  await db.query(
+    "INSERT INTO newsletter_emails (email) VALUES ('test@yahoo.com')"
+  );
 });
 
 afterAll(async () => {
