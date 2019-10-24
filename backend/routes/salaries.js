@@ -6,17 +6,6 @@ const { ensureCorrectUser, authRequired } = require('../middleware/auth');
 
 const router = new express.Router();
 
-/** GET /  =>  {salaries: [salaryData, ...]}  */
-
-router.get('/', async function (req, res, next) {
-  try {
-    const salaries = await Salary.findAll();
-    return res.json({ salaries });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 /** GET / a specific salary  =>  {salaries: salary}  
  *  looks up and returns the latest salary id by user id obtained from route params
 */
