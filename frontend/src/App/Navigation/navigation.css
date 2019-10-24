@@ -36,11 +36,11 @@
 
 .Nav-link-ltr::before {
   width: 0%;
-  bottom: 10px;
+  bottom: 0px;
 }
 
 .Nav-link-ltr:hover::before {
-  width: 100%;
+  width: 85%;
 }
 
 .Nav_brand-name {
@@ -110,6 +110,14 @@
   color: #6558f5;
 }
 
+Nav.Link {
+  color: black;
+}
+
 .right-content {
-  margin-left: 375px;
+  margin-left: 350px
+}
+
+.user-item {
+  margin-top: 12px;
 }
