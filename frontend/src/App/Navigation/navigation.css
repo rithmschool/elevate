@@ -136,7 +136,7 @@ nav.Link {
 .dropdown-link {
   color: unset;
   background-color: transparent;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .dropdown-link:hover {
