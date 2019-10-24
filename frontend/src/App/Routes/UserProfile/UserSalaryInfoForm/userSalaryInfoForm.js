@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "../FormStyles.css";
+import "./userSalaryInfo.css";
 
 /** Update user salary */
 function UserSalaryInfoForm(props) {
@@ -10,10 +11,7 @@ function UserSalaryInfoForm(props) {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
-    <div
-      className="EditPUserForm container border rounded"
-      style={{ backgroundColor: "#F4F6F8" }}
-    >
+    <div className="EditPUserForm container border rounded">
       <div className="form-inside-container mt-5">
         <Form onSubmit={handleSubmit}>
           <div className="form-styles_flex-space-between">

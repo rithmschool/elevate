@@ -92,7 +92,7 @@ class ResetPassword extends React.Component {
           border 
           rounded 
           shadow
-          ResetPassword_container`}
+          ResetPassword-container`}
         >
           <ResetLinkExpired />
         </div>
@@ -108,15 +108,13 @@ class ResetPassword extends React.Component {
         offset-lg-4
         border
         rounded
-        shadow`}
-        style={{ marginTop: "10%", backgroundColor: "#F4F6F8" }}
+        shadow
+        form-container`}
       >
         <Form onSubmit={this.updatePassword}>
-          <h4 style={{ textAlign: "center" }}>Hello {first_name}</h4>
+          <h4 className="first-name">Hello {first_name}</h4>
 
-          <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-            Choose a new password
-          </h4>
+          <h4 className="new-pass">Choose a new password</h4>
 
           <Row>
             <Col md={12}>
