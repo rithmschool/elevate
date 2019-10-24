@@ -1,3 +1,7 @@
+.navbar {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
 .Nav-icon {
   font-weight: bold;
   font-size: 14px;
@@ -69,7 +73,6 @@
   font-weight: bold;
   font-size: 14px;
   color: #394557;
-  margin: 0px 30px;
   display: inline-block;
   position: relative;
   opacity: 0.75;
@@ -77,12 +80,10 @@
 
 .userMenu {
   min-width: 250px;
-  /* max-width: 250px; */
-  /* height: calc(100vh - 130px); */
   overflow-y: scroll;
   z-index: 1;
   position: absolute;
-  margin-top: 8px;
+  margin-top: 9px;
   right: 0;
   visibility: hidden;
   background-color: #f8f9fa;
@@ -90,6 +91,16 @@
 
 .userMenu.is-open {
   visibility: visible;
+}
+
+.userMenu .list-group-item {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.Menu-link.dropdown-item:active {
+  color: unset;
+  background-color: transparent;
 }
 
 @media only screen and (max-width: 500px) {
