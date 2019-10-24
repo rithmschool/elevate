@@ -48,7 +48,10 @@ class App extends React.Component {
 
     return (
       <UserContext.Provider value={this.state.currentUser}>
-        <Navigation logout={this.handleLogOut} getCurrentUser={this.getCurrentUser}/>
+        <Navigation
+          logout={this.handleLogOut}
+          getCurrentUser={this.getCurrentUser}
+        />
         <Routes getCurrentUser={this.getCurrentUser} />
       </UserContext.Provider>
     );

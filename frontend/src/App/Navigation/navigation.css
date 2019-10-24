@@ -110,12 +110,12 @@
   color: #6558f5;
 }
 
-Nav.Link {
+nav.Link {
   color: black;
 }
 
 .right-content {
-  margin-left: 350px
+  margin-left: 350px;
 }
 
 .user-item {
