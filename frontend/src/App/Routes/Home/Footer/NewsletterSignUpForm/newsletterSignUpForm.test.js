@@ -17,7 +17,7 @@ describe("NewsletterSignUpForm", function() {
   it("calls onSubmit prop function when form is submitted", () => {
     const wrapper = mount(<NewsletterSignUpForm />);
     const instance = wrapper.instance();
-    jest.spyOn(instance, 'handleSubmit');
+    jest.spyOn(instance, "handleSubmit");
     instance.handleSubmit();
 
     expect(instance.handleSubmit).toHaveBeenCalled();
