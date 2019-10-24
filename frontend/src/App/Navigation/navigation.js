@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import "./navigation.css";
 import { Collapse, Navbar, NavbarToggler } from "reactstrap";
-import { UserContext, AdminContext } from "../../userContext";
+import { UserContext } from "../../userContext";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -25,7 +25,6 @@ class Navigation extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
-
   myRef = React.createRef();
 
   // Hide user menu when click outside dropdown
@@ -44,17 +43,48 @@ class Navigation extends React.Component {
   }
 
   render() {
-    // check if user is connected to display wether sign in or logout on navbar
     const userIsLoggedIn = (
       <UserContext.Consumer>
         {currentUser => (
           <li className="nav-item active">
             {currentUser ? (
               <div>
-                <i
-                  className="fas fa-user Nav-icon"
-                  onClick={this.userMenuToggle}
-                ></i>
+                <ul className="navbar-nav">
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link
+                      to="/dashboard/manage"
+                      className="Nav-link Nav-link-ltr"
+                    >
+                      Manage
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link
+                      to="/dashboard/appointments"
+                      className="Nav-link Nav-link-ltr"
+                    >
+                      Appointments
+                    </Link>
+                    <Link
+                      to="/dashboard/templates"
+                      className="Nav-link Nav-link-ltr"
+                    >
+                      Templates
+                    </Link>
+                    <i
+                      className="fas fa-user Nav-icon right-content"
+                      onClick={this.userMenuToggle}
+                    ></i>
+                  </li>
+                </ul>
 
                 <div
                   ref={this.myRef}
@@ -89,9 +119,30 @@ class Navigation extends React.Component {
               </div>
             ) : (
               <div ref={this.myRef}>
-                <Link to="/login" className="Nav-link Nav-link-ltr">
-                  Sign In
-                </Link>
+                <ul className="navbar-nav ml-auto">
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/" className="Nav-link Nav-link-ltr">
+                      About
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item active"
+                    data-toggle="collapse"
+                    data-target=".in"
+                  >
+                    <Link to="/" className="Nav-link Nav-link-ltr">
+                      For Employers
+                    </Link>
+
+                    <Link to="/login" className="Nav-link Nav-link-ltr">
+                      Sign In
+                    </Link>
+                  </li>
+                </ul>
               </div>
             )}
           </li>
@@ -100,23 +151,27 @@ class Navigation extends React.Component {
     );
 
     const userIsAdmin = (
-      <AdminContext.Consumer>
-        {isAdmin =>
-          isAdmin && (
+      <UserContext.Consumer>
+        {currentUser =>
+          currentUser &&
+          currentUser.is_admin && (
             <li className="nav-item adminStyle danger active">
-              <Link className="Nav-text Nav-link Nav-link-ltr" to="/admin">
+              <Link
+                className="Nav-text Nav-link Nav-link-ltr middlecontent"
+                to="/admin"
+              >
                 **Admin**
               </Link>
             </li>
           )
         }
-      </AdminContext.Consumer>
+      </UserContext.Consumer>
     );
 
     return (
       <Navbar color="light" light expand="md">
         <Link className="Nav_brand-name" to="/">
-          Elevate
+          Brella
         </Link>
 
         <NavbarToggler onClick={this.toggle} />
@@ -126,18 +181,7 @@ class Navigation extends React.Component {
           navbar
           className="collapse.navbar-collapse"
         >
-          <ul className="navbar-nav mr-auto">
-            <li
-              className="nav-item active"
-              data-toggle="collapse"
-              data-target=".in"
-            >
-              <Link to="/ask-an-expert" className="Nav-link Nav-link-ltr">
-                Ask An Expert
-              </Link>
-            </li>
-          </ul>
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ml-auto">
             {userIsAdmin}
 
             {userIsLoggedIn}
