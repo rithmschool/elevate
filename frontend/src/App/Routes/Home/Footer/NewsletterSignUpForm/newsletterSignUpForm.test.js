@@ -15,12 +15,11 @@ describe("NewsletterSignUpForm", function() {
   });
 
   it("calls onSubmit prop function when form is submitted", () => {
-    const submitFn = jest.fn();
-    const wrapper = mount(<NewsletterSignUpForm onSubmit={submitFn} />);
-    const form = wrapper.find("form");
-    console.log(form.debug());
-    form.simulate("change", { email: { value: "test@gmail.com" } });
-    form.simulate("submit");
-    expect(submitFn).toHaveBeenCalledTimes(1);
+    const wrapper = mount(<NewsletterSignUpForm />);
+    const instance = wrapper.instance();
+    jest.spyOn(instance, 'handleSubmit');
+    instance.handleSubmit();
+
+    expect(instance.handleSubmit).toHaveBeenCalled();
   });
 });
