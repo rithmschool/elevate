@@ -4,7 +4,7 @@ process.env.NODE_ENV = "test";
 const db = require("../../db");
 const Newsletter = require("../../models/newsletter");
 
-describe("Test Salary model", function() {
+describe("Test newsletter model", function() {
   beforeEach(async () => {
     await db.query(`DELETE FROM newsletter_emails;`);
   });

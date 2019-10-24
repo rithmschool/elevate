@@ -125,7 +125,7 @@ class ElevateApi {
     return res;
   }
 
-  static async getNewsletterSignUp(data) {
+  static async getNewsletter(data) {
     let res = await this.request(`newsletter/`, data, "get");
     return res;
   }

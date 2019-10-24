@@ -20,8 +20,8 @@ class newsletterSignUpForm extends React.Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    const email = await ElevateApi.getNewsletterSignUp(this.state);
-    if (Object.entries(email).length === 0 && email.constructor === Object) {
+    const newsletter = await ElevateApi.getNewsletterSignUp(this.state);
+    if (!newsletter.email) {
       await ElevateApi.postNewsletterSignUp(this.state);
       this.setState({
         email: "",
@@ -66,9 +66,9 @@ class newsletterSignUpForm extends React.Component {
         ) : (
           newsletterSignUp
         )}
-        {this.state.emailExists ? (
+        {this.state.emailExists && (
           <p className="text-danger">This email is already signed up</p>
-        ) : null}
+        )}
       </div>
     );
   }
