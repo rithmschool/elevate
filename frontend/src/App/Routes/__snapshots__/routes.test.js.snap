@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main routes file matches snapshot 1`] = `
+<Switch>
+  <Route
+    exact={true}
+    path="/"
+    render={[Function]}
+  />
+  <Route
+    exact={true}
+    path="/login"
+    render={[Function]}
+  />
+  <AdminPrivateRoute
+    exact={true}
+    path="/admin"
+    render={[Function]}
+  />
+  <Route
+    exact={true}
+    path="/ask-an-expert"
+    render={[Function]}
+  />
+  <UserPrivateRoute
+    path="/users/:userId"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/manage"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/appointments"
+    render={[Function]}
+  />
+  <DashboardRoutes
+    exact={true}
+    path="/dashboard/templates"
+    render={[Function]}
+  />
+  <ForgotPassRoutes
+    exact={true}
+    path="/reset-password/forgot"
+    render={[Function]}
+  />
+  <ForgotPassRoutes
+    exact={true}
+    path="/reset-password/:token"
+    render={[Function]}
+  />
+  <Redirect
+    to="/"
+  />
+</Switch>
+`;

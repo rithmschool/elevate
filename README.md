@@ -58,6 +58,8 @@ npm test
 
 cd frontend
 npm test
+Coverage:
+npm test -- --coverage --watchAll=false
 ```
 
 ## Calendly Webhook Configuration and Testing

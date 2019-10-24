@@ -3,21 +3,7 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className="
-          container
-          col-md-6
-          offset-md-3
-          col-lg-4
-          offset-lg-4
-          border 
-          rounded 
-          shadow"
-    style={
-      Object {
-        "backgroundColor": "#F4F6F8",
-        "marginTop": "10%",
-      }
-    }
+    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border  rounded  shadow"
   >
     <div
       className="LoginSignUpForm_form-inside-container mt-5"
@@ -35,54 +21,56 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
           >
             Sign In
           </div>
-          <FormGroup>
-            <div
-              className="form-group"
-            >
-              <FormControl
-                id="email"
-                name="email"
-                onChange={[Function]}
-                placeholder="Email"
-                type="text"
-                value=""
+          <div>
+            <FormGroup>
+              <div
+                className="form-group"
               >
-                <input
-                  className="form-control"
+                <FormControl
                   id="email"
                   name="email"
                   onChange={[Function]}
                   placeholder="Email"
                   type="text"
                   value=""
-                />
-              </FormControl>
-            </div>
-          </FormGroup>
-          <FormGroup>
-            <div
-              className="form-group"
-            >
-              <FormControl
-                id="password"
-                name="password"
-                onChange={[Function]}
-                placeholder="Password"
-                type="password"
-                value=""
+                >
+                  <input
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+            <FormGroup>
+              <div
+                className="form-group"
               >
-                <input
-                  className="form-control"
+                <FormControl
                   id="password"
                   name="password"
                   onChange={[Function]}
                   placeholder="Password"
                   type="password"
                   value=""
-                />
-              </FormControl>
-            </div>
-          </FormGroup>
+                >
+                  <input
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+          </div>
           <div
             className="row justify-content-center"
           >
@@ -98,7 +86,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 disabled={false}
                 type="submit"
               >
-                Submit
+                SIGN IN
               </button>
             </Button>
           </div>
@@ -135,27 +123,21 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   <i
                     className="fab fa-google"
                   />
-                  Sign in with Google
+                  <span>
+                    Sign in with Google
+                  </span>
                 </button>
               </Button>
             </div>
+          </div>
+          <div>
             <FormText
               className="text-muted mt-3"
               id="signup"
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
             >
               <small
                 className="text-muted mt-3 form-text"
                 id="signup"
-                style={
-                  Object {
-                    "textAlign": "center",
-                  }
-                }
               >
                 Don't have an account?
                 <button
@@ -164,6 +146,23 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 >
                   Create One
                 </button>
+              </small>
+            </FormText>
+          </div>
+          <div>
+            <FormText
+              className="LoginSignUpForm_link-signup"
+              id="signup"
+            >
+              <small
+                className="LoginSignUpForm_link-signup form-text"
+                id="signup"
+              >
+                <a
+                  href="http://localhost:3000/reset-password/forgot"
+                >
+                  Forgot password?
+                </a>
               </small>
             </FormText>
           </div>
