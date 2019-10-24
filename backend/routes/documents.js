@@ -7,8 +7,9 @@ const { ensureCorrectUser } = require("../middleware/auth");
 const router = express.Router();
 
 // GET--- endpoint for getting all documents
-router.get("/manage", ensureCorrectUser, async function(req, res, next) {
+router.get("/manage/:id", ensureCorrectUser, async function(req, res, next) {
   try {
+    const paramsId = req.params.id
     let documents = await Document.getAll(req.user_id);
     return res.json({ documents });
   } catch (err) {
