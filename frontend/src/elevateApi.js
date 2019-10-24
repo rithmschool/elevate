@@ -125,9 +125,27 @@ class ElevateApi {
     return res;
   }
 
-  static async uploadToAws(doc) {
-    let res = await this.request("upload/aws", doc, "post");
-    return res;
+  static async uploadToAws(formData) {
+    console.log("typeof doc ", typeof formData);
+    // let file = formData.getAll("file");
+    debugger;
+    let q = await axios
+      .post(`${BASE_URL}/upload/aws`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(response => {
+        console.log(`response => ${response}`);
+        // handle your response;
+      })
+      .catch(error => {
+        console.log(`error => ${error}`);
+
+        // handle your error
+      });
+    // let res = await this.request("upload/aws", doc, "post");
+    return q;
   }
 }
 

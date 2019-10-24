@@ -102,6 +102,7 @@ class UserDocUploads extends Component {
     e.preventDefault();
     this.setState({ ...this.state, uploaded: true });
 
+    debugger;
     const token = localStorage.getItem("token");
 
     let mapSendToDb = this.state.files.map(async file => {
@@ -122,14 +123,13 @@ class UserDocUploads extends Component {
     let mapSendToAws = this.state.files.map(async file => {
       const formData = new FormData();
       formData.append("file", file);
+      console.log("FILE", file);
 
       let res = await ElevateApi.uploadToAws(formData);
       return res;
     });
 
-    mapSendToAws
-      ? console.log("truthy", mapSendToAws)
-      : console.log("shoot, this no work yet");
+    console.log("MAP SEND TO AWS", mapSendToAws);
   }
 
   render() {
