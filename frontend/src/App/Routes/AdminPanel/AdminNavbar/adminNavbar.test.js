@@ -38,8 +38,6 @@ describe("AdminNavbar", function() {
   });
 
   it("should display 'users' and 'questions' when position is true", function() {
-    // wrapper.setProps({ position: true });
-
     expect(wrapper.find(".adminNavbar > p > #users")).toHaveLength(1);
     expect(wrapper.find(".adminNavbar > p > #questions")).toHaveLength(1);
   });

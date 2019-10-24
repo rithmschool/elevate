@@ -79,6 +79,7 @@ class AdminTable extends Component {
   }
 
   render() {
+    debugger;
     const tableType = this.props.tableObjs[0].hasOwnProperty("company")
       ? "users"
       : "questions";
