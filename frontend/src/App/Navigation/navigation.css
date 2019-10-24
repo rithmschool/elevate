@@ -44,7 +44,7 @@
 }
 
 .Nav-link-ltr:hover::before {
-  width: 85%;
+  width: 100%;
 }
 
 .Nav_brand-name {
@@ -71,7 +71,7 @@
 
 .Menu-link {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   color: #394557;
   display: inline-block;
   position: relative;
@@ -102,11 +102,6 @@
   visibility: visible;
 }
 
-.userMenu .list-group-item {
-  border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-}
-
 @media only screen and (max-width: 500px) {
   .fa-user {
     display: none;
@@ -115,6 +110,24 @@
   .userMenu.is-open {
     min-width: 100%;
   }
+}
+
+.list-group-item {
+  color: unset;
+  background-color: transparent;
+  padding: 10px
+}
+
+li.list-group-item {
+  color: unset;
+  background-color: transparent;
+  border: none; 
+}
+
+a.list-group-item.bg-transparent.Menu-link.dropdown-item {
+  padding: 8px;
+  transition: all 100ms ease-in-out;
+
 }
 
 .Nav-link-ltr {
@@ -136,11 +149,10 @@ nav.Link {
 .dropdown-link {
   color: unset;
   background-color: transparent;
-  transition: all 0.2s ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 .dropdown-link:hover {
   color: unset;
   background-color: transparent;
-  transform: scale(1.5);
 }

@@ -2,20 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import "./navigation.css";
-import { Collapse, NavbarToggler } from "reactstrap";
 import { UserContext } from "../../userContext";
-import { thisTypeAnnotation, thisExpression } from "@babel/types";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.userMenuToggle = this.userMenuToggle.bind(this);
-    this.toggle = this.toggle.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
 
     this.state = {
-      isOpen: false,
       userMenuIsOpen: false
     };
   }
@@ -31,21 +27,25 @@ class Navigation extends React.Component {
 
   // Hide user menu when click outside dropdown
   handleClickOutside = e => {
-    if (!this.myRef.current.contains(e.target)) {
-      this.setState({ userMenuIsOpen: false });
-    }
+    this.setState({ userMenuIsOpen: false });
   };
 
-  toggle() {
-    this.setState(st => ({ isOpen: !st.isOpen }));
+  userMenuToggle(evt) {
+    if (this.state.userMenuIsOpen) {
+      console.log("a")
+      this.handleClickOutside()
+    } else {
+      console.log(this.state)
+      this.handleClickOutside()
+    this.setState(st => ({ userMenuIsOpen: !st.userMenuIsOpen }))
+  };
+    console.log(this.state.userMenuIsOpen)
   }
 
-  userMenuToggle(evt) {
-    this.setState(st => ({ userMenuIsOpen: !st.userMenuIsOpen }));
-  }
 
   render() {
 
+    //NavBar for logged out users 
     const loggedOut = (
       <UserContext.Consumer>
         {currentUser => (!currentUser) && (
@@ -72,6 +72,7 @@ class Navigation extends React.Component {
       </UserContext.Consumer>
     );
 
+    //NavBar for logged in users
     const userIsLoggedIn = (
       <UserContext.Consumer>
         {currentUser => currentUser && (
@@ -98,32 +99,31 @@ class Navigation extends React.Component {
                     Templates
                   </Link>
                 </li>
-
-                <li className="nav-item active" data-toggle="collapse" data-target=".in">
-                  <i className="fas fa-user Nav-icon right-content" onClick={this.userMenuToggle}>
-                  </i>
-                </li>
+                <div onClick={this.closeMenu}>
+                  <li className="nav-item active" data-toggle="collapse" data-target=".in">
+                    <i className="fas fa-user Nav-icon right-content" onClick={this.userMenuToggle}>
+                    </i>
+                  </li>
+                </div>
               </ul>
+
               <div ref={this.myRef}
                 className={classNames("userMenu collasible-nav-dropdown", {
                   "is-open collasible-nav-dropdown": this.state.userMenuIsOpen
                 })}
               >
                 <ul className="list-group list-unstyled" onClick={this.userMenuToggle}>
-                  <li className="list-group-item bg-transparent">
-                    <NavDropdown.Item className="Menu-link"> <Link className="dropdown-link" to={`users/${currentUser.userId}`}
-                    >Profile</Link></NavDropdown.Item>
-                  </li>
+                  <NavDropdown.Item className="list-group-item bg-transparent Menu-link"> <Link className="dropdown-link" to={`users/${currentUser.userId}`}
+                  ><li className="list-group-item bg-transparent">Profile</li></Link></NavDropdown.Item>
 
-                  <li className="list-group-item bg-transparent" data-toggle="collapse" data-target=".in">
-                    {userIsAdmin}
-                  </li>
+                  {currentUser.is_admin ?
+                    (<li data-toggle="collapse" data-target=".in">
+                      {userIsAdmin}
+                    </li>) : ""}
 
-                  <li className="list-group-item bg-transparent">
-                    <NavDropdown.Item className="Menu-link"><Link className="dropdown-link" to="/" onClick={this.props.logout}>
-                      Log out
-                    </Link></NavDropdown.Item>
-                  </li>
+                  <NavDropdown.Item className="list-group-item bg-transparent Menu-link"><Link className="dropdown-link" to="/" onClick={this.props.logout}><li className="list-group-item">
+                    Log out
+                  </li></Link></NavDropdown.Item>
                 </ul>
               </div>
             </div>
@@ -132,16 +132,15 @@ class Navigation extends React.Component {
       </UserContext.Consumer>
     );
 
+    //Additional Drop Down Item for Admins
     const userIsAdmin = (
       <UserContext.Consumer>
-        {currentUser => currentUser && currentUser.is_admin && (
-          <li className="nav-item danger active">
-            <NavDropdown.Item className="Menu-link"> <Link className="dropdown-link" to="/admin">
-              Admin
-                </Link>
-            </NavDropdown.Item>
-          </li >
-        )
+        {currentUser => currentUser && currentUser.is_admin ? (
+          <NavDropdown.Item className="list-group-item bg-transparent Menu-link"> <Link className="dropdown-link" to="/admin"><li className="list-group-item">
+            Admin
+              </li ></Link>
+          </NavDropdown.Item>
+        ) : ""
         }
       </UserContext.Consumer>
     );
@@ -150,9 +149,9 @@ class Navigation extends React.Component {
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Navbar.Brand><Link className="Nav_brand-name" to="/"> Brella </Link></Navbar.Brand>
 
-        <Navbar.Toggle onClick={this.toggle} aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-        <Navbar.Collapse id="responsive-navbar-nav" isOpen={this.state.isOpen} className="collapse.navbar-collapse"
+        <Navbar.Collapse id="responsive-navbar-nav" isOpen={this.state.userMenuIsOpen} className="collapse.navbar-collapse"
         >
           <Nav className="ml-auto" variant="light">
             <ul className="navbar-nav justify-content-center">
