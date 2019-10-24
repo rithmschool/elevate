@@ -23,7 +23,7 @@ const routes = [
   }
 ];
 
-// mock the route "match" prop
+//mock the route "match" prop
 
 it("renders without crashing", function() {
   shallow(<SideBar routes={routes} />);
