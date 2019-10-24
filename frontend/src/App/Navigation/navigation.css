@@ -78,6 +78,15 @@
   opacity: 0.75;
 }
 
+.Menu-link:hover {
+  font-weight: bold;
+}
+
+.Menu-link.dropdown-item:active {
+  color: unset;
+  background-color: transparent;
+}
+
 .userMenu {
   min-width: 250px;
   overflow-y: scroll;
@@ -96,11 +105,6 @@
 .userMenu .list-group-item {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.Menu-link.dropdown-item:active {
-  color: unset;
-  background-color: transparent;
 }
 
 @media only screen and (max-width: 500px) {
@@ -126,9 +130,17 @@ nav.Link {
 }
 
 .right-content {
-  margin-left: 350px;
+  margin-left: 375px;
 }
 
-.user-item {
-  margin-top: 12px;
+.dropdown-link {
+  color: unset;
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+}
+
+.dropdown-link:hover {
+  color: unset;
+  background-color: transparent;
+  transform: scale(1.5);
 }
