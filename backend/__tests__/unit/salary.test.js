@@ -2,7 +2,6 @@ process.env.NODE_ENV = "test";
 
 const db = require("../../db");
 const Salary = require("../../models/salary");
-const User = require("../../models/user");
 const { SEED_USER_SQL, SEED_SALARY_SQL } = require("../../config");
 
 describe("Test Salary model", function() {
@@ -27,21 +26,8 @@ describe("Test Salary model", function() {
   });
 
   test("create a new salary", async function() {
-    const newUser = {
-      email: "john@doe.com",
-      password: "yeehaw",
-      is_admin: false,
-      first_name: "john",
-      last_name: "doe",
-      current_company: "john deer",
-      hire_date: "2016-05-01",
-      needs: "a new truck",
-      goals: "get a raise for new truck down payment"
-    };
-    const userResponse = await User.register(newUser);
-
     const newSalary = {
-      user_id: userResponse.id,
+      user_id: 1,
       salary: 105000.0,
       bonus: 2000.0,
       equity: 0.005
@@ -50,7 +36,7 @@ describe("Test Salary model", function() {
     const response = await Salary.create(newSalary);
     expect(response).toEqual({
       id: expect.any(Number),
-      user_id: expect.any(Number),
+      user_id: 1,
       salary: 105000.0,
       bonus: 2000.0,
       equity: 0.005
@@ -80,7 +66,7 @@ describe("Test Salary model", function() {
     }
   });
 
-  test("delete a salary", async function() {
+  test("delete a salary by salary id", async function() {
     const response = await Salary.remove(2);
     expect(response).toEqual({ id: 2 });
   });
