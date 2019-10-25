@@ -26,7 +26,7 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      let message = err.response.data.message;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -126,26 +126,12 @@ class ElevateApi {
   }
 
   static async uploadToAws(formData) {
-    console.log("typeof doc ", typeof formData);
-    // let file = formData.getAll("file");
-    debugger;
-    let q = await axios
-      .post(`${BASE_URL}/upload/aws`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-      .then(response => {
-        console.log(`response => ${response}`);
-        // handle your response;
-      })
-      .catch(error => {
-        console.log(`error => ${error}`);
+    let file = formData.getAll("file");
+    console.log("file in eleApi", file);
 
-        // handle your error
-      });
-    // let res = await this.request("upload/aws", doc, "post");
-    return q;
+    axios.post(`${BASE_URL}/upload/aws`, formData, {}).then(res => {
+      console.log(res.statusText);
+    });
   }
 }
 
