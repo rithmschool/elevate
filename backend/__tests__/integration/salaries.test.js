@@ -3,7 +3,6 @@ process.env.NODE_ENV = "test";
 const request = require("supertest");
 
 const app = require("../../app");
-const User = require("../../models/user");
 const Salary = require("../../models/salary");
 
 const { SEED_USER_SQL, SEED_SALARY_SQL } = require("../../config");
@@ -64,22 +63,8 @@ describe("GET /salaries/:id", function() {
 
 describe("DELETE /salaries/:id", function() {
   test("Deletes a single salary", async function() {
-    const newUser = {
-      email: "john_the_second@doe.com",
-      password: "yeehaw",
-      is_admin: false,
-      first_name: "john",
-      last_name: "doe",
-      current_company: "john deer",
-      hire_date: "2016-05-01",
-      needs: "a new truck",
-      goals: "get a raise for new truck down payment"
-    };
-
-    const userResponse = await User.register(newUser);
-
     const newSalary = {
-      user_id: userResponse.id,
+      user_id: 1,
       salary: 105000.0,
       bonus: 2000.0,
       equity: 0.005
