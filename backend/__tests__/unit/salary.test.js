@@ -59,7 +59,13 @@ describe("Test Salary model", function() {
 
   test("find latest salary for user by id", async function() {
     const response = await Salary.findLatestSalaryByUserId(1);
-    const salary1 = { id: 1, user_id: 1, salary: 150000, bonus: 25000, equity: 0.001 }
+    const salary1 = {
+      id: 1,
+      user_id: 1,
+      salary: 150000,
+      bonus: 25000,
+      equity: 0.001
+    };
 
     expect(response).toEqual(salary1);
   });
@@ -67,8 +73,10 @@ describe("Test Salary model", function() {
   test("throws error if for salary retrievial if no user", async function() {
     try {
       await Salary.findLatestSalaryByUserId(100);
-    } catch(err) {
-      expect(err.message).toEqual("Cannot find a salary for user with userId 100");
+    } catch (err) {
+      expect(err.message).toEqual(
+        "Cannot find a salary for user with userId 100"
+      );
     }
   });
 
