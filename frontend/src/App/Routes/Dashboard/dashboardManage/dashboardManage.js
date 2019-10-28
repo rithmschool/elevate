@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserDocsDataTable from "./UserDocsDataTable";
 import ElevateApi from "../../../../elevateApi";
+import Spinner from "../../../Spinner/spinner";
 
 class DashboardManage extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class DashboardManage extends Component {
   render() {
     const { documents } = this.state;
     if (this.state.loading) {
-      return <div>Loading.....</div>;
+      return <Spinner />;
     }
     return (
       <div>
