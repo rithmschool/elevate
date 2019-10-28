@@ -237,16 +237,11 @@ CREATE TABLE questions
   resolved BOOLEAN DEFAULT FALSE
 );
 
-<<<<<<< HEAD
-CREATE TABLE appointments
-(
-=======
 CREATE TABLE newsletter_emails (
   email TEXT PRIMARY KEY
 );
 
 CREATE TABLE appointments (
->>>>>>> c826b93d462ff8cb329dc093d9c66bbab5d94e55
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   event_id TEXT NOT NULL,
