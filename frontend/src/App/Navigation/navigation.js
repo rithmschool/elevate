@@ -170,7 +170,7 @@ class Navigation extends React.Component {
           currentUser && currentUser.is_admin ? (
             <NavDropdown.Item className="bg-transparent Menu-link">
               {" "}
-              <Link className="dropdown-link" to="/admin">
+              <Link className="dropdown-link" to="/admin/users">
                 <li className="list-group-item">Admin</li>
               </Link>
             </NavDropdown.Item>
