@@ -57,15 +57,15 @@ class ResetPassword extends React.Component {
   async handleUpdatePassword(evt) {
     evt.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
-      this.setState({ errors: ["These passwords don't match. Try again?"] })
+      this.setState({ errors: ["These passwords don't match. Try again?"] });
     } else {
-      this.setState({isLoading: true});
+      this.setState({ isLoading: true });
       try {
         const resetPasswordToken = this.props.match.params.token;
         const { userId, password } = this.state;
 
         await ElevateApi.updatePassword(userId, resetPasswordToken, password);
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
         this.setState({ errors: [], updated: true });
       } catch (errors) {
         this.setState({ errors });
@@ -90,7 +90,7 @@ class ResetPassword extends React.Component {
         <ResetLinkExpired />
       </div>
     );
-  };
+  }
 
   resetPasswordForm() {
     const {
@@ -118,27 +118,27 @@ class ResetPassword extends React.Component {
           <h4 className="first-name">Hello {first_name}</h4>
           <h4 className="new-pass">Choose a new password</h4>
 
-            <Form.Group>
-              <Form.Control
-                  onChange={this.handleChange}
-                  value={password}
-                  type="password"
-                  name="password"
-                  id="reset-password"
-                  placeholder="password"
-              />
-            </Form.Group>
+          <Form.Group>
+            <Form.Control
+              onChange={this.handleChange}
+              value={password}
+              type="password"
+              name="password"
+              id="reset-password"
+              placeholder="password"
+            />
+          </Form.Group>
 
-            <Form.Group>
-              <Form.Control
-                  onChange={this.handleChange}
-                  value={confirmPassword}
-                  type="password"
-                  name="confirmPassword"
-                  id="reset-confirmPassword"
-                  placeholder="confirm password"
-                />
-            </Form.Group>
+          <Form.Group>
+            <Form.Control
+              onChange={this.handleChange}
+              value={confirmPassword}
+              type="password"
+              name="confirmPassword"
+              id="reset-confirmPassword"
+              placeholder="confirm password"
+            />
+          </Form.Group>
 
           {errors.length > 0 && <Alert type="danger" messages={errors} />}
 
@@ -152,11 +152,13 @@ class ResetPassword extends React.Component {
           )}
 
           {!updated && (
-            <Button color="info"
-                    size="sm"
-                    type="submit"
-                    className="resetPassword_button"
-                    disabled={password !== confirmPassword || password === ''}>
+            <Button
+              color="info"
+              size="sm"
+              type="submit"
+              className="resetPassword_button"
+              disabled={password !== confirmPassword || password === ""}
+            >
               Change Password
             </Button>
           )}
@@ -167,8 +169,8 @@ class ResetPassword extends React.Component {
 
   render() {
     if (this.state.isLoading) return <Spinner />;
-    return this.state.errors.length > 0 
-      ? this.resetLinkExpired() 
+    return this.state.errors.length > 0
+      ? this.resetLinkExpired()
       : this.resetPasswordForm();
   }
 }
