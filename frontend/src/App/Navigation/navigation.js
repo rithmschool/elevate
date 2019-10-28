@@ -4,6 +4,7 @@ import classNames from "classnames";
 import "./navigation.css";
 import { UserContext } from "../../userContext";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { thisExpression } from "@babel/types";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -16,13 +17,10 @@ class Navigation extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
+  componentDidUpdate() {
+    console.log(this.state)
   }
 
-  async componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  }
   myRef = React.createRef();
 
   // Hide user menu when click outside dropdown
@@ -31,15 +29,7 @@ class Navigation extends React.Component {
   };
 
   userMenuToggle(evt) {
-    if (this.state.userMenuIsOpen) {
-      console.log("a");
-      this.handleClickOutside();
-    } else {
-      console.log(this.state);
-      this.handleClickOutside();
-      this.setState(st => ({ userMenuIsOpen: !st.userMenuIsOpen }));
-    }
-    console.log(this.state.userMenuIsOpen);
+    this.setState(st => ({ userMenuIsOpen: !st.userMenuIsOpen }));
   }
 
   render() {
@@ -90,103 +80,87 @@ class Navigation extends React.Component {
         {currentUser =>
           currentUser && (
             <li className="nav-item active ">
-              <div>
+              <div className="navbar-div">
                 <ul className="navbar-nav">
-                  <li
-                    className="nav-item active user-item"
-                    data-toggle="collapse"
-                    data-target=".in"
-                  >
-                    <Link
-                      tag={Link}
-                      to="/dashboard/manage"
-                      className="Nav-link Nav-link-ltr"
-                    >
-                      Manage
-                    </Link>
-                  </li>
-
-                  <li
-                    className="nav-item active user-item"
-                    data-toggle="collapse"
-                    data-target=".in"
-                  >
-                    <Link
-                      to="/dashboard/appointments"
-                      className="Nav-link Nav-link-ltr"
-                    >
-                      Appointments
-                    </Link>
-                  </li>
-
-                  <li
-                    className="nav-item active user-item"
-                    data-toggle="collapse"
-                    data-target=".in"
-                  >
-                    <Link
-                      componentClass={Link}
-                      to="/dashboard/templates"
-                      className="Nav-link Nav-link-ltr"
-                    >
-                      Templates
-                    </Link>
-                  </li>
-                  <div onClick={this.closeMenu}>
+                  <div className="navbar-center">
                     <li
-                      className="nav-item active"
+                      className="nav-item active user-item"
                       data-toggle="collapse"
                       data-target=".in"
                     >
-                      <i
-                        className="fas fa-user Nav-icon right-content"
-                        onClick={this.userMenuToggle}
-                      ></i>
+                      <Link
+                        tag={Link}
+                        to="/dashboard/manage"
+                        className="Nav-link Nav-link-ltr"
+                      >
+                        Manage
+                    </Link>
+                    </li>
+
+                    <li
+                      className="nav-item active user-item"
+                      data-toggle="collapse"
+                      data-target=".in"
+                    >
+                      <Link
+                        to="/dashboard/appointments"
+                        className="Nav-link Nav-link-ltr"
+                      >
+                        Appointments
+                    </Link>
+                    </li>
+
+                    <li
+                      className="nav-item active user-item"
+                      data-toggle="collapse"
+                      data-target=".in"
+                    >
+                      <Link
+                        componentClass={Link}
+                        to="/dashboard/templates"
+                        className="Nav-link Nav-link-ltr"
+                      >
+                        Templates
+                    </Link>
                     </li>
                   </div>
                 </ul>
-
-                <div
-                  ref={this.myRef}
-                  className={classNames("userMenu collasible-nav-dropdown", {
-                    "is-open collasible-nav-dropdown": this.state.userMenuIsOpen
-                  })}
-                >
-                  <ul
-                    className="list-group list-unstyled"
-                    onClick={this.userMenuToggle}
-                  >
-                    <NavDropdown.Item className="list-group-item bg-transparent Menu-link">
-                      {" "}
-                      <Link
-                        className="dropdown-link"
-                        to={`users/${currentUser.userId}`}
-                      >
-                        <li className="list-group-item bg-transparent">
-                          Profile
+                  <NavDropdown id="collasible-nav-dropdown" title={<i className="fas fa-user Nav-icon right-content"></i>}>
+                    <ul
+                      className="list-group list-unstyled"
+                      onClick={this.userMenuToggle}
+                    >
+                      <NavDropdown.Item className=" bg-transparent Menu-link">
+                        {" "}
+                        <Link
+                          className="dropdown-link"
+                          to={`users/${currentUser.userId}`}
+                        >
+                          <li className="list-group-item bg-transparent">
+                            Profile
                         </li>
-                      </Link>
-                    </NavDropdown.Item>
+                        </Link>
+                      </NavDropdown.Item>
 
-                    {currentUser.is_admin ? (
-                      <li data-toggle="collapse" data-target=".in">
-                        {userIsAdmin}
-                      </li>
-                    ) : (
-                      ""
-                    )}
+                      {currentUser.is_admin ? (
+                        <li data-toggle="collapse" data-target=".in">
+                          {userIsAdmin}
+                        </li>
+                      ) : (
+                          ""
+                        )}
 
-                    <NavDropdown.Item className="list-group-item bg-transparent Menu-link">
-                      <Link
-                        className="dropdown-link"
-                        to="/"
-                        onClick={this.props.logout}
-                      >
-                        <li className="list-group-item">Log out</li>
-                      </Link>
-                    </NavDropdown.Item>
-                  </ul>
-                </div>
+                      <NavDropdown.Item className=" bg-transparent Menu-link">
+                        <Link
+                          className="dropdown-link"
+                          to="/"
+                          onClick={this.props.logout}
+                        >
+                          <li className="list-group-item">Log out</li>
+                        </Link>
+                      </NavDropdown.Item>
+                    </ul>
+                  </NavDropdown>
               </div>
             </li>
           )
@@ -199,15 +173,15 @@ class Navigation extends React.Component {
       <UserContext.Consumer>
         {currentUser =>
           currentUser && currentUser.is_admin ? (
-            <NavDropdown.Item className="list-group-item bg-transparent Menu-link">
+            <NavDropdown.Item className="bg-transparent Menu-link">
               {" "}
               <Link className="dropdown-link" to="/admin">
                 <li className="list-group-item">Admin</li>
               </Link>
             </NavDropdown.Item>
           ) : (
-            ""
-          )
+              ""
+            )
         }
       </UserContext.Consumer>
     );
