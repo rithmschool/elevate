@@ -7,29 +7,18 @@ exports[`matches snapshot 1`] = `
   >
     <Container
       fluid={true}
-      tag="div"
     >
       <div
         className="container-fluid"
       >
-        <Row
-          tag="div"
+        <ForwardRef
+          noGutters={false}
         >
           <div
             className="row"
           >
             <Col
               className="d-flex flex-column justify-content-center"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
               <div
                 className="d-flex flex-column justify-content-center col"
@@ -108,16 +97,6 @@ exports[`matches snapshot 1`] = `
                   "display": "flex",
                   "flexDirection": "column",
                 }
-              }
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
               }
             >
               <div
@@ -208,16 +187,6 @@ exports[`matches snapshot 1`] = `
             </Col>
             <Col
               className="d-flex align-items-center justify-content-end"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
               <div
                 className="d-flex align-items-center justify-content-end col"
@@ -243,7 +212,7 @@ exports[`matches snapshot 1`] = `
               </div>
             </Col>
           </div>
-        </Row>
+        </ForwardRef>
       </div>
     </Container>
   </div>

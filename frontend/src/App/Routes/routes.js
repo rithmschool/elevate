@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-
 import ForgotPassword from "./ForgotPassword/forgotPassword";
 import ResetPassword from "./ResetPassword/resetPassword";
 import Home from "./Home/home";
@@ -12,7 +11,6 @@ import Dashboard from "./../Routes/Dashboard/dashboard";
 import DashboardAppointments from "./../Routes/Dashboard/dashboardAppointments";
 import DashboardManage from "./../Routes/Dashboard/dashboardManage";
 import DashboardTemplates from "./../Routes/Dashboard/dashboardTemplates";
-
 import AdminPrivateRoute from "./adminPrivateRoute";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import UserPrivateRoute from "./userPrivateRoute";

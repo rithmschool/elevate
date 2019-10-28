@@ -20,7 +20,7 @@ class newsletterSignUpForm extends React.Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    const newsletter = await ElevateApi.getNewsletterSignUp(this.state);
+    const newsletter = await ElevateApi.getNewsletter(this.state);
     if (!newsletter.email) {
       await ElevateApi.postNewsletterSignUp(this.state);
       this.setState({
