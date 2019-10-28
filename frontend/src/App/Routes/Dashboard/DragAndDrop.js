@@ -49,6 +49,7 @@ class DragAndDrop extends Component {
     div.removeEventListener("dragover", this.handleDrag);
     div.removeEventListener("drop", this.handleDrop);
   }
+
   render() {
     return (
       <div

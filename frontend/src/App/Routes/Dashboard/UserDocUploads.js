@@ -94,6 +94,8 @@ class UserDocUploads extends Component {
   }
 
   handleDelete(e) {
+    // this.setState({
+    // })
     console.log("I wanna remove this upload");
   }
 
@@ -120,10 +122,11 @@ class UserDocUploads extends Component {
     Promise.all(mapSendToDb);
 
     let mapSendToAws = this.state.files.map(async file => {
+      console.log("FILE");
       const formData = new FormData();
       formData.append("file", file);
 
-      let res = await ElevateApi.uploadToAws(formData);
+      let res = await ElevateApi.uploadToAws(file);
       return res;
     });
 
