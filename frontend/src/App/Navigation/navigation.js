@@ -143,8 +143,8 @@ class Navigation extends React.Component {
                       {userIsAdmin}
                     </li>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
 
                   <NavDropdown.Item className=" bg-transparent Menu-link">
                     <Link
@@ -175,8 +175,8 @@ class Navigation extends React.Component {
               </Link>
             </NavDropdown.Item>
           ) : (
-              ""
-            )
+            ""
+          )
         }
       </UserContext.Consumer>
     );

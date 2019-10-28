@@ -7,18 +7,18 @@ import toJson from "enzyme-to-json";
 import Navigation from "./navigation";
 import App from "../../App/app";
 
-describe("Nav Bar Testing Without Logged In User", function () {
-  it("renders without crashing", function () {
+describe("Nav Bar Testing Without Logged In User", function() {
+  it("renders without crashing", function() {
     shallow(<Navigation />);
   });
 
-  it("matches snapshot", function () {
+  it("matches snapshot", function() {
     let wrapper = shallow(<Navigation />);
     let serialized = toJson(wrapper);
     expect(serialized).toMatchSnapshot();
   });
 
-  it("renders Navbar component on mount", function () {
+  it("renders Navbar component on mount", function() {
     let wrapper = mount(
       <MemoryRouter>
         <App />
@@ -37,7 +37,7 @@ describe("Nav Bar Testing Without Logged In User", function () {
       wrapper.contains(
         <Link className="Nav_brand-name" to="/">
           Brella
-      </Link>
+        </Link>
       )
     ).toBe(true);
     wrapper
@@ -47,7 +47,7 @@ describe("Nav Bar Testing Without Logged In User", function () {
     expect(wrapper.find(Home)).toHaveLength(1);
   });
 
-  it("expect four links on unlogged in Nav Bar", function () {
+  it("expect four links on unlogged in Nav Bar", function() {
     let wrapper = mount(
       <MemoryRouter>
         <Navigation />
