@@ -2,43 +2,33 @@
 
 exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
 <Navbar
-  color="light"
-  expand="md"
-  light={true}
-  tag="nav"
+  bg="light"
+  collapseOnSelect={true}
+  expand="lg"
+  variant="light"
 >
-  <Link
-    className="Nav_brand-name"
-    to="/"
-  >
-    Brella
-  </Link>
-  <NavbarToggler
-    onClick={[Function]}
-    tag="button"
-    type="button"
+  <NavbarBrand>
+    <Link
+      className="Nav_brand-name"
+      to="/"
+    >
+      Brella
+    </Link>
+  </NavbarBrand>
+  <NavbarToggle
+    aria-controls="responsive-navbar-nav"
+    label="Toggle navigation"
   />
-  <Collapse
-    appear={false}
+  <NavbarCollapse
     className="collapse.navbar-collapse"
-    enter={true}
-    exit={true}
-    in={false}
+    id="responsive-navbar-nav"
     isOpen={false}
-    mountOnEnter={false}
-    navbar={true}
-    onEnter={[Function]}
-    onEntered={[Function]}
-    onEntering={[Function]}
-    onExit={[Function]}
-    onExited={[Function]}
-    onExiting={[Function]}
-    tag="div"
-    timeout={350}
-    unmountOnExit={false}
   >
-    <ul
-      className="navbar-nav ml-auto"
+    <Nav
+      className="ml-auto"
+      fill={false}
+      justify={false}
+      variant="light"
     >
       <ContextConsumer>
         <Component />
@@ -46,7 +36,7 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
       <ContextConsumer>
         <Component />
       </ContextConsumer>
-    </ul>
-  </Collapse>
+    </Nav>
+  </NavbarCollapse>
 </Navbar>
 `;

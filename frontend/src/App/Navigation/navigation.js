@@ -143,8 +143,8 @@ class Navigation extends React.Component {
                       {userIsAdmin}
                     </li>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
 
                   <NavDropdown.Item className=" bg-transparent Menu-link">
                     <Link
@@ -175,8 +175,8 @@ class Navigation extends React.Component {
               </Link>
             </NavDropdown.Item>
           ) : (
-            ""
-          )
+              ""
+            )
         }
       </UserContext.Consumer>
     );
@@ -185,8 +185,7 @@ class Navigation extends React.Component {
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Navbar.Brand>
           <Link className="Nav_brand-name" to="/">
-            {" "}
-            Brella{" "}
+            Brella
           </Link>
         </Navbar.Brand>
 
