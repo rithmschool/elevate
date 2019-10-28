@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
+import { Col, Row } from "react-bootstrap";
 import "./userProfile.css";
 import { UserContext } from "../../../userContext";
 import ElevateApi from "../../../elevateApi";
@@ -134,7 +134,7 @@ class UserProfile extends React.Component {
           <Alert type="success" messages={["Updated successfully."]} />
         )}
         <Row>
-          <Col md={6}>
+          <Col md={8}>
             <div>
               <UserBasicInfoForm
                 handleUserUpdate={this.handleUserUpdate}
@@ -146,7 +146,7 @@ class UserProfile extends React.Component {
         </Row>
 
         <Row>
-          <Col md={6}>
+          <Col md={8}>
             <div className="user-salary-form-div">
               <UserSalaryInfoForm
                 handleSalaryUpdate={this.handleSalaryUpdate}
