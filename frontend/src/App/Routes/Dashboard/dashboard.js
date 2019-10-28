@@ -33,8 +33,14 @@ class Dashboard extends React.Component {
           />
 
           <AdminPrivateRoute
-            exact
+            exact={false}
             path="/dashboard/admin"
+            render={props => <AdminPanel {...props} />}
+          />
+
+          <AdminPrivateRoute
+            exact={true}
+            path="/dashboard/admin/users/:userId"
             render={props => <AdminPanel {...props} />}
           />
         </Switch>

@@ -26,7 +26,7 @@ class AdminUserView extends React.Component {
   }
 
   handleClickDeleteUser = async () => {
-    await ElevateApi.deleteUser(this.props.user.id);
+    await ElevateApi.deleteUser(this.props.match.params.userId);
     let users;
 
     try {
@@ -36,7 +36,6 @@ class AdminUserView extends React.Component {
       return err;
     }
     this.props.updateUserState(users);
-    this.props.changeView("users");
   };
 
   render() {
@@ -55,7 +54,7 @@ class AdminUserView extends React.Component {
     }
 
     if (this.state.redirect) {
-      return <Redirect to="/admin/users" />;
+      return <Redirect to="/dashboard/admin/users" />;
     }
 
     return (

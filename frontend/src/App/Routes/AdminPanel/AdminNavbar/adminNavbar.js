@@ -11,22 +11,34 @@ class AdminNavbar extends React.Component {
     let view = this.props.position ? (
       <div className="adminNavbar">
         <p>
-          <Link id="users" className="admin-link" to="/admin/users">
+          <Link id="users" className="admin-link" to="/dashboard/admin/users">
             Users
           </Link>
         </p>
         <p>
-          <Link id="questions" className="admin-link" to="/admin/questions">
+          <Link
+            id="questions"
+            className="admin-link"
+            to="/dashboard/admin/questions"
+          >
             Questions
           </Link>
         </p>
         <p>
-          <Link id="invoices" className="admin-link" to="/admin/invoices">
+          <Link
+            id="invoices"
+            className="admin-link"
+            to="/dashboard/admin/invoices"
+          >
             Invoices
           </Link>
         </p>
         <p>
-          <Link id="calendar" className="admin-link" to="/admin/calendar">
+          <Link
+            id="calendar"
+            className="admin-link"
+            to="/dashboard/admin/calendar"
+          >
             Calendar
           </Link>
         </p>

@@ -1,6 +1,8 @@
 import React from "react";
 import "./adminPanel.css";
+import { Switch } from "react-router-dom";
 
+import AdminPrivateRoute from "../adminPrivateRoute";
 import AdminNavbar from "./AdminNavbar/adminNavbar";
 import AdminUserView from "./AdminUserView/adminUserView";
 import AdminTable from "./AdminTable/adminTable";
@@ -44,11 +46,11 @@ class AdminPanel extends React.Component {
   };
 
   render() {
-    const usersTable = <AdminTable tableObjs={this.state.users} />;
+    // const usersTable = <AdminTable tableObjs={this.state.users} />;
 
-    const questionsTable = <AdminTable tableObjs={this.state.questions} />;
+    // const questionsTable = <AdminTable tableObjs={this.state.questions} />;
 
-    const userView = <AdminUserView updateUserState={this.updateUserState} />;
+    // const userView = <AdminUserView updateUserState={this.updateUserState} />;
 
     if (!this.state.users || !this.state.questions) {
       return <Spinner />;
@@ -60,13 +62,32 @@ class AdminPanel extends React.Component {
         <div className="adminPanel_panel">
           <h1 className="adminPanel_h1">Admin Panel</h1>
 
-          {this.props.history.location.pathname === "/admin/users" &&
-            usersTable}
-
-          {this.props.history.location.pathname === "/admin/questions" &&
-            questionsTable}
-
-          {this.props.match.params.hasOwnProperty("userId") && userView}
+          <Switch>
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/users"
+              render={props => (
+                <AdminTable tableObjs={this.state.users} {...props} />
+              )}
+            />
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/questions"
+              render={props => (
+                <AdminTable tableObjs={this.state.questions} {...props} />
+              )}
+            />
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/users/:userId"
+              render={props => (
+                <AdminUserView
+                  updateUserState={this.updateUserState}
+                  {...props}
+                />
+              )}
+            />
+          </Switch>
         </div>
 
         <div className={`adminPanel_navbar adminPanel_navbar_${position}`}>
