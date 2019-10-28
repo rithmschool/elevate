@@ -106,7 +106,7 @@ CREATE TABLE documents
   counterparty TEXT NOT NULL,
   url TEXT NOT NULL,
   date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT NOT NULL DEFAULT CURRENT_DATE,
+  date_reviewed TEXT DEFAULT CURRENT_DATE,
   status TEXT
 );
 
@@ -131,7 +131,9 @@ VALUES
 INSERT INTO documents
   ( id, user_id, title, url, counterparty, date_submitted, date_reviewed, status )
 VALUES
-  (1, 2, 'tinkerbell', 'www.google.com', 'wendy', '2018-06-23', '2018-07-03', 'received');
+  (1, 2, 'Tinkerbell Tinkering Job', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
+  (2, 1, 'Peter Pan Flying Job', 'www.google.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Pending'),
+  (3, 2, 'Tinkerbell Assistant Job', 'www.reddit.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Completed');
 
 
 INSERT INTO google_users
@@ -278,7 +280,7 @@ CREATE TABLE documents
   counterparty TEXT NOT NULL,
   url TEXT NOT NULL,
   date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT NOT NULL DEFAULT CURRENT_DATE,
+  date_reviewed TEXT DEFAULT CURRENT_DATE,
   status TEXT
 )
 
