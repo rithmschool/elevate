@@ -77,7 +77,7 @@ class ForgotPassword extends React.Component {
         <div>
           <Form onSubmit={this.sendEmail}>
             <div className="text">
-              <h3 className="title">Reset Password</h3>
+              <h5 className="title">Send Reset Password Link</h5>
             </div>
 
             <Form.Group>
