@@ -121,9 +121,10 @@ class ElevateApi {
   }
 
   static async getDocuments(token) {
-    let res = await this.request("documents/manage", { token });
+    let res = await this.request(`documents/manage`, { token });
+    return res;
   }
-  
+
   static async postNewsletterSignUp(data) {
     let res = await this.request(`newsletter/`, data, "post");
     return res;
