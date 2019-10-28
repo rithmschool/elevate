@@ -39,33 +39,33 @@ class Navigation extends React.Component {
         {currentUser =>
           !currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-                <li
-                  className="nav-item active"
-                  data-toggle="collapse"
-                  data-target=".in"
-                >
-                  <Link to="/" className="Nav-link Nav-link-ltr">
-                    About
-                  </Link>
-                </li>
-                <li
-                  className="nav-item active"
-                  data-toggle="collapse"
-                  data-target=".in"
-                >
-                  <Link to="/" className="Nav-link Nav-link-ltr">
-                    For Employers
-                  </Link>
-                </li>
-                <li
-                  className="nav-item active"
-                  data-toggle="collapse"
-                  data-target=".in"
-                >
-                  <Link to="/login" className="Nav-link Nav-link-ltr">
-                    Sign In
-                  </Link>
-                </li>
+              <li
+                className="nav-item active"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link to="/" className="Nav-link Nav-link-ltr">
+                  About
+                </Link>
+              </li>
+              <li
+                className="nav-item active"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link to="/" className="Nav-link Nav-link-ltr">
+                  For Employers
+                </Link>
+              </li>
+              <li
+                className="nav-item active"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link to="/login" className="Nav-link Nav-link-ltr">
+                  Sign In
+                </Link>
+              </li>
             </ul>
           )
         }
@@ -78,86 +78,86 @@ class Navigation extends React.Component {
         {currentUser =>
           currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-                    <li
-                      className="nav-item active user-item"
-                      data-toggle="collapse"
-                      data-target=".in"
-                    >
-                      <Link
-                        tag={Link}
-                        to="/dashboard/manage"
-                        className="Nav-link Nav-link-ltr"
-                      >
-                        Manage
-                      </Link>
-                    </li>
-
-                    <li
-                      className="nav-item active user-item"
-                      data-toggle="collapse"
-                      data-target=".in"
-                    >
-                      <Link
-                        to="/dashboard/appointments"
-                        className="Nav-link Nav-link-ltr"
-                      >
-                        Appointments
-                      </Link>
-                    </li>
-
-                    <li
-                      className="nav-item active user-item"
-                      data-toggle="collapse"
-                      data-target=".in"
-                    >
-                      <Link
-                        componentClass={Link}
-                        to="/dashboard/templates"
-                        className="Nav-link Nav-link-ltr"
-                      >
-                        Templates
-                      </Link>
-                    </li>
-                <NavDropdown
-                  id="collasible-nav-dropdown"
-                  title={<i className="fas fa-user Nav-icon right-content"></i>}
+              <li
+                className="nav-item active user-item"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link
+                  tag={Link}
+                  to="/dashboard/manage"
+                  className="Nav-link Nav-link-ltr"
                 >
-                  <div
-                    className="list-group list-unstyled"
-                    onClick={this.userMenuToggle}
-                  >
-                    <NavDropdown.Item className=" bg-transparent Menu-link">
-                      {" "}
-                      <Link
-                        className="dropdown-link"
-                        to={`users/${currentUser.userId}`}
-                      >
-                        <li className="list-group-item bg-transparent">
-                          Profile
-                        </li>
-                      </Link>
-                    </NavDropdown.Item>
+                  Manage
+                </Link>
+              </li>
 
-                    {currentUser.is_admin ? (
-                      <li data-toggle="collapse" data-target=".in">
-                        {userIsAdmin}
+              <li
+                className="nav-item active user-item"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link
+                  to="/dashboard/appointments"
+                  className="Nav-link Nav-link-ltr"
+                >
+                  Appointments
+                </Link>
+              </li>
+
+              <li
+                className="nav-item active user-item"
+                data-toggle="collapse"
+                data-target=".in"
+              >
+                <Link
+                  componentClass={Link}
+                  to="/dashboard/templates"
+                  className="Nav-link Nav-link-ltr"
+                >
+                  Templates
+                </Link>
+              </li>
+              <NavDropdown
+                id="collasible-nav-dropdown"
+                title={<i className="fas fa-user Nav-icon right-content"></i>}
+              >
+                <div
+                  className="list-group list-unstyled"
+                  onClick={this.userMenuToggle}
+                >
+                  <NavDropdown.Item className=" bg-transparent Menu-link">
+                    {" "}
+                    <Link
+                      className="dropdown-link"
+                      to={`users/${currentUser.userId}`}
+                    >
+                      <li className="list-group-item bg-transparent">
+                        Profile
                       </li>
-                    ) : (
-                      ""
-                    )}
+                    </Link>
+                  </NavDropdown.Item>
 
-                    <NavDropdown.Item className=" bg-transparent Menu-link">
-                      <Link
-                        className="dropdown-link"
-                        to="/"
-                        onClick={this.props.logout}
-                      >
-                        <li className="list-group-item">Log out</li>
-                      </Link>
-                    </NavDropdown.Item>
-                  </div>
-                </NavDropdown>
-              </ul>
+                  {currentUser.is_admin ? (
+                    <li data-toggle="collapse" data-target=".in">
+                      {userIsAdmin}
+                    </li>
+                  ) : (
+                    ""
+                  )}
+
+                  <NavDropdown.Item className=" bg-transparent Menu-link">
+                    <Link
+                      className="dropdown-link"
+                      to="/"
+                      onClick={this.props.logout}
+                    >
+                      <li className="list-group-item">Log out</li>
+                    </Link>
+                  </NavDropdown.Item>
+                </div>
+              </NavDropdown>
+            </ul>
           )
         }
       </UserContext.Consumer>
@@ -198,8 +198,8 @@ class Navigation extends React.Component {
           className="collapse.navbar-collapse"
         >
           <Nav className="ml-auto" variant="light">
-              {loggedOut}
-              {userIsLoggedIn}
+            {loggedOut}
+            {userIsLoggedIn}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
