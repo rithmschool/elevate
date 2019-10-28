@@ -5,12 +5,13 @@ class UserDocsDataTable extends Component {
   renderUserDocsData() {
     let { documents } = this.props;
     return documents.map(doc => {
-      const { id, title, counterparty, status, date_reviewed, date_submitted } = doc;
+      const { id, title, counterparty, status, url, date_reviewed, date_submitted } = doc;
       return (
         <tr key={id}>
           <th scope="row">{title}</th>
           <td>{counterparty}</td>
           <td>{status}</td>
+          <td>{url}</td>
           <td>{date_submitted}</td>
           <td>{date_reviewed}</td>
         </tr>
@@ -28,6 +29,7 @@ class UserDocsDataTable extends Component {
               <th>Document</th>
               <th>Counterparty</th>
               <th>Status</th>
+              <th>URL</th>
               <th>Date Submitted</th>
               <th>Date Reviewed</th>
             </tr>
