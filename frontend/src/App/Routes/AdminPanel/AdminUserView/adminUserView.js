@@ -49,11 +49,13 @@ class AdminUserView extends React.Component {
       goals
     } = this.state.user;
 
-    if (!this.state.user) {
+    const { user, redirect } = this.state;
+
+    if (!user) {
       return <Spinner />;
     }
 
-    if (this.state.redirect) {
+    if (redirect) {
       return <Redirect to="/dashboard/admin/users" />;
     }
 

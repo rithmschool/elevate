@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import { shallow, mount } from "enzyme";
 import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
-import AdminTable from "./AdminTable/adminTable";
 import ElevateApi from "../../../elevateApi";
 
 const { USERS, QUESTIONS } = mockData;

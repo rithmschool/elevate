@@ -46,12 +46,6 @@ class AdminPanel extends React.Component {
   };
 
   render() {
-    // const usersTable = <AdminTable tableObjs={this.state.users} />;
-
-    // const questionsTable = <AdminTable tableObjs={this.state.questions} />;
-
-    // const userView = <AdminUserView updateUserState={this.updateUserState} />;
-
     if (!this.state.users || !this.state.questions) {
       return <Spinner />;
     }
