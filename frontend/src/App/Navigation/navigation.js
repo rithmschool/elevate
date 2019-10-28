@@ -38,8 +38,7 @@ class Navigation extends React.Component {
       <UserContext.Consumer>
         {currentUser =>
           !currentUser && (
-            <div ref={this.myRef}>
-              <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav justify-content-center navbar-div">
                 <li
                   className="nav-item active"
                   data-toggle="collapse"
@@ -67,8 +66,7 @@ class Navigation extends React.Component {
                     Sign In
                   </Link>
                 </li>
-              </ul>
-            </div>
+            </ul>
           )
         }
       </UserContext.Consumer>
@@ -79,10 +77,7 @@ class Navigation extends React.Component {
       <UserContext.Consumer>
         {currentUser =>
           currentUser && (
-            <li className="nav-item active ">
-              <div className="navbar-div">
-                <ul className="navbar-nav">
-                  <div className="navbar-center">
+            <ul className="navbar-nav justify-content-center navbar-div">
                     <li
                       className="nav-item active user-item"
                       data-toggle="collapse"
@@ -123,13 +118,11 @@ class Navigation extends React.Component {
                         Templates
                       </Link>
                     </li>
-                  </div>
-                </ul>
                 <NavDropdown
                   id="collasible-nav-dropdown"
                   title={<i className="fas fa-user Nav-icon right-content"></i>}
                 >
-                  <ul
+                  <div
                     className="list-group list-unstyled"
                     onClick={this.userMenuToggle}
                   >
@@ -162,10 +155,9 @@ class Navigation extends React.Component {
                         <li className="list-group-item">Log out</li>
                       </Link>
                     </NavDropdown.Item>
-                  </ul>
+                  </div>
                 </NavDropdown>
-              </div>
-            </li>
+              </ul>
           )
         }
       </UserContext.Consumer>
@@ -206,10 +198,8 @@ class Navigation extends React.Component {
           className="collapse.navbar-collapse"
         >
           <Nav className="ml-auto" variant="light">
-            <ul className="navbar-nav justify-content-center">
               {loggedOut}
               {userIsLoggedIn}
-            </ul>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
