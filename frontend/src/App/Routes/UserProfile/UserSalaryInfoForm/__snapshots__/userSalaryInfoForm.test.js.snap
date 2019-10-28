@@ -9,6 +9,14 @@ exports[`UserSalaryInfoForm matches snapshot 1`] = `
 >
   <div
     className="EditPUserForm container border rounded"
+<<<<<<< HEAD
+=======
+    style={
+      Object {
+        "backgroundColor": "#F4F6F8",
+      }
+    }
+>>>>>>> 73c490ccf5af15ffa2ce23ef64ab1a3f630a21f2
   >
     <div
       className="form-inside-container mt-5"

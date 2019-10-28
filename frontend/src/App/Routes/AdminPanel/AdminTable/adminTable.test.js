@@ -1,6 +1,6 @@
 import React from "react";
+import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
-import toJson from "enzyme-to-json";
 import AdminTable from "./adminTable";
 
 describe("AdminTable", function() {
@@ -20,21 +20,20 @@ describe("AdminTable", function() {
   ];
 
   beforeEach(() => {
-    wrapper = mount(<AdminTable tableObjs={users} />);
+    wrapper = mount(
+      <MemoryRouter>
+        <AdminTable tableObjs={users} />
+        );
+      </MemoryRouter>
+    );
   });
 
   it("renders without crashing", function() {
     // Mounted in beforeEach above
   });
 
-  it("matches snapshot", function() {
-    const serialized = toJson(wrapper);
-
-    expect(serialized).toMatchSnapshot();
-  });
-
   it("has props", function() {
-    expect(wrapper.props("tableObjs")).toEqual({
+    expect(wrapper.find(AdminTable).props("tableObjs")).toEqual({
       tableObjs: [
         {
           current_company: "testcompany",
