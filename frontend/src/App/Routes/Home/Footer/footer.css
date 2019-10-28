@@ -1,0 +1,42 @@
+.Footer {
+  border-top: 1px #dcd9d5 solid;
+  padding: 2.5rem 0;
+}
+
+.Footer a {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgba(57, 69, 87, 0.75);
+}
+
+.Footer a:hover {
+  opacity: 1;
+  color: #394557;
+}
+
+.Footer a::before {
+  transition: 300ms;
+  height: 2px;
+  content: "";
+  position: absolute;
+  background-color: #394557;
+}
+
+.Footer a.brand-logo {
+  font-weight: normal;
+  font-size: 1.5em;
+  font-family: "Exo 2", sans-serif;
+  color: #6558f5;
+  opacity: 0.65;
+  letter-spacing: 3px;
+}
+
+.Footer a.brand-logo:hover {
+  color: #6558f5;
+  opacity: 0.85;
+}
+
+.Footer button {
+  background-color: #6558f5;
+}
