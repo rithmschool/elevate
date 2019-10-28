@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import UserDocsDataTable from "./UserDocsDataTable";
-// import { UserContext } from "../../../../userContext";
 import ElevateApi from "../../../../elevateApi";
 
 class DashboardManage extends Component {
