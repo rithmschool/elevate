@@ -127,9 +127,9 @@ class ElevateApi {
 
   static async uploadToAws(formData) {
     let file = formData.getAll("file");
-    console.log("file in eleApi", file);
+    console.log("file in eleApi", file[0]);
 
-    axios.post(`${BASE_URL}/upload/aws`, formData, {}).then(res => {
+    axios.post(`${BASE_URL}/upload/aws`, file[0], {}).then(res => {
       console.log(res.statusText);
     });
   }

@@ -122,11 +122,11 @@ class UserDocUploads extends Component {
     Promise.all(mapSendToDb);
 
     let mapSendToAws = this.state.files.map(async file => {
-      console.log("FILE");
+      console.log("FILE", file);
       const formData = new FormData();
       formData.append("file", file);
 
-      let res = await ElevateApi.uploadToAws(file);
+      let res = await ElevateApi.uploadToAws(formData);
       return res;
     });
 
