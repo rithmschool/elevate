@@ -14,6 +14,8 @@ const appointmentsRoutes = require("./routes/appointments");
 const calendlyWebhook = require("./routes/calendlyWebhook");
 const passwordResetRoutes = require("./routes/resetPassword");
 const documentRoutes = require("./routes/documents");
+const newsletterRoutes = require("./routes/newsletter");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,6 +28,7 @@ app.use("/appointments", appointmentsRoutes);
 app.use("/webhook", calendlyWebhook);
 app.use("/password", passwordResetRoutes);
 app.use("/documents", documentRoutes);
+app.use("/newsletter", newsletterRoutes);
 
 /** 404 handler */
 
