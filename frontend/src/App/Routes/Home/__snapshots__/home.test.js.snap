@@ -20,84 +20,201 @@ exports[`matches snapshot 1`] = `
       Get Started
     </Link>
   </div>
-  <div
+  <Container
     className="Home_template"
+    fluid={true}
+    tag="div"
   >
-    <p>
-      Templates and professionals available 24/7
-    </p>
-    <i
-      className="fas fa-user-tie"
-    />
-  </div>
-  <div
-    className="Home_database"
-  >
-    <i
-      className="fas fa-chart-bar"
-    />
-    <p>
-      Get yout comp verified by our proprietary database
-    </p>
-  </div>
-  <div
-    className="Home_stats"
-  >
-    <div
-      className="row"
+    <Row
+      tag="div"
     >
-      <div
-        className="col-sm-4"
+      <Col
+        md={6}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <div>
+          <img
+            alt="working"
+            className="card-img"
+            src="001.jpg"
+          />
+        </div>
+      </Col>
+      <Col
+        className="d-flex align-items-center"
+        md={6}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
       >
         <div
-          className="Home_circle "
+          className="Home_template-intro"
         >
+          <h1>
+            <b>
+              Why Brella?
+            </b>
+          </h1>
           <p>
-            75% increase offer
+            Mission statement goes here, sell a story to the user. Mission statement goes here, sell a story to the user. Mission statement goes here, sell a story to the user. Mission statement goes here, sell a story to the user. Mission statement goes here, sell a story to the user. Mission statement goes here, sell a story to the user.
           </p>
         </div>
-      </div>
-      <div
-        className="col-sm-4"
+      </Col>
+    </Row>
+  </Container>
+  <Container
+    className="Home_database"
+    fluid={true}
+    tag="div"
+  >
+    <Row
+      tag="div"
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h1
+          className="Home_database-title"
+        >
+          How it works
+        </h1>
+      </Col>
+    </Row>
+    <Row
+      tag="div"
+    >
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
       >
         <div
-          className="Home_circle "
+          className="Home_database-img-container"
         >
-          <p>
-            20% average increase in salary
+          <img
+            alt="startFile"
+            src="files.png"
+          />
+          <h4>
+            Step 1
+          </h4>
+        </div>
+        <div>
+          <p
+            className="Home_database-text"
+          >
+            Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella.
           </p>
         </div>
-      </div>
-      <div
-        className="col-sm-4"
+      </Col>
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
       >
         <div
-          className="Home_circle "
+          className="Home_database-img-container"
         >
-          <p>
-            90% better understand comp
-          </p>
+          <img
+            alt="person"
+            src="person.png"
+          />
+          <h4>
+            Step 2
+          </h4>
         </div>
-      </div>
-    </div>
-  </div>
+        <p
+          className="Home_database-text"
+        >
+          Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella.
+        </p>
+      </Col>
+      <Col
+        md={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <div
+          className="Home_database-img-container"
+        >
+          <img
+            alt="completed"
+            src="completed.png"
+          />
+          <h4>
+            Step 3
+          </h4>
+        </div>
+        <p
+          className="Home_database-text"
+        >
+          Upload your documents to Brella. Upload your documents to Brella. Upload your documents to Brella.
+        </p>
+      </Col>
+    </Row>
+  </Container>
   <div
     className="Home_get-started"
   >
-    <h2
+    <h1
       className=""
     >
-      Get Started Today
-    </h2>
+      Connect with Brella today
+    </h1>
     <Link
-      to="/ask-an-expert"
+      className="btn btn-primary"
+      to="/login"
     >
-      <Button
-        color="primary"
-        tag="button"
-      >
-        Ask An Expert
-      </Button>
+      Get Started
     </Link>
   </div>
 </div>

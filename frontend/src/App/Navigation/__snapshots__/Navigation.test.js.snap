@@ -40,34 +40,6 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
     <ul
       className="navbar-nav ml-auto"
     >
-      <li
-        className="nav-item active"
-        data-target=".in"
-        data-toggle="collapse"
-      >
-        <Link
-          className="Nav-link Nav-link-ltr"
-          to="/"
-        >
-          About
-        </Link>
-      </li>
-      <li
-        className="nav-item active"
-        data-target=".in"
-        data-toggle="collapse"
-      >
-        <Link
-          className="Nav-link Nav-link-ltr"
-          to="/"
-        >
-          For Employers
-        </Link>
-      </li>
-    </ul>
-    <ul
-      className="navbar-nav"
-    >
       <ContextConsumer>
         <Component />
       </ContextConsumer>
