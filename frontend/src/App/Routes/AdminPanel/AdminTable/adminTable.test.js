@@ -50,6 +50,28 @@ describe("AdminTable", function() {
     });
   });
 
+  it("shows expected user data in the table", function() {
+    const rows = wrapper.find(".table").last();
+
+    expect(rows.length).toEqual(1);
+
+    const dataRow = rows
+      .first()
+      .find("td")
+      .map(column => column.text());
+
+    expect(dataRow.length).toEqual(9);
+
+    expect(dataRow[0]).toEqual("17");
+    expect(dataRow[1]).toEqual("testadmin@test.com");
+    expect(dataRow[2]).toEqual("");
+    expect(dataRow[3]).toEqual("admin");
+    expect(dataRow[4]).toEqual("test");
+    expect(dataRow[5]).toEqual("testcompany");
+    expect(dataRow[6]).toEqual("2018-06-23");
+    expect(dataRow[7]).toEqual("To test user data");
+  });
+
   it("creates a table", function() {
     expect(wrapper.find("table")).toHaveLength(1);
   });

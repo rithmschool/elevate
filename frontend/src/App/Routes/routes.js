@@ -30,11 +30,7 @@ class Routes extends React.Component {
           )}
         />
 
-        <DashboardRoutes
-          exact
-          path="/ask-an-expert"
-          render={() => <AskAnExpert />}
-        />
+        <Route exact path="/ask-an-expert" render={() => <AskAnExpert />} />
 
         <UserPrivateRoute
           path="/users/:userId"

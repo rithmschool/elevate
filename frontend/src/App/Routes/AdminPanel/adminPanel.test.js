@@ -54,29 +54,6 @@ describe("AdminPanel", function() {
   it("renders AdminPanel and AdminTable components", function() {
     wrapper.find(AdminPanel).setState({ users, questions });
     expect(wrapper.find(AdminPanel)).toHaveLength(1);
-    expect(wrapper.find(AdminTable)).toHaveLength(1);
-  });
-
-  it("shows expected user data in the table", function() {
-    const rows = wrapper.find(".table").last();
-
-    expect(rows.length).toEqual(1);
-
-    const dataRow = rows
-      .first()
-      .find("td")
-      .map(column => column.text());
-
-    expect(dataRow.length).toEqual(16);
-
-    expect(dataRow[0]).toEqual("user1@mail.com");
-    expect(dataRow[1]).toEqual("first_name1");
-    expect(dataRow[2]).toEqual("last_name1");
-    expect(dataRow[3]).toEqual("");
-    expect(dataRow[4]).toEqual("company1");
-    expect(dataRow[5]).toEqual("2018-06-23T07:00:00.000Z");
-    expect(dataRow[6]).toEqual("needs1");
-    expect(dataRow[7]).toEqual("goals1");
   });
 
   it("has div with adminPanel_main class", function() {

@@ -6,7 +6,7 @@ import { UserContext } from "../../userContext";
 class DashboardRoutes extends React.Component {
   static contextType = UserContext;
   render() {
-    if (!this.context.id && !localStorage.token) {
+    if (!localStorage.token) {
       return <Redirect to="/login" />;
     }
 
