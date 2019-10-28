@@ -19,7 +19,7 @@ router.post("/", authRequired, async function(req, res, next) {
 });
 
 router.post("/aws", function(req, res, next) {
-  console.log('REQ BODY', req.body)
+  console.log("REQ BODY", req.body);
   try {
     AWS.config.update({
       accessKeyId: ID,
