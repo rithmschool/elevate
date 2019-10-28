@@ -12,31 +12,6 @@ exports[`main routes file matches snapshot 1`] = `
     path="/login"
     render={[Function]}
   />
-  <AdminPrivateRoute
-    exact={true}
-    path="/admin/users"
-    render={[Function]}
-  />
-  <AdminPrivateRoute
-    exact={true}
-    path="/admin/users/:userId"
-    render={[Function]}
-  />
-  <AdminPrivateRoute
-    exact={true}
-    path="/admin/questions"
-    render={[Function]}
-  />
-  <AdminPrivateRoute
-    exact={true}
-    path="/admin/invoices"
-    render={[Function]}
-  />
-  <AdminPrivateRoute
-    exact={true}
-    path="/admin/calendar"
-    render={[Function]}
-  />
   <Route
     exact={true}
     path="/ask-an-expert"
@@ -47,23 +22,8 @@ exports[`main routes file matches snapshot 1`] = `
     render={[Function]}
   />
   <DashboardRoutes
-    exact={true}
+    exact={false}
     path="/dashboard"
-    render={[Function]}
-  />
-  <DashboardRoutes
-    exact={true}
-    path="/dashboard/manage"
-    render={[Function]}
-  />
-  <DashboardRoutes
-    exact={true}
-    path="/dashboard/appointments"
-    render={[Function]}
-  />
-  <DashboardRoutes
-    exact={true}
-    path="/dashboard/templates"
     render={[Function]}
   />
   <ForgotPassRoutes

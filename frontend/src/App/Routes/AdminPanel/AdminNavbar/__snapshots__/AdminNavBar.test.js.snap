@@ -8,7 +8,7 @@ exports[`AdminNavbar matches snapshot 1`] = `
     <Link
       className="admin-link"
       id="users"
-      to="/admin/users"
+      to="/dashboard/admin/users"
     >
       Users
     </Link>
@@ -17,7 +17,7 @@ exports[`AdminNavbar matches snapshot 1`] = `
     <Link
       className="admin-link"
       id="questions"
-      to="/admin/questions"
+      to="/dashboard/admin/questions"
     >
       Questions
     </Link>
@@ -26,7 +26,7 @@ exports[`AdminNavbar matches snapshot 1`] = `
     <Link
       className="admin-link"
       id="invoices"
-      to="/admin/invoices"
+      to="/dashboard/admin/invoices"
     >
       Invoices
     </Link>
@@ -35,7 +35,7 @@ exports[`AdminNavbar matches snapshot 1`] = `
     <Link
       className="admin-link"
       id="calendar"
-      to="/admin/calendar"
+      to="/dashboard/admin/calendar"
     >
       Calendar
     </Link>
