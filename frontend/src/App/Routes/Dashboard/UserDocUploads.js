@@ -93,10 +93,11 @@ class UserDocUploads extends Component {
     div.removeEventListener("drop", this.handleDrop);
   }
 
-  handleDelete(e) {
-    // this.setState({
-    // })
-    console.log("I wanna remove this upload");
+  handleDelete(name) {
+    this.setState({
+      ...this.state,
+      files: this.state.files.filter(el => el.name !== name)
+    });
   }
 
   //handle submit upload to AWS and send to db
@@ -147,7 +148,12 @@ class UserDocUploads extends Component {
                   ? this.state.files.map(file => (
                       <div key={file.lastModified} className="mt-3">
                         {file.name}
-                        <button onClick={this.handleDelete} className="delete">
+                        <button
+                          onClick={() => {
+                            this.handleDelete(file.name);
+                          }}
+                          className="delete"
+                        >
                           X
                         </button>
                       </div>
