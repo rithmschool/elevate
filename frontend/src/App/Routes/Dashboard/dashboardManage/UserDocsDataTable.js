@@ -11,7 +11,7 @@ class UserDocsDataTable extends Component {
           <th scope="row">{title}</th>
           <td>{counterparty}</td>
           <td>{status}</td>
-          <td>{url}</td>
+          <td><a href={url}>{url}</a></td>
           <td>{date_submitted}</td>
           <td>{date_reviewed}</td>
         </tr>
