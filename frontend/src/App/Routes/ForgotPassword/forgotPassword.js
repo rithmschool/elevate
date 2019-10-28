@@ -5,6 +5,7 @@ import "./forgotPassword.css";
 import ElevateApi from "../../../elevateApi";
 import Alert from "../Alert/alert";
 import Spinner from "../../Spinner/spinner";
+import "./forgotPassword.css";
 
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class ForgotPassword extends React.Component {
           border
           rounded
           shadow
-          forgotPassword_container`}
+          forgotPassword-container`}
       >
         <div>
           <Form onSubmit={this.sendEmail}>

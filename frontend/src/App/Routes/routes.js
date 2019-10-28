@@ -8,10 +8,15 @@ import UserProfile from "./UserProfile/userProfile";
 import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
 import AdminPanel from "./AdminPanel/adminPanel";
 import AskAnExpert from "./AskAnExpert/askAnExpert";
+import Dashboard from "./../Routes/Dashboard/dashboard";
+import DashboardAppointments from "./../Routes/Dashboard/dashboardAppointments";
+import DashboardManage from "./../Routes/Dashboard/dashboardManage";
+import DashboardTemplates from "./../Routes/Dashboard/dashboardTemplates";
 
 import AdminPrivateRoute from "./adminPrivateRoute";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import UserPrivateRoute from "./userPrivateRoute";
+import DashboardRoutes from "./dashboardRoutes";
 
 class Routes extends React.Component {
   render() {
@@ -41,6 +46,26 @@ class Routes extends React.Component {
         <UserPrivateRoute
           path="/users/:userId"
           render={props => <UserProfile {...props} />}
+        />
+
+        <DashboardRoutes exact path="/dashboard" render={() => <Dashboard />} />
+
+        <DashboardRoutes
+          exact
+          path="/dashboard/manage"
+          render={() => <DashboardManage />}
+        />
+
+        <DashboardRoutes
+          exact
+          path="/dashboard/appointments"
+          render={() => <DashboardAppointments />}
+        />
+
+        <DashboardRoutes
+          exact
+          path="/dashboard/templates"
+          render={() => <DashboardTemplates />}
         />
 
         <ForgotPassRoutes
