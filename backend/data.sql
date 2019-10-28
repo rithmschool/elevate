@@ -101,8 +101,8 @@ CREATE TABLE documents
   title TEXT NOT NULL,
   counterparty TEXT NOT NULL,
   url TEXT NOT NULL,
-  date_submitted DATE NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed DATE NOT NULL DEFAULT CURRENT_DATE,
+  date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
+  date_reviewed TEXT NOT NULL DEFAULT CURRENT_DATE,
   status TEXT
 );
 
