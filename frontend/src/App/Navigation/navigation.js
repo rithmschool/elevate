@@ -18,7 +18,7 @@ class Navigation extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state)
+    console.log(this.state);
   }
 
   myRef = React.createRef();
@@ -94,7 +94,7 @@ class Navigation extends React.Component {
                         className="Nav-link Nav-link-ltr"
                       >
                         Manage
-                    </Link>
+                      </Link>
                     </li>
 
                     <li
@@ -107,7 +107,7 @@ class Navigation extends React.Component {
                         className="Nav-link Nav-link-ltr"
                       >
                         Appointments
-                    </Link>
+                      </Link>
                     </li>
 
                     <li
@@ -121,46 +121,49 @@ class Navigation extends React.Component {
                         className="Nav-link Nav-link-ltr"
                       >
                         Templates
-                    </Link>
+                      </Link>
                     </li>
                   </div>
                 </ul>
-                  <NavDropdown id="collasible-nav-dropdown" title={<i className="fas fa-user Nav-icon right-content"></i>}>
-                    <ul
-                      className="list-group list-unstyled"
-                      onClick={this.userMenuToggle}
-                    >
-                      <NavDropdown.Item className=" bg-transparent Menu-link">
-                        {" "}
-                        <Link
-                          className="dropdown-link"
-                          to={`users/${currentUser.userId}`}
-                        >
-                          <li className="list-group-item bg-transparent">
-                            Profile
+                <NavDropdown
+                  id="collasible-nav-dropdown"
+                  title={<i className="fas fa-user Nav-icon right-content"></i>}
+                >
+                  <ul
+                    className="list-group list-unstyled"
+                    onClick={this.userMenuToggle}
+                  >
+                    <NavDropdown.Item className=" bg-transparent Menu-link">
+                      {" "}
+                      <Link
+                        className="dropdown-link"
+                        to={`users/${currentUser.userId}`}
+                      >
+                        <li className="list-group-item bg-transparent">
+                          Profile
                         </li>
-                        </Link>
-                      </NavDropdown.Item>
+                      </Link>
+                    </NavDropdown.Item>
 
-                      {currentUser.is_admin ? (
-                        <li data-toggle="collapse" data-target=".in">
-                          {userIsAdmin}
-                        </li>
-                      ) : (
-                          ""
-                        )}
+                    {currentUser.is_admin ? (
+                      <li data-toggle="collapse" data-target=".in">
+                        {userIsAdmin}
+                      </li>
+                    ) : (
+                      ""
+                    )}
 
-                      <NavDropdown.Item className=" bg-transparent Menu-link">
-                        <Link
-                          className="dropdown-link"
-                          to="/"
-                          onClick={this.props.logout}
-                        >
-                          <li className="list-group-item">Log out</li>
-                        </Link>
-                      </NavDropdown.Item>
-                    </ul>
-                  </NavDropdown>
+                    <NavDropdown.Item className=" bg-transparent Menu-link">
+                      <Link
+                        className="dropdown-link"
+                        to="/"
+                        onClick={this.props.logout}
+                      >
+                        <li className="list-group-item">Log out</li>
+                      </Link>
+                    </NavDropdown.Item>
+                  </ul>
+                </NavDropdown>
               </div>
             </li>
           )
@@ -180,8 +183,8 @@ class Navigation extends React.Component {
               </Link>
             </NavDropdown.Item>
           ) : (
-              ""
-            )
+            ""
+          )
         }
       </UserContext.Consumer>
     );

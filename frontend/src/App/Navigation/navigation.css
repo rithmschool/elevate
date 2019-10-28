@@ -118,7 +118,6 @@ ul.navbar-nav {
   }
 }
 
-
 .list-group-item {
   color: unset;
   background-color: transparent;
@@ -134,8 +133,6 @@ li.list-group-item {
 a.bg-transparent.Menu-link.dropdown-item {
   transition: all 100ms ease-in-out;
 }
-
-
 
 .Nav_brand-name {
   color: #6558f5;
@@ -157,15 +154,15 @@ nav.Link {
 }
 
 .navbar-center {
-  display: flex; 
+  display: flex;
   justify-content: center;
 }
 
-.navbar-nav { 
-  width: 100%
+.navbar-nav {
+  width: 100%;
 }
 
-.navbar-div{
+.navbar-div {
   display: flex;
   justify-content: flex-end;
 }
