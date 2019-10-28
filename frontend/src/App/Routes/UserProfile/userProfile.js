@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import "./userProfile.css";
 import { UserContext } from "../../../userContext";
 import ElevateApi from "../../../elevateApi";
@@ -125,7 +125,7 @@ class UserProfile extends React.Component {
     if (this.state.isLoading) return <Spinner />;
 
     return (
-      <div className="container">
+      <Container>
         {this.state.errors.length > 0 && (
           <Alert type="danger" messages={this.state.errors} />
         )}
@@ -155,7 +155,7 @@ class UserProfile extends React.Component {
             </div>
           </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }

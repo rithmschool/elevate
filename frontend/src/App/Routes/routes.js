@@ -44,7 +44,7 @@ class Routes extends React.Component {
         <Route exact path="/ask-an-expert" render={() => <AskAnExpert />} />
 
         <UserPrivateRoute
-          path="/users/:userId"
+          path="/users"
           render={props => <UserProfile {...props} />}
         />
 

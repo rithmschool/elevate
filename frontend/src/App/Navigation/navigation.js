@@ -98,7 +98,7 @@ class Navigation extends React.Component {
                   >
                     <li className="list-group-item bg-transparent">
                       <Link
-                        to={`users/${currentUser.userId}`}
+                        to={`users`}
                         className="Menu-link "
                       >
                         Profile

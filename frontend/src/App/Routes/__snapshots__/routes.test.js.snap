@@ -23,7 +23,7 @@ exports[`main routes file matches snapshot 1`] = `
     render={[Function]}
   />
   <UserPrivateRoute
-    path="/users/:userId"
+    path="/users"
     render={[Function]}
   />
   <DashboardRoutes
