@@ -125,8 +125,8 @@ VALUES
   ('testuser@gmail.com', '$2b$15$aJJQTByg.3btwvUFL54Yc.oXY6O3uxh.wJu10mErvUfvJjNvjTBza', false, 'Test', 'User', 'Google', '2018-06-23', 'Talk to financial advisor about salary/equity negotiations.', 'Increase in equity.'),
   ('admin@gmail.com', '$2b$15$JhwIcOCoqA4YRTIe6Ceh8OO4o8t9RCgr/mQ2TP0eL9JY8/si46HIW', true, 'Admin', 'User', '', '2019-06-23', '', ''),
   ('nate@gmail.com', '$2b$15$bn1JE3S6C2Twjc9Lx9CaNeWOqdiFpi/7vygrm2xH2UmWuNVxnxOOK', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
-  ('elie@gmail.com', 'elie123', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
-  ('joel@gmail.com', 'joel123', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
+  ('elie@gmail.com', '$2b$15$KXH2b/AZhPoJ8iH52MMEtOitY41iNI0BNPPzYiQCSS4o4odqSqx3q', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
+  ('joel@gmail.com', '$2b$15$81I4/c9prFdmnET/xZKZW.qiVSjv8eR33vEvlv9eH4PR.9z2GlJYC', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
 
 INSERT INTO documents
   ( id, user_id, title, url, counterparty, date_submitted, date_reviewed, status )
