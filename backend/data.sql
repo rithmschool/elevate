@@ -136,9 +136,11 @@ VALUES
 INSERT INTO documents
   ( id, user_id, title, url, counterparty, date_submitted, date_reviewed, status )
 VALUES
-  (1, 2, 'Tinkerbell Tinkering Job', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
-  (2, 1, 'Peter Pan Flying Job', 'www.google.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Pending'),
-  (3, 2, 'Tinkerbell Assistant Job', 'www.reddit.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Completed');
+  (1, 2, 'Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
+  (2, 3, 'Second Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
+  (3, 2, 'Third Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'In Progress'),
+  (4, 1, 'Peter Pan Flying Job', 'www.google.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Pending'),
+  (5, 2, 'Tinkerbell Assistant Job', 'www.reddit.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Completed');
 
 
 INSERT INTO google_users
