@@ -22,7 +22,6 @@ exports[`Nav Bar Testing Without Logged In User matches snapshot 1`] = `
   <NavbarCollapse
     className="collapse.navbar-collapse"
     id="responsive-navbar-nav"
-    isOpen={false}
   >
     <Nav
       className="ml-auto"

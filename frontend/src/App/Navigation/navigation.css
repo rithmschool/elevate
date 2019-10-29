@@ -87,7 +87,6 @@ ul.navbar-nav {
 }
 
 @media only screen and (max-width: 990px) {
-
   .navbar-nav.justify-content-center.navbar-div {
     text-align: center;
   }
