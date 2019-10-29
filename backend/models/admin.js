@@ -7,6 +7,9 @@ class Admin {
         ORDER BY user_id`
     );
     let documents = result.rows;
+    if (!documents) {
+      throw new Error("Can't find any documents.");
+    }
     return documents;
   }
 }
