@@ -1,37 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
 import "./navigation.css";
 import { UserContext } from "../../userContext";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { thisExpression } from "@babel/types";
+import { LinkContainer } from 'react-router-bootstrap'
 
 class Navigation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.userMenuToggle = this.userMenuToggle.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-
-    this.state = {
-      userMenuIsOpen: false
-    };
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
-  myRef = React.createRef();
-
-  // Hide user menu when click outside dropdown
-  handleClickOutside = e => {
-    this.setState({ userMenuIsOpen: false });
-  };
-
-  userMenuToggle(evt) {
-    this.setState(st => ({ userMenuIsOpen: !st.userMenuIsOpen }));
-  }
-
   render() {
     //NavBar for logged out users
     const loggedOut = (
@@ -39,33 +13,15 @@ class Navigation extends React.Component {
         {currentUser =>
           !currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-              <li
-                className="nav-item active"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link to="/" className="Nav-link Nav-link-ltr">
                   About
                 </Link>
-              </li>
-              <li
-                className="nav-item active"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link to="/" className="Nav-link Nav-link-ltr">
                   For Employers
                 </Link>
-              </li>
-              <li
-                className="nav-item active"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link to="/login" className="Nav-link Nav-link-ltr">
                   Sign In
                 </Link>
-              </li>
             </ul>
           )
         }
@@ -78,11 +34,6 @@ class Navigation extends React.Component {
         {currentUser =>
           currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-              <li
-                className="nav-item active user-item"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link
                   tag={Link}
                   to="/dashboard/manage"
@@ -90,34 +41,18 @@ class Navigation extends React.Component {
                 >
                   Manage
                 </Link>
-              </li>
-
-              <li
-                className="nav-item active user-item"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link
                   to="/dashboard/appointments"
                   className="Nav-link Nav-link-ltr"
                 >
                   Appointments
                 </Link>
-              </li>
-
-              <li
-                className="nav-item active user-item"
-                data-toggle="collapse"
-                data-target=".in"
-              >
                 <Link
-                  componentClass={Link}
                   to="/dashboard/templates"
                   className="Nav-link Nav-link-ltr"
                 >
                   Templates
                 </Link>
-              </li>
               <NavDropdown
                 id="collasible-nav-dropdown"
                 title={<i className="fas fa-user Nav-icon right-content"></i>}
@@ -126,35 +61,27 @@ class Navigation extends React.Component {
                   className="list-group list-unstyled"
                   onClick={this.userMenuToggle}
                 >
-                  <NavDropdown.Item className=" bg-transparent Menu-link">
-                    {" "}
-                    <Link
-                      className="dropdown-link"
-                      to={`users/${currentUser.userId}`}
-                    >
+                  <LinkContainer className="border dropdown-link" to={`users/${currentUser.userId}`}>
+                    <NavDropdown.Item className="bg-transparent Menu-link">
                       <li className="list-group-item bg-transparent">
                         Profile
                       </li>
-                    </Link>
-                  </NavDropdown.Item>
+                    </NavDropdown.Item>
+                  </LinkContainer>
+
 
                   {currentUser.is_admin ? (
-                    <li data-toggle="collapse" data-target=".in">
+                    <li className="border dropdown-link list-group-item">
                       {userIsAdmin}
                     </li>
                   ) : (
-                    ""
-                  )}
-
-                  <NavDropdown.Item className=" bg-transparent Menu-link">
-                    <Link
-                      className="dropdown-link"
-                      to="/"
-                      onClick={this.props.logout}
-                    >
-                      <li className="list-group-item">Log out</li>
-                    </Link>
+                      ""
+                    )}
+                  <LinkContainer className="border dropdown-link" onClick={this.props.logout} to="/">
+                  <NavDropdown.Item className="bg-transparent Menu-link">
+                      <li className="list-group-item bg-transparent">Log out</li>
                   </NavDropdown.Item>
+                  </LinkContainer>
                 </div>
               </NavDropdown>
             </ul>
@@ -168,15 +95,14 @@ class Navigation extends React.Component {
       <UserContext.Consumer>
         {currentUser =>
           currentUser && currentUser.is_admin ? (
+            <LinkContainer to="/admin/users" className="dropdown-link">
             <NavDropdown.Item className="bg-transparent Menu-link">
-              {" "}
-              <Link className="dropdown-link" to="/admin/users">
-                <li className="list-group-item">Admin</li>
-              </Link>
+                Admin
             </NavDropdown.Item>
+            </LinkContainer>
           ) : (
-            ""
-          )
+              ""
+            )
         }
       </UserContext.Consumer>
     );
@@ -189,11 +115,10 @@ class Navigation extends React.Component {
           </Link>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
 
         <Navbar.Collapse
           id="responsive-navbar-nav"
-          isOpen={this.state.userMenuIsOpen}
           className="collapse.navbar-collapse"
         >
           <Nav className="ml-auto" variant="light">

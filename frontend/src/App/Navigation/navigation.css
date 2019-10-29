@@ -2,6 +2,15 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.border {
+  border: 2px;
+}
+
+a.dropdown-link.bg-transparent.Menu-link.dropdown-item.active {
+  color: black;
+}
+
+
 .Nav-icon {
   font-weight: bold;
   font-size: 14px;
@@ -9,7 +18,7 @@
   background-color: #dfe7ed;
   border-radius: 50%;
   padding: 10px 10px;
-  margin: 10px 30px;
+  margin: 5px 25px;
   opacity: 1;
   cursor: pointer;
 }
@@ -40,7 +49,7 @@
 
 .Nav-link-ltr::before {
   width: 0%;
-  bottom: 0px;
+  bottom: 1px;
 }
 
 .Nav-link-ltr:hover::before {
@@ -61,51 +70,11 @@
 }
 
 ul.navbar-nav {
-  margin-bottom: -15px;
-}
-
-.sidebar a {
-  font-weight: bold;
-  font-size: 14px;
-  color: #394557;
-  display: inline-block;
-  position: relative;
-  opacity: 0.75;
-}
-
-.Menu-link {
-  font-weight: bold;
-  font-size: 16px;
-  color: #394557;
-  display: inline-block;
-  position: relative;
-  opacity: 0.75;
-  left: 0;
-  border: 1px;
+  margin-bottom: -12px;
 }
 
 .Menu-link:hover {
   font-weight: bold;
-}
-
-.Menu-link.dropdown-item:active {
-  color: unset;
-  background-color: transparent;
-}
-
-/* .userMenu {
-  min-width: 250px;
-  overflow-y: scroll;
-  z-index: 1;
-  position: absolute;
-  margin-top: 9px;
-  right: 0;
-  visibility: hidden;
-  background-color: #f8f9fa;
-} */
-
-.userMenu.is-open {
-  visibility: visible;
 }
 
 @media only screen and (max-width: 596px) {
@@ -122,28 +91,14 @@ ul.navbar-nav {
   }
 }
 
-.list-group-item {
-  color: unset;
-  background-color: transparent;
-  padding: 10px;
-}
-
 li.list-group-item {
   color: unset;
   background-color: transparent;
   border: none;
 }
 
-a.bg-transparent.Menu-link.dropdown-item {
-  transition: all 100ms ease-in-out;
-}
-
 .Nav_brand-name {
   color: #6558f5;
-}
-
-nav.Link {
-  color: black;
 }
 
 .dropdown-link {
@@ -157,26 +112,20 @@ nav.Link {
   background-color: transparent;
 }
 
-.navbar-center {
-  display: flex;
-  justify-content: center;
-}
-
-.navbar-div {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .dropdown-toggle.nav-link {
-  margin-top: -4px;
   margin-left: 320px;
 }
 
 .dropdown-menu.show {
-  margin-left: 305px;
-  margin-top: -5px;
+  margin-left: 290px;
+  margin-top: -1px;
+  padding: 0px;
 }
 
 .collapse.navbar-collapse.navbar-collapse.collapse.show {
   width: 100%;
+}
+
+.dropdown-link {
+  border: 2px solid rgba(0, 0, 0, 0.502);
 }
