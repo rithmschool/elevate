@@ -59,7 +59,7 @@ const SEED_DOCUMENTS_SQL = `
     VALUES
     ('contract1.pdf', 'Bill Billson', '2020-10-20T04:32:00', null, 'www.conctractz.com/contract1', 1, 'unreviewed'),
     ('contract2.pdf', 'Bill Billson', '2020-10-29T13:37:00', null, 'www.conctractz.com/contract2', 1, 'unreviewed'),
-    ('contract3.pdf', 'Bill Billson', '2020-10-23T19:39:00', '2020-10-24T12:00:00', 'www.conctractz.com/contract3', 2, 'reviewed'),
+    ('contract3.pdf', 'Bill Billson', '2020-10-23T19:39:00', '2020-10-24', 'www.conctractz.com/contract3', 2, 'reviewed'),
     ('contract4.pdf', 'Bill Billson', '2020-10-29T13:33:00', null, 'www.conctractz.com/contract4', 3, 'unreviewed'),
     ('contract5.pdf', 'Bill Billson', '2020-10-22T11:31:00', null, 'www.conctractz.com/contract5', 4, 'unreviewed')
     `;
