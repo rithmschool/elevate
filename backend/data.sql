@@ -25,7 +25,7 @@ id serial PRIMARY KEY,
 title TEXT NOT NULL,
 counterparty TEXT NOT NULL,
 date_submitted TEXT DEFAULT current_timestamp,
-date_reviewed DATE,
+date_reviewed TEXT,
 url TEXT,
 user_id INTEGER REFERENCES users(id),
 status TEXT
