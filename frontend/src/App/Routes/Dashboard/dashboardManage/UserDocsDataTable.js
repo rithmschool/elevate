@@ -36,6 +36,7 @@ class UserDocsDataTable extends Component {
           </thead>
           {<tbody>{this.renderUserDocsData()}</tbody>}
         </Table>
+        {this.renderUserDocsData.length === 0 ?  <p>No Documents Available</p> : "" }
       </div>
     );
   }
