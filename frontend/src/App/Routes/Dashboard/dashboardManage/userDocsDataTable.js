@@ -23,7 +23,7 @@ class UserDocsDataTable extends Component {
     return (
       <div className="Documents_table container">
         <h1>My Documents</h1>
-        <Table striped bordered>
+        <Table hover bordered>
           <thead>
             <tr>
               <th>Document</th>
