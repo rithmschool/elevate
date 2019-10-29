@@ -27,7 +27,7 @@ class DashboardManage extends Component {
     const { documents } = this.state;
     if (this.state.loading) {
       return <Spinner />;
-    } 
+    }
     return (
       <div>
         <UserDocsDataTable documents={documents} />
