@@ -55,7 +55,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
     // bcrypt set lower for testing purpose
-    const hashedPassword = await bcrypt.hash(inputAdminPassword, 5);
+    const hashedAdminPassword = await bcrypt.hash(inputAdminPassword, 5);
 
     // create new user with hashed password
     await db.query(
@@ -63,7 +63,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
                   (email, password, reset_password_token, reset_password_expires, is_admin) 
                   VALUES ($1, $2, $3, $4, $5)
                   RETURNING id, is_admin`,
-      [inputEmail, hashedPassword, passwordToken, expireTime, true]
+      [inputAdminEmail, hashedAdminPassword, passwordToken, expireTime, true]
     );
 
     const response = await request(app)
