@@ -14,15 +14,7 @@ class ElevateApi {
         params: { _token, ...params }
       });
     } else if (verb === "post") {
-      debugger;
-      q =
-        endpoint === "upload"
-          ? axios.post(
-              `${BASE_URL}/upload`,
-              { _token, ...params }
-              // { headers: { "Content-Type": "multipart/form-data" } }
-            )
-          : axios.post(`${BASE_URL}/${endpoint}`, { _token, ...params });
+      q = axios.post(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "patch") {
       q = axios.patch(`${BASE_URL}/${endpoint}`, { _token, ...params });
     } else if (verb === "delete") {
@@ -129,17 +121,8 @@ class ElevateApi {
   }
 
   static async addToDB(doc) {
-    let res = await this.request("upload", doc, "post");
+    let res = await this.request("upload/db", doc, "post");
     return res;
-  }
-
-  static async uploadToAws(formData) {
-    let file = formData.getAll("file");
-    console.log("file in eleApi", file[0]);
-
-    axios.post(`${BASE_URL}/upload/aws`, formData, {}).then(res => {
-      console.log(res.statusText);
-    });
   }
 }
 

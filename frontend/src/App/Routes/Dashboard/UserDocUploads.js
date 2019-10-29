@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import ElevateApi from "../../../elevateApi";
-import "./UserDocUploads.css";
+import "./UserDocUploads.scss";
 import axios from "axios";
+import { UserContext } from "../../../userContext";
 
 class UserDocUploads extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class UserDocUploads extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  static contextType = UserContext;
+
   //handle drag and drop feature & upload
   handleUpload(e) {
     e.persist();
@@ -29,7 +32,6 @@ class UserDocUploads extends Component {
     if (file) {
       this.setState({ file });
     }
-    console.log("handleupload after state", this.state)
   }
 
   dropRef = React.createRef();
@@ -58,7 +60,6 @@ class UserDocUploads extends Component {
   };
 
   handleDrop(e) {
-    console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
@@ -77,7 +78,6 @@ class UserDocUploads extends Component {
         drag: false
       });
     }
-    console.log("handledrop after state", this.state)
   }
 
   componentDidMount() {
@@ -99,7 +99,6 @@ class UserDocUploads extends Component {
   handleDelete(name) {
     this.setState({
       ...this.state,
-      // files: this.state.files.filter(el => el.name !== name)
       file: null
     });
   }
@@ -108,10 +107,8 @@ class UserDocUploads extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     // This section is for sending to AWS
-    console.log("this.state.file => ", this.state.file);
     const formData = new FormData();
     formData.append("file", this.state.file);
-    console.log("uploading file => ", this.state.file);
 
     axios
       .post("http://localhost:3001/upload", formData, {
@@ -121,81 +118,69 @@ class UserDocUploads extends Component {
         // then print response status
         console.log(res.statusText);
       });
-    
+
     // This section is for sending to DB
-    
     const token = localStorage.getItem("token");
-    
-    // let mapSendToDb = this.state.files.map(async file => {
-    //   const sendToDb = {
-    //     _token: token,
-    //     title: file.name,
-    //     counterparty: "Alex",
-    //     status: "unreviewed",
-    //     date_reviewed: null
-    //   };
-      
-    //   let res = await ElevateApi.uploadDoc(sendToDb);
-    //   return res;
-    // });
+
+    const BASE_AWS_URL = "https://brellacontracts.s3-us-west-1.amazonaws.com/"
 
     const sendToDb = {
       _token: token,
       title: this.state.file.name,
       counterparty: "Alex",
       status: "unreviewed",
-      date_reviewed: null
+      date_reviewed: null,
+      url: BASE_AWS_URL + this.state.file.name,
+      user_id: this.context.userId
     };
-    
+
     await ElevateApi.addToDB(sendToDb);
-    
-    // Promise.all(mapSendToDb);
+
     this.setState({ ...this.state, uploaded: true });
-    debugger;
   }
 
   render() {
     return (
-      <div ref={this.dropRef}>
+      <div className="UploadContainer" ref={this.dropRef}>
         <Card className="card text-center p-5">
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">
-              Drop documents here for review
+              <h4>Drop documents here for review</h4>
             </Card.Subtitle>
             <div>
               <div>
-                {this.state.file
-                  ? (
-                      <div key={this.state.file.lastModified} className="mt-3">
-                        {this.state.file.name}
-                        <button
-                          onClick={() => {
-                            this.handleDelete(this.state.file.name);
-                          }}
-                          className="delete"
-                        >
-                          X
-                        </button>
-                      </div>
-                    )
-                  : null}
+                {this.state.file ? (
+                  <div key={this.state.file.lastModified} className="mt-3">
+                    {this.state.file.name}
+                    <button
+                      onClick={() => {
+                        this.handleDelete(this.state.file.name);
+                      }}
+                      className="delete"
+                    >
+                      X
+                    </button>
+                  </div>
+                ) : null}
               </div>
               <Form onSubmit={this.handleSubmit}>
-                <label className="custom-file-upload mt-4">
+                <label className="btn custom-file-upload mt-3">
                   <input type="file" onChange={this.handleUpload} />
                   Upload documents
                 </label>
-                <Button type="submit" className="btn btn-successmt-4">
+                <Button type="submit" className="btn btn-primary mt-2">
                   Submit
                 </Button>
               </Form>
               <div>
                 {this.state.uploaded ? (
-                  <Alert variant="success" className="mt-4">
-                    Files uploaded
+                  <div className="row justify-content-md-center">
+                    <Alert variant="success" className="col-md-6 col-md-offset-3 mt-4">
+                    File uploaded successfully
                   </Alert>
+                  </div>
                 ) : (
-                  <i className="fas fa-upload fa-2x mt-2"></i>
+                  <i className="fas fa-upload fa-2x mt-4"></i>
                 )}
               </div>
             </div>

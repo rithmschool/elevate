@@ -1,16 +1,16 @@
 const express = require("express");
 const router = new express.Router();
-// const DocUploads = require("../models/docUpload");
-// const { authRequired } = require("../middleware/auth");
+const DocUploads = require("../models/docUpload");
+const { authRequired } = require("../middleware/auth");
 
-// router.post("/", authRequired, async function(req, res, next) {
-//   try {
-//     const docs = await DocUploads.upload(req.body);
-//     return res.status(201).json({ docs });
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
+router.post("/db", authRequired, async function(req, res, next) {
+  try {
+    const docs = await DocUploads.add(req.body);
+    return res.status(201).json({ docs });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 var multer = require("multer");
 var multerS3 = require("multer-s3");
@@ -33,8 +33,7 @@ const upload = multer({
     s3: s3,
     bucket: BUCKET_NAME,
     key: function(req, file, cb) {
-      console.log(file);
-      cb(null, file.originalname); //use Date.now() for unique file keys
+      cb(null, file.originalname);
     }
   })
 });
