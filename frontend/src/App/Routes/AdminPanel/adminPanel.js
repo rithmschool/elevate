@@ -17,23 +17,26 @@ class AdminPanel extends React.Component {
     this.state = {
       sideBarOpen: true,
       users: null,
-      questions: null
+      questions: null,
+      documents: null
     };
   }
 
   componentDidMount = async () => {
     let users;
     let questions;
+    let documents;
 
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
+      documents = await ElevateApi.getDocuments();
     } catch (err) {
       console.log(err);
       return err;
     }
 
-    this.setState({ users, questions });
+    this.setState({ users, questions, documents });
   };
 
   // get update users after delete a user in AdminUserView
