@@ -17,6 +17,7 @@ class DashboardManage extends Component {
       documents = response.documents;
     } catch (err) {
       console.log(err);
+      this.setState({loading: false });
       return err;
     }
     this.setState({ documents, loading: false });
@@ -26,7 +27,7 @@ class DashboardManage extends Component {
     const { documents } = this.state;
     if (this.state.loading) {
       return <Spinner />;
-    }
+    } 
     return (
       <div>
         <UserDocsDataTable documents={documents} />
