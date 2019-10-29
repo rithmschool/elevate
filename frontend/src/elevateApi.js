@@ -128,7 +128,7 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete");
   }
 
-  static async uploadDoc(doc) {
+  static async addToDB(doc) {
     let res = await this.request("upload", doc, "post");
     return res;
   }
