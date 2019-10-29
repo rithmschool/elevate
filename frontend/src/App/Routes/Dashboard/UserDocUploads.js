@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import ElevateApi from "../../../elevateApi";
 import "./UserDocUploads.css";
+import axios from 'axios';
 
 class UserDocUploads extends Component {
   constructor(props) {
@@ -21,55 +22,11 @@ class UserDocUploads extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  //handle drag and drop feature & upload
   handleUpload(e) {
+    e.persist(); 
     let file = e.target.files[0];
-
-    if (file) {
-      this.setState({ ...this.state, files: [...this.state.files, file] });
-    }
-    console.log("only upload state", this.state);
-  }
-
-  async handleSubmit(e) {
-    e.preventDefault();
-    this.setState({ ...this.state, uploaded: true });
-
-    const token = localStorage.getItem("token");
-
-    // const formData = {
-    //   _token: token,
-    //   title: this.state.files[0].name,
-    //   counterparty: "Alex",
-    //   status: "unreviewed",
-    //   date_reviewed: null,
-    // };
-
-    const formData = new FormData();
-    formData.append("_token", token);
-    formData.append("counterparty", "Alex");
-    formData.append("status", "unreviewed");
-    formData.append("date_reviewed", null);
-
-    // let fileMapForDB = this.state.files.map(async file => {
-    //   formData.append('title', file.name);
-    //   // console.log(file)
-    //   // formData.file = file;
-    //   let res = await ElevateApi.addToDB(formData);
-    //   return res;
-    // })
-
-    let fileMap = this.state.files.map(async file => {
-      console.log("in map:", file);
-      formData.append("file", file);
-      let res = await ElevateApi.uploadFile(file);
-      return res;
-    });
-
-    // let resolvedMapForDB = await Promise.all(fileMapForDB)
-
-    console.log("This is our MAP of FILES", fileMap);
-    let resolvedMap = await Promise.all(fileMap);
-    console.log("This is our MAP of RESOLVED FILES", resolvedMap);
+    if (file) { this.setState({ file }); }
   }
 
   dropRef = React.createRef();
@@ -117,12 +74,6 @@ class UserDocUploads extends Component {
         drag: false
       });
     }
-
-    console.log("files", files);
-  }
-
-  handleDelete(e) {
-    console.log(e.target);
   }
 
   componentDidMount() {
@@ -141,6 +92,59 @@ class UserDocUploads extends Component {
     div.removeEventListener("drop", this.handleDrop);
   }
 
+  handleDelete(name) {
+    this.setState({
+      ...this.state,
+      files: this.state.files.filter(el => el.name !== name)
+    });
+  }
+
+  //handle submit upload to AWS and send to db
+  async handleSubmit(e) {
+    e.preventDefault();
+    console.log('this.state.file => ', this.state.file)
+    const formData = new FormData(); 
+    formData.append('file', this.state.file);
+    console.log('uploading file => ', this.state.file);
+
+    axios.post("http://localhost:3001/upload", formData, { // receive two parameter endpoint url ,form data 
+      })
+      .then(res => { // then print response status
+        console.log(res.statusText)
+      });
+
+    // e.preventDefault();
+    // this.setState({ ...this.state, uploaded: true });
+
+    // const token = localStorage.getItem("token");
+
+    // let mapSendToDb = this.state.files.map(async file => {
+    //   const sendToDb = {
+    //     _token: token,
+    //     title: file.name,
+    //     counterparty: "Alex",
+    //     status: "unreviewed",
+    //     date_reviewed: null
+    //   };
+
+    //   let res = await ElevateApi.uploadDoc(sendToDb);
+    //   return res;
+    // });
+
+    // Promise.all(mapSendToDb);
+
+    // let mapSendToAws = this.state.files.map(async file => {
+    //   console.log("FILE", file);
+    //   const formData = new FormData();
+    //   formData.append("file", file);
+
+    //   let res = await ElevateApi.uploadToAws(formData);
+    //   return res;
+    // });
+
+    // console.log("MAP SEND TO AWS", mapSendToAws);
+  }
+
   render() {
     return (
       <div ref={this.dropRef}>
@@ -155,7 +159,12 @@ class UserDocUploads extends Component {
                   ? this.state.files.map(file => (
                       <div key={file.lastModified} className="mt-3">
                         {file.name}
-                        <button onClick={this.handleDelete} className="delete">
+                        <button
+                          onClick={() => {
+                            this.handleDelete(file.name);
+                          }}
+                          className="delete"
+                        >
                           X
                         </button>
                       </div>

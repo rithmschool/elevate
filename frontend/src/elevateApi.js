@@ -34,7 +34,7 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      let message = err.response.data.message;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -128,24 +128,19 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete");
   }
 
-  static async addToDB(doc) {
-    // console.log("doc", doc);
-    let res = await this.request("upload/db", doc, "post");
-    return res;
-  }
-
-  static async uploadFile(doc) {
-    console.log("doc", doc);
+  static async uploadDoc(doc) {
     let res = await this.request("upload", doc, "post");
     return res;
   }
 
-  // static async uploadFile(doc) {
-  //   console.log("doc", doc);
-  //   let _token = localStorage.getItem("token");
-  //   let res = await axios.post(`${BASE_URL}/upload`, { _token, ...doc }, { headers: { 'Content-Type': 'multipart/form-data'}});
-  //   return res;
-  // }
+  static async uploadToAws(formData) {
+    let file = formData.getAll("file");
+    console.log("file in eleApi", file[0]);
+
+    axios.post(`${BASE_URL}/upload/aws`, formData, {}).then(res => {
+      console.log(res.statusText);
+    });
+  }
 }
 
 export default ElevateApi;

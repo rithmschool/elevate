@@ -10,12 +10,6 @@ exports[`UserBasicInfoForm matches snapshot 1`] = `
 >
   <div
     className="container borderrounded shadow"
-    style={
-      Object {
-        "backgroundColor": "#F4F6F8",
-        "margin": "10% auto",
-      }
-    }
   >
     <div
       className="form-inside-container mt-5"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import moment from "moment";
 import "../FormStyles.css";
+import "./userBasicInfoForm.css";
 
 /** Update user basic info */
 function UserBasicInfoForm(props) {
@@ -13,10 +14,7 @@ function UserBasicInfoForm(props) {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
-    <div
-      className={`container borderrounded shadow`}
-      style={{ margin: "10% auto", backgroundColor: "#F4F6F8" }}
-    >
+    <div className={`container borderrounded shadow`}>
       <div className="form-inside-container mt-5">
         <Form onSubmit={handleSubmit}>
           <div className="form-styles_flex-space-between">
