@@ -26,7 +26,7 @@ class UserDocsDataTable extends Component {
         <Table striped bordered>
           <thead>
             <tr>
-              <th style={{width: 10}}>Document</th>
+              <th>Document</th>
               <th>Counterparty</th>
               <th>Status</th>
               <th>Date Submitted</th>
