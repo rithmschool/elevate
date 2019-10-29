@@ -122,7 +122,7 @@ class UserDocUploads extends Component {
     // This section is for sending to DB
     const token = localStorage.getItem("token");
 
-    const BASE_AWS_URL = "https://brellacontracts.s3-us-west-1.amazonaws.com/"
+    const BASE_AWS_URL = "https://brellacontracts.s3-us-west-1.amazonaws.com/";
 
     const sendToDb = {
       _token: token,
@@ -175,9 +175,12 @@ class UserDocUploads extends Component {
               <div>
                 {this.state.uploaded ? (
                   <div className="row justify-content-md-center">
-                    <Alert variant="success" className="col-md-6 col-md-offset-3 mt-4">
-                    File uploaded successfully
-                  </Alert>
+                    <Alert
+                      variant="success"
+                      className="col-md-6 col-md-offset-3 mt-4"
+                    >
+                      File uploaded successfully
+                    </Alert>
                   </div>
                 ) : (
                   <i className="fas fa-upload fa-2x mt-4"></i>
