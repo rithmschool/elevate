@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
+import "./userDocsDataTable.css"
 
 class UserDocsDataTable extends Component {
   renderUserDocsData() {
@@ -8,7 +9,7 @@ class UserDocsDataTable extends Component {
       const { id, title, counterparty, status, url, date_reviewed, date_submitted } = doc;
       return (
         <tr key={id}>
-          <th style={{"width":"450px"}} scope="row" ><a href={"http://" + url}>{title}</a></th>
+          <th style={{"width":"450px"}} scope="row"><a href={"http://" + url}>{title}</a></th>
           <td>{counterparty}</td>
           <td>{status}</td>
           <td>{date_submitted}</td>
@@ -20,7 +21,7 @@ class UserDocsDataTable extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="Documents_table container">
         <h1>My Documents</h1>
         <Table striped bordered>
           <thead>
