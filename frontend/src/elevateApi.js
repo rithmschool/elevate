@@ -92,6 +92,16 @@ class ElevateApi {
     return res.questions;
   }
 
+  static async getDocuments() {
+    let res = await this.request(`admin/documents`);
+
+    res.documents.forEach(document => {
+      document.date_submitted = document.date_submitted.slice(0, 10);
+    });
+
+    return res.documents;
+  }
+
   static async forgotPassword(email) {
     let res = await this.request(`password/`, email, "post");
     return res;
