@@ -76,6 +76,13 @@ class AdminPanel extends React.Component {
             />
             <AdminPrivateRoute
               exact
+              path="/dashboard/admin/documents"
+              render={props => (
+                <AdminTable tableObjs={this.state.documents} {...props} />
+              )}
+            />
+            <AdminPrivateRoute
+              exact
               path="/dashboard/admin/users/:userId"
               render={props => (
                 <AdminUserView
