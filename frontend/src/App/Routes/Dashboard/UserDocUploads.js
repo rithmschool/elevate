@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import ElevateApi from "../../../elevateApi";
 import "./UserDocUploads.css";
+import axios from 'axios';
 
 class UserDocUploads extends Component {
   constructor(props) {
@@ -23,11 +24,9 @@ class UserDocUploads extends Component {
 
   //handle drag and drop feature & upload
   handleUpload(e) {
-    let files = e.target.files[0];
-
-    if (files) {
-      this.setState({ ...this.state, files: [...this.state.files, files] });
-    }
+    e.persist(); 
+    let file = e.target.files[0];
+    if (file) { this.setState({ file }); }
   }
 
   dropRef = React.createRef();
@@ -103,35 +102,47 @@ class UserDocUploads extends Component {
   //handle submit upload to AWS and send to db
   async handleSubmit(e) {
     e.preventDefault();
-    this.setState({ ...this.state, uploaded: true });
+    console.log('this.state.file => ', this.state.file)
+    const formData = new FormData(); 
+    formData.append('file', this.state.file);
+    console.log('uploading file => ', this.state.file);
 
-    const token = localStorage.getItem("token");
+    axios.post("http://localhost:3001/upload", formData, { // receive two parameter endpoint url ,form data 
+      })
+      .then(res => { // then print response status
+        console.log(res.statusText)
+      });
 
-    let mapSendToDb = this.state.files.map(async file => {
-      const sendToDb = {
-        _token: token,
-        title: file.name,
-        counterparty: "Alex",
-        status: "unreviewed",
-        date_reviewed: null
-      };
+    // e.preventDefault();
+    // this.setState({ ...this.state, uploaded: true });
 
-      let res = await ElevateApi.uploadDoc(sendToDb);
-      return res;
-    });
+    // const token = localStorage.getItem("token");
 
-    Promise.all(mapSendToDb);
+    // let mapSendToDb = this.state.files.map(async file => {
+    //   const sendToDb = {
+    //     _token: token,
+    //     title: file.name,
+    //     counterparty: "Alex",
+    //     status: "unreviewed",
+    //     date_reviewed: null
+    //   };
 
-    let mapSendToAws = this.state.files.map(async file => {
-      console.log("FILE", file);
-      const formData = new FormData();
-      formData.append("file", file);
+    //   let res = await ElevateApi.uploadDoc(sendToDb);
+    //   return res;
+    // });
 
-      let res = await ElevateApi.uploadToAws(formData);
-      return res;
-    });
+    // Promise.all(mapSendToDb);
 
-    console.log("MAP SEND TO AWS", mapSendToAws);
+    // let mapSendToAws = this.state.files.map(async file => {
+    //   console.log("FILE", file);
+    //   const formData = new FormData();
+    //   formData.append("file", file);
+
+    //   let res = await ElevateApi.uploadToAws(formData);
+    //   return res;
+    // });
+
+    // console.log("MAP SEND TO AWS", mapSendToAws);
   }
 
   render() {
