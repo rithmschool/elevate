@@ -1,8 +1,6 @@
 import React from "react";
 import "./adminNavbar.css";
 
-import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
-
 class AdminNavbar extends React.Component {
   handleChangeView = evt => {
     evt.preventDefault();
