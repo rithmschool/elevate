@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserDocsDataTable from "./UserDocsDataTable";
+import UserDocsDataTable from "./userDocsDataTable";
 import ElevateApi from "../../../../elevateApi";
 import Spinner from "../../../Spinner/spinner";
 
