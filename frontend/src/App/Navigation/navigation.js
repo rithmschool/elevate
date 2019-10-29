@@ -98,7 +98,7 @@ class Navigation extends React.Component {
                   >
                     <li className="list-group-item bg-transparent">
                       <Link
-                        to={`users/${currentUser.userId}`}
+                        to={`/users/${currentUser.userId}`}
                         className="Menu-link "
                       >
                         Profile
@@ -158,7 +158,7 @@ class Navigation extends React.Component {
             <li className="nav-item adminStyle danger active">
               <Link
                 className="Nav-text Nav-link Nav-link-ltr middlecontent"
-                to="/admin"
+                to="/dashboard/admin"
               >
                 **Admin**
               </Link>
