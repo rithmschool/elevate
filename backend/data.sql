@@ -119,6 +119,11 @@ CREATE TABLE users_calendly_users
   calendly_user_id TEXT NOT NULL
 );
 
+--testuser pwd(password): password 123 
+--admin pwd: secret
+--nate pwd: nate123
+--elie pwd: elie123
+--joel pwd: joel123
 INSERT INTO users
   ( email, password, is_admin, first_name, last_name, current_company, hire_date, needs, goals)
 VALUES
