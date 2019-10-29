@@ -84,9 +84,28 @@ ul.navbar-nav {
   .userMenu.is-open {
     min-width: 100%;
   }
+}
+
+@media only screen and (max-width: 990px) {
 
   .navbar-nav.justify-content-center.navbar-div {
     text-align: center;
+  }
+
+  .Nav-link-ltr:hover::before {
+    width: 10%;
+  }
+
+  a.dropdown-toggle.nav-link {
+    margin: 0px;
+    margin-right: 100vh;
+  }
+
+  div.dropdown-menu.show {
+    margin: 0px;
+    margin-top: -1px;
+    padding: 0px;
+    width: 50px;
   }
 }
 
