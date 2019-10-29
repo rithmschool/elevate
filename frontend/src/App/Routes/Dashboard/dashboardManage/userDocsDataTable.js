@@ -8,10 +8,9 @@ class UserDocsDataTable extends Component {
       const { id, title, counterparty, status, url, date_reviewed, date_submitted } = doc;
       return (
         <tr key={id}>
-          <th style={{"width":"450px"}} scope="row" >{title}</th>
+          <th style={{"width":"450px"}} scope="row" ><a href={"http://" + url}>{title}</a></th>
           <td>{counterparty}</td>
           <td>{status}</td>
-          <td><a href={"http://" + url}>{url}</a></td>
           <td>{date_submitted}</td>
           <td>{date_reviewed}</td>
         </tr>
@@ -29,7 +28,6 @@ class UserDocsDataTable extends Component {
               <th style={{width: 10}}>Document</th>
               <th>Counterparty</th>
               <th>Status</th>
-              <th>URL</th>
               <th>Date Submitted</th>
               <th>Date Reviewed</th>
             </tr>
