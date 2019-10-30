@@ -43,7 +43,7 @@ class newsletterSignUpForm extends React.Component {
         <h6>Stay up to date with Brella</h6>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label for="email" hidden>
+            <Form.Label htmlFor="email" hidden>
               newsletter email
             </Form.Label>
             <Form.Control

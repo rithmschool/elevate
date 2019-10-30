@@ -21,14 +21,14 @@ exports[`NewsletterSignUpForm matches snapshot 1`] = `
             >
               <FormLabel
                 column={false}
-                for="email"
                 hidden={true}
+                htmlFor="email"
                 srOnly={false}
               >
                 <label
                   className="form-label"
-                  for="email"
                   hidden={true}
+                  htmlFor="email"
                 >
                   newsletter email
                 </label>
