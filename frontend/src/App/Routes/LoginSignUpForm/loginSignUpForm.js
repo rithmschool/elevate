@@ -24,11 +24,6 @@ function LoginSignUpForm(props) {
    *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
    */
   const onSignIn = async googleUser => {
-    // const profile = googleUser.getBasicProfile();
-    // ID: profile.getId()
-    // Name: profile.getName()
-    // Email: profile.getEmail()
-
     /** this ID token will be sent to the server with HTTP post request
      *  in ElevateApi to get verify from google
      */
