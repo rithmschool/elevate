@@ -32,6 +32,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: BUCKET_NAME,
+    acl: 'public-read',
     key: function(req, file, cb) {
       cb(null, file.originalname);
     }
