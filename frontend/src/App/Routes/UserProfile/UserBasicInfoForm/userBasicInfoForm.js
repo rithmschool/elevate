@@ -31,7 +31,7 @@ function UserBasicInfoForm(props) {
         </div>
 
         <Form.Group>
-          <span>First name</span>
+          <Form.Label>First name</Form.Label>
 
           <Form.Control
             onChange={e => setFirstName(e.target.value)}
@@ -45,7 +45,7 @@ function UserBasicInfoForm(props) {
         </Form.Group>
 
         <Form.Group>
-          <span>Last name</span>
+          <Form.Label>Last name</Form.Label>
 
           <Form.Control
             onChange={e => setLastName(e.target.value)}
@@ -59,7 +59,7 @@ function UserBasicInfoForm(props) {
         </Form.Group>
 
         <Form.Group>
-          <span>Email</span>
+          <Form.Label>Email</Form.Label>
 
           <Form.Control
             onChange={e => setEmail(e.target.value)}
@@ -73,7 +73,7 @@ function UserBasicInfoForm(props) {
         </Form.Group>
 
         <Form.Group>
-          <span>Current company</span>
+          <Form.Label>Current company</Form.Label>
 
           <Form.Control
             onChange={e => setCurrentCompany(e.target.value)}
@@ -87,7 +87,7 @@ function UserBasicInfoForm(props) {
         </Form.Group>
 
         <Form.Group>
-          <span>Hire date</span>
+          <Form.Label>Hire date</Form.Label>
 
           <Form.Control
             onChange={e => setHireDate(e.target.value)}
