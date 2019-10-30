@@ -1,16 +1,9 @@
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 class LoginError extends React.Component {
   render() {
-    return (
-      <div style={{ textAlign: "center" }}>
-        <h5>
-          Invalid Email or Password
-          <p>Forgot your password?</p>
-          <a href="http://localhost:3000/reset-password/forgot"> click here.</a>
-        </h5>
-      </div>
-    );
+    return <Alert variant="danger">Invalid Email or Password</Alert>;
   }
 }
 

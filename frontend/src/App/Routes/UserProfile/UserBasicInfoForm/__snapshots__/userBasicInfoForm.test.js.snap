@@ -1,102 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<div
-  className="container borderrounded shadow"
-  style={
-    Object {
-      "backgroundColor": "#F4F6F8",
-      "margin": "10% auto",
-    }
-  }
+exports[`UserBasicInfoForm matches snapshot 1`] = `
+<UserBasicInfoForm
+  current_company="Rithm"
+  email="test@gmail.com"
+  first_name="user"
+  hire_date="2019-08-13"
+  last_name="test"
 >
   <div
-    className="form-inside-container mt-5"
+    className="container borderrounded shadow"
   >
-    <Form
-      inline={false}
-      onSubmit={[Function]}
+    <div
+      className="form-inside-container mt-5"
     >
-      <div
-        className="form-styles_flex-space-between"
+      <Form
+        inline={false}
+        onSubmit={[Function]}
       >
-        <h3>
-          Basic info
-        </h3>
-        <i
-          className="m-3 fas fa-edit fa-1x"
-          onClick={[Function]}
-        />
-      </div>
-      <FormGroup>
-        <span>
-          First name
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-first_name"
-          name="first_name"
-          onChange={[Function]}
-          type="text"
-          value="user"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Last name
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-last_name"
-          name="last_name"
-          onChange={[Function]}
-          type="text"
-          value="test"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Email
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value="test@gmail.com"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Current company
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-current_company"
-          name="current_company"
-          onChange={[Function]}
-          type="text"
-          value="Rithm"
-        />
-      </FormGroup>
-      <FormGroup>
-        <span>
-          Hire date
-        </span>
-        <FormControl
-          disabled={true}
-          id="EditUser-hire_date"
-          name="hire_date"
-          onChange={[Function]}
-          type="date"
-          value="2019-08-13"
-        />
-      </FormGroup>
-      <div
-        className="row justify-content-center"
-      />
-    </Form>
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <div
+            className="form-styles_flex-space-between"
+          >
+            <h3>
+              Basic info
+            </h3>
+            <i
+              className="m-3 fas fa-edit fa-1x"
+              data-testid="turnEditOn"
+              onClick={[Function]}
+            />
+          </div>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                First name
+              </span>
+              <FormControl
+                data-testid="firstName"
+                disabled={true}
+                id="EditUser-first_name"
+                name="first_name"
+                onChange={[Function]}
+                type="text"
+                value="user"
+              >
+                <input
+                  className="form-control"
+                  data-testid="firstName"
+                  disabled={true}
+                  id="EditUser-first_name"
+                  name="first_name"
+                  onChange={[Function]}
+                  type="text"
+                  value="user"
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Last name
+              </span>
+              <FormControl
+                data-testid="lastName"
+                disabled={true}
+                id="EditUser-last_name"
+                name="last_name"
+                onChange={[Function]}
+                type="text"
+                value="test"
+              >
+                <input
+                  className="form-control"
+                  data-testid="lastName"
+                  disabled={true}
+                  id="EditUser-last_name"
+                  name="last_name"
+                  onChange={[Function]}
+                  type="text"
+                  value="test"
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Email
+              </span>
+              <FormControl
+                data-testid="email"
+                disabled={true}
+                id="EditUser-email"
+                name="email"
+                onChange={[Function]}
+                type="text"
+                value="test@gmail.com"
+              >
+                <input
+                  className="form-control"
+                  data-testid="email"
+                  disabled={true}
+                  id="EditUser-email"
+                  name="email"
+                  onChange={[Function]}
+                  type="text"
+                  value="test@gmail.com"
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Current company
+              </span>
+              <FormControl
+                data-testid="currentCompany"
+                disabled={true}
+                id="EditUser-current_company"
+                name="current_company"
+                onChange={[Function]}
+                type="text"
+                value="Rithm"
+              >
+                <input
+                  className="form-control"
+                  data-testid="currentCompany"
+                  disabled={true}
+                  id="EditUser-current_company"
+                  name="current_company"
+                  onChange={[Function]}
+                  type="text"
+                  value="Rithm"
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <div
+              className="form-group"
+            >
+              <span>
+                Hire date
+              </span>
+              <FormControl
+                data-testid="hireDate"
+                disabled={true}
+                id="EditUser-hire_date"
+                name="hire_date"
+                onChange={[Function]}
+                type="date"
+                value="2019-08-13"
+              >
+                <input
+                  className="form-control"
+                  data-testid="hireDate"
+                  disabled={true}
+                  id="EditUser-hire_date"
+                  name="hire_date"
+                  onChange={[Function]}
+                  type="date"
+                  value="2019-08-13"
+                />
+              </FormControl>
+            </div>
+          </FormGroup>
+          <div
+            className="row justify-content-center"
+          />
+        </form>
+      </Form>
+    </div>
   </div>
-</div>
+</UserBasicInfoForm>
 `;

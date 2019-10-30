@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 import "./home.css";
+import Footer from "./Footer/footer";
 import img1 from "./img/001.jpg";
 import file from "./img/files.png";
 import person from "./img/person.png";
@@ -28,7 +29,7 @@ class Home extends React.Component {
                 <img className="card-img" src={img1} alt="working" />
               </div>
             </Col>
-            <Col md={6} style={{display:'flex', alignItems: 'center'}}>
+            <Col md={6} className="d-flex align-items-center">
               <div className="Home_template-intro">
                 <h1>
                   <b>Why Brella?</b>
@@ -97,6 +98,7 @@ class Home extends React.Component {
             Get Started
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
