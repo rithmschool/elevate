@@ -282,7 +282,7 @@ CREATE TABLE users_calendly_users
 CREATE TABLE documents
 (
   id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id),
+  user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   counterparty TEXT NOT NULL,
   url TEXT NOT NULL,
