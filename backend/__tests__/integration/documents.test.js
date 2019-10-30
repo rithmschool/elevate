@@ -10,7 +10,7 @@ const app = require('../../app');
 const User = require('../../models/document');
 
 //test config  
-const { SEED_DOCUMENTS_SQL } = require("../../config")
+const { SEED_DOCUMENTS_SQL, SEED_USER_SQL } = require("../../config")
 const db = require("../../db");
 const {
   TEST_DATA,
@@ -25,6 +25,10 @@ const {
 beforeEach(async function () {
   await beforeEachHook(TEST_DATA, TEST_ADMIN_DATA);
   await db.query(SEED_USER_SQL);
-
 });
 
+describe('test', function () {
+  test('empty test', function () {
+    expect(true).toBe(true);
+  });
+});
