@@ -140,6 +140,8 @@ class UserDocUploads extends Component {
   }
 
   render() {
+    let disabledBtn = this.state.file ? false : true;
+
     return (
       <div className="UploadContainer" ref={this.dropRef}>
         <Card className="card text-center p-5">
@@ -168,7 +170,7 @@ class UserDocUploads extends Component {
                   <input type="file" onChange={this.handleUpload} />
                   Upload documents
                 </label>
-                <Button type="submit" className="btn btn-primary mt-2">
+                <Button type="submit" className="btn btn-primary mt-2" disabled={disabledBtn}>
                   Submit
                 </Button>
               </Form>
