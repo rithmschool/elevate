@@ -62,7 +62,7 @@ function LoginSignUpForm(props) {
     } catch (errors) {
       return setErrors(errors);
     }
-  }, [errors]);
+  }, []);
 
   /** auth2.signIn() gives back googleUser which can be used
    *  for argument in onSignIn method
