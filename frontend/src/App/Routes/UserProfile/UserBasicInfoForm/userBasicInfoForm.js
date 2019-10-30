@@ -103,7 +103,11 @@ function UserBasicInfoForm(props) {
         <div className="row justify-content-center">
           {isEdit && (
             <div>
-              <Button className="login-submit mr-3 ml-3" type="submit">
+              <Button
+                className="login-submit mr-3 ml-3"
+                id="userInfoBtn"
+                type="submit"
+              >
                 Submit
               </Button>
 
