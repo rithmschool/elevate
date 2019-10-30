@@ -11,6 +11,7 @@
     "jsonwebtoken": "^8.5.1",
     "metismenu": "^3.0.4",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-burger-menu": "^2.6.11",
