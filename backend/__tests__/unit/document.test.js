@@ -27,7 +27,7 @@ describe("model document", function() {
   });
 
   test("get all documents", async function() {
-    const response = await Document.getAll(1);
+    const response = await Document.getAllByUser(1);
     expect(response).toEqual([
       {
         id: 1,

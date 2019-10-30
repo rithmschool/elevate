@@ -1,7 +1,7 @@
 const db = require("../db");
 
 class Document {
-  static async getAll(userId) {
+  static async getAllByUser(userId) {
     const result = await db.query(
       `SELECT id, title, counterparty, url, date_reviewed, date_submitted, status
     FROM documents
