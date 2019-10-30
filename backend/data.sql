@@ -66,6 +66,10 @@ CREATE TABLE questions (
  created_date TIMESTAMP DEFAULT current_timestamp
 );
 
+CREATE TABLE newsletter_emails (
+  email TEXT PRIMARY KEY
+);
+
 -- More data available from calendly webhook response. 
 -- These are required and other potentially useful fields for elevate.
 -- event_type can be "One-on-One" or "Group" 
@@ -212,6 +216,10 @@ CREATE TABLE questions (
  resolved BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE newsletter_emails (
+  email TEXT PRIMARY KEY
+);
+
 CREATE TABLE appointments (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -239,6 +247,7 @@ CREATE TABLE users_calendly_users (
  user_id INTEGER NOT NULL REFERENCES users (id),
  calendly_user_id TEXT NOT NULL
 );
+
 
 
 
