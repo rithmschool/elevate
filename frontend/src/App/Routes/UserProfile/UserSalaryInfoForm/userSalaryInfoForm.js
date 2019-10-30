@@ -11,7 +11,7 @@ function UserSalaryInfoForm(props) {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
-    <div className="user-salary-form container border rounded mb-5">
+    <div className="user-salary-form container border shadow rounded mb-5">
       <Form onSubmit={handleSubmit} className="mt-5">
         <div className="form-styles_flex-space-between">
           <h3>Salary info</h3>
