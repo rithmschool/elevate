@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./navigation.css";
+import "./navigation.scss";
 import { UserContext } from "../../userContext";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -113,7 +113,7 @@ class Navigation extends React.Component {
     );
 
     return (
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar className="navigation" collapseOnSelect expand="lg" bg="light" variant="light">
         <Navbar.Brand>
           <Link className="Nav_brand-name" to="/">
             Brella
