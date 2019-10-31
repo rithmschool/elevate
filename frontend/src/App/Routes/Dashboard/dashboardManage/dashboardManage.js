@@ -2,21 +2,27 @@ import React, { Component } from "react";
 import UserDocsDataTable from "./userDocsDataTable";
 import ElevateApi from "../../../../elevateApi";
 import Spinner from "../../../Spinner/spinner";
+import UserDocUploads from "./UserDocUploads";
 
 class DashboardManage extends Component {
   constructor(props) {
     super(props);
-    this.state = { documents: [], loading: true };
+    this.state = { documents: [], files: [], loading: true };
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
-  async componentDidMount() {
+  handleDrop = files => {
+    this.setState({ files });
+  };
 
+  async componentDidMount() {
     try {
       let _token = localStorage.token;
       let { documents } = await ElevateApi.getDocuments(_token);
+      debugger;
       this.setState({ documents, loading: false });
     } catch (err) {
-      this.setState({loading: false });
+      this.setState({ loading: false });
       console.log(err);
     }
   }
@@ -28,7 +34,12 @@ class DashboardManage extends Component {
     }
     return (
       <div>
-        <UserDocsDataTable documents={documents} />
+        <div>
+          <UserDocUploads handleDrop={this.handleDrop} />
+        </div>
+        <div>
+          <UserDocsDataTable documents={documents} />
+        </div>
       </div>
     );
   }
