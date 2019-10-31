@@ -126,6 +126,7 @@ function LoginSignUpForm(props) {
           type="text"
           onChange={e => setFirstName(e.target.value)}
           value={firstName}
+          data-testid="firstName"
         />
       </Form.Group>
 
@@ -138,6 +139,7 @@ function LoginSignUpForm(props) {
           type="text"
           onChange={e => setLastName(e.target.value)}
           value={lastName}
+          data-testid="lastName"
         />
       </Form.Group>
     </div>
