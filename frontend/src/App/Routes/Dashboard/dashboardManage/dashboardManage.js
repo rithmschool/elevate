@@ -16,9 +16,8 @@ class DashboardManage extends Component {
       let { documents } = await ElevateApi.getDocuments(_token);
       this.setState({ documents, loading: false });
     } catch (err) {
-      console.log(err);
       this.setState({loading: false });
-      return err;
+      console.log(err);
     }
   }
 
