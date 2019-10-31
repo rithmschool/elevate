@@ -28,7 +28,19 @@ CREATE TABLE google_users
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE salaries
+CREATE TABLE documents
+(
+ id serial PRIMARY KEY,
+ user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ title TEXT NOT NULL,
+ counterparty TEXT,
+ date_submitted TEXT DEFAULT current_date,
+ date_reviewed TEXT,
+ status TEXT,
+ url TEXT
+);
+
+CREATE TABLE salaries 
 (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -96,18 +108,6 @@ CREATE TABLE appointments
   canceled_at TEXT,
   old_event_id TEXT,
   new_event_id TEXT
-);
-
-CREATE TABLE documents
-(
-  id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id),
-  title TEXT NOT NULL,
-  counterparty TEXT NOT NULL,
-  url TEXT NOT NULL,
-  date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT DEFAULT CURRENT_DATE,
-  status TEXT
 );
 
 -- Table for associating elevate user id with calendly user ids
@@ -214,8 +214,19 @@ CREATE TABLE users
   goals TEXT
 );
 
-CREATE TABLE salaries
+CREATE TABLE documents
 (
+ id serial PRIMARY KEY,
+ user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ title TEXT NOT NULL,
+ counterparty TEXT,
+ date_submitted TEXT DEFAULT current_date,
+ date_reviewed TEXT,
+ status TEXT,
+ url TEXT
+);
+
+CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   salary FLOAT,
@@ -279,17 +290,6 @@ CREATE TABLE users_calendly_users
   calendly_user_id TEXT NOT NULL
 );
 
-CREATE TABLE documents
-(
-  id serial PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-  title TEXT NOT NULL,
-  counterparty TEXT NOT NULL,
-  url TEXT NOT NULL,
-  date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT DEFAULT CURRENT_DATE,
-  status TEXT
-)
 
 
 
