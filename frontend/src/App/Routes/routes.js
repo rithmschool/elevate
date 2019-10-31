@@ -5,13 +5,8 @@ import ResetPassword from "./ResetPassword/resetPassword";
 import Home from "./Home/home";
 import UserProfile from "./UserProfile/userProfile";
 import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
-import AdminPanel from "./AdminPanel/adminPanel";
 import AskAnExpert from "./AskAnExpert/askAnExpert";
 import Dashboard from "./../Routes/Dashboard/dashboard";
-import DashboardAppointments from "./../Routes/Dashboard/dashboardAppointments";
-import DashboardManage from "./../Routes/Dashboard/dashboardManage";
-import DashboardTemplates from "./../Routes/Dashboard/dashboardTemplates";
-import AdminPrivateRoute from "./adminPrivateRoute";
 import ForgotPassRoutes from "./forgotPassRoutes";
 import UserPrivateRoute from "./userPrivateRoute";
 import DashboardRoutes from "./dashboardRoutes";
@@ -33,12 +28,6 @@ class Routes extends React.Component {
           )}
         />
 
-        <AdminPrivateRoute
-          exact
-          path="/admin"
-          render={props => <AdminPanel {...props} />}
-        />
-
         <Route exact path="/ask-an-expert" render={() => <AskAnExpert />} />
 
         <UserPrivateRoute
@@ -46,24 +35,10 @@ class Routes extends React.Component {
           render={props => <UserProfile {...props} />}
         />
 
-        <DashboardRoutes exact path="/dashboard" render={() => <Dashboard />} />
-
         <DashboardRoutes
-          exact
-          path="/dashboard/manage"
-          render={() => <DashboardManage />}
-        />
-
-        <DashboardRoutes
-          exact
-          path="/dashboard/appointments"
-          render={() => <DashboardAppointments />}
-        />
-
-        <DashboardRoutes
-          exact
-          path="/dashboard/templates"
-          render={() => <DashboardTemplates />}
+          exact={false}
+          path="/dashboard"
+          render={props => <Dashboard {...props} />}
         />
 
         <ForgotPassRoutes

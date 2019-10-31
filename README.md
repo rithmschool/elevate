@@ -36,7 +36,23 @@ npm start
 
 This will run the app on http://localhost:3000
 
-## Accessig the admin panel
+## Updating AWS credentials via .bash_profile
+
+First, to locate AWS credentials from s3.console.aws.amazon.com, click on account name in the nav bar and click on "My Security Credentials". The keys will be located on the following page in the "Access Keys" section.
+
+In terminal: 
+```
+code ~/.bash_profile
+```
+
+Then copy/paste the following:
+export S3_BUCKET=“bucketname” // The name of your S3 bucket where you want files to be stored
+export AWS_ACCESS_KEY_ID=“ABCDEFG1HIJ234EXAMPLE”
+export AWS_SECRET_ACCESS_KEY=“SnOSfS1y1ijSSSqneSSS1g+SStsS+EXAMPLE+PO”
+
+After writing, saving and exiting, close and restart terminal for the change to take effect.
+
+## Accessing the admin panel
 
 To access the admin panel in development, login with the following credentials.
 
