@@ -19,7 +19,6 @@ class DashboardManage extends Component {
     try {
       let _token = localStorage.token;
       let { documents } = await ElevateApi.getDocuments(_token);
-      debugger;
       this.setState({ documents, loading: false });
     } catch (err) {
       this.setState({ loading: false });
