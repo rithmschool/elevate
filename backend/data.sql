@@ -28,18 +28,6 @@ CREATE TABLE google_users
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE documents
-(
- id serial PRIMARY KEY,
- user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
- title TEXT NOT NULL,
- counterparty TEXT,
- date_submitted TEXT DEFAULT current_date,
- date_reviewed TEXT,
- status TEXT,
- url TEXT
-);
-
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -114,10 +102,10 @@ CREATE TABLE documents
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id),
   title TEXT NOT NULL,
-  counterparty TEXT NOT NULL,
+  counterparty TEXT,
   url TEXT NOT NULL,
   date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT DEFAULT CURRENT_DATE,
+  date_reviewed TEXT,
   status TEXT
 );
 
@@ -143,15 +131,6 @@ VALUES
   ('nate@gmail.com', '$2b$15$bn1JE3S6C2Twjc9Lx9CaNeWOqdiFpi/7vygrm2xH2UmWuNVxnxOOK', false, 'Nate', 'Lipp', 'Rithm', '2019-06-23', 'Get help from a lawyer.', 'Increase in salary.'),
   ('elie@gmail.com', '$2b$15$KXH2b/AZhPoJ8iH52MMEtOitY41iNI0BNPPzYiQCSS4o4odqSqx3q', false, 'Elie', 'Schoppik', 'Rithm', '2017-06-01', 'Talk to financial advisor to calculate how many instructors he can hire.', 'Recruit more instructors.'),
   ('joel@gmail.com', '$2b$15$81I4/c9prFdmnET/xZKZW.qiVSjv8eR33vEvlv9eH4PR.9z2GlJYC', false, 'Joel', 'Burton', 'Rithm', '2017-08-23', 'General investment advice', 'Help bootcamp grads negotiate.');
-
-INSERT INTO documents
-  ( id, user_id, title, url, counterparty, date_submitted, date_reviewed, status )
-VALUES
-  (1, 2, 'Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
-  (2, 3, 'Second Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'Received'),
-  (3, 2, 'Third Tinkerbell Tinkering Job Super Long Document Title Just To See What It Looks Like', 'www.google.com', 'Wendy', '2018-06-23', '', 'In Progress'),
-  (4, 1, 'Peter Pan Flying Job', 'www.google.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Pending'),
-  (5, 2, 'Tinkerbell Assistant Job', 'www.reddit.com', 'Captain Hook', '2018-06-23', '2018-07-03', 'Completed');
 
 
 INSERT INTO google_users
@@ -225,17 +204,6 @@ CREATE TABLE users
   goals TEXT
 );
 
-CREATE TABLE documents
-(
- id serial PRIMARY KEY,
- user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
- title TEXT NOT NULL,
- counterparty TEXT,
- date_submitted TEXT DEFAULT current_date,
- date_reviewed DATE,
- status TEXT,
- url TEXT
-);
 
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
@@ -306,7 +274,7 @@ CREATE TABLE documents
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   title TEXT NOT NULL,
-  counterparty TEXT NOT NULL,
+  counterparty TEXT,
   url TEXT NOT NULL,
   date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
   date_reviewed TEXT,
