@@ -24,6 +24,18 @@ CREATE TABLE google_users (
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE documents
+(
+ id serial PRIMARY KEY,
+ user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ title TEXT NOT NULL,
+ counterparty TEXT,
+ date_submitted TEXT DEFAULT current_date,
+ date_reviewed DATE,
+ status TEXT,
+ url TEXT
+);
+
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -52,6 +64,10 @@ CREATE TABLE questions (
  responder INTEGER REFERENCES users (id),
  resolved BOOLEAN DEFAULT FALSE,
  created_date TIMESTAMP DEFAULT current_timestamp
+);
+
+CREATE TABLE newsletter_emails (
+  email TEXT PRIMARY KEY
 );
 
 -- More data available from calendly webhook response. 
@@ -159,6 +175,18 @@ CREATE TABLE users (
   goals TEXT
 );
 
+CREATE TABLE documents
+(
+ id serial PRIMARY KEY,
+ user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ title TEXT NOT NULL,
+ counterparty TEXT,
+ date_submitted TEXT DEFAULT current_date,
+ date_reviewed DATE,
+ status TEXT,
+ url TEXT
+);
+
 CREATE TABLE salaries (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -188,6 +216,10 @@ CREATE TABLE questions (
  resolved BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE newsletter_emails (
+  email TEXT PRIMARY KEY
+);
+
 CREATE TABLE appointments (
   id serial PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
@@ -215,6 +247,7 @@ CREATE TABLE users_calendly_users (
  user_id INTEGER NOT NULL REFERENCES users (id),
  calendly_user_id TEXT NOT NULL
 );
+
 
 
 
