@@ -1,7 +1,6 @@
 /** Express app for elevate. */
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const cors = require("cors");
 app.use(cors());
 
@@ -19,7 +18,6 @@ const newsletterRoutes = require("./routes/newsletter");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 /** routes */
 app.use("/login", authRoutes);

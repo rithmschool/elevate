@@ -5,11 +5,14 @@ import "./UserDocUploads.scss";
 import axios from "axios";
 import { UserContext } from "../../../userContext";
 
+const BASE_URL = "http://localhost:3001";
+const BUCKET = process.env.S3_BUCKET;
+
 class UserDocUploads extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      files: [],
+      file: null,
       uploaded: false,
       drag: false
     };
@@ -67,16 +70,14 @@ class UserDocUploads extends Component {
       this.props.handleDrop(e.dataTransfer.files);
       e.dataTransfer.clearData();
       this.dragCounter = 0;
-    }
+      let file = e.dataTransfer.files[0];
 
-    let file = e.dataTransfer.files[0];
-
-    if (file) {
-      this.setState({
-        ...this.state,
-        file: file,
-        drag: false
-      });
+      if (file) {
+        this.setState({
+          file: file,
+          drag: false
+        });
+      }
     }
   }
 
@@ -96,9 +97,8 @@ class UserDocUploads extends Component {
     div.removeEventListener("drop", this.handleDrop);
   }
 
-  handleDelete(name) {
+  handleDelete() {
     this.setState({
-      ...this.state,
       file: null
     });
   }
@@ -111,7 +111,7 @@ class UserDocUploads extends Component {
     formData.append("file", this.state.file);
 
     axios
-      .post("http://localhost:3001/upload", formData, {
+      .post(`${BASE_URL}/upload`, formData, {
         // receive two parameter endpoint url ,form data
       })
       .then(res => {
@@ -122,21 +122,22 @@ class UserDocUploads extends Component {
     // This section is for sending to DB
     const token = localStorage.getItem("token");
 
-    const BASE_AWS_URL = "https://brellacontracts.s3-us-west-1.amazonaws.com/";
+    const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
 
     const sendToDb = {
       _token: token,
       title: this.state.file.name,
-      counterparty: "Alex",
+      counterparty: "",
       status: "unreviewed",
       date_reviewed: null,
       url: BASE_AWS_URL + this.state.file.name,
       user_id: this.context.userId
     };
 
-    await ElevateApi.addToDB(sendToDb);
-
-    this.setState({ ...this.state, uploaded: true });
+    let res = await ElevateApi.addToDB(sendToDb);
+    if (res) {
+      this.setState({ ...this.state, uploaded: true });
+    }
   }
 
   render() {
@@ -151,7 +152,7 @@ class UserDocUploads extends Component {
             </Card.Subtitle>
             <div>
               <div>
-                {this.state.file ? (
+                {this.state.file && (
                   <div key={this.state.file.lastModified} className="mt-3">
                     {this.state.file.name}
                     <button
@@ -160,17 +161,21 @@ class UserDocUploads extends Component {
                       }}
                       className="delete"
                     >
-                      X
+                      remove
                     </button>
                   </div>
-                ) : null}
+                )}
               </div>
               <Form onSubmit={this.handleSubmit}>
                 <label className="btn custom-file-upload mt-3">
                   <input type="file" onChange={this.handleUpload} />
                   Upload documents
                 </label>
-                <Button type="submit" className="btn btn-primary mt-2" disabled={disabledBtn}>
+                <Button
+                  type="submit"
+                  className="btn btn-primary mt-2"
+                  disabled={disabledBtn}
+                >
                   Submit
                 </Button>
               </Form>

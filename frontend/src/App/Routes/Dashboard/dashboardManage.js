@@ -5,13 +5,7 @@ class DashboardManage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      files: [
-        "nice.pdf",
-        "verycool.jpg",
-        "amazing.png",
-        "goodstuff.mp3",
-        "thankyou.doc"
-      ]
+      files: []
     };
     this.handleDrop = this.handleDrop.bind(this);
   }
