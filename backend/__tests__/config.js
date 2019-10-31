@@ -72,7 +72,6 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
         email: inputAdminEmail,
         password: inputAdminPassword
       });
-    console.log("TOKEN!", response.body);
     TEST_ADMIN_DATA.userToken = response.body.token;
     TEST_ADMIN_DATA.currentId = jwt.decode(TEST_ADMIN_DATA.userToken).id;
   } catch (error) {
