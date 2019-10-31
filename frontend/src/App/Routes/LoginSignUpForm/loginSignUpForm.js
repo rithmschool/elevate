@@ -55,7 +55,7 @@ class LoginSignUpForm extends React.Component {
     localStorage.setItem("token", token);
     await this.props.getCurrentUser();
 
-    this.props.history.push("/");
+    this.props.history.push("/dashboard");
   };
 
   componentDidMount() {
@@ -126,7 +126,7 @@ class LoginSignUpForm extends React.Component {
 
     await this.props.getCurrentUser();
 
-    this.props.history.push("/");
+    this.props.history.push("/dashboard");
   };
 
   render() {

@@ -1,21 +1,40 @@
 import React from "react";
-
+import { withRouter, Redirect } from "react-router-dom";
 import "./adminUserView.css";
 import ElevateApi from "../../../../elevateApi";
+import Spinner from "../../../Spinner/spinner";
 
 class AdminUserView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+      redirect: false
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const userId = this.props.match.params.userId;
+      const user = await ElevateApi.getUser(userId);
+      this.setState({ user });
+    } catch (err) {
+      console.log(err);
+      this.setState({ redirect: true });
+      return err;
+    }
+  }
+
   handleClickDeleteUser = async () => {
-    await ElevateApi.deleteUser(this.props.user.id);
     let users;
 
     try {
+      await ElevateApi.deleteUser(this.props.match.params.userId);
       users = await ElevateApi.getUsers();
+      this.props.updateUserState(users);
     } catch (err) {
-      console.log(err);
       return err;
     }
-    this.props.updateUserState(users);
-    this.props.changeView("users");
   };
 
   render() {
@@ -27,7 +46,17 @@ class AdminUserView extends React.Component {
       hire_date,
       needs,
       goals
-    } = this.props.user;
+    } = this.state.user;
+
+    const { user, redirect } = this.state;
+
+    if (!user) {
+      return <Spinner />;
+    }
+
+    if (redirect) {
+      return <Redirect to="/dashboard/admin/users" />;
+    }
 
     return (
       <div className="adminUserView_div">
@@ -93,4 +122,4 @@ class AdminUserView extends React.Component {
   }
 }
 
-export default AdminUserView;
+export default withRouter(AdminUserView);

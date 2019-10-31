@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Table } from "react-bootstrap";
 
 class UserDocsDataTable extends Component {
   renderUserDocsData() {

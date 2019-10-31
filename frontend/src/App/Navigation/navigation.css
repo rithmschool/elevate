@@ -1,3 +1,15 @@
+.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.border {
+  border: 2px;
+}
+
+a.dropdown-link.bg-transparent.Menu-link.dropdown-item.active {
+  color: black;
+}
+
 .Nav-icon {
   font-weight: bold;
   font-size: 14px;
@@ -5,7 +17,7 @@
   background-color: #dfe7ed;
   border-radius: 50%;
   padding: 10px 10px;
-  margin: 10px 30px;
+  margin: 5px 25px;
   opacity: 1;
   cursor: pointer;
 }
@@ -36,7 +48,7 @@
 
 .Nav-link-ltr::before {
   width: 0%;
-  bottom: 10px;
+  bottom: 1px;
 }
 
 .Nav-link-ltr:hover::before {
@@ -56,43 +68,15 @@
   opacity: 0.85;
 }
 
-.sidebar a {
+ul.navbar-nav {
+  margin-bottom: -12px;
+}
+
+.Menu-link:hover {
   font-weight: bold;
-  font-size: 14px;
-  color: #394557;
-  display: inline-block;
-  position: relative;
-  opacity: 0.75;
 }
 
-.Menu-link {
-  font-weight: bold;
-  font-size: 14px;
-  color: #394557;
-  margin: 0px 30px;
-  display: inline-block;
-  position: relative;
-  opacity: 0.75;
-}
-
-.userMenu {
-  min-width: 250px;
-  /* max-width: 250px; */
-  /* height: calc(100vh - 130px); */
-  overflow-y: scroll;
-  z-index: 1;
-  position: absolute;
-  margin-top: 8px;
-  right: 0;
-  visibility: hidden;
-  background-color: #f8f9fa;
-}
-
-.userMenu.is-open {
-  visibility: visible;
-}
-
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 596px) {
   .fa-user {
     display: none;
   }
@@ -102,14 +86,63 @@
   }
 }
 
-.Nav-link-ltr {
-  margin-bottom: -8px;
+@media only screen and (max-width: 990px) {
+  .navbar-nav.justify-content-center.navbar-div {
+    text-align: center;
+  }
+
+  .Nav-link-ltr:hover::before {
+    width: 10%;
+  }
+
+  a.dropdown-toggle.nav-link {
+    margin: 0px;
+    margin-right: 100vh;
+  }
+
+  div.dropdown-menu.show {
+    margin: 0px;
+    margin-top: -1px;
+    padding: 0px;
+    width: 50px;
+  }
+}
+
+li.list-group-item {
+  color: unset;
+  background-color: transparent;
+  border: none;
 }
 
 .Nav_brand-name {
   color: #6558f5;
 }
 
-.right-content {
-  margin-left: 375px;
+.dropdown-link {
+  color: unset;
+  background-color: transparent;
+  transition: all 100ms ease-in-out;
+}
+
+.dropdown-link:hover {
+  color: unset;
+  background-color: transparent;
+}
+
+.dropdown-toggle.nav-link {
+  margin-left: 320px;
+}
+
+.dropdown-menu.show {
+  margin-left: 290px;
+  margin-top: -1px;
+  padding: 0px;
+}
+
+.collapse.navbar-collapse.navbar-collapse.collapse.show {
+  width: 100%;
+}
+
+.dropdown-link {
+  border: 2px solid rgba(0, 0, 0, 0.502);
 }

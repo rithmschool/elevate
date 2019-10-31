@@ -1,6 +1,8 @@
 import React from "react";
 import "./adminPanel.css";
+import { Switch } from "react-router-dom";
 
+import AdminPrivateRoute from "../adminPrivateRoute";
 import AdminNavbar from "./AdminNavbar/adminNavbar";
 import AdminUserView from "./AdminUserView/adminUserView";
 import AdminTable from "./AdminTable/adminTable";
@@ -13,27 +15,28 @@ class AdminPanel extends React.Component {
     super(props);
 
     this.state = {
-      view: "",
       sideBarOpen: true,
       users: null,
       questions: null,
-      userDetail: null
+      documents: null
     };
   }
 
   componentDidMount = async () => {
     let users;
     let questions;
+    let documents;
 
     try {
       users = await ElevateApi.getUsers();
       questions = await ElevateApi.getQuestions();
+      documents = await ElevateApi.getDocuments();
     } catch (err) {
       console.log(err);
       return err;
     }
 
-    this.setState({ users, questions });
+    this.setState({ users, questions, documents });
   };
 
   // get update users after delete a user in AdminUserView
@@ -41,18 +44,8 @@ class AdminPanel extends React.Component {
     this.setState({ users });
   };
 
-  changeView = view => {
-    this.setState({ view });
-  };
-
   toggleSidebar = () => {
     this.setState(st => ({ sideBarOpen: !st.sideBarOpen }));
-  };
-
-  getUserDetail = async userId => {
-    const user = await ElevateApi.getUser(userId);
-
-    this.setState({ view: "userDetail", userDetail: user });
   };
 
   render() {
@@ -61,27 +54,44 @@ class AdminPanel extends React.Component {
     }
 
     const position = this.state.sideBarOpen ? "showing" : "docked";
-
     return (
       <div className={`adminPanel_main adminPanel_main_${position}`}>
         <div className="adminPanel_panel">
           <h1 className="adminPanel_h1">Admin Panel</h1>
 
-          {["users", "questions"].includes(this.state.view) && (
-            <AdminTable
-              tableObjs={this.state[this.state.view]}
-              getUserDetail={this.getUserDetail}
-              view={this.state.view}
+          <Switch>
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/users"
+              render={props => (
+                <AdminTable tableObjs={this.state.users} {...props} />
+              )}
             />
-          )}
-
-          {this.state.view === "userDetail" && (
-            <AdminUserView
-              user={this.state.userDetail}
-              updateUserState={this.updateUserState}
-              changeView={this.changeView}
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/questions"
+              render={props => (
+                <AdminTable tableObjs={this.state.questions} {...props} />
+              )}
             />
-          )}
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/documents"
+              render={props => (
+                <AdminTable tableObjs={this.state.documents} {...props} />
+              )}
+            />
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/users/:userId"
+              render={props => (
+                <AdminUserView
+                  updateUserState={this.updateUserState}
+                  {...props}
+                />
+              )}
+            />
+          </Switch>
         </div>
 
         <div className={`adminPanel_navbar adminPanel_navbar_${position}`}>
@@ -95,7 +105,6 @@ class AdminPanel extends React.Component {
           <AdminNavbar
             position={this.state.sideBarOpen}
             toggleSidebar={this.toggleSidebar}
-            changeView={this.changeView}
           />
         </div>
       </div>

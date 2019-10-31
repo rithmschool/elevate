@@ -38,13 +38,6 @@ const SEED_SALARY_SQL = `
     (4, 200000.00, 5000.00, .33),
     (5, 200000.00, 5000.00, .10);`;
 
-const SEED_DOCUMENTS_SQL = `
-INSERT INTO documents (user_id, title, counterparty, url, date_submitted, date_reviewed, status ) VALUES 
-(1, 'Burger Flipper', 'Squidward', 'www.spongebob.com', '2020-08-29', '2019-11-13', 'Completed'),
-(2, 'Burger Consumer', 'Patrick Star', 'www.spongebob.com', '2019-09-02', '2019-09-02', 'Received'),
-(1, 'Burger Flipper Manager', 'Squidward', 'www.spongebob.com', '2020-08-29', '2019-11-13', 'In Progress');
-`;
-
 const SEED_CHARGES_SQL = `
   INSERT INTO charges (user_id, amount, description, due_date, payment_date, paid) VALUES
     (1, 500.00, 'Percentage of negotiation salary.', '2019-10-02', null, false),
@@ -60,6 +53,16 @@ INSERT INTO appointments (user_id, event_id, calendly_user_id, created_at, event
   (3, 'AAFOAUQKKVOBSZVD', 'BCHFF2F62BWNJVPP', '2020-08-27T16:30:00-07:00', 'One-on-One', '30 Minute Meeting', 'negotiate my salary', null, '2020-09-02T16:30:00-07:00', '04:30 pm - Moday, September 2, 2020', '2020-09-02T17:00:00-07:00',  '05:00 pm - Moday, September 2, 2020','Zoom', false, null, null, null, null, null),
   (4, 'EGMBBYHHDUZTVUKA', 'BCHFF2F62BWNJVPP', '2020-08-27T12:01:01-07:00', 'One-on-One', '60 Minute Meeting', 'legal advice', null, '2020-08-29T16:30:00-07:00', '04:30 pm - Thursday, August 29, 2020', '2020-08-29T17:30:00-07:00', '04:30 pm - Thursday, August 29, 2020','Zoom', true, 'Emi Tsukuda', 'too many meetings', '2020-08-29T09:15:00-07:00', 'BCHFF2F62BWNJVZZ', null),
   (5, 'FDLGUGK6SOB54B3G', 'BCHFF2F62BWNJVPP', '2020-08-27T14:00:29-07:00', 'One-on-One', '30 Minute Meeting', 'consult with a lawyer', null, '2020-08-30T11:30:00-07:00', '11:30 am - Friday, August 30, 2020','2020-08-30T12:00:00-07:00', '12:00 pm - Friday, August 30, 2020','Zoom', true, 'Stephanie Simms', 'meetings hate em', '2020-08-28T09:15:00-07:00', 'BCHFF2F62BWNJVAA', null);`;
+
+const SEED_DOCUMENTS_SQL = `
+  INSERT INTO documents (title, counterparty, date_submitted, date_reviewed, url, user_id, status)
+    VALUES
+    ('contract1.pdf', 'Bill Billson', '2020-10-20T04:32:00', null, 'www.conctractz.com/contract1', 1, 'unreviewed'),
+    ('contract2.pdf', 'Bill Billson', '2020-10-29T13:37:00', null, 'www.conctractz.com/contract2', 1, 'unreviewed'),
+    ('contract3.pdf', 'Bill Billson', '2020-10-23T19:39:00', '2020-10-24', 'www.conctractz.com/contract3', 2, 'reviewed'),
+    ('contract4.pdf', 'Bill Billson', '2020-10-29T13:33:00', null, 'www.conctractz.com/contract4', 3, 'unreviewed'),
+    ('contract5.pdf', 'Bill Billson', '2020-10-22T11:31:00', null, 'www.conctractz.com/contract5', 4, 'unreviewed')
+    `;
 
 // NOTE: currently not used in any test but it is for future use
 const SEED_USERS_CALENDLY_USERS_SQL = `INSERT INTO users_calendly_users (user_id, calendly_user_id) VALUES
@@ -78,7 +81,7 @@ module.exports = {
   SERVICE,
   SEED_SALARY_SQL,
   SEED_CHARGES_SQL,
-  SEED_DOCUMENTS_SQL,
   SEED_APPT_SQL,
-  SEED_USERS_CALENDLY_USERS_SQL
+  SEED_USERS_CALENDLY_USERS_SQL,
+  SEED_DOCUMENTS_SQL
 };
