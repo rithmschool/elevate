@@ -36,6 +36,7 @@ class AdminUserView extends React.Component {
       return err;
     }
     this.props.updateUserState(users);
+    this.props.history.push("/dashboard/admin/users");
   };
 
   render() {
