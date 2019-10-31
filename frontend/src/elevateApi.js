@@ -26,7 +26,7 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      let message = err.response.data.message;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -97,11 +97,11 @@ class ElevateApi {
     return res;
   }
 
-  static async signinGoogle(token){
-    let res = await this.request('login/ggtokensignin',{ token }, "post")
+  static async signinGoogle(token) {
+    let res = await this.request("login/ggtokensignin", { token }, "post");
     return res.token;
   }
-  
+
   static async verifyResetPasswordToken(resetPasswordToken) {
     let res = await this.request(`password/${resetPasswordToken}`);
     return res;
@@ -115,8 +115,24 @@ class ElevateApi {
     );
     return res;
   }
+
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
+  }
+
+  static async addToDB(doc) {
+    let res = await this.request("upload/db", doc, "post");
+    return res;
+  }
+
+  static async postNewsletterSignUp(data) {
+    let res = await this.request(`newsletter/`, data, "post");
+    return res;
+  }
+
+  static async getNewsletter(data) {
+    let res = await this.request(`newsletter/`, data, "get");
+    return res;
   }
 }
 

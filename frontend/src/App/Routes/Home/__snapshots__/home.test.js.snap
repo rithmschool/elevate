@@ -217,5 +217,6 @@ exports[`matches snapshot 1`] = `
       Get Started
     </Link>
   </div>
+  <Footer />
 </div>
 `;

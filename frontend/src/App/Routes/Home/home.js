@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 import "./home.css";
+import Footer from "./Footer/footer";
 import img1 from "./img/001.jpg";
 import file from "./img/files.png";
 import person from "./img/person.png";
@@ -97,6 +98,7 @@ class Home extends React.Component {
             Get Started
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }

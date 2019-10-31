@@ -100,7 +100,7 @@ class Navigation extends React.Component {
       <UserContext.Consumer>
         {currentUser =>
           currentUser && currentUser.is_admin ? (
-            <LinkContainer to="/admin/users" className="dropdown-link">
+            <LinkContainer to="/dashboard/admin" className="dropdown-link">
               <NavDropdown.Item className="bg-transparent Menu-link">
                 Admin
               </NavDropdown.Item>

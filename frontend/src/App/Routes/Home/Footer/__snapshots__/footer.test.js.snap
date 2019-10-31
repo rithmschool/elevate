@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Footer>
+  <div
+    className="Footer"
+  >
+    <Container
+      fluid={true}
+      tag="div"
+    >
+      <div
+        className="container-fluid"
+      >
+        <Row
+          tag="div"
+        >
+          <div
+            className="row"
+          >
+            <Col
+              className="d-flex flex-column justify-content-center"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="d-flex flex-column justify-content-center col"
+              >
+                <newsletterSignUpForm>
+                  <div>
+                    <div>
+                      <h6>
+                        Stay up to date with Brella
+                      </h6>
+                      <Form
+                        onSubmit={[Function]}
+                        tag="form"
+                      >
+                        <form
+                          className=""
+                          onSubmit={[Function]}
+                        >
+                          <FormGroup
+                            tag="div"
+                          >
+                            <div
+                              className="form-group"
+                            >
+                              <Label
+                                for="email"
+                                hidden={true}
+                                tag="label"
+                                widths={
+                                  Array [
+                                    "xs",
+                                    "sm",
+                                    "md",
+                                    "lg",
+                                    "xl",
+                                  ]
+                                }
+                              >
+                                <label
+                                  className="sr-only"
+                                  htmlFor="email"
+                                >
+                                  newsletter email
+                                </label>
+                              </Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                onChange={[Function]}
+                                placeholder="Email Address"
+                                type="text"
+                                value=""
+                              >
+                                <input
+                                  className="form-control"
+                                  id="email"
+                                  name="email"
+                                  onChange={[Function]}
+                                  placeholder="Email Address"
+                                  type="text"
+                                  value=""
+                                />
+                              </Input>
+                            </div>
+                          </FormGroup>
+                        </form>
+                      </Form>
+                    </div>
+                  </div>
+                </newsletterSignUpForm>
+              </div>
+            </Col>
+            <Col
+              style={
+                Object {
+                  "display": "flex",
+                  "flexDirection": "column",
+                }
+              }
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="col"
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "column",
+                  }
+                }
+              >
+                <Link
+                  to="/ask-an-expert"
+                >
+                  <LinkAnchor
+                    href="/ask-an-expert"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/ask-an-expert"
+                      onClick={[Function]}
+                    >
+                      Blog
+                    </a>
+                  </LinkAnchor>
+                </Link>
+                <Link
+                  to="/ask-an-expert"
+                >
+                  <LinkAnchor
+                    href="/ask-an-expert"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/ask-an-expert"
+                      onClick={[Function]}
+                    >
+                      Contact
+                    </a>
+                  </LinkAnchor>
+                </Link>
+                <Link
+                  to="/ask-an-expert"
+                >
+                  <LinkAnchor
+                    href="/ask-an-expert"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/ask-an-expert"
+                      onClick={[Function]}
+                    >
+                      Facebook
+                    </a>
+                  </LinkAnchor>
+                </Link>
+                <Link
+                  to="/ask-an-expert"
+                >
+                  <LinkAnchor
+                    href="/ask-an-expert"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/ask-an-expert"
+                      onClick={[Function]}
+                    >
+                      Instagram
+                    </a>
+                  </LinkAnchor>
+                </Link>
+                <Link
+                  to="/ask-an-expert"
+                >
+                  <LinkAnchor
+                    href="/ask-an-expert"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/ask-an-expert"
+                      onClick={[Function]}
+                    >
+                      Twitter
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </Col>
+            <Col
+              className="d-flex align-items-center justify-content-end"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="d-flex align-items-center justify-content-end col"
+              >
+                <Link
+                  className="brand-logo"
+                  to="/"
+                >
+                  <LinkAnchor
+                    className="brand-logo"
+                    href="/"
+                    navigate={[Function]}
+                  >
+                    <a
+                      className="brand-logo"
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Brella
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </Col>
+          </div>
+        </Row>
+      </div>
+    </Container>
+  </div>
+</Footer>
+`;
