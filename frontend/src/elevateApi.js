@@ -84,22 +84,13 @@ class ElevateApi {
   static async getQuestions() {
     let res = await this.request(`questions`);
 
-    // Format created_date for each question
-    res.questions.forEach(question => {
-      question.created_date = question.created_date.slice(0, 10);
-    });
-
-    return res.questions;
+    return res.questions.map(question => question.created_date.slice(0, 10));
   }
 
   static async getDocuments() {
     let res = await this.request(`admin/documents`);
 
-    res.documents.forEach(document => {
-      document.date_submitted = document.date_submitted.slice(0, 10);
-    });
-
-    return res.documents;
+    return res.documents.map(document => document.date_submitted.slice(0, 10) );
   }
 
   static async forgotPassword(email) {
