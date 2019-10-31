@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "google-auth-library": "^5.2.1",
-    "reactstrap": "^8.1.1"
+    "reactstrap": "^8.1.1",
     "aws-sdk": "^2.553.0",
     "bluebird": "^3.7.1",
     "express": "^4.17.1",
