@@ -11,12 +11,7 @@ class DashboardManage extends React.Component {
   }
 
   handleDrop = files => {
-    let fileList = this.state.files;
-    for (var i = 0; i < files.length; i++) {
-      if (!files[i].name) return;
-      fileList.push(files[i].name);
-    }
-    this.setState({ files: fileList });
+    this.setState({ files });
   };
 
   render() {

@@ -122,6 +122,7 @@ class ElevateApi {
 
   static async addToDB(doc) {
     let res = await this.request("upload/db", doc, "post");
+    return res;
   }
 
   static async postNewsletterSignUp(data) {

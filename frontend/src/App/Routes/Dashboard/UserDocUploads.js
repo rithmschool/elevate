@@ -7,6 +7,7 @@ import { UserContext } from "../../../userContext";
 
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
+const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
 
 class UserDocUploads extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class UserDocUploads extends Component {
     this.state = {
       file: null,
       uploaded: false,
-      drag: false
+      drag: false, 
+      error: ''
     };
 
     this.handleUpload = this.handleUpload.bind(this);
@@ -110,19 +112,18 @@ class UserDocUploads extends Component {
     const formData = new FormData();
     formData.append("file", this.state.file);
 
-    axios
-      .post(`${BASE_URL}/upload`, formData, {
-        // receive two parameter endpoint url ,form data
-      })
-      .then(res => {
-        // then print response status
-        console.log(res.statusText);
-      });
+    const uploadRes = await axios.post(`${BASE_URL}/upload`, formData, {})
+
+    if (uploadRes.statusText === 'OKk') {
+      console.log(uploadRes.statusText)
+    } else {
+      // TODO We need error hanling for this case
+      console.log('there was an error uploading the file')
+    }
 
     // This section is for sending to DB
     const token = localStorage.getItem("token");
 
-    const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
 
     const sendToDb = {
       _token: token,
@@ -135,8 +136,12 @@ class UserDocUploads extends Component {
     };
 
     let res = await ElevateApi.addToDB(sendToDb);
-    if (res) {
-      this.setState({ ...this.state, uploaded: true });
+
+    if (res.docs) {
+      this.setState({ uploaded: true });
+    } else {
+      // TODO We need error hanling for this case
+      console.log('there was an error uploading the file')
     }
   }
 

@@ -21,7 +21,7 @@ const ID = process.env.AWS_ACCESS_KEY_ID;
 const SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 
 // The name of the bucket that you have created
-const BUCKET_NAME = "brellacontracts";
+const BUCKET_NAME = process.env.S3_BUCKET;
 
 const s3 = new AWS.S3({
   accessKeyId: ID,
