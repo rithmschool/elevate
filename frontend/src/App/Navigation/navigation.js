@@ -113,7 +113,13 @@ class Navigation extends React.Component {
     );
 
     return (
-      <Navbar className="navigation" collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar
+        className="navigation"
+        collapseOnSelect
+        expand="lg"
+        bg="light"
+        variant="light"
+      >
         <Navbar.Brand>
           <Link className="Nav_brand-name" to="/">
             Brella
