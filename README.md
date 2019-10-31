@@ -40,7 +40,8 @@ This will run the app on http://localhost:3000
 
 First, to locate AWS credentials from s3.console.aws.amazon.com, click on account name in the nav bar and click on "My Security Credentials". The keys will be located on the following page in the "Access Keys" section.
 
-In terminal: 
+In terminal:
+
 ```
 code ~/.bash_profile
 ```
