@@ -3,9 +3,12 @@
 exports[`matches snapshot 1`] = `
 <div>
   <Button
+    active={false}
     color="secondary"
+    disabled={false}
     onClick={[Function]}
-    tag="button"
+    type="button"
+    variant="primary"
   >
     <i
       className="fas fa-th-list"
