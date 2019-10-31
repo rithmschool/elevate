@@ -7,6 +7,15 @@ exports[`AdminNavbar matches snapshot 1`] = `
   <p>
     <Link
       className="admin-link"
+      id="documents"
+      to="/dashboard/admin/documents"
+    >
+      Documents
+    </Link>
+  </p>
+  <p>
+    <Link
+      className="admin-link"
       id="users"
       to="/dashboard/admin/users"
     >
