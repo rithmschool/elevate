@@ -5,9 +5,10 @@ import mockData from "../../../../../mock_data";
 import AdminPanel from "./adminPanel";
 import ElevateApi from "../../../elevateApi";
 
-const { USERS, QUESTIONS } = mockData;
+const { USERS, QUESTIONS, DOCUMENTS } = mockData;
 const users = USERS;
 const questions = QUESTIONS;
+const documents = DOCUMENTS;
 
 describe("AdminPanel", function() {
   let wrapper;
@@ -15,6 +16,7 @@ describe("AdminPanel", function() {
   beforeEach(async () => {
     ElevateApi.getUsers = jest.fn(() => users);
     ElevateApi.getQuestions = jest.fn(() => questions);
+    ElevateApi.getDocuments = jest.fn(() => documents);
     wrapper = mount(
       <MemoryRouter initialEntries={["/admin/users"]}>
         <AdminPanel

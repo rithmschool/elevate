@@ -11,6 +11,16 @@ class AdminNavbar extends React.Component {
     let view = this.props.position ? (
       <div className="adminNavbar">
         <p>
+          <Link
+            id="documents"
+            className="admin-link"
+            to="/dashboard/admin/documents"
+          >
+            Documents
+          </Link>
+        </p>
+        <p>
+
           <Link id="users" className="admin-link" to="/dashboard/admin/users">
             Users
           </Link>

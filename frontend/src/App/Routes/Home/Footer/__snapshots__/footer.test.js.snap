@@ -7,29 +7,18 @@ exports[`matches snapshot 1`] = `
   >
     <Container
       fluid={true}
-      tag="div"
     >
       <div
         className="container-fluid"
       >
-        <Row
-          tag="div"
+        <ForwardRef
+          noGutters={false}
         >
           <div
             className="row"
           >
             <Col
               className="d-flex flex-column justify-content-center"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
               <div
                 className="d-flex flex-column justify-content-center col"
@@ -41,41 +30,32 @@ exports[`matches snapshot 1`] = `
                         Stay up to date with Brella
                       </h6>
                       <Form
+                        inline={false}
                         onSubmit={[Function]}
-                        tag="form"
                       >
                         <form
                           className=""
                           onSubmit={[Function]}
                         >
-                          <FormGroup
-                            tag="div"
-                          >
+                          <FormGroup>
                             <div
                               className="form-group"
                             >
-                              <Label
-                                for="email"
+                              <FormLabel
+                                column={false}
                                 hidden={true}
-                                tag="label"
-                                widths={
-                                  Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
-                                }
+                                htmlFor="email"
+                                srOnly={false}
                               >
                                 <label
-                                  className="sr-only"
+                                  className="form-label"
+                                  hidden={true}
                                   htmlFor="email"
                                 >
                                   newsletter email
                                 </label>
-                              </Label>
-                              <Input
+                              </FormLabel>
+                              <FormControl
                                 id="email"
                                 name="email"
                                 onChange={[Function]}
@@ -92,7 +72,7 @@ exports[`matches snapshot 1`] = `
                                   type="text"
                                   value=""
                                 />
-                              </Input>
+                              </FormControl>
                             </div>
                           </FormGroup>
                         </form>
@@ -108,16 +88,6 @@ exports[`matches snapshot 1`] = `
                   "display": "flex",
                   "flexDirection": "column",
                 }
-              }
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
               }
             >
               <div
@@ -208,16 +178,6 @@ exports[`matches snapshot 1`] = `
             </Col>
             <Col
               className="d-flex align-items-center justify-content-end"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
               <div
                 className="d-flex align-items-center justify-content-end col"
@@ -243,7 +203,7 @@ exports[`matches snapshot 1`] = `
               </div>
             </Col>
           </div>
-        </Row>
+        </ForwardRef>
       </div>
     </Container>
   </div>

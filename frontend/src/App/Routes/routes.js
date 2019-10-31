@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-
 import ForgotPassword from "./ForgotPassword/forgotPassword";
 import ResetPassword from "./ResetPassword/resetPassword";
 import Home from "./Home/home";
@@ -8,7 +7,6 @@ import UserProfile from "./UserProfile/userProfile";
 import LoginSignUpForm from "./LoginSignUpForm/loginSignUpForm";
 import AskAnExpert from "./AskAnExpert/askAnExpert";
 import Dashboard from "./../Routes/Dashboard/dashboard";
-
 import ForgotPassRoutes from "./forgotPassRoutes";
 import UserPrivateRoute from "./userPrivateRoute";
 import DashboardRoutes from "./dashboardRoutes";

@@ -19,10 +19,12 @@ describe("AdminUserView", function() {
 
   beforeEach(function() {
     ElevateApi.getUser = jest.fn(() => testData);
+    const updateUserState = jest.fn();
     wrapper = mount(
       <AdminUserView.WrappedComponent
         history={{ location: { pathname: "/admin/users/1" } }}
         match={{ params: { userId: 1 } }}
+        updateUserState={updateUserState}
       />
     );
   });

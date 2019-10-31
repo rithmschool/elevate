@@ -26,16 +26,15 @@ class AdminUserView extends React.Component {
   }
 
   handleClickDeleteUser = async () => {
-    await ElevateApi.deleteUser(this.props.match.params.userId);
     let users;
 
     try {
+      await ElevateApi.deleteUser(this.props.match.params.userId);
       users = await ElevateApi.getUsers();
+      this.props.updateUserState(users);
     } catch (err) {
-      console.log(err);
       return err;
     }
-    this.props.updateUserState(users);
   };
 
   render() {

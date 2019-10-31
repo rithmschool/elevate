@@ -60,7 +60,7 @@ class Navigation extends React.Component {
                 >
                   <LinkContainer
                     className="border dropdown-link"
-                    to={`users/${currentUser.userId}`}
+                    to={`/users/${currentUser.userId}`}
                   >
                     <NavDropdown.Item className="bg-transparent Menu-link">
                       <li className="list-group-item bg-transparent">
