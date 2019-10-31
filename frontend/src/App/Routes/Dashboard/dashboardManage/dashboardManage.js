@@ -4,6 +4,7 @@ import ElevateApi from "../../../../elevateApi";
 import Spinner from "../../../Spinner/spinner";
 import UserDocUploads from "./UserDocUploads";
 import { UserContext } from "../../../../userContext";
+import { Card } from "react-bootstrap";
 import axios from "axios";
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
@@ -67,7 +68,6 @@ class DashboardManage extends Component {
       this.setState({ documents, loading: false });
     } catch (err) {
       this.setState({ loading: false });
-      console.log(err);
     }
   }
 
@@ -81,17 +81,15 @@ class DashboardManage extends Component {
       return <Spinner />;
     }
     return (
-      <div>
-        <div>
-          <UserDocUploads
-            handleDrop={this.handleDrop}
-            handleSubmit={this.handleSubmit}
-            uploaded={this.state.uploaded}
-          />
-        </div>
-        <div>
+      <div className="UserDocsDataTable container-fluid">
+        <UserDocUploads
+          handleDrop={this.handleDrop}
+          handleSubmit={this.handleSubmit}
+          uploaded={this.state.uploaded}
+        />
+        <Card className="card p-4">
           <UserDocsDataTable documents={documents} />
-        </div>
+        </Card>
       </div>
     );
   }
