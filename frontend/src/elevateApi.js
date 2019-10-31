@@ -26,7 +26,7 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      let message = err.response.data.message;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -128,6 +128,11 @@ class ElevateApi {
 
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
+  }
+
+  static async addToDB(doc) {
+    let res = await this.request("upload/db", doc, "post");
+    return res;
   }
 
   static async postNewsletterSignUp(data) {
