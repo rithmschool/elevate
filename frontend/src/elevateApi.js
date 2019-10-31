@@ -124,7 +124,7 @@ class ElevateApi {
     let res = await this.request(`documents/manage`, { token });
     return res;
   }
-  
+
   static async addToDB(doc) {
     let res = await this.request("upload/db", doc, "post");
     return res;
