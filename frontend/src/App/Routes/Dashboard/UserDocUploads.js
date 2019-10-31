@@ -16,7 +16,6 @@ class UserDocUploads extends Component {
       file: null,
       uploaded: false,
       drag: false, 
-      error: ''
     };
 
     this.handleUpload = this.handleUpload.bind(this);
@@ -114,7 +113,7 @@ class UserDocUploads extends Component {
 
     const uploadRes = await axios.post(`${BASE_URL}/upload`, formData, {})
 
-    if (uploadRes.statusText === 'OKk') {
+    if (uploadRes.statusText === 'OK') {
       console.log(uploadRes.statusText)
     } else {
       // TODO We need error hanling for this case
