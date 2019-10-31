@@ -35,7 +35,7 @@ CREATE TABLE documents
  title TEXT NOT NULL,
  counterparty TEXT,
  date_submitted TEXT DEFAULT current_date,
- date_reviewed DATE,
+ date_reviewed TEXT,
  status TEXT,
  url TEXT
 );
@@ -309,7 +309,7 @@ CREATE TABLE documents
   counterparty TEXT NOT NULL,
   url TEXT NOT NULL,
   date_submitted TEXT NOT NULL DEFAULT CURRENT_DATE,
-  date_reviewed TEXT DEFAULT CURRENT_DATE,
+  date_reviewed TEXT,
   status TEXT
 )
 
