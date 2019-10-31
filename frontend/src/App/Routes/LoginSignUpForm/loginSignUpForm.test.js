@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 import toJson from "enzyme-to-json";
 import LoginSignUpForm from "./loginSignUpForm";
 import { Form } from "react-bootstrap";
@@ -26,17 +26,9 @@ describe("LoginSignUpForm", function() {
     expect(wrapper.find(Form.Control)).toHaveLength(2);
   });
 
-  xit("changes isLogin state on click and shows additional form fields", function() {
-    // expect(wrapper.find('input[id="firstName"]')).toHaveLength(0);
-    // expect(wrapper.find('input[id="lastName"]')).toHaveLength(0);
-    // wrapper.find("button.LoginSignUpForm_link-signup").simulate("click");
-    // expect(wrapper.state("loginView")).toEqual(false);
-    // wrapper.update();
-    // expect(wrapper.find('input[id="firstName"]')).toHaveLength(1);
-    // expect(wrapper.find('input[id="lastName"]')).toHaveLength(1);
-  });
+  xit("fires loginorsignup function when 'create one' is clicked", async function() {});
 
-  xit("has the Google sign in button", function() {
+  it("has the Google sign in button", function() {
     expect(wrapper.find("i.fa-google")).toHaveLength(1);
   });
 
