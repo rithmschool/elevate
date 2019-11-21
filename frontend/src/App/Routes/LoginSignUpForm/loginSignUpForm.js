@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
 import "./loginSignUpForm.css";
@@ -11,30 +11,19 @@ const client_id =
   "98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com";
 let auth2;
 
-class LoginSignUpForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loginView: true,
-      email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      errors: [],
-      isLoading: false
-    };
-  }
+function LoginSignUpForm(props) {
+  const [loginView, setLoginView] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   /** To get profile information
    *  this code is from https://developers.google.com/identity/sign-in/web/sign-in
    */
-  onSignIn = async googleUser => {
-    // const profile = googleUser.getBasicProfile();
-    // ID: profile.getId()
-    // Name: profile.getName()
-    // Email: profile.getEmail()
-
+  const onSignIn = async googleUser => {
     /** this ID token will be sent to the server with HTTP post request
      *  in ElevateApi to get verify from google
      */
@@ -49,16 +38,16 @@ class LoginSignUpForm extends React.Component {
     try {
       token = await ElevateApi.signinGoogle(id_token);
     } catch (errors) {
-      return this.setState({ errors });
+      return setErrors(errors);
     }
 
     localStorage.setItem("token", token);
-    await this.props.getCurrentUser();
+    await props.getCurrentUser();
 
-    this.props.history.push("/");
+    props.history.push("/");
   };
 
-  componentDidMount() {
+  useEffect(() => {
     /** Initialize the auth2 library and we use this auth2 with
      *  handleGoogleSignin below
      */
@@ -71,223 +60,212 @@ class LoginSignUpForm extends React.Component {
         });
       });
     } catch (errors) {
-      return this.setState({ errors });
+      return setErrors(errors);
     }
-  }
+  }, []);
 
   /** auth2.signIn() gives back googleUser which can be used
    *  for argument in onSignIn method
    */
-  handleGoogleSignin = async () => {
-    this.onSignIn(await auth2.signIn());
+  const handleGoogleSignin = async () => {
+    onSignIn(await auth2.signIn());
   };
 
-  loginOrSignup = evt => {
+  const loginOrSignup = evt => {
     if (evt.target.name === "login") {
-      this.setState({ loginView: true });
+      setLoginView(true);
     } else {
-      this.setState({ loginView: false });
+      setLoginView(false);
     }
   };
 
-  handleChange = evt => {
-    this.setState({ [evt.target.name]: evt.target.value });
-  };
-
-  handleSubmit = async evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     let token;
 
-    this.setState({ isLoading: true });
+    setIsLoading(true);
 
     try {
-      if (this.state.loginView) {
+      if (loginView) {
         const data = {
-          email: this.state.email,
-          password: this.state.password
+          email,
+          password
         };
 
         token = await ElevateApi.login(data);
       } else {
         const data = {
-          email: this.state.email,
-          password: this.state.password,
-          first_name: this.state.firstName,
-          last_name: this.state.lastName
+          email,
+          password,
+          first_name: firstName,
+          last_name: lastName
         };
 
         token = await ElevateApi.signup(data);
       }
     } catch (errors) {
-      return this.setState({ isLoading: false, errors });
+      setIsLoading(false);
+      return setErrors(errors);
     }
 
     localStorage.setItem("token", token);
 
-    await this.props.getCurrentUser();
+    await props.getCurrentUser();
 
-    this.props.history.push("/");
+    props.history.push("/");
   };
 
-  render() {
-    let loginView = this.state.loginView;
+  const firstLastNameInputs = (
+    <div>
+      <Form.Group>
+        <Form.Control
+          placeholder="First Name"
+          className="signUpInput"
+          id="firstName"
+          name="firstName"
+          type="text"
+          onChange={e => setFirstName(e.target.value)}
+          value={firstName}
+          data-testid="firstName"
+        />
+      </Form.Group>
 
-    if (this.state.isLoading) return <Spinner />;
+      <Form.Group>
+        <Form.Control
+          placeholder="Last Name"
+          className="signUpInput"
+          id="lastName"
+          name="lastName"
+          type="text"
+          onChange={e => setLastName(e.target.value)}
+          value={lastName}
+          data-testid="lastName"
+        />
+      </Form.Group>
+    </div>
+  );
 
-    const firstLastNameInputs = (
-      <div>
-        <Form.Group>
-          <Form.Control
-            placeholder="First Name"
-            className="signUpInput"
-            id="firstName"
-            name="firstName"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.firstName}
-          />
-        </Form.Group>
+  const emailPasswordInputs = (
+    <div>
+      <Form.Group>
+        <Form.Control
+          placeholder="Email"
+          id="email"
+          name="email"
+          type="text"
+          onChange={e => setEmail(e.target.value)}
+          value={email}
+        />
+      </Form.Group>
 
-        <Form.Group>
-          <Form.Control
-            placeholder="Last Name"
-            className="signUpInput"
-            id="lastName"
-            name="lastName"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.lastName}
-          />
-        </Form.Group>
+      <Form.Group>
+        <Form.Control
+          placeholder="Password"
+          id="password"
+          name="password"
+          type="password"
+          onChange={e => setPassword(e.target.value)}
+          value={password}
+        />
+      </Form.Group>
+    </div>
+  );
+
+  const loginWithSocial = (
+    <div>
+      <div className="LoginSignUpForm_login-or">
+        <hr className="LoginSignUpForm_hr-or" />
+        <span className="LoginSignUpForm_span-or">or</span>
       </div>
-    );
 
-    const emailPasswordInputs = (
-      <div>
-        <Form.Group>
-          <Form.Control
-            placeholder="Email"
-            id="email"
-            name="email"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Control
-            placeholder="Password"
-            id="password"
-            name="password"
-            type="password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-        </Form.Group>
-      </div>
-    );
-
-    const loginWithSocial = (
-      <div>
-        <div className="LoginSignUpForm_login-or">
-          <hr className="LoginSignUpForm_hr-or" />
-          <span className="LoginSignUpForm_span-or">or</span>
-        </div>
-
-        {/* Google Sign In Button */}
-        <div className="row justify-content-center">
-          <Button
-            className="btn-block mr-3 ml-3"
-            onClick={this.handleGoogleSignin}
-          >
-            <i className="fab fa-google"></i>
-            <span>Sign in with Google</span>
-          </Button>
-        </div>
-      </div>
-    );
-
-    const signUpButton = (
+      {/* Google Sign In Button */}
       <div className="row justify-content-center">
-        <Button className="login-submit btn-block mr-3 ml-3" type="submit">
-          Create an account
+        <Button className="btn-block mr-3 ml-3" onClick={handleGoogleSignin}>
+          <i className="fab fa-google"></i>
+          <span>Sign in with Google</span>
         </Button>
       </div>
-    );
+    </div>
+  );
 
-    const signInButton = (
-      <div className="row justify-content-center">
-        <Button className="login-submit btn-block mr-3 ml-3" type="submit">
-          SIGN IN
-        </Button>
-      </div>
-    );
+  const signUpButton = (
+    <div className="row justify-content-center">
+      <Button className="login-submit btn-block mr-3 ml-3" type="submit">
+        Create an account
+      </Button>
+    </div>
+  );
 
-    const directToSignIn = (
-      <Form.Text id="signup" className="text-muted">
-        <button
-          name="login"
-          className="LoginSignUpForm_link-signin"
-          onClick={this.loginOrSignup}
-        >
-          Sign in
+  const signInButton = (
+    <div className="row justify-content-center">
+      <Button className="login-submit btn-block mr-3 ml-3" type="submit">
+        SIGN IN
+      </Button>
+    </div>
+  );
+
+  const directToSignIn = (
+    <Form.Text id="signup" className="text-muted">
+      <button
+        name="login"
+        className="LoginSignUpForm_link-signin"
+        onClick={loginOrSignup}
+      >
+        Sign in
+      </button>
+    </Form.Text>
+  );
+
+  const directToSignUp = (
+    <div>
+      <Form.Text id="signup" className="text-muted mt-3">
+        Don't have an account?
+        <button className="LoginSignUpForm_link-signup" onClick={loginOrSignup}>
+          Create One
         </button>
       </Form.Text>
-    );
+    </div>
+  );
 
-    const directToSignUp = (
-      <div>
-        <Form.Text id="signup" className="text-muted mt-3">
-          Don't have an account?
-          <button
-            className="LoginSignUpForm_link-signup"
-            onClick={this.loginOrSignup}
-          >
-            Create One
-          </button>
-        </Form.Text>
+  const forgotPasswordLink = (
+    <div>
+      <Form.Text id="signup" className="LoginSignUpForm_link-signup">
+        <a href="http://localhost:3000/reset-password/forgot">
+          Forgot password?
+        </a>
+      </Form.Text>
+    </div>
+  );
+
+  if (isLoading) return <Spinner />;
+
+  return (
+    <div
+      className="
+        container
+        col-md-6
+        offset-md-3
+        col-lg-4
+        offset-lg-4
+        border 
+        rounded 
+        shadow"
+    >
+      <div className="LoginSignUpForm_form-inside-container mt-5">
+        <Form onSubmit={handleSubmit}>
+          <div className="mb-3">{loginView ? "Sign In" : "Sign Up"}</div>
+
+          {emailPasswordInputs}
+          {!loginView && firstLastNameInputs}
+          {errors.length > 0 && <LoginError />}
+          {loginView ? signInButton : signUpButton}
+          {loginView ? loginWithSocial : loginWithSocial}
+          {loginView && directToSignUp}
+          {loginView ? forgotPasswordLink : directToSignIn}
+        </Form>
       </div>
-    );
-
-    const forgotPasswordLink = (
-      <div>
-        <Form.Text id="signup" className="LoginSignUpForm_link-signup">
-          <a href="http://localhost:3000/reset-password/forgot">
-            Forgot password?
-          </a>
-        </Form.Text>
-      </div>
-    );
-
-    return (
-      <div
-        className="
-          container
-          col-md-6
-          offset-md-3
-          col-lg-4
-          offset-lg-4
-          border 
-          rounded 
-          shadow"
-      >
-        <div className="LoginSignUpForm_form-inside-container mt-5">
-          <Form onSubmit={this.handleSubmit}>
-            <div className="mb-3">{loginView ? "Sign In" : "Sign Up"}</div>
-
-            {emailPasswordInputs}
-            {!loginView && firstLastNameInputs}
-            {this.state.errors.length > 0 && <LoginError />}
-            {loginView ? signInButton : signUpButton}
-            {loginView ? loginWithSocial : loginWithSocial}
-            {loginView && directToSignUp}
-            {loginView ? forgotPasswordLink : directToSignIn}
-          </Form>
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default LoginSignUpForm;

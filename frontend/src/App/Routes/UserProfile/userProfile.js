@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
+import { Row, Col } from "react-bootstrap";
 import "./userProfile.css";
 import { UserContext } from "../../../userContext";
 import ElevateApi from "../../../elevateApi";

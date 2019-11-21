@@ -26,7 +26,7 @@ class ElevateApi {
     try {
       return (await q).data;
     } catch (err) {
-      let message = err.response.data.message;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -92,6 +92,16 @@ class ElevateApi {
     return res.questions;
   }
 
+  static async getDocuments() {
+    let res = await this.request(`admin/documents`);
+
+    res.documents.forEach(document => {
+      document.date_submitted = document.date_submitted.slice(0, 10);
+    });
+
+    return res.documents;
+  }
+
   static async forgotPassword(email) {
     let res = await this.request(`password/`, email, "post");
     return res;
@@ -118,6 +128,16 @@ class ElevateApi {
 
   static async deleteUser(id) {
     await this.request(`users/${id}`, {}, "delete");
+  }
+
+  static async getUserDocuments(token) {
+    let res = await this.request(`documents/manage`, { token });
+    return res;
+  }
+
+  static async addToDB(doc) {
+    let res = await this.request("upload/db", doc, "post");
+    return res;
   }
 
   static async postNewsletterSignUp(data) {

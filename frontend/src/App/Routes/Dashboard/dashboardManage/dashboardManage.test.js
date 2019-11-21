@@ -7,8 +7,8 @@ it("renders without crashing", function() {
   shallow(<DashboardManage />);
 });
 
-it("matches snapshot", function() {
-  let wrapper = shallow(<DashboardManage />);
-  let serialized = toJson(wrapper);
-  expect(serialized).toMatchSnapshot();
-});
+// it("matches snapshot", function() {
+//   let wrapper = shallow(<DashboardManage />);
+//   let serialized = toJson(wrapper);
+//   expect(serialized).toMatchSnapshot();
+// });

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
 import "./adminTable.css";
@@ -8,10 +9,9 @@ const mql = window.matchMedia(`(max-width: 640px)`);
 const maxColumCount = mql.matches ? 5 : 12;
 
 class AdminTable extends Component {
-  handleChange = evt => {
+  handleClick = evt => {
     const id = evt.target.parentElement.id;
-
-    this.props.getUserDetail(id);
+    this.props.history.push(`/dashboard/admin/users/${id}`);
   };
 
   createTableHeader() {
@@ -35,7 +35,6 @@ class AdminTable extends Component {
     const table = this.props.tableObjs.map(item => {
       const itemKeys = Object.keys(item);
       const itemValues = Object.values(item);
-
       return this.createTableRows(itemKeys, itemValues);
     });
 
@@ -67,7 +66,7 @@ class AdminTable extends Component {
 
   createTableRows(keys, values) {
     return (
-      <tr key={values[0]} onClick={this.handleChange} id={values[0]}>
+      <tr key={values[0]} onClick={this.handleClick} id={values[0]}>
         {values
           .map((value, index) => {
             value = this.concantinateText(value);
@@ -80,6 +79,7 @@ class AdminTable extends Component {
   }
 
   render() {
+    const tableType = "users";
     return (
       <div className="admin-table">
         <Table
@@ -88,7 +88,7 @@ class AdminTable extends Component {
           hover
           size="sm"
           responsive
-          id={this.props.view + "-table"}
+          id={tableType + "-table"}
         >
           <thead>{this.createTableHeader()}</thead>
           <tbody>{this.createTableBody()}</tbody>
@@ -98,4 +98,4 @@ class AdminTable extends Component {
   }
 }
 
-export default AdminTable;
+export default withRouter(AdminTable);
