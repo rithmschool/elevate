@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
-import ElevateApi from "../../../elevateApi";
 import "./UserDocUploads.scss";
+import { UserContext } from "../../../../userContext";
 import axios from "axios";
-import { UserContext } from "../../../userContext";
+import ElevateApi from "../../../elevateApi";
 
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
@@ -141,6 +141,11 @@ class UserDocUploads extends Component {
       // TODO We need error hanling for this case
       console.log("there was an error uploading the file");
     }
+
+    await this.props.handleSubmit(this.state.file);
+    this.setState({
+      file: null
+    });
   }
 
   render() {
@@ -183,7 +188,7 @@ class UserDocUploads extends Component {
                 </Button>
               </Form>
               <div>
-                {this.state.uploaded ? (
+                {this.props.uploaded ? (
                   <div className="row justify-content-md-center">
                     <Alert
                       variant="success"

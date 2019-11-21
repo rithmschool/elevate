@@ -18,8 +18,8 @@ const db = require("../../db");
 describe("model document", function() {
   beforeEach(async function() {
     await beforeEachHook(TEST_DATA);
-    await db.query(SEED_DOCUMENTS_SQL);
     await db.query(SEED_USER_SQL);
+    await db.query(SEED_DOCUMENTS_SQL);
   });
 
   afterEach(async function() {
@@ -27,25 +27,16 @@ describe("model document", function() {
   });
 
   test("get all documents", async function() {
-    const response = await Document.getAllByUser(1);
+    const response = await Document.getAllByUser(2);
     expect(response).toEqual([
       {
-        id: 1,
-        title: "Burger Flipper",
-        counterparty: "Squidward",
-        url: "www.spongebob.com",
-        date_submitted: "2020-08-29",
-        date_reviewed: "2019-11-13",
-        status: "Completed"
-      },
-      {
         id: 3,
-        title: "Burger Flipper Manager",
-        counterparty: "Squidward",
-        url: "www.spongebob.com",
-        date_submitted: "2020-08-29",
-        date_reviewed: "2019-11-13",
-        status: "In Progress"
+        title: "contract3.pdf",
+        counterparty: "Bill Billson",
+        url: "www.conctractz.com/contract3",
+        date_submitted: "2020-10-23T19:39:00",
+        date_reviewed: "2020-10-24",
+        status: "reviewed"
       }
     ]);
   });

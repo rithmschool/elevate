@@ -130,7 +130,7 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete");
   }
 
-  static async getDocuments(token) {
+  static async getUserDocuments(token) {
     let res = await this.request(`documents/manage`, { token });
     return res;
   }

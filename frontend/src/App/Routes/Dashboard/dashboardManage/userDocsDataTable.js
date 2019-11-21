@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
 import "./userDocsDataTable.css";
+import { Table } from "react-bootstrap";
 
 class UserDocsDataTable extends Component {
   renderUserDocsData() {
@@ -31,7 +31,7 @@ class UserDocsDataTable extends Component {
 
   render() {
     return (
-      <div className="Documents_table container">
+      <div className="Documents_table container-fluid">
         <h1>My Documents</h1>
         <Table hover bordered>
           <thead>

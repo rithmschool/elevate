@@ -20,7 +20,6 @@ class AdminNavbar extends React.Component {
           </Link>
         </p>
         <p>
-
           <Link id="users" className="admin-link" to="/dashboard/admin/users">
             Users
           </Link>

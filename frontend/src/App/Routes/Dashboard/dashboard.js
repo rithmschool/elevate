@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 import DashboardRoutes from "../dashboardRoutes";
-import DashboardManage from "./dashboardManage";
+import DashboardManage from "./dashboardManage/dashboardManage";
 import DashboardAppointments from "./dashboardAppointments";
 import DashboardTemplates from "./dashboardTemplates";
 import AdminPrivateRoute from "../adminPrivateRoute";
