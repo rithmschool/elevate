@@ -1,0 +1,149 @@
+.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.navigation {
+  .Nav_brand-name {
+    font-size: 1.5em;
+    font-family: "Exo 2", sans-serif;
+    color: #394557;
+    opacity: 0.65;
+    letter-spacing: 3px;
+  }
+
+  .Nav_brand-name:hover {
+    color: #394557;
+    opacity: 0.85;
+  }
+
+  .Nav_brand-name {
+    color: #6558f5;
+  }
+
+  ul.navbar-nav {
+    margin-bottom: -12px;
+  }
+  .Nav-link {
+    font-weight: bold;
+    font-size: 14px;
+    color: #394557;
+    padding: 20px 0px;
+    margin: 0px 30px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+  }
+
+  .Nav-link:hover {
+    opacity: 1;
+    color: #394557;
+  }
+
+  .Nav-link::before {
+    transition: 300ms;
+    height: 2px;
+    content: "";
+    position: absolute;
+    background-color: #394557;
+  }
+
+  .Nav-link-ltr::before {
+    width: 0%;
+    bottom: 1px;
+  }
+
+  .dropdown-link.bg-transparent.Menu-link.dropdown-item {
+    border: none;
+  }
+
+  .Nav-link-ltr:hover::before {
+    width: 100%;
+  }
+
+  a.dropdown-link.bg-transparent.Menu-link.dropdown-item.active {
+    color: black;
+  }
+
+  .Nav-icon {
+    font-weight: bold;
+    font-size: 14px;
+    color: #394557;
+    background-color: #dfe7ed;
+    border-radius: 50%;
+    padding: 10px 10px;
+    margin: 5px 25px;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .Menu-link:hover {
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 596px) {
+    .fa-user {
+      display: none;
+    }
+
+    .userMenu.is-open {
+      min-width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 990px) {
+    .navbar-nav.justify-content-center.navbar-div {
+      text-align: center;
+    }
+
+    .Nav-link-ltr:hover::before {
+      width: 10%;
+    }
+
+    a.dropdown-toggle.nav-link {
+      margin: 0px;
+      margin-right: 100vh;
+    }
+
+    div.dropdown-menu.show {
+      margin: 0px;
+      margin-top: -1px;
+      padding: 0px;
+      width: 50px;
+    }
+  }
+
+  li.list-group-item {
+    color: unset;
+    background-color: transparent;
+    border: none;
+  }
+
+  .dropdown-link {
+    color: unset;
+    background-color: transparent;
+    transition: all 100ms ease-in-out;
+  }
+
+  .dropdown-link:hover {
+    color: unset;
+    background-color: transparent;
+  }
+
+  .dropdown-toggle.nav-link {
+    margin-left: 320px;
+  }
+
+  .dropdown-menu.show {
+    margin-left: 290px;
+    margin-top: -1px;
+    padding: 0px;
+  }
+
+  .collapse.navbar-collapse.navbar-collapse.collapse.show {
+    width: 100%;
+  }
+
+  .dropdown-link {
+    border: 2px solid rgba(0, 0, 0, 0.502);
+  }
+}
