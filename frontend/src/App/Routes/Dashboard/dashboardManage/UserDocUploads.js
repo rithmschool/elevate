@@ -3,7 +3,7 @@ import { Form, Button, Alert, Card } from "react-bootstrap";
 import "./UserDocUploads.scss";
 import { UserContext } from "../../../../userContext";
 import axios from "axios";
-import ElevateApi from "../../../elevateApi";
+import ElevateApi from "../../../../elevateApi";
 
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
