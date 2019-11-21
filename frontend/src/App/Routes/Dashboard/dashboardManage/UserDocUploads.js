@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
-import ElevateApi from "../../../elevateApi";
 import "./UserDocUploads.scss";
+import { UserContext } from "../../../../userContext";
 import axios from "axios";
-import { UserContext } from "../../../userContext";
+import ElevateApi from "../../../../elevateApi";
 
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
@@ -15,7 +15,7 @@ class UserDocUploads extends Component {
     this.state = {
       file: null,
       uploaded: false,
-      drag: false, 
+      drag: false
     };
 
     this.handleUpload = this.handleUpload.bind(this);
@@ -111,18 +111,17 @@ class UserDocUploads extends Component {
     const formData = new FormData();
     formData.append("file", this.state.file);
 
-    const uploadRes = await axios.post(`${BASE_URL}/upload`, formData, {})
+    const uploadRes = await axios.post(`${BASE_URL}/upload`, formData, {});
 
-    if (uploadRes.statusText === 'OK') {
-      console.log(uploadRes.statusText)
+    if (uploadRes.statusText === "OK") {
+      console.log(uploadRes.statusText);
     } else {
       // TODO We need error hanling for this case
-      console.log('there was an error uploading the file')
+      console.log("there was an error uploading the file");
     }
 
     // This section is for sending to DB
     const token = localStorage.getItem("token");
-
 
     const sendToDb = {
       _token: token,
@@ -140,8 +139,13 @@ class UserDocUploads extends Component {
       this.setState({ uploaded: true });
     } else {
       // TODO We need error hanling for this case
-      console.log('there was an error uploading the file')
+      console.log("there was an error uploading the file");
     }
+
+    await this.props.handleSubmit(this.state.file);
+    this.setState({
+      file: null
+    });
   }
 
   render() {
@@ -184,7 +188,7 @@ class UserDocUploads extends Component {
                 </Button>
               </Form>
               <div>
-                {this.state.uploaded ? (
+                {this.props.uploaded ? (
                   <div className="row justify-content-md-center">
                     <Alert
                       variant="success"

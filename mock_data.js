@@ -20,7 +20,7 @@ const USERS = [
     hire_date: "2018-10-23T07:00:00.000Z",
     needs: "needs2",
     goals: "goals2"
-  },
+  }
 ];
 
 const QUESTIONS = [
@@ -28,31 +28,53 @@ const QUESTIONS = [
     question: "question1",
     response: "",
     resolved: false,
-    created_date: "2019-09-01T19:28:53.468Z",
+    created_date: "2019-09-01T19:28:53.468Z"
   },
   {
     question: "question2",
     response: "response2",
     resolved: true,
-    created_date: "2019-09-01T19:28:33.468Z",
-  },
+    created_date: "2019-09-01T19:28:33.468Z"
+  }
 ];
 
 const SALARIES = [
   {
-    salary: 1.00,
-    bonus: 1.00,
-    equity: 1.00,
-    created_at: "2019-10-01T19:28:24.468Z",
+    salary: 1.0,
+    bonus: 1.0,
+    equity: 1.0,
+    created_at: "2019-10-01T19:28:24.468Z"
   },
   {
-    salary: 2.00,
-    bonus: 2.00,
-    equity: 2.00,
-    created_at: "2019-05-01T19:28:12.468Z",
-  },
+    salary: 2.0,
+    bonus: 2.0,
+    equity: 2.0,
+    created_at: "2019-05-01T19:28:12.468Z"
+  }
 ];
 
+const DOCUMENTS = [
+  {
+    id: 1,
+    user_id: 1,
+    title: "contract.pdf",
+    counterparty: "Bob Bobson",
+    date_submitted: "2010-08-05",
+    date_reviewed: null,
+    status: "unreviewed",
+    url: "theinternet.com"
+  },
+  {
+    id: 2,
+    user_id: 1,
+    title: "contract2.pdf",
+    counterparty: "Rob Robson",
+    date_submitted: "2019-08-05",
+    date_reviewed: null,
+    status: "unreviewed",
+    url: "theinternet2.com"
+  }
+];
 
 module.exports = {
   USERS,
@@ -61,4 +83,5 @@ module.exports = {
   QUESTION: QUESTIONS[0],
   SALARIES,
   SALARIE: SALARIES[0],
+  DOCUMENTS
 };

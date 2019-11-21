@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Form } from "react-bootstrap";
 
 import ElevateApi from "../../../../../elevateApi";
 
@@ -20,7 +20,7 @@ class newsletterSignUpForm extends React.Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    const newsletter = await ElevateApi.getNewsletterSignUp(this.state);
+    const newsletter = await ElevateApi.getNewsletter(this.state);
     if (!newsletter.email) {
       await ElevateApi.postNewsletterSignUp(this.state);
       this.setState({
@@ -42,11 +42,11 @@ class newsletterSignUpForm extends React.Component {
       <div>
         <h6>Stay up to date with Brella</h6>
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label for="email" hidden>
+          <Form.Group>
+            <Form.Label htmlFor="email" hidden>
               newsletter email
-            </Label>
-            <Input
+            </Form.Label>
+            <Form.Control
               type="text"
               id="email"
               name="email"
@@ -54,7 +54,7 @@ class newsletterSignUpForm extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-          </FormGroup>
+          </Form.Group>
         </Form>
       </div>
     );

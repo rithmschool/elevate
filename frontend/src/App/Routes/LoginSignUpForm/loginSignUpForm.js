@@ -263,6 +263,7 @@ class LoginSignUpForm extends React.Component {
     return (
       <div
         className="
+          LoginSignUpForm_container
           container
           col-md-6
           offset-md-3

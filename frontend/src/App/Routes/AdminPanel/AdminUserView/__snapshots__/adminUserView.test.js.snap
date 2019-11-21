@@ -16,6 +16,7 @@ exports[`AdminUserView matches snapshot 1`] = `
       },
     }
   }
+  updateUserState={[MockFunction]}
 >
   <div
     className="adminUserView_div"

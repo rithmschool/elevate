@@ -3,7 +3,7 @@
 exports[`LoginSignUpForm matches snapshot 1`] = `
 <LoginSignUpForm>
   <div
-    className=" container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border  rounded  shadow"
+    className=" LoginSignUpForm_container container col-md-6 offset-md-3 col-lg-4 offset-lg-4 border  rounded  shadow"
   >
     <div
       className="LoginSignUpForm_form-inside-container mt-5"
