@@ -55,7 +55,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
   // create and login a user, get a token, store the user ID and token
   try {
     // bcrypt set lower for testing purpose
-    const hashedPassword = await bcrypt.hash(inputAdminPassword, 5);
+    const hashedAdminPassword = await bcrypt.hash(inputAdminPassword, 5);
 
     // create new user with hashed password
     await db.query(
@@ -63,7 +63,7 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
                   (email, password, reset_password_token, reset_password_expires, is_admin) 
                   VALUES ($1, $2, $3, $4, $5)
                   RETURNING id, is_admin`,
-      [inputEmail, hashedPassword, passwordToken, expireTime, true]
+      [inputAdminEmail, hashedAdminPassword, passwordToken, expireTime, true]
     );
 
     const response = await request(app)
@@ -72,7 +72,6 @@ async function beforeEachHook(TEST_DATA, TEST_ADMIN_DATA) {
         email: inputAdminEmail,
         password: inputAdminPassword
       });
-    console.log("TOKEN!", response.body);
     TEST_ADMIN_DATA.userToken = response.body.token;
     TEST_ADMIN_DATA.currentId = jwt.decode(TEST_ADMIN_DATA.userToken).id;
   } catch (error) {
@@ -84,6 +83,8 @@ async function afterEachHook() {
   try {
     await db.query("DELETE FROM users");
     await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`);
+    await db.query("DELETE FROM documents");
+    await db.query(`ALTER SEQUENCE documents_id_seq RESTART WITH 1;`);
   } catch (error) {
     console.error(error);
   }

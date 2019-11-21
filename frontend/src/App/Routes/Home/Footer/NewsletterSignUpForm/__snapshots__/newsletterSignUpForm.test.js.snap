@@ -8,41 +8,32 @@ exports[`NewsletterSignUpForm matches snapshot 1`] = `
         Stay up to date with Brella
       </h6>
       <Form
+        inline={false}
         onSubmit={[Function]}
-        tag="form"
       >
         <form
           className=""
           onSubmit={[Function]}
         >
-          <FormGroup
-            tag="div"
-          >
+          <FormGroup>
             <div
               className="form-group"
             >
-              <Label
-                for="email"
+              <FormLabel
+                column={false}
                 hidden={true}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
+                htmlFor="email"
+                srOnly={false}
               >
                 <label
-                  className="sr-only"
+                  className="form-label"
+                  hidden={true}
                   htmlFor="email"
                 >
                   newsletter email
                 </label>
-              </Label>
-              <Input
+              </FormLabel>
+              <FormControl
                 id="email"
                 name="email"
                 onChange={[Function]}
@@ -59,7 +50,7 @@ exports[`NewsletterSignUpForm matches snapshot 1`] = `
                   type="text"
                   value=""
                 />
-              </Input>
+              </FormControl>
             </div>
           </FormGroup>
         </form>
