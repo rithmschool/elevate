@@ -3,6 +3,7 @@ node_modules
 package-lock.json
 coverage
 package-lock.json
+.env
 
 ### Vim ###
 # Swap
@@ -24,3 +25,4 @@ tags
 # Persistent undo
 [._]*.un~
 
+.env

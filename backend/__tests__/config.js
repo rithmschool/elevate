@@ -83,6 +83,8 @@ async function afterEachHook() {
   try {
     await db.query("DELETE FROM users");
     await db.query(`ALTER SEQUENCE users_id_seq RESTART WITH 1;`);
+    await db.query("DELETE FROM documents");
+    await db.query(`ALTER SEQUENCE documents_id_seq RESTART WITH 1;`);
   } catch (error) {
     console.error(error);
   }
