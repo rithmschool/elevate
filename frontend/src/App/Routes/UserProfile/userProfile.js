@@ -59,8 +59,8 @@ class UserProfile extends React.Component {
   }
 
   async handleSalaryUpdate(data) {
-    const userId = this.context.userId
-    data = {...data, userId};
+    const userId = this.context.userId;
+    data = { ...data, userId };
 
     try {
       await ElevateApi.postSalary(data);
