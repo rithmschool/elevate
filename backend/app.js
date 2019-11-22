@@ -13,7 +13,10 @@ const questionsRoutes = require("./routes/questions");
 const appointmentsRoutes = require("./routes/appointments");
 const calendlyWebhook = require("./routes/calendlyWebhook");
 const passwordResetRoutes = require("./routes/resetPassword");
+const documentRoutes = require("./routes/documents");
+const docUploadsRoutes = require("./routes/docUploads");
 const newsletterRoutes = require("./routes/newsletter");
+const adminRoutes = require("./routes/admin");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +29,10 @@ app.use("/questions", questionsRoutes);
 app.use("/appointments", appointmentsRoutes);
 app.use("/webhook", calendlyWebhook);
 app.use("/password", passwordResetRoutes);
+app.use("/documents", documentRoutes);
+app.use("/upload", docUploadsRoutes);
 app.use("/newsletter", newsletterRoutes);
+app.use("/admin", adminRoutes);
 
 /** 404 handler */
 

@@ -1,14 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./adminNavbar.css";
 
-import PanelToggleBtn from "../PanelToggleBtn/panelToggleBtn";
-
 class AdminNavbar extends React.Component {
-  handleChangeView = evt => {
-    evt.preventDefault();
-    this.props.changeView(evt.target.id);
-  };
-
   toggle = () => {
     this.props.toggleSidebar();
   };
@@ -16,17 +10,46 @@ class AdminNavbar extends React.Component {
   render() {
     let view = this.props.position ? (
       <div className="adminNavbar">
-        <p id="users" onClick={this.handleChangeView}>
-          Users
+        <p>
+          <Link
+            id="documents"
+            className="admin-link"
+            to="/dashboard/admin/documents"
+          >
+            Documents
+          </Link>
         </p>
-        <p id="questions" onClick={this.handleChangeView}>
-          Questions
+        <p>
+          <Link id="users" className="admin-link" to="/dashboard/admin/users">
+            Users
+          </Link>
         </p>
-        <p id="invoices" onClick={this.handleChangeView}>
-          Invoices
+        <p>
+          <Link
+            id="questions"
+            className="admin-link"
+            to="/dashboard/admin/questions"
+          >
+            Questions
+          </Link>
         </p>
-        <p id="calendar" onClick={this.handleChangeView}>
-          Calendar
+        <p>
+          <Link
+            id="invoices"
+            className="admin-link"
+            to="/dashboard/admin/invoices"
+          >
+            Invoices
+          </Link>
+        </p>
+        <p>
+          <Link
+            id="calendar"
+            className="admin-link"
+            to="/dashboard/admin/calendar"
+          >
+            Calendar
+          </Link>
         </p>
       </div>
     ) : (
