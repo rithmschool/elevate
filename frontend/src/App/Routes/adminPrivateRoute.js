@@ -7,7 +7,7 @@ class AdminPrivateRoute extends Component {
 
   render() {
     if (!this.context || !this.context.is_admin) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/dashboard" />;
     }
 
     return (

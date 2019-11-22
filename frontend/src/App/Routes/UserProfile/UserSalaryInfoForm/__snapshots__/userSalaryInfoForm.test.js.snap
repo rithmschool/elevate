@@ -8,50 +8,61 @@ exports[`UserSalaryInfoForm matches snapshot 1`] = `
   user_id={1}
 >
   <div
-    className="EditPUserForm container border rounded"
+    className="user-salary-form container border shadow rounded mb-5"
   >
-    <div
-      className="form-inside-container mt-5"
+    <Form
+      className="mt-5"
+      inline={false}
+      onSubmit={[Function]}
     >
-      <Form
-        inline={false}
+      <form
+        className="mt-5"
         onSubmit={[Function]}
       >
-        <form
-          className=""
-          onSubmit={[Function]}
+        <div
+          className="form-styles_flex-space-between"
         >
+          <h3>
+            Salary info
+          </h3>
+          <i
+            className="m-3 fas fa-edit fa-1x"
+            data-testid="turnEditOn"
+            onClick={[Function]}
+          />
+        </div>
+        <FormGroup>
           <div
-            className="form-styles_flex-space-between"
+            className="form-group"
           >
-            <h3>
-              Salary info
-            </h3>
-            <i
-              className="m-3 fas fa-edit fa-1x"
-              data-testid="turnEditOn"
-              onClick={[Function]}
-            />
-          </div>
-          <FormGroup>
-            <div
-              className="form-group"
+            <FormLabel
+              column={false}
+              srOnly={false}
             >
-              <span>
-                Salary
-              </span>
-              <FormControl
-                data-testid="salary"
-                disabled={true}
-                id="EditUser-salary"
-                name="salary"
-                onChange={[Function]}
-                step="5000"
-                type="number"
-                value={50000}
+              <label
+                className="form-label"
               >
-                <input
-                  className="form-control"
+                Salary
+              </label>
+            </FormLabel>
+            <InputGroup>
+              <div
+                className="input-group"
+              >
+                <InputGroupPrepend>
+                  <div
+                    className="input-group-prepend"
+                  >
+                    <InputGroupText>
+                      <span
+                        className="input-group-text"
+                      >
+                        $
+                      </span>
+                    </InputGroupText>
+                  </div>
+                </InputGroupPrepend>
+                <FormControl
                   data-testid="salary"
                   disabled={true}
                   id="EditUser-salary"
@@ -60,18 +71,49 @@ exports[`UserSalaryInfoForm matches snapshot 1`] = `
                   step="5000"
                   type="number"
                   value={50000}
-                />
-              </FormControl>
-            </div>
-          </FormGroup>
-          <FormGroup>
-            <div
-              className="form-group"
+                >
+                  <input
+                    className="form-control"
+                    data-testid="salary"
+                    disabled={true}
+                    id="EditUser-salary"
+                    name="salary"
+                    onChange={[Function]}
+                    step="5000"
+                    type="number"
+                    value={50000}
+                  />
+                </FormControl>
+              </div>
+            </InputGroup>
+          </div>
+        </FormGroup>
+        <FormGroup>
+          <div
+            className="form-group"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
             >
-              <span>
+              <label
+                className="form-label"
+              >
                 Equity
-              </span>
-              <FormControl
+              </label>
+            </FormLabel>
+            <FormControl
+              data-testid="equity"
+              disabled={true}
+              id="EditUser-equity"
+              name="equity"
+              onChange={[Function]}
+              step="0.001"
+              type="number"
+              value={0.1}
+            >
+              <input
+                className="form-control"
                 data-testid="equity"
                 disabled={true}
                 id="EditUser-equity"
@@ -80,40 +122,42 @@ exports[`UserSalaryInfoForm matches snapshot 1`] = `
                 step="0.001"
                 type="number"
                 value={0.1}
-              >
-                <input
-                  className="form-control"
-                  data-testid="equity"
-                  disabled={true}
-                  id="EditUser-equity"
-                  name="equity"
-                  onChange={[Function]}
-                  step="0.001"
-                  type="number"
-                  value={0.1}
-                />
-              </FormControl>
-            </div>
-          </FormGroup>
-          <FormGroup>
-            <div
-              className="form-group"
+              />
+            </FormControl>
+          </div>
+        </FormGroup>
+        <FormGroup>
+          <div
+            className="form-group"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
             >
-              <span>
-                Bonus
-              </span>
-              <FormControl
-                data-testid="bonus"
-                disabled={true}
-                id="EditUser-bonus"
-                name="bonus"
-                onChange={[Function]}
-                step="500"
-                type="number"
-                value={100}
+              <label
+                className="form-label"
               >
-                <input
-                  className="form-control"
+                Bonus
+              </label>
+            </FormLabel>
+            <InputGroup>
+              <div
+                className="input-group"
+              >
+                <InputGroupPrepend>
+                  <div
+                    className="input-group-prepend"
+                  >
+                    <InputGroupText>
+                      <span
+                        className="input-group-text"
+                      >
+                        $
+                      </span>
+                    </InputGroupText>
+                  </div>
+                </InputGroupPrepend>
+                <FormControl
                   data-testid="bonus"
                   disabled={true}
                   id="EditUser-bonus"
@@ -122,16 +166,28 @@ exports[`UserSalaryInfoForm matches snapshot 1`] = `
                   step="500"
                   type="number"
                   value={100}
-                />
-              </FormControl>
-            </div>
-          </FormGroup>
-          <div
-            className="row justify-content-center"
-          />
-        </form>
-      </Form>
-    </div>
+                >
+                  <input
+                    className="form-control"
+                    data-testid="bonus"
+                    disabled={true}
+                    id="EditUser-bonus"
+                    name="bonus"
+                    onChange={[Function]}
+                    step="500"
+                    type="number"
+                    value={100}
+                  />
+                </FormControl>
+              </div>
+            </InputGroup>
+          </div>
+        </FormGroup>
+        <div
+          className="row justify-content-center"
+        />
+      </form>
+    </Form>
   </div>
 </UserSalaryInfoForm>
 `;

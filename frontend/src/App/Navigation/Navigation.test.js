@@ -47,35 +47,6 @@ describe("Nav Bar Testing Without Logged In User", function() {
     expect(wrapper.find(Home)).toHaveLength(1);
   });
 
-  it("makes sure to run componentDidMount", function() {
-    const mockComponentDidMount = jest.spyOn(
-      Navigation.prototype,
-      "componentDidMount"
-    );
-    mount(
-      <MemoryRouter>
-        <Navigation />
-      </MemoryRouter>
-    );
-    expect(mockComponentDidMount).toHaveBeenCalled();
-    expect(mockComponentDidMount).toHaveBeenCalledTimes(1);
-  });
-
-  it("runs componentDidUnmount when unmounted", function() {
-    const mockComponentDidUnmount = jest.spyOn(
-      Navigation.prototype,
-      "componentWillUnmount"
-    );
-    const wrapper = mount(
-      <MemoryRouter>
-        <Navigation />
-      </MemoryRouter>
-    );
-    wrapper.unmount();
-    expect(mockComponentDidUnmount).toHaveBeenCalled();
-    expect(mockComponentDidUnmount).toHaveBeenCalledTimes(1);
-  });
-
   it("expect four links on unlogged in Nav Bar", function() {
     let wrapper = mount(
       <MemoryRouter>
