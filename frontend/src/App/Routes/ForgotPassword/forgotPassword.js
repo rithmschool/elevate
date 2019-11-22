@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 
-import "./forgotPassword.css";
 import ElevateApi from "../../../elevateApi";
 import Alert from "../Alert/alert";
 import Spinner from "../../Spinner/spinner";
-import "./forgotPassword.css";
+import "./forgotPassword.scss";
 
 class ForgotPassword extends React.Component {
   constructor(props) {
