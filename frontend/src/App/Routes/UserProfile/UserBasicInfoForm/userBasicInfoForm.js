@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import moment from "moment";
 import "../FormStyles.css";
-import "./userBasicInfoForm.css";
+import "./userBasicInfoForm.scss";
 
 /** Update user basic info */
 function UserBasicInfoForm(props) {
@@ -14,110 +14,114 @@ function UserBasicInfoForm(props) {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
-    <div className={`container borderrounded shadow`}>
-      <div className="form-inside-container mt-5">
-        <Form onSubmit={handleSubmit}>
-          <div className="form-styles_flex-space-between">
-            <h3>Basic info</h3>
+    <div
+      className={`user-basic-info-form container border rounded shadow pt-5`}
+    >
+      <Form onSubmit={handleSubmit}>
+        <div className="form-styles_flex-space-between">
+          <h3>Basic info</h3>
 
-            {!isEdit && (
-              <i
-                data-testid="turnEditOn"
-                className="m-3 fas fa-edit fa-1x"
-                onClick={() => setIsEdit(true)}
-              ></i>
-            )}
-          </div>
+          {!isEdit && (
+            <i
+              data-testid="turnEditOn"
+              className="m-3 fas fa-edit fa-1x"
+              onClick={() => setIsEdit(true)}
+            ></i>
+          )}
+        </div>
 
-          <Form.Group>
-            <span>First name</span>
+        <Form.Group>
+          <Form.Label>First name</Form.Label>
 
-            <Form.Control
-              onChange={e => setFirstName(e.target.value)}
-              id="EditUser-first_name"
-              data-testid="firstName"
-              name="first_name"
-              type="text"
-              disabled={!isEdit}
-              value={first_name}
-            />
-          </Form.Group>
+          <Form.Control
+            onChange={e => setFirstName(e.target.value)}
+            id="EditUser-first_name"
+            data-testid="firstName"
+            name="first_name"
+            type="text"
+            disabled={!isEdit}
+            value={first_name}
+          />
+        </Form.Group>
 
-          <Form.Group>
-            <span>Last name</span>
+        <Form.Group>
+          <Form.Label>Last name</Form.Label>
 
-            <Form.Control
-              onChange={e => setLastName(e.target.value)}
-              id="EditUser-last_name"
-              data-testid="lastName"
-              name="last_name"
-              type="text"
-              disabled={!isEdit}
-              value={last_name}
-            />
-          </Form.Group>
+          <Form.Control
+            onChange={e => setLastName(e.target.value)}
+            id="EditUser-last_name"
+            data-testid="lastName"
+            name="last_name"
+            type="text"
+            disabled={!isEdit}
+            value={last_name}
+          />
+        </Form.Group>
 
-          <Form.Group>
-            <span>Email</span>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
 
-            <Form.Control
-              onChange={e => setEmail(e.target.value)}
-              id="EditUser-email"
-              data-testid="email"
-              name="email"
-              type="text"
-              disabled={!isEdit}
-              value={email}
-            />
-          </Form.Group>
+          <Form.Control
+            onChange={e => setEmail(e.target.value)}
+            id="EditUser-email"
+            data-testid="email"
+            name="email"
+            type="text"
+            disabled={!isEdit}
+            value={email}
+          />
+        </Form.Group>
 
-          <Form.Group>
-            <span>Current company</span>
+        <Form.Group>
+          <Form.Label>Current company</Form.Label>
 
-            <Form.Control
-              onChange={e => setCurrentCompany(e.target.value)}
-              id="EditUser-current_company"
-              data-testid="currentCompany"
-              name="current_company"
-              type="text"
-              disabled={!isEdit}
-              value={current_company}
-            />
-          </Form.Group>
+          <Form.Control
+            onChange={e => setCurrentCompany(e.target.value)}
+            id="EditUser-current_company"
+            data-testid="currentCompany"
+            name="current_company"
+            type="text"
+            disabled={!isEdit}
+            value={current_company}
+          />
+        </Form.Group>
 
-          <Form.Group>
-            <span>Hire date</span>
+        <Form.Group>
+          <Form.Label>Hire date</Form.Label>
 
-            <Form.Control
-              onChange={e => setHireDate(e.target.value)}
-              id="EditUser-hire_date"
-              data-testid="hireDate"
-              name="hire_date"
-              type="date"
-              disabled={!isEdit}
-              value={formatHireDate() || ""}
-            />
-          </Form.Group>
+          <Form.Control
+            onChange={e => setHireDate(e.target.value)}
+            id="EditUser-hire_date"
+            data-testid="hireDate"
+            name="hire_date"
+            type="date"
+            disabled={!isEdit}
+            value={formatHireDate() || ""}
+          />
+        </Form.Group>
 
-          <div className="row justify-content-center">
-            {isEdit && (
-              <div>
-                <Button className="login-submit mr-3 ml-3" type="submit">
-                  Submit
-                </Button>
+        <div className="row justify-content-center">
+          {isEdit && (
+            <div>
+              <Button
+                className="login-submit mr-3 ml-3"
+                id="userInfoBtn"
+                type="submit"
+              >
+                Submit
+              </Button>
 
-                <h6
-                  className="mr-3 ml-3 form-styles_cancel"
-                  data-testid="cancel"
-                  onClick={() => setIsEdit(false)}
-                >
-                  Cancel
-                </h6>
-              </div>
-            )}
-          </div>
-        </Form>
-      </div>
+              <h6
+                className="mr-3 ml-3 form-styles_cancel"
+                data-testid="cancel"
+                onClick={() => setIsEdit(false)}
+              >
+                Cancel
+              </h6>
+            </div>
+          )}
+        </div>
+      </Form>
     </div>
   );
 
