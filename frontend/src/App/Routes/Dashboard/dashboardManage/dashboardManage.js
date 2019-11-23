@@ -6,6 +6,7 @@ import UserDocUploads from "./UserDocUploads";
 import { UserContext } from "../../../../userContext";
 import { Card } from "react-bootstrap";
 import axios from "axios";
+
 const BASE_URL = "http://localhost:3001";
 const BUCKET = process.env.S3_BUCKET;
 const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
@@ -14,8 +15,6 @@ class DashboardManage extends Component {
   constructor(props) {
     super(props);
     this.state = { documents: [], files: [], loading: true, uploaded: false };
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   static contextType = UserContext;
@@ -24,7 +23,7 @@ class DashboardManage extends Component {
     this.setState({ files });
   };
 
-  async handleSubmit(file) {
+  handleAWSUpload = async file => {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -33,11 +32,12 @@ class DashboardManage extends Component {
     if (uploadRes.statusText === "OK") {
       console.log(uploadRes.statusText);
     } else {
-      // TODO We need error hanling for this case
-      console.log("there was an error uploading the file");
+      // TODO We need error handling for this case
+      console.log("There was an error uploading the file");
     }
+  };
 
-    // This section is for sending to DB
+  handleLocalDBUpload = async file => {
     const token = localStorage.getItem("token");
 
     const sendToDb = {
@@ -55,11 +55,16 @@ class DashboardManage extends Component {
     if (res.docs) {
       this.setState({ uploaded: true });
     } else {
-      // TODO We need error hanling for this case
+      // TODO We need error handling for this case
       console.log("there was an error uploading the file");
     }
+  };
+
+  handleDocumentSubmission = async file => {
+    await this.handleAWSUpload(file);
+    await this.handleLocalDBUpload(file);
     await this.getData();
-  }
+  };
 
   async getData() {
     try {
@@ -77,14 +82,13 @@ class DashboardManage extends Component {
 
   render() {
     const { documents } = this.state;
-    if (this.state.loading) {
-      return <Spinner />;
-    }
-    return (
+    return this.state.loading ? (
+      <Spinner />
+    ) : (
       <div className="UserDocsDataTable container-fluid">
         <UserDocUploads
           handleDrop={this.handleDrop}
-          handleSubmit={this.handleSubmit}
+          handleDocumentSubmission={this.handleDocumentSubmission}
           uploaded={this.state.uploaded}
         />
         <Card className="card p-4">

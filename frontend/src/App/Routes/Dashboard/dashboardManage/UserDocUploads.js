@@ -107,42 +107,7 @@ class UserDocUploads extends Component {
   //handle submit upload to AWS and send to db
   async handleSubmit(e) {
     e.preventDefault();
-    // This section is for sending to AWS
-    const formData = new FormData();
-    formData.append("file", this.state.file);
-
-    const uploadRes = await axios.post(`${BASE_URL}/upload`, formData, {});
-
-    if (uploadRes.statusText === "OK") {
-      console.log(uploadRes.statusText);
-    } else {
-      // TODO We need error hanling for this case
-      console.log("there was an error uploading the file");
-    }
-
-    // This section is for sending to DB
-    const token = localStorage.getItem("token");
-
-    const sendToDb = {
-      _token: token,
-      title: this.state.file.name,
-      counterparty: "",
-      status: "unreviewed",
-      date_reviewed: null,
-      url: BASE_AWS_URL + this.state.file.name,
-      user_id: this.context.userId
-    };
-
-    let res = await ElevateApi.addToDB(sendToDb);
-
-    if (res.docs) {
-      this.setState({ uploaded: true });
-    } else {
-      // TODO We need error hanling for this case
-      console.log("there was an error uploading the file");
-    }
-
-    await this.props.handleSubmit(this.state.file);
+    await this.props.handleDocumentSubmission(this.state.file);
     this.setState({
       file: null
     });
@@ -179,21 +144,14 @@ class UserDocUploads extends Component {
                   <input type="file" onChange={this.handleUpload} />
                   Upload documents
                 </label>
-                <Button
-                  type="submit"
-                  className="btn btn-primary mt-2"
-                  disabled={disabledBtn}
-                >
+                <Button type="submit" className="btn btn-primary mt-2" disabled={disabledBtn}>
                   Submit
                 </Button>
               </Form>
               <div>
                 {this.props.uploaded ? (
                   <div className="row justify-content-md-center">
-                    <Alert
-                      variant="success"
-                      className="col-md-6 col-md-offset-3 mt-4"
-                    >
+                    <Alert variant="success" className="col-md-6 col-md-offset-3 mt-4">
                       File uploaded successfully
                     </Alert>
                   </div>
