@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import "./UserDocUploads.scss";
 import { UserContext } from "../../../../userContext";
-import axios from "axios";
-import ElevateApi from "../../../../elevateApi";
-
-const BASE_URL = "http://localhost:3001";
-const BUCKET = process.env.S3_BUCKET;
-const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
 
 class UserDocUploads extends Component {
   constructor(props) {
