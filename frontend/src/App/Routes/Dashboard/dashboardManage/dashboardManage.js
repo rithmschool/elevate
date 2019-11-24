@@ -63,10 +63,10 @@ class DashboardManage extends Component {
   handleDocumentSubmission = async file => {
     await this.handleAWSUpload(file);
     await this.handleLocalDBUpload(file);
-    await this.getData();
+    await this.getDocuments();
   };
 
-  async getData() {
+  async getDocuments() {
     try {
       let _token = localStorage.token;
       let { documents } = await ElevateApi.getUserDocuments(_token);
@@ -77,7 +77,7 @@ class DashboardManage extends Component {
   }
 
   async componentDidMount() {
-    await this.getData();
+    await this.getDocuments();
   }
 
   render() {
