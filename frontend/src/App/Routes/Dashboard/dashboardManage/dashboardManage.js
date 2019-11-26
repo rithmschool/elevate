@@ -8,8 +8,8 @@ import { Card } from "react-bootstrap";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3001";
-const BUCKET = process.env.S3_BUCKET;
-const BASE_AWS_URL = `https://${BUCKET}.s3-us-west-1.amazonaws.com/`;
+const BUCKET = process.env.REACT_APP_S3_BUCKET;
+const BASE_AWS_URL = `https://${BUCKET}.s3.amazonaws.com/`;
 
 class DashboardManage extends Component {
   constructor(props) {
