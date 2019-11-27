@@ -1,36 +1,8 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import "./userDocsDataTable.css";
+import { Table } from "react-bootstrap";
 
 class UserDocsDataTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userDocuments: [
-        {
-          id: "1",
-          document: "Tinkerbell's assistant",
-          counterParty: "Wendy",
-          status: "received",
-          dateReviewed: "-"
-        },
-        {
-          id: "2",
-          document: "Capain Hook's assistant",
-          counterParty: "Peter",
-          status: "pending",
-          dateReviewed: "-"
-        },
-        {
-          id: "3",
-          document: "Peter Pan's assistant",
-          counterParty: "John",
-          status: "completed",
-          dateReviewed: "01/01/2020"
-        }
-      ]
-    };
-  }
-
   renderUserDocsData() {
     let { documents } = this.props;
     return documents.map(doc => {
@@ -42,7 +14,8 @@ class UserDocsDataTable extends Component {
           </th>
           <td>{counterparty}</td>
           <td>{status}</td>
-          <td>{dateReviewed}</td>
+          <td>{date_submitted}</td>
+          <td>{date_reviewed}</td>
         </tr>
       );
     });
@@ -50,18 +23,19 @@ class UserDocsDataTable extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="Documents_table container-fluid">
         <h1>My Documents</h1>
-        <Table striped bordered>
+        <Table hover bordered>
           <thead>
             <tr>
               <th>Document</th>
               <th>Counterparty</th>
               <th>Status</th>
+              <th>Date Submitted</th>
               <th>Date Reviewed</th>
             </tr>
           </thead>
-          <tbody>{this.renderUserDocsData()}</tbody>
+          {<tbody>{this.renderUserDocsData()}</tbody>}
         </Table>
       </div>
     );
