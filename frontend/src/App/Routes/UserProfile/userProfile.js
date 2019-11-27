@@ -58,45 +58,27 @@ class UserProfile extends React.Component {
     }
   }
 
-  async handleSalaryUpdate(salary) {
-    if (!this.state.hasSalaryRecord) {
-      try {
-        await ElevateApi.postSalary(salary);
-        this.setState(
-          {
-            errors: [],
-            saveConfirmed: true,
-            isEdit: false
-          },
-          () => {
-            setTimeout(
-              () => this.setState({ saveConfirmed: false }),
-              MESSAGE_SHOW_PERIOD_IN_MSEC
-            );
-          }
-        ); // remove status message after setTimeout
-      } catch (errors) {
-        this.setState({ errors });
-      }
-    } else {
-      try {
-        await ElevateApi.updateSalary(this.context.userId, salary);
-        this.setState(
-          {
-            errors: [],
-            saveConfirmed: true,
-            isEdit: false
-          },
-          () => {
-            setTimeout(
-              () => this.setState({ saveConfirmed: false }),
-              MESSAGE_SHOW_PERIOD_IN_MSEC
-            );
-          }
-        ); // remove status message after setTimeout
-      } catch (errors) {
-        this.setState({ errors });
-      }
+  async handleSalaryUpdate(data) {
+    const userId = this.context.userId
+    data = {...data, userId};
+
+    try {
+      await ElevateApi.postSalary(data);
+      this.setState(
+        {
+          errors: [],
+          saveConfirmed: true,
+          isEdit: false
+        },
+        () => {
+          setTimeout(
+            () => this.setState({ saveConfirmed: false }),
+            MESSAGE_SHOW_PERIOD_IN_MSEC
+          );
+        }
+      ); // remove status message after setTimeout
+    } catch (errors) {
+      this.setState({ errors });
     }
   }
 

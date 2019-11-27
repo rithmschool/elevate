@@ -14,8 +14,7 @@ class UserDocsDataTable extends Component {
           </th>
           <td>{counterparty}</td>
           <td>{status}</td>
-          <td>{date_submitted}</td>
-          <td>{date_reviewed}</td>
+          <td>{dateReviewed}</td>
         </tr>
       );
     });
@@ -23,19 +22,18 @@ class UserDocsDataTable extends Component {
 
   render() {
     return (
-      <div className="Documents_table container-fluid">
+      <div className="container">
         <h1>My Documents</h1>
-        <Table hover bordered>
+        <Table striped bordered>
           <thead>
             <tr>
               <th>Document</th>
               <th>Counterparty</th>
               <th>Status</th>
-              <th>Date Submitted</th>
               <th>Date Reviewed</th>
             </tr>
           </thead>
-          {<tbody>{this.renderUserDocsData()}</tbody>}
+          <tbody>{this.renderUserDocsData()}</tbody>
         </Table>
       </div>
     );
