@@ -1,7 +1,10 @@
 const express = require("express");
-const router = new express.Router();
+const router = express.Router();
 const DocUploads = require("../models/docUpload");
 const { authRequired } = require("../middleware/auth");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const AWS = require("aws-sdk");
 
 router.post("/db", authRequired, async function(req, res, next) {
   try {
@@ -11,10 +14,6 @@ router.post("/db", authRequired, async function(req, res, next) {
     return next(err);
   }
 });
-
-var multer = require("multer");
-var multerS3 = require("multer-s3");
-const AWS = require("aws-sdk");
 
 // Enter copied or downloaded access ID and secret key here
 const ID = process.env.AWS_ACCESS_KEY_ID;
@@ -32,7 +31,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: BUCKET_NAME,
-    acl: "public-read",
+    acl: "private",
     key: function(req, file, cb) {
       cb(null, file.originalname);
     }
