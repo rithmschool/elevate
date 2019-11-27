@@ -32,15 +32,12 @@ class UserDocsDataTable extends Component {
   }
 
   renderUserDocsData() {
-    let { documents } = this.props;
-    return documents.map(doc => {
-      const { id, title, counterparty, status, url, date_reviewed, date_submitted } = doc;
+    return this.state.userDocuments.map(doc => {
+      const { id, document, counterParty, status, dateReviewed } = doc;
       return (
         <tr key={id}>
-          <th style={{ width: "450px" }} scope="row">
-            <a href={url}>{title}</a>
-          </th>
-          <td>{counterparty}</td>
+          <th scope="row">{document}</th>
+          <td>{counterParty}</td>
           <td>{status}</td>
           <td>{dateReviewed}</td>
         </tr>
