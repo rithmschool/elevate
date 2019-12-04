@@ -49,6 +49,12 @@ class ElevateApi {
     return res.user;
   }
 
+  static async getDocument(id) {
+    let res = await this.request(`documents/${id}`);
+
+    return res.doc;
+  }
+
   static async updateUser(userId, data) {
     let res = await this.request(`users/${userId}`, data, "patch");
     return res.user;
