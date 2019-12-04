@@ -10,7 +10,7 @@ class UserDocsDataTable extends Component {
       return (
         <tr key={id}>
           <th style={{ width: "450px" }} scope="row">
-            <a href={url} target="_blank">
+            <a href={url} target="_blank" rel="noopener noreferrer">
               {title}
             </a>
           </th>
