@@ -34,6 +34,9 @@ const upload = multer({
     acl: "private",
     key: function(req, file, cb) {
       cb(null, file.originalname);
+    },
+    contentType: function(req, file, cb) {
+      cb(null, "application/pdf");
     }
   })
 });
