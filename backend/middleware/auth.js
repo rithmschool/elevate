@@ -70,7 +70,11 @@ function ensureCorrectUser(req, res, next) {
 
     // changing params.id to integer to make correct comparison
     // checks if user is admin to allow admins to get individual user data
-    if (token.user_id === Number(req.params.id) || token.is_admin === true) {
+    if (
+      token.user_id === Number(req.params.id) ||
+      token.user_id === Number(req.query.id) ||
+      token.is_admin === true
+    ) {
       return next();
     }
     // throw an error, so we catch it in our catch,below
