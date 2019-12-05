@@ -65,10 +65,11 @@ class AdminPanel extends React.Component {
               exact
               path="/dashboard/admin/users"
               render={props => (
-                <AdminTable 
-                  tableType={'users'}
+                <AdminTable
+                  tableType={"users"}
                   tableObjs={this.state.users}
-                  {...props} />
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
@@ -76,9 +77,10 @@ class AdminPanel extends React.Component {
               path="/dashboard/admin/questions"
               render={props => (
                 <AdminTable
-                  tableType={'questions'}
+                  tableType={"questions"}
                   tableObjs={this.state.questions}
-                  {...props} />
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
@@ -86,9 +88,10 @@ class AdminPanel extends React.Component {
               path="/dashboard/admin/documents"
               render={props => (
                 <AdminTable
-                  tableType={'documents'}
+                  tableType={"documents"}
                   tableObjs={this.state.documents}
-                  {...props} />
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
@@ -104,9 +107,10 @@ class AdminPanel extends React.Component {
             <AdminPrivateRoute
               exact
               path="/dashboard/admin/documents/:docId"
-              render={props => (
-                <AdminDocView {...props} />
-              )}
+              render={props => <AdminDocView 
+                allDocs={this.state.documents} 
+                {...props} 
+              />}
             />
           </Switch>
         </div>
