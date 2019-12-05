@@ -107,10 +107,9 @@ class AdminPanel extends React.Component {
             <AdminPrivateRoute
               exact
               path="/dashboard/admin/documents/:docId"
-              render={props => <AdminDocView 
-                allDocs={this.state.documents} 
-                {...props} 
-              />}
+              render={props => (
+                <AdminDocView allDocs={this.state.documents} {...props} />
+              )}
             />
           </Switch>
         </div>
