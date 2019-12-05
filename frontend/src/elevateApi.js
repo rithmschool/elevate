@@ -43,17 +43,17 @@ class ElevateApi {
     return res.token;
   }
 
-  static async getUser(id) {
-    let res = await this.request(`users/${id}`);
+  static async getUser(userId) {
+    let res = await this.request(`users/${userId}`);
 
     return res.user;
   }
-
-  static async getDocument(id) {
+  // Currently unused route with no endpoint
+  /* static async getDocument(id) {
     let res = await this.request(`documents/${id}`);
 
     return res.doc;
-  }
+  } */
 
   static async updateUser(userId, data) {
     let res = await this.request(`users/${userId}`, data, "patch");
@@ -120,11 +120,7 @@ class ElevateApi {
   }
 
   static async updatePassword(id, resetPasswordToken, password) {
-    let res = await this.request(
-      `password/${id}`,
-      { resetPasswordToken, password },
-      "patch"
-    );
+    let res = await this.request(`password/${id}`, { resetPasswordToken, password }, "patch");
     return res;
   }
 

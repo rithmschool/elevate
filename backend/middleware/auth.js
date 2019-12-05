@@ -67,7 +67,10 @@ function ensureCorrectUser(req, res, next) {
     const tokenStr = req.body._token || req.query._token;
     let token = jwt.verify(tokenStr, SECRET);
     req.user_id = token.user_id;
-
+    /**
+     * TODO: This should check against the user_id provided on the JWT,
+     * not the params or query
+     */
     // changing params.id to integer to make correct comparison
     // checks if user is admin to allow admins to get individual user data
     if (
