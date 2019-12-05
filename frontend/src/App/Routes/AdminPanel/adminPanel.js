@@ -5,6 +5,7 @@ import { Switch } from "react-router-dom";
 import AdminPrivateRoute from "../adminPrivateRoute";
 import AdminNavbar from "./AdminNavbar/adminNavbar";
 import AdminUserView from "./AdminUserView/adminUserView";
+import AdminDocView from "./AdminDocView/adminDocView";
 import AdminTable from "./AdminTable/adminTable";
 import ElevateApi from "../../../elevateApi";
 import Spinner from "../../Spinner/spinner";
@@ -64,21 +65,33 @@ class AdminPanel extends React.Component {
               exact
               path="/dashboard/admin/users"
               render={props => (
-                <AdminTable tableObjs={this.state.users} {...props} />
+                <AdminTable
+                  tableType={"users"}
+                  tableObjs={this.state.users}
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
               exact
               path="/dashboard/admin/questions"
               render={props => (
-                <AdminTable tableObjs={this.state.questions} {...props} />
+                <AdminTable
+                  tableType={"questions"}
+                  tableObjs={this.state.questions}
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
               exact
               path="/dashboard/admin/documents"
               render={props => (
-                <AdminTable tableObjs={this.state.documents} {...props} />
+                <AdminTable
+                  tableType={"documents"}
+                  tableObjs={this.state.documents}
+                  {...props}
+                />
               )}
             />
             <AdminPrivateRoute
@@ -89,6 +102,13 @@ class AdminPanel extends React.Component {
                   updateUserState={this.updateUserState}
                   {...props}
                 />
+              )}
+            />
+            <AdminPrivateRoute
+              exact
+              path="/dashboard/admin/documents/:docId"
+              render={props => (
+                <AdminDocView allDocs={this.state.documents} {...props} />
               )}
             />
           </Switch>
