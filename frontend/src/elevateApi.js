@@ -132,8 +132,8 @@ class ElevateApi {
     await this.request(`users/${id}`, {}, "delete");
   }
 
-  static async getUserDocuments(token) {
-    let res = await this.request(`documents/manage`, { token });
+  static async getUserDocuments(userId) {
+    let res = await this.request(`documents/manage`, { id: userId });
     return res;
   }
 

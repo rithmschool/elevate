@@ -5,6 +5,7 @@ import Spinner from "../../../Spinner/spinner";
 import UserDocUploads from "./UserDocUploads";
 import { UserContext } from "../../../../userContext";
 import { Card } from "react-bootstrap";
+import { decode } from "jsonwebtoken";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3001";
@@ -69,7 +70,8 @@ class DashboardManage extends Component {
   async getDocuments() {
     try {
       let _token = localStorage.token;
-      let { documents } = await ElevateApi.getUserDocuments(_token);
+      let { user_id } = await decode(_token);
+      let { documents } = await ElevateApi.getUserDocuments(user_id);
       this.setState({ documents, loading: false });
     } catch (err) {
       this.setState({ loading: false });
