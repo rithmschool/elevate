@@ -1,17 +1,22 @@
-const { isEmail } = require("validator");
+const { isEmail, normalizeEmail, trim } = require("validator");
 
 function signupFormValidator(req, res, next) {
   const { first_name, last_name, email, password } = req.body;
 
+  // Trim whitespace on inputs except password
+  const email_sanitized = normalizeEmail(trim(email));
+  const first_name_sanitized = trim(first_name);
+  const last_name_sanitized = trim(last_name);
+
   let err = new Error();
   err.status = 400;
 
-  if (!first_name || !last_name || !email || !password) {
+  if (!first_name_sanitized || !last_name_sanitized || !email_sanitized || !password) {
     err.message = "Registration form is missing required fields";
     return next(err);
   }
 
-  if (!isEmail(email)) {
+  if (!isEmail(email_sanitized)) {
     err.message = "Invalid email";
     return next(err);
   }
@@ -21,6 +26,12 @@ function signupFormValidator(req, res, next) {
     return next(err);
   }
 
+  // TODO: Add password confirmation
+
+  /** Passes sanitized inputs to User.regsiter */
+  req.body.email = email_sanitized;
+  req.body.first_name = first_name_sanitized;
+  req.body.last_name = last_name_sanitized;
   next();
 }
 

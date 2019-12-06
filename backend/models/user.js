@@ -1,9 +1,8 @@
 const db = require("../db");
 const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
-const { normalizeEmail } = require("validator");
 
-/** reduce bcrypc rounds in test environemnt **/
+/** reduce bcrypt rounds in test environment **/
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 15;
 
 /** Related functions for users. */
@@ -97,37 +96,34 @@ class User {
     }
   }
 
-
   /** Register user with data. Returns new user data. */
-  /**NOTE: ask Alex what kind of initial sign up data from new user */
+  /** NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
-    // Normalize email for insert
-    const sanitizedEmail = normalizeEmail(data.email);
+    /* email, first_name, and last_name are already sanitized 
+    from helper/formValidation.js */
+    const { email, password, first_name, last_name } = data;
 
     // check if email is taken or not
-
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
             WHERE email = $1`,
-      [sanitizedEmail]
+      [email]
     );
 
     if (duplicateCheck.rows[0]) {
-      const err = new Error(
-        `There already exists a user with email '${data.email}`
-      );
+      const err = new Error(`There already exists a user with email '${email}`);
       err.status = 401;
       throw err;
     }
 
-    const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     const result = await db.query(
-      `INSERT INTO users 
-            (email, password, first_name, last_name) 
-            VALUES ($1, $2, $3, $4) 
+      `INSERT INTO users
+            (email, password, first_name, last_name)
+            VALUES ($1, $2, $3, $4)
             RETURNING id, is_admin, first_name, last_name`,
-      [data.email, hashedPassword, data.first_name, data.last_name]
+      [email, hashedPassword, first_name, last_name]
     );
     return result.rows[0];
   }
