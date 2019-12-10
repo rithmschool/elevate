@@ -1,7 +1,7 @@
 const { isEmail, normalizeEmail, trim } = require("validator");
 
 function signupFormValidator(req, res, next) {
-  const { first_name, last_name, email, password } = req.body;
+  const { first_name, last_name, email, password, passwordConfirm } = req.body;
 
   // Trim whitespace on inputs except password
   const email_sanitized = normalizeEmail(trim(email));
@@ -26,7 +26,10 @@ function signupFormValidator(req, res, next) {
     return next(err);
   }
 
-  // TODO: Add password confirmation
+  if (password !== passwordConfirm) {
+    err.message = "Passwords do not match";
+    return next(err);
+  }
 
   /** Passes sanitized inputs to User.regsiter */
   req.body.email = email_sanitized;
