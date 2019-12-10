@@ -31,7 +31,8 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   name="email"
                   onChange={[Function]}
                   placeholder="Email"
-                  type="text"
+                  required={true}
+                  type="email"
                   value=""
                 >
                   <input
@@ -40,7 +41,8 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                     name="email"
                     onChange={[Function]}
                     placeholder="Email"
-                    type="text"
+                    required={true}
+                    type="email"
                     value=""
                   />
                 </FormControl>
@@ -52,18 +54,22 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
               >
                 <FormControl
                   id="password"
+                  minLength={6}
                   name="password"
                   onChange={[Function]}
                   placeholder="Password"
+                  required={true}
                   type="password"
                   value=""
                 >
                   <input
                     className="form-control"
                     id="password"
+                    minLength={6}
                     name="password"
                     onChange={[Function]}
                     placeholder="Password"
+                    required={true}
                     type="password"
                     value=""
                   />
@@ -123,6 +129,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                   <i
                     className="fab fa-google"
                   />
+                   
                   <span>
                     Sign in with Google
                   </span>
@@ -140,6 +147,7 @@ exports[`LoginSignUpForm matches snapshot 1`] = `
                 id="signup"
               >
                 Don't have an account?
+                 
                 <button
                   className="LoginSignUpForm_link-signup"
                   onClick={[Function]}
