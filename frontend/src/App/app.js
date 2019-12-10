@@ -1,6 +1,5 @@
 import React from "react";
 import { decode } from "jsonwebtoken";
-
 import { UserContext } from "../userContext";
 import Navigation from "./Navigation/navigation";
 import Routes from "./Routes/routes";
@@ -33,6 +32,7 @@ class App extends React.Component {
     const token = localStorage.getItem("token");
 
     try {
+      // TODO: This should just pull off user_id from token and verify on server side, requires refactor of getUser and endpoint
       let { user_id } = decode(token);
       let currentUser = await ElevateApi.getUser(user_id);
       currentUser = { ...currentUser, userId: user_id };
@@ -48,10 +48,7 @@ class App extends React.Component {
 
     return (
       <UserContext.Provider value={this.state.currentUser}>
-        <Navigation
-          logout={this.handleLogOut}
-          getCurrentUser={this.getCurrentUser}
-        />
+        <Navigation logout={this.handleLogOut} getCurrentUser={this.getCurrentUser} />
         <Routes getCurrentUser={this.getCurrentUser} />
       </UserContext.Provider>
     );

@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import ElevateApi from "../../../../elevateApi";
 
 class AdminDocView extends React.Component {
   constructor(props) {
@@ -22,15 +21,7 @@ class AdminDocView extends React.Component {
   }
 
   generateDocumentTable() {
-    const {
-      id,
-      title,
-      date_submitted,
-      date_reviewed,
-      status,
-      url,
-      counterparty
-    } = this.state.doc;
+    const { id, title, date_submitted, date_reviewed, status, url, counterparty } = this.state.doc;
     return (
       <tbody key={id}>
         <tr>
