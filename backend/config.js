@@ -15,7 +15,7 @@ const EXPIRE_TIME = 3600000; // 1 hour
 let DB_URI;
 
 if (process.env.NODE_ENV === "test") {
-  DB_URI = "elevate-test";
+  DB_URI = process.env.DATABASE_URL_TEST || "elevate-test";
 } else {
   DB_URI = process.env.DATABASE_URL || "elevate";
 }

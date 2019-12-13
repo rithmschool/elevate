@@ -29,7 +29,7 @@ router.get("/:id", authRequired, ensureCorrectUser, async function(req, res, nex
 });
 
 /** POST / a new user {email, password}  => {token: token} */
-// TODO: Form validation - need to add password confirm field
+
 router.post("/", signupFormValidator, async function(req, res, next) {
   try {
     const newUser = await User.register(req.body);
