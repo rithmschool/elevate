@@ -3,6 +3,9 @@ process.env.NODE_ENV = "test";
 const request = require("supertest");
 const app = require("../../app");
 
+const jwt = require("jsonwebtoken");
+const { SECRET } = require("../config");
+
 // model import
 const User = require("../../models/user");
 
@@ -101,6 +104,27 @@ describe("model user", function() {
         });
       expect(response.statusCode).toBe(400);
       expect(response.body.message).toBe("Passwords do not match");
+    });
+
+    test("Trims whitespace around email, first_name, and last_name inputs", async () => {
+      const response = await request(app)
+        .post("/users")
+        .send({
+          email: "  dave@gmail.com  ",
+          first_name: "  Dave  ",
+          last_name: "  Whitespace  ",
+          password: inputPassword,
+          passwordConfirm: inputPassword
+        });
+
+      const token = response.body.token;
+      const user_id = jwt.decode(token).user_id;
+      const userInfo = await User.findOne(user_id);
+
+      expect(response.statusCode).toBe(201);
+      expect(userInfo.email.length).toBe(14);
+      expect(userInfo.first_name.length).toBe(4);
+      expect(userInfo.last_name.length).toBe(10);
     });
   });
 
