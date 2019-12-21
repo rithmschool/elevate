@@ -66,39 +66,39 @@ class Home extends React.Component {
         {/* SECTION - Database */}
         <Container fluid className="Home_database p-5">
           <Row>
-            <Col>
+            <Col className="database-title-container">
               <h1 className="Home_database-title">The Brella Experience</h1>
             </Col>
           </Row>
           <Row>
-            <Col md={4}>
+            <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
                 <img src={file} alt="startFile" />
                 <h4>Understand your offer letter</h4>
               </div>
               <div>
-                <p className="Home_database-text lead">
+                <p className="lead">
                   Receive a report with an analysis of your offer, outstanding information, market
                   salary data, and next steps.
                 </p>
               </div>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
                 <img src={person} alt="person" />
                 <h4>Take Action</h4>
               </div>
-              <p className="Home_database-text lead">
+              <p className="lead">
                 Partner with your Brella team to create a plan to help you get the offer you
                 deserve.
               </p>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
                 <img src={completed} alt="completed" />
                 <h4>Continued support</h4>
               </div>
-              <p className="Home_database-text lead">
+              <p className="lead">
                 Work with our coaches to manage and grow your career and your compensation.
               </p>
             </Col>
