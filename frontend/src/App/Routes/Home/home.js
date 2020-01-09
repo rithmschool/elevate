@@ -11,6 +11,9 @@ import completed from "./img/completed.png";
 import fitting_pieces from "./img/undraw_fitting_pieces_cli3.svg";
 import road_sign from "./img/undraw_road_sign_mfpo_alt.svg";
 import stand_out from "./img/undraw_stand_out.svg";
+import offer_letter from "./img/undraw_google_docs_jf93.svg";
+import solution from "./img/undraw_our_solution_htvp.svg";
+import work_together from "./img/undraw_work_together_h63l.svg";
 
 class Home extends React.Component {
   render() {
