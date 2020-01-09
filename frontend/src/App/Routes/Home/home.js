@@ -5,11 +5,8 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import "./home.scss";
 import Footer from "./Footer/footer";
 
-import file from "./img/files.png";
-import person from "./img/person.png";
-import completed from "./img/completed.png";
 import fitting_pieces from "./img/undraw_fitting_pieces_cli3.svg";
-import road_sign from "./img/undraw_road_sign_mfpo_alt.svg";
+import road_sign from "./img/undraw_road_sign_mfpo.svg";
 import stand_out from "./img/undraw_stand_out.svg";
 import offer_letter from "./img/undraw_google_docs_jf93.svg";
 import solution from "./img/undraw_our_solution_htvp.svg";
@@ -49,7 +46,11 @@ class Home extends React.Component {
               <div>
                 <h1>Why Brella?</h1>
                 <p className="my-4 lead">
-                  Everything about your career is personal, so why isn’t your support?
+                  Your career is personal,
+                  <span className="color-emphasis font-weight-bold font-italic">
+                    {" "}
+                    so why isn’t your support?
+                  </span>
                 </p>
                 <p className="lead">
                   We take the stress out of finding trustworthy, affordable advice by providing you
@@ -70,40 +71,44 @@ class Home extends React.Component {
         <Container fluid className="Home_database p-5">
           <Row>
             <Col className="database-title-container">
-              <h1 className="Home_database-title">The Brella Experience</h1>
+              <h1 className="Home_database-title display-4">The Brella Experience</h1>
             </Col>
           </Row>
           <Row>
             <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
-                <img src={file} alt="startFile" />
-                <h4>Understand your offer letter</h4>
+                <Image src={offer_letter} alt="offer letter" />
               </div>
-              <div>
+              <div className="db-content-container">
+                <h4>Understand your offer letter</h4>
                 <p className="lead">
-                  Receive a report with an analysis of your offer, outstanding information, market
+                  Receive a report with an analysis of your offer, outstanding information,market
                   salary data, and next steps.
                 </p>
               </div>
             </Col>
             <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
-                <img src={person} alt="person" />
-                <h4>Take Action</h4>
+                <Image src={solution} alt="take action" />
               </div>
-              <p className="lead">
-                Partner with your Brella team to create a plan to help you get the offer you
-                deserve.
-              </p>
+              <div className="db-content-container">
+                <h4>Take Action</h4>
+                <p className="lead">
+                  Partner with your Brella team to create a plan to help you get the offer you
+                  deserve.
+                </p>
+              </div>
             </Col>
             <Col md={4} className="database-col-container">
               <div className="Home_database-img-container">
-                <img src={completed} alt="completed" />
-                <h4>Continued support</h4>
+                <Image src={work_together} alt="continued support" />
               </div>
-              <p className="lead">
-                Work with our coaches to manage and grow your career and your compensation.
-              </p>
+              <div className="db-content-container">
+                <h4>Continued support</h4>
+                <p className="lead">
+                  Work with our coaches to manage and grow your career and your compensation.
+                </p>
+              </div>
             </Col>
           </Row>
         </Container>
