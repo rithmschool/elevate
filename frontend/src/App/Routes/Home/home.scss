@@ -54,7 +54,20 @@ $quartieryGrey: #aaa6b2;
 
 .Home_hero {
   font-family: "Raleway", "Lucida Sans";
-  background-color: rgba($primaryBkg, 0.3);
+  background: rgba($primaryBkg, 0.5); /* Fallback for old browsers */
+
+  // background: rgb(2, 0, 36);
+  // background: linear-gradient(
+  //   15deg,
+  //   rgba(2, 0, 36, 0.8) 0%,
+  //   rgba(126, 48, 252, 0.8) 28%,
+  //   rgba(173, 124, 252, 0.35) 100%
+  // );
+
+  background-image: linear-gradient(190deg, #e2b0ff 10%, #9f44d3 100%);
+
+  // background-image: linear-gradient(190deg, #f97794 10%, #623aa2 100%);
+
   min-height: 80vh;
 
   .hero-content {
@@ -148,7 +161,7 @@ $quartieryGrey: #aaa6b2;
   text-align: center;
   padding: 3rem;
   min-height: 80vh;
-  background-color: rgba($primaryBkg, 0.8);
+  background: rgba($primaryBkg, 0.7);
 
   .content-container.cta {
     background: white;
