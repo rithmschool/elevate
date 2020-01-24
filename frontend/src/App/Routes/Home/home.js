@@ -19,6 +19,9 @@ class Home extends React.Component {
       <div>
         {/* Hero Section */}
         <Container fluid className="section Home_hero">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon fill="white" points="0,00 31,100 100,0 100,100 0,100" />
+          </svg>
           <Row>
             <Col md={6} className="p-4">
               <div className="img-container">
