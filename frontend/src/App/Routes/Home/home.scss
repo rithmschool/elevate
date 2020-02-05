@@ -180,7 +180,14 @@ $quartieryGrey: #aaa6b2;
 }
 
 .Home_about {
-  background: rgba($secondaryGrey, 0.1);
+  background: rgba($secondaryGrey, 0.2);
+
+  /* For SVG Background - generated on svgbackgrounds.com */
+  background-color: rgba($secondaryGrey, 0.2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23a176cc' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%238025aa' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%239c66c7' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23851e9d' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%239755c1' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23881790' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%239243ba' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23891284' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%238f2cb2' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23890e79' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238b03aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880c6e' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 
   h1 {
     color: $primaryBtn;
