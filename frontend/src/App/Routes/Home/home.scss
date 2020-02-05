@@ -178,3 +178,26 @@ $quartieryGrey: #aaa6b2;
     font-weight: bold;
   }
 }
+
+.Home_about {
+  background: rgba($secondaryGrey, 0.1);
+
+  h1 {
+    color: $primaryBtn;
+    text-align: center;
+  }
+
+  h4 {
+    color: black;
+    text-align: center;
+  }
+
+  p {
+    color: black;
+    text-align: justify;
+  }
+
+  .color-emphasis {
+    color: $primaryBtn;
+  }
+}

@@ -139,6 +139,29 @@ class Home extends React.Component {
             </Col>
           </Row>
         </Container>
+        {/* About */}
+        <Container id="about" fluid className="section Home_about">
+          <Row className="p-5 justify-content-center">
+            <Col md={9} className="content-container">
+              <h1>About Us</h1>
+              <h4 className="py-4">
+                <em>
+                  We’re dedicated to building a career-health platform that helps people have{" "}
+                  <span className="color-emphasis">happier, better paid careers.</span>
+                </em>
+              </h4>
+              <p className="lead py-4">
+                Throughout their careers working in the tech industry, Jamie and Alex were
+                frustrated by the lack of support they had at work. Ultimately, company-provided HR
+                departments work for the company, not the employee. They set out to provide an
+                alternative to traditional career support — one that works for you.
+              </p>
+              <p className="pt-3">
+                <em>Brella is currently in Alpha. We'd love to hear from you.</em>
+              </p>
+            </Col>
+          </Row>
+        </Container>
         {/* FOOTER */}
         <Footer />
       </div>
