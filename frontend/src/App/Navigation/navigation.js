@@ -4,6 +4,7 @@ import "./navigation.scss";
 import { UserContext } from "../../userContext";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { HashLink } from "react-router-hash-link";
 
 class Navigation extends React.Component {
   render() {
@@ -13,9 +14,9 @@ class Navigation extends React.Component {
         {currentUser =>
           !currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-              <Link to="/" className="Nav-link Nav-link-ltr">
+              <HashLink smooth to={"/#about"} className="Nav-link Nav-link-ltr">
                 About
-              </Link>
+              </HashLink>
               <Link to="/" className="Nav-link Nav-link-ltr">
                 For Employers
               </Link>
@@ -34,17 +35,10 @@ class Navigation extends React.Component {
         {currentUser =>
           currentUser && (
             <ul className="navbar-nav justify-content-center navbar-div">
-              <Link
-                tag={Link}
-                to="/dashboard/manage"
-                className="Nav-link Nav-link-ltr"
-              >
+              <Link tag={Link} to="/dashboard/manage" className="Nav-link Nav-link-ltr">
                 Manage
               </Link>
-              <Link
-                to="/dashboard/appointments"
-                className="Nav-link Nav-link-ltr"
-              >
+              <Link to="/dashboard/appointments" className="Nav-link Nav-link-ltr">
                 Appointments
               </Link>
               <Link to="/dashboard/templates" className="Nav-link Nav-link-ltr">
@@ -54,25 +48,18 @@ class Navigation extends React.Component {
                 id="collasible-nav-dropdown"
                 title={<i className="fas fa-user Nav-icon right-content"></i>}
               >
-                <div
-                  className="list-group list-unstyled"
-                  onClick={this.userMenuToggle}
-                >
+                <div className="list-group list-unstyled" onClick={this.userMenuToggle}>
                   <LinkContainer
                     className="border dropdown-link"
                     to={`/users/${currentUser.userId}`}
                   >
                     <NavDropdown.Item className="bg-transparent Menu-link">
-                      <li className="list-group-item bg-transparent">
-                        Profile
-                      </li>
+                      <li className="list-group-item bg-transparent">Profile</li>
                     </NavDropdown.Item>
                   </LinkContainer>
 
                   {currentUser.is_admin ? (
-                    <li className="border dropdown-link list-group-item">
-                      {userIsAdmin}
-                    </li>
+                    <li className="border dropdown-link list-group-item">{userIsAdmin}</li>
                   ) : (
                     ""
                   )}
@@ -82,9 +69,7 @@ class Navigation extends React.Component {
                     to="/"
                   >
                     <NavDropdown.Item className="bg-transparent Menu-link">
-                      <li className="list-group-item bg-transparent">
-                        Log out
-                      </li>
+                      <li className="list-group-item bg-transparent">Log out</li>
                     </NavDropdown.Item>
                   </LinkContainer>
                 </div>
@@ -101,9 +86,7 @@ class Navigation extends React.Component {
         {currentUser =>
           currentUser && currentUser.is_admin ? (
             <LinkContainer to="/dashboard/admin" className="dropdown-link">
-              <NavDropdown.Item className="bg-transparent Menu-link">
-                Admin
-              </NavDropdown.Item>
+              <NavDropdown.Item className="bg-transparent Menu-link">Admin</NavDropdown.Item>
             </LinkContainer>
           ) : (
             ""
@@ -113,13 +96,7 @@ class Navigation extends React.Component {
     );
 
     return (
-      <Navbar
-        className="navigation"
-        collapseOnSelect
-        expand="lg"
-        bg="light"
-        variant="light"
-      >
+      <Navbar className="navigation" collapseOnSelect expand="lg" bg="light" variant="light">
         <Navbar.Brand>
           <Link className="Nav_brand-name" to="/">
             Brella
@@ -128,10 +105,7 @@ class Navigation extends React.Component {
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-        <Navbar.Collapse
-          id="responsive-navbar-nav"
-          className="collapse.navbar-collapse"
-        >
+        <Navbar.Collapse id="responsive-navbar-nav" className="collapse.navbar-collapse">
           <Nav className="ml-auto" variant="light">
             {loggedOut}
             {userIsLoggedIn}
