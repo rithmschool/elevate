@@ -1,93 +1,210 @@
-$primaryBtn: #6558f5;
+$primaryBtn: #5821b0;
 $secondaryBtn: #31168b;
 
-.Home_container {
+$primaryBkg: #7e30fc;
+$secondaryBkg: #ad7cfc;
+$tertiaryBkg: #825dbd;
+
+$primaryGrey: #dad7de;
+$secondaryGrey: #9e90e6;
+$tertiaryGrey: #b8aec9;
+$quartieryGrey: #aaa6b2;
+
+.section {
   display: flex;
-  flex-direction: column;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  min-height: 75vh;
+
+  h1 {
+    text-align: center;
+  }
+  .btn {
+    background-color: $primaryBtn;
+    border-color: $primaryBtn;
+    font-weight: bold;
+    color: white;
+    font-size: 1.25em;
+    width: 250px;
+    margin: 15px;
+    &:hover {
+      cursor: pointer;
+      background-color: $secondaryBtn !important;
+    }
+  }
+
+  .img-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 100%;
+    width: 75%;
+  }
+
+  .content-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.Home_hero {
+  position: relative;
   font-family: "Raleway", "Lucida Sans";
-  width: 100vw;
-  height: 60vh;
-}
+  background: rgba($primaryBkg, 0.5); /* Fallback for old browsers */
+  background-image: linear-gradient(190deg, #e2b0ff 10%, #9f44d3 100%);
+  min-height: 93vh;
 
-.Home_container h1 {
-  font-weight: bold;
-}
+  /* For SVG Background - generated on svgbackgrounds.com */
+  background-color: #e2b0ff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg fill-opacity='0.20'%3E%3Cpolygon fill='%23d99dfc' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23d08bf8' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23c77bf3' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23be6bed' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23b45de5' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23aa50dd' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%239f44d3' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
 
-.Home_get-started {
-  .btn {
-    background-color: $primaryBtn;
-    border-color: $primaryBtn;
-    font-weight: bold;
-    font-size: 1.25em;
-    width: 250px;
-    margin: 15px;
-    &:hover {
-      cursor: pointer;
-      background-color: $secondaryBtn !important;
+  svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-weight: bold;
+      font-size: 3.5rem;
+      color: $primaryBtn;
+    }
+
+    p {
+      color: white;
+      text-align: center;
     }
   }
 }
 
-.Home_container {
-  .btn {
-    background-color: $primaryBtn;
-    border-color: $primaryBtn;
-    font-weight: bold;
-    font-size: 1.25em;
-    width: 250px;
-    margin: 15px;
-    &:hover {
-      cursor: pointer;
-      background-color: $secondaryBtn !important;
-    }
+.Home_template {
+  h1 {
+    color: $primaryBtn;
   }
-}
-
-.Home_template-intro h1 {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.Home_template img {
-  border-radius: 10px;
+  p .color-emphasis {
+    color: $primaryBtn;
+  }
 }
 
 .Home_database {
-  margin-top: 10vh;
-}
-
-.Home_database-title {
-  text-align: center;
-  margin-bottom: 1%;
-  font-weight: bold;
-}
-
-.Home_database-img-container {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
+  justify-content: center;
   align-items: center;
-}
+  background-color: rgba($color: $secondaryBkg, $alpha: 0.05);
+  min-height: 75vh;
 
-.Home_database-img-container img {
-  min-width: 20%;
-  max-width: 20%;
-  min-height: 10%;
-  max-height: 10%;
-  padding: 10px;
-}
+  .title-container {
+    margin-bottom: 2rem;
+    h1 {
+      color: $primaryBtn;
+      text-align: center;
+    }
+  }
 
-.Home_database-text {
-  margin-bottom: 1vh;
+  .col-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    margin: 1rem auto;
+    padding: 1rem;
+    min-height: 450px;
+    // border: 1px solid red;
+
+    .img-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // border: 1px solid green;
+      margin-bottom: 2rem;
+      min-height: 212px;
+      img {
+        width: 75%;
+      }
+    }
+
+    .content-container {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      // border: 1px solid blue;
+      padding: 0.5rem 0;
+      min-height: 170px;
+      h4 {
+        color: $primaryBtn;
+        text-align: center;
+      }
+    }
+  }
+
+  /* Matches "Continued Support" img size relative to other imgs in DB section*/
+  .col-container:last-child img {
+    width: 90%;
+  }
 }
 
 .Home_get-started {
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  margin-top: 5px;
-  margin-bottom: 160px;
-  height: 20vh;
-  padding: 8% 0;
+  padding: 3rem;
+  min-height: 80vh;
+  background: rgba($primaryBkg, 0.6); //Save as fallback
+
+  /* For SVG Background - generated on svgbackgrounds.com */
+  background-color: rgba($primaryBkg, 0.6);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%234919ff' stroke-width='1' stroke-opacity='0.2'%3E%3Crect x='-40' y='40' width='75' height='75'/%3E%3Crect x='-35' y='45' width='65' height='65'/%3E%3Crect x='-30' y='50' width='55' height='55'/%3E%3Crect x='-25' y='55' width='45' height='45'/%3E%3Crect x='-20' y='60' width='35' height='35'/%3E%3Crect x='-15' y='65' width='25' height='25'/%3E%3Crect x='-10' y='70' width='15' height='15'/%3E%3Crect x='-5' y='75' width='5' height='5'/%3E%3Crect width='35' height='35'/%3E%3Crect x='5' y='5' width='25' height='25'/%3E%3Crect x='10' y='10' width='15' height='15'/%3E%3Crect x='15' y='15' width='5' height='5'/%3E%3Crect x='40' width='75' height='75'/%3E%3Crect x='45' y='5' width='65' height='65'/%3E%3Crect x='50' y='10' width='55' height='55'/%3E%3Crect x='55' y='15' width='45' height='45'/%3E%3Crect x='60' y='20' width='35' height='35'/%3E%3Crect x='65' y='25' width='25' height='25'/%3E%3Crect x='70' y='30' width='15' height='15'/%3E%3Crect x='75' y='35' width='5' height='5'/%3E%3Crect x='40' y='80' width='35' height='35'/%3E%3Crect x='45' y='85' width='25' height='25'/%3E%3Crect x='50' y='90' width='15' height='15'/%3E%3Crect x='55' y='95' width='5' height='5'/%3E%3Crect x='120' y='-40' width='75' height='75'/%3E%3Crect x='125' y='-35' width='65' height='65'/%3E%3Crect x='130' y='-30' width='55' height='55'/%3E%3Crect x='135' y='-25' width='45' height='45'/%3E%3Crect x='140' y='-20' width='35' height='35'/%3E%3Crect x='145' y='-15' width='25' height='25'/%3E%3Crect x='150' y='-10' width='15' height='15'/%3E%3Crect x='155' y='-5' width='5' height='5'/%3E%3Crect x='120' y='40' width='35' height='35'/%3E%3Crect x='125' y='45' width='25' height='25'/%3E%3Crect x='130' y='50' width='15' height='15'/%3E%3Crect x='135' y='55' width='5' height='5'/%3E%3Crect y='120' width='75' height='75'/%3E%3Crect x='5' y='125' width='65' height='65'/%3E%3Crect x='10' y='130' width='55' height='55'/%3E%3Crect x='15' y='135' width='45' height='45'/%3E%3Crect x='20' y='140' width='35' height='35'/%3E%3Crect x='25' y='145' width='25' height='25'/%3E%3Crect x='30' y='150' width='15' height='15'/%3E%3Crect x='35' y='155' width='5' height='5'/%3E%3Crect x='200' y='120' width='75' height='75'/%3E%3Crect x='40' y='200' width='75' height='75'/%3E%3Crect x='80' y='80' width='75' height='75'/%3E%3Crect x='85' y='85' width='65' height='65'/%3E%3Crect x='90' y='90' width='55' height='55'/%3E%3Crect x='95' y='95' width='45' height='45'/%3E%3Crect x='100' y='100' width='35' height='35'/%3E%3Crect x='105' y='105' width='25' height='25'/%3E%3Crect x='110' y='110' width='15' height='15'/%3E%3Crect x='115' y='115' width='5' height='5'/%3E%3Crect x='80' y='160' width='35' height='35'/%3E%3Crect x='85' y='165' width='25' height='25'/%3E%3Crect x='90' y='170' width='15' height='15'/%3E%3Crect x='95' y='175' width='5' height='5'/%3E%3Crect x='120' y='160' width='75' height='75'/%3E%3Crect x='125' y='165' width='65' height='65'/%3E%3Crect x='130' y='170' width='55' height='55'/%3E%3Crect x='135' y='175' width='45' height='45'/%3E%3Crect x='140' y='180' width='35' height='35'/%3E%3Crect x='145' y='185' width='25' height='25'/%3E%3Crect x='150' y='190' width='15' height='15'/%3E%3Crect x='155' y='195' width='5' height='5'/%3E%3Crect x='160' y='40' width='75' height='75'/%3E%3Crect x='165' y='45' width='65' height='65'/%3E%3Crect x='170' y='50' width='55' height='55'/%3E%3Crect x='175' y='55' width='45' height='45'/%3E%3Crect x='180' y='60' width='35' height='35'/%3E%3Crect x='185' y='65' width='25' height='25'/%3E%3Crect x='190' y='70' width='15' height='15'/%3E%3Crect x='195' y='75' width='5' height='5'/%3E%3Crect x='160' y='120' width='35' height='35'/%3E%3Crect x='165' y='125' width='25' height='25'/%3E%3Crect x='170' y='130' width='15' height='15'/%3E%3Crect x='175' y='135' width='5' height='5'/%3E%3Crect x='200' y='200' width='35' height='35'/%3E%3Crect x='200' width='35' height='35'/%3E%3Crect y='200' width='35' height='35'/%3E%3C/g%3E%3C/svg%3E");
+
+  .content-container.cta {
+    background: white;
+  }
+
+  h2 {
+    color: $secondaryBtn;
+    font-weight: bold;
+  }
+}
+
+.Home_about {
+  background: rgba($secondaryGrey, 0.2);
+
+  /* For SVG Background - generated on svgbackgrounds.com */
+  background-color: rgba($secondaryGrey, 0.2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23a176cc' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%238025aa' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%239c66c7' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23851e9d' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%239755c1' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23881790' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%239243ba' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23891284' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%238f2cb2' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23890e79' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238b03aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880c6e' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+  h1 {
+    color: $primaryBtn;
+    text-align: center;
+  }
+
+  h4 {
+    color: black;
+    text-align: center;
+  }
+
+  p {
+    color: black;
+    text-align: justify;
+  }
+
+  .color-emphasis {
+    color: $primaryBtn;
+  }
 }
