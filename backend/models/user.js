@@ -2,7 +2,7 @@ const db = require("../db");
 const bcrypt = require("bcrypt");
 const partialUpdate = require("../helpers/partialUpdate");
 
-/** reduce bcrypc rounds in test environemnt **/
+/** reduce bcrypt rounds in test environment **/
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 15;
 
 /** Related functions for users. */
@@ -49,14 +49,17 @@ class User {
   static async googleLogin(data) {
     let user;
 
-    let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]);
+    let existing_user =
+      data.email && (await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]));
     // Get user_id from google_users table
     let userId = existing_user.rows[0] && existing_user.rows[0].id;
 
-    let existingGoogleUser = await db.query(`SELECT * FROM google_users WHERE user_id=$1`, [userId]);
-    let userGoogleID = existingGoogleUser.rows && existingGoogleUser.rows[0]
+    let existingGoogleUser = await db.query(`SELECT * FROM google_users WHERE user_id=$1`, [
+      userId
+    ]);
+    let userGoogleID = existingGoogleUser.rows && existingGoogleUser.rows[0];
 
-    // Check if user_id exists in google_users table, 
+    // Check if user_id exists in google_users table,
     // false: add to google_users table, then return user
     // true: return user
     if (!userGoogleID && userId) {
@@ -66,12 +69,11 @@ class User {
                 VALUES ($1,$2)
                 RETURNING user_id, google_id`,
         [userId, data.sub]
-      )
+      );
 
       // Return current user
       user = await User.findOne(userId);
       return user;
-
     } else if (userGoogleID && userId) {
       user = await User.findOne(userId);
       return user;
@@ -81,8 +83,10 @@ class User {
               (email, password, first_name, last_name) 
               VALUES ($1, $2, $3, $4) 
               RETURNING email, first_name, last_name`,
-        [data.email, null, data.given_name, data.family_name]);
-      let existing_user = data.email && await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]);
+        [data.email, null, data.given_name, data.family_name]
+      );
+      let existing_user =
+        data.email && (await db.query(`SELECT id FROM users WHERE email = $1`, [data.email]));
       let userId = existing_user.rows[0] && existing_user.rows[0].id;
 
       await db.query(
@@ -90,40 +94,41 @@ class User {
                 (user_id, google_id)
                 VALUES ($1,$2)
                 RETURNING user_id, google_id`,
-        [userId, data.sub]);
+        [userId, data.sub]
+      );
       user = await User.findOne(userId);
       return user;
     }
   }
 
-
   /** Register user with data. Returns new user data. */
-  /**NOTE: ask Alex what kind of initial sign up data from new user */
+  /** NOTE: ask Alex what kind of initial sign up data from new user */
   static async register(data) {
-    // check if email is taken or not
+    /* email, first_name, and last_name are already sanitized 
+    from helper/formValidation.js */
+    const { email, password, first_name, last_name } = data;
 
+    // check if email is taken or not
     const duplicateCheck = await db.query(
       `SELECT email 
             FROM users 
             WHERE email = $1`,
-      [data.email]
+      [email]
     );
 
     if (duplicateCheck.rows[0]) {
-      const err = new Error(
-        `There already exists a user with email '${data.email}`
-      );
+      const err = new Error(`There already exists a user with email '${email}`);
       err.status = 401;
       throw err;
     }
 
-    const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     const result = await db.query(
-      `INSERT INTO users 
-            (email, password, first_name, last_name) 
-            VALUES ($1, $2, $3, $4) 
+      `INSERT INTO users
+            (email, password, first_name, last_name)
+            VALUES ($1, $2, $3, $4)
             RETURNING id, is_admin, first_name, last_name`,
-      [data.email, hashedPassword, data.first_name, data.last_name]
+      [email, hashedPassword, first_name, last_name]
     );
     return result.rows[0];
   }

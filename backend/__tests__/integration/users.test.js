@@ -7,7 +7,7 @@ const request = require('supertest');
 const app = require('../../app');
 
 // model imports
-const User = require('../../models/user');
+// const User = require('../../models/user');
 
 //test config  
 const { SEED_USER_SQL } = require("../../config")
@@ -36,7 +36,10 @@ describe('POST /users', function () {
   test('Creates a new user', async function () {
     let dataObj = {
       email: 'newtest@gmail.com',
+      first_name: "fname",
+      last_name: "lname",
       password: 'secret',
+      passwordConfirm: 'secret',
     };
     const response = await request(app)
       .post('/users')
@@ -51,7 +54,10 @@ describe('POST /users', function () {
       .post('/users')
       .send({
         email: inputEmail,
+        first_name: "fname",
+        last_name: "lname",
         password: inputPassword,
+        passwordConfirm: inputPassword,
       });
     expect(response.statusCode).toBe(401);
   });

@@ -7,14 +7,14 @@ import Spinner from "../../Spinner/spinner";
 import LoginError from "./LoginError/loginError";
 
 //created client_id from configure a project from google
-const client_id =
-  "98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com";
+const client_id = "98215850405-9u3oli17i7vko2f22k6rc7f9srlpjf3m.apps.googleusercontent.com";
 let auth2;
 
 function LoginSignUpForm(props) {
   const [loginView, setLoginView] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -97,6 +97,7 @@ function LoginSignUpForm(props) {
         const data = {
           email,
           password,
+          passwordConfirm,
           first_name: firstName,
           last_name: lastName
         };
@@ -127,6 +128,7 @@ function LoginSignUpForm(props) {
           onChange={e => setFirstName(e.target.value)}
           value={firstName}
           data-testid="firstName"
+          required
         />
       </Form.Group>
 
@@ -140,9 +142,25 @@ function LoginSignUpForm(props) {
           onChange={e => setLastName(e.target.value)}
           value={lastName}
           data-testid="lastName"
+          required
         />
       </Form.Group>
     </div>
+  );
+
+  const passwordConfirmation = (
+    <Form.Group>
+      <Form.Control
+        placeholder="Confirm password"
+        id="passwordConfirm"
+        name="passwordConfirm"
+        type="password"
+        onChange={e => setPasswordConfirm(e.target.value)}
+        value={passwordConfirm}
+        minLength={6}
+        required
+      />
+    </Form.Group>
   );
 
   const emailPasswordInputs = (
@@ -152,9 +170,10 @@ function LoginSignUpForm(props) {
           placeholder="Email"
           id="email"
           name="email"
-          type="text"
+          type="email"
           onChange={e => setEmail(e.target.value)}
           value={email}
+          required
         />
       </Form.Group>
 
@@ -166,8 +185,11 @@ function LoginSignUpForm(props) {
           type="password"
           onChange={e => setPassword(e.target.value)}
           value={password}
+          minLength={6}
+          required
         />
       </Form.Group>
+      {!loginView && passwordConfirmation}
     </div>
   );
 
@@ -181,8 +203,7 @@ function LoginSignUpForm(props) {
       {/* Google Sign In Button */}
       <div className="row justify-content-center">
         <Button className="btn-block mr-3 ml-3" onClick={handleGoogleSignin}>
-          <i className="fab fa-google"></i>
-          <span>Sign in with Google</span>
+          <i className="fab fa-google"></i> <span>Sign in with Google</span>
         </Button>
       </div>
     </div>
@@ -206,11 +227,7 @@ function LoginSignUpForm(props) {
 
   const directToSignIn = (
     <Form.Text id="signup" className="text-muted">
-      <button
-        name="login"
-        className="LoginSignUpForm_link-signin"
-        onClick={loginOrSignup}
-      >
+      <button name="login" className="LoginSignUpForm_link-signin" onClick={loginOrSignup}>
         Sign in
       </button>
     </Form.Text>
@@ -219,7 +236,7 @@ function LoginSignUpForm(props) {
   const directToSignUp = (
     <div>
       <Form.Text id="signup" className="text-muted mt-3">
-        Don't have an account?
+        Don't have an account?{" "}
         <button className="LoginSignUpForm_link-signup" onClick={loginOrSignup}>
           Create One
         </button>
@@ -230,9 +247,7 @@ function LoginSignUpForm(props) {
   const forgotPasswordLink = (
     <div>
       <Form.Text id="signup" className="LoginSignUpForm_link-signup">
-        <a href="http://localhost:3000/reset-password/forgot">
-          Forgot password?
-        </a>
+        <a href="http://localhost:3000/reset-password/forgot">Forgot password?</a>
       </Form.Text>
     </div>
   );
